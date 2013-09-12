@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 
+  first_name: 
+  30: MyString
+  last_name: 
+  30: MyString
+  email: 
+  20: MyString
+  vname: 
+  25: MyString
+  password: 
+  confirm: 
+  money: 
+  admin: 
+  joined_on: 2013-09-11
+  maintenance: 
+  timestamp: MyString
+
+two:
+  id: 
+  first_name: 
+  30: MyString
+  last_name: 
+  30: MyString
+  email: 
+  20: MyString
+  vname: 
+  25: MyString
+  password: 
+  confirm: 
+  money: 
+  admin: 
+  joined_on: 2013-09-11
+  maintenance: 
+  timestamp: MyString

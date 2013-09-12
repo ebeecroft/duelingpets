@@ -1,0 +1,47 @@
+<h1>Listing pets</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Species name</th>
+    <th>Description</th>
+    <th>Image</th>
+    <th>Level</th>
+    <th>Hp</th>
+    <th>Def</th>
+    <th>Atk</th>
+    <th>Spd</th>
+    <th>Cost</th>
+    <th>P m r</th>
+    <th>Created by</th>
+    <th>Created on</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pets.each do |pet| %>
+  <tr>
+    <td><%= pet.id %></td>
+    <td><%= pet.species_name %></td>
+    <td><%= pet.description %></td>
+    <td><%= pet.image %></td>
+    <td><%= pet.level %></td>
+    <td><%= pet.hp %></td>
+    <td><%= pet.def %></td>
+    <td><%= pet.atk %></td>
+    <td><%= pet.spd %></td>
+    <td><%= pet.cost %></td>
+    <td><%= pet.p_m_r %></td>
+    <td><%= pet.created_by %></td>
+    <td><%= pet.created_on %></td>
+    <td><%= link_to 'Show', pet %></td>
+    <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+    <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pet', new_pet_path %>

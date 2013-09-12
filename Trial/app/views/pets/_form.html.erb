@@ -1,0 +1,69 @@
+<%= form_for(@pet) do |f| %>
+  <% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+
+      <ul>
+      <% @pet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id %><br />
+    <%= f.text_field :id %>
+  </div>
+  <div class="field">
+    <%= f.label :species_name %><br />
+    <%= f.text_field :species_name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br />
+    <%= f.text_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :hp %><br />
+    <%= f.text_field :hp %>
+  </div>
+  <div class="field">
+    <%= f.label :def %><br />
+    <%= f.text_field :def %>
+  </div>
+  <div class="field">
+    <%= f.label :atk %><br />
+    <%= f.text_field :atk %>
+  </div>
+  <div class="field">
+    <%= f.label :spd %><br />
+    <%= f.text_field :spd %>
+  </div>
+  <div class="field">
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
+  </div>
+  <div class="field">
+    <%= f.label :p_m_r %><br />
+    <%= f.text_field :p_m_r %>
+  </div>
+  <div class="field">
+    <%= f.label :created_by %><br />
+    <%= f.text_field :created_by %>
+  </div>
+  <div class="field">
+    <%= f.label :created_on %><br />
+    <%= f.date_select :created_on %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

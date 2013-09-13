@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @pet_owner.id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @pet_owner.user_id %>
+</p>
+
+<p>
+  <b>Pet:</b>
+  <%= @pet_owner.pet_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @pet_owner.name %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @pet_owner.level %>
+</p>
+
+<p>
+  <b>Hp:</b>
+  <%= @pet_owner.hp %>
+</p>
+
+<p>
+  <b>Def:</b>
+  <%= @pet_owner.def %>
+</p>
+
+<p>
+  <b>Atk:</b>
+  <%= @pet_owner.atk %>
+</p>
+
+<p>
+  <b>Spd:</b>
+  <%= @pet_owner.spd %>
+</p>
+
+<p>
+  <b>Hp max:</b>
+  <%= @pet_owner.hp_max %>
+</p>
+
+<p>
+  <b>Exp:</b>
+  <%= @pet_owner.exp %>
+</p>
+
+
+<%= link_to 'Edit', edit_pet_owner_path(@pet_owner) %> |
+<%= link_to 'Back', pet_owners_path %>

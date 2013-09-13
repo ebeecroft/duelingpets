@@ -1,0 +1,47 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Image</th>
+    <th>Description</th>
+    <th>Hp</th>
+    <th>Atk</th>
+    <th>Def</th>
+    <th>Spd</th>
+    <th>Cost</th>
+    <th>Equip flag</th>
+    <th>Type</th>
+    <th>Created at</th>
+    <th>Maintenance</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <td><%= item.name %></td>
+    <td><%= item.image %></td>
+    <td><%= item.description %></td>
+    <td><%= item.hp %></td>
+    <td><%= item.atk %></td>
+    <td><%= item.def %></td>
+    <td><%= item.spd %></td>
+    <td><%= item.cost %></td>
+    <td><%= item.equip_flag %></td>
+    <td><%= item.type %></td>
+    <td><%= item.created_at %></td>
+    <td><%= item.maintenance %></td>
+    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to 'Edit', edit_item_path(item) %></td>
+    <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path %>

@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @item.id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @item.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @item.image %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.description %>
+</p>
+
+<p>
+  <b>Hp:</b>
+  <%= @item.hp %>
+</p>
+
+<p>
+  <b>Atk:</b>
+  <%= @item.atk %>
+</p>
+
+<p>
+  <b>Def:</b>
+  <%= @item.def %>
+</p>
+
+<p>
+  <b>Spd:</b>
+  <%= @item.spd %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @item.cost %>
+</p>
+
+<p>
+  <b>Equip flag:</b>
+  <%= @item.equip_flag %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @item.type %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @item.created_at %>
+</p>
+
+<p>
+  <b>Maintenance:</b>
+  <%= @item.maintenance %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

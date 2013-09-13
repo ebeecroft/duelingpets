@@ -1,0 +1,43 @@
+<h1>Listing pet_owners</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>User</th>
+    <th>Pet</th>
+    <th>Name</th>
+    <th>Level</th>
+    <th>Hp</th>
+    <th>Def</th>
+    <th>Atk</th>
+    <th>Spd</th>
+    <th>Hp max</th>
+    <th>Exp</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pet_owners.each do |pet_owner| %>
+  <tr>
+    <td><%= pet_owner.id %></td>
+    <td><%= pet_owner.user_id %></td>
+    <td><%= pet_owner.pet_id %></td>
+    <td><%= pet_owner.name %></td>
+    <td><%= pet_owner.level %></td>
+    <td><%= pet_owner.hp %></td>
+    <td><%= pet_owner.def %></td>
+    <td><%= pet_owner.atk %></td>
+    <td><%= pet_owner.spd %></td>
+    <td><%= pet_owner.hp_max %></td>
+    <td><%= pet_owner.exp %></td>
+    <td><%= link_to 'Show', pet_owner %></td>
+    <td><%= link_to 'Edit', edit_pet_owner_path(pet_owner) %></td>
+    <td><%= link_to 'Destroy', pet_owner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pet owner', new_pet_owner_path %>

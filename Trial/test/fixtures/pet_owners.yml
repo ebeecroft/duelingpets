@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 
+  user_id: 
+  pet_id: 
+  name: 
+  level: 
+  hp: 
+  def: 
+  atk: 
+  spd: 
+  hp_max: 
+  exp: 
+
+two:
+  id: 
+  user_id: 
+  pet_id: 
+  name: 
+  level: 
+  hp: 
+  def: 
+  atk: 
+  spd: 
+  hp_max: 
+  exp: 

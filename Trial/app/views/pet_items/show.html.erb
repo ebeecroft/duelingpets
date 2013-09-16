@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @pet_item.id %>
+</p>
+
+<p>
+  <b>Petown:</b>
+  <%= @pet_item.petown_id %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%= @pet_item.item_id %>
+</p>
+
+<p>
+  <b>Reusable:</b>
+  <%= @pet_item.reusable %>
+</p>
+
+
+<%= link_to 'Edit', edit_pet_item_path(@pet_item) %> |
+<%= link_to 'Back', pet_items_path %>

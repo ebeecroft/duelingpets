@@ -1,0 +1,33 @@
+<h1>Listing subtopics</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Main</th>
+    <th>User</th>
+    <th>Topicname</th>
+    <th>Created on</th>
+    <th>Maintenance</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subtopics.each do |subtopic| %>
+  <tr>
+    <td><%= subtopic.id %></td>
+    <td><%= subtopic.main_id %></td>
+    <td><%= subtopic.user_id %></td>
+    <td><%= subtopic.topicname %></td>
+    <td><%= subtopic.created_on %></td>
+    <td><%= subtopic.maintenance %></td>
+    <td><%= link_to 'Show', subtopic %></td>
+    <td><%= link_to 'Edit', edit_subtopic_path(subtopic) %></td>
+    <td><%= link_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subtopic', new_subtopic_path %>

@@ -1,0 +1,29 @@
+<h1>Listing pet_items</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Petown</th>
+    <th>Item</th>
+    <th>Reusable</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pet_items.each do |pet_item| %>
+  <tr>
+    <td><%= pet_item.id %></td>
+    <td><%= pet_item.petown_id %></td>
+    <td><%= pet_item.item_id %></td>
+    <td><%= pet_item.reusable %></td>
+    <td><%= link_to 'Show', pet_item %></td>
+    <td><%= link_to 'Edit', edit_pet_item_path(pet_item) %></td>
+    <td><%= link_to 'Destroy', pet_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pet item', new_pet_item_path %>

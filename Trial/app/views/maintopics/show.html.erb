@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @maintopic.id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @maintopic.user_id %>
+</p>
+
+<p>
+  <b>Topicname:</b>
+  <%= @maintopic.topicname %>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%= @maintopic.created_on %>
+</p>
+
+<p>
+  <b>Maintenance:</b>
+  <%= @maintopic.maintenance %>
+</p>
+
+
+<%= link_to 'Edit', edit_maintopic_path(@maintopic) %> |
+<%= link_to 'Back', maintopics_path %>

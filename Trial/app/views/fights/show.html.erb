@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @fight.id %>
+</p>
+
+<p>
+  <b>Petown:</b>
+  <%= @fight.petown_id %>
+</p>
+
+<p>
+  <b>Monster:</b>
+  <%= @fight.monster_id %>
+</p>
+
+<p>
+  <b>Round:</b>
+  <%= @fight.round %>
+</p>
+
+<p>
+  <b>Damage:</b>
+  <%= @fight.damage %>
+</p>
+
+<p>
+  <b>Miss:</b>
+  <%= @fight.miss %>
+</p>
+
+
+<%= link_to 'Edit', edit_fight_path(@fight) %> |
+<%= link_to 'Back', fights_path %>

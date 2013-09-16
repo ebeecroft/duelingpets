@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @narrative.id %>
+</p>
+
+<p>
+  <b>Sub:</b>
+  <%= @narrative.sub_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @narrative.user_id %>
+</p>
+
+<p>
+  <b>Story:</b>
+  <%= @narrative.story %>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%= @narrative.created_on %>
+</p>
+
+<p>
+  <b>Maintenance:</b>
+  <%= @narrative.maintenance %>
+</p>
+
+
+<%= link_to 'Edit', edit_narrative_path(@narrative) %> |
+<%= link_to 'Back', narratives_path %>

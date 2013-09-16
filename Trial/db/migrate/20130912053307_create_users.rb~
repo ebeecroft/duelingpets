@@ -1,22 +1,17 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.bigint :id
-      t.varchar :first_name
-      t.string :30
-      t.varchar :last_name
-      t.string :30
-      t.varchar :email
-      t.string :20
-      t.varchar :vname
-      t.string :25
-      t.password :password
-      t.password :confirm
-      t.int :money
+      t.integer :id
+      t.string :first_name
+      t.string :last_name
+      t.string :email
+      t.string :vname
+      t.string :password
+      t.string :confirm
+      t.integer :money
       t.tinyint :admin
       t.date :joined_on
-      t.tinyint :maintenance
-      t.string :timestamp
+      t.boolean :maintenance
 
       t.timestamps
     end

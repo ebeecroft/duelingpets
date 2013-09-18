@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :joined_on, :last_name, :vname
+  attr_accessible :email, :first_name, :last_name, :vname
 end

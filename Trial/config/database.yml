@@ -28,7 +28,7 @@ test:
   database: Trial_test
   pool: 5
   username: root
-  password:
+  password: pokemon1
   host: localhost
 
 production:
@@ -38,5 +38,5 @@ production:
   database: Trial_production
   pool: 5
   username: root
-  password:
+  password: pokemon1
   host: localhost

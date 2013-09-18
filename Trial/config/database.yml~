@@ -15,7 +15,7 @@ development:
   database: powerpets2
   pool: 5
   username: root
-  password: 
+  password: pokemon1
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: Trial_test
   pool: 5
   username: root
-  password:
+  password: pokemon1
   host: localhost
 
 production:

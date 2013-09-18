@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
-  </div>
-  <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
   </div>
@@ -33,28 +29,16 @@
   </div>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
   </div>
   <div class="field">
     <%= f.label :confirm %><br />
-    <%= f.text_field :confirm %>
+    <%= f.password_field :confirm %>
   </div>
-  <div class="field">
-    <%= f.label :money %><br />
-    <%= f.text_field :money %>
-  </div>
-  <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.text_field :admin %>
-  </div>
-  <div class="field">
+  <!---<div class="field">
     <%= f.label :joined_on %><br />
     <%= f.date_select :joined_on %>
-  </div>
-  <div class="field">
-    <%= f.label :maintenance %><br />
-    <%= f.text_field :maintenance %>
-  </div>
+  </div>--->
   <div class="actions">
     <%= f.submit %>
   </div>

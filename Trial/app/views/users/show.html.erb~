@@ -27,7 +27,7 @@
 
 <p>
   <b>Joined on:</b>
-  <%= @user.joined_on %>
+  <%= @user.joined_on, order %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

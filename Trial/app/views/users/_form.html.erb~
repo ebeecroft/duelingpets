@@ -35,10 +35,9 @@
     <%= f.label :confirm %><br />
     <%= f.password_field :confirm %>
   </div>
-  <!---<div class="field">
-    <%= f.label :joined_on %><br />
-    <%= f.date_select :joined_on %>
-  </div>--->
+  <div class="field">
+    <%= f.date_select(:joined_on, {:discard_day => true, :discard_month => true, :discard_year => true}, :order => [:day, :month, :year]) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

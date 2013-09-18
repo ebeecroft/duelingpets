@@ -18,7 +18,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { 20: @user.20, 25: @user.25, 30: @user.30, 30: @user.30, admin: @user.admin, confirm: @user.confirm, email: @user.email, first_name: @user.first_name, id: @user.id, joined_on: @user.joined_on, last_name: @user.last_name, maintenance: @user.maintenance, money: @user.money, password: @user.password, timestamp: @user.timestamp, vname: @user.vname }
+      post :create, user: { admin: @user.admin, confirm: @user.confirm, email: @user.email, first_name: @user.first_name, joined_on: @user.joined_on, last_name: @user.last_name, maintenance: @user.maintenance, money: @user.money, password: @user.password, vname: @user.vname }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -35,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    put :update, id: @user, user: { 20: @user.20, 25: @user.25, 30: @user.30, 30: @user.30, admin: @user.admin, confirm: @user.confirm, email: @user.email, first_name: @user.first_name, id: @user.id, joined_on: @user.joined_on, last_name: @user.last_name, maintenance: @user.maintenance, money: @user.money, password: @user.password, timestamp: @user.timestamp, vname: @user.vname }
+    put :update, id: @user, user: { admin: @user.admin, confirm: @user.confirm, email: @user.email, first_name: @user.first_name, joined_on: @user.joined_on, last_name: @user.last_name, maintenance: @user.maintenance, money: @user.money, password: @user.password, vname: @user.vname }
     assert_redirected_to user_path(assigns(:user))
   end
 

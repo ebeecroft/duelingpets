@@ -2,12 +2,8 @@
 
 <table>
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
     <th>Email</th>
     <th>Vname</th>
-    <th>Password</th>
-    <th>Confirm</th>
     <th>Money</th>
     <th>Admin</th>
     <th>Joined on</th>
@@ -19,12 +15,8 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
     <td><%= user.email %></td>
     <td><%= user.vname %></td>
-    <td><%= user.password %></td>
-    <td><%= user.confirm %></td>
     <td><%= user.money %></td>
     <td><%= user.admin %></td>
     <td><%= user.joined_on %></td>

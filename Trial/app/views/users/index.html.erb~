@@ -4,6 +4,8 @@
   <tr>
     <th>Email</th>
     <th>Vname</th>
+    <th>Money</th>
+    <th>Admin</th>
     <th>Joined on</th>
     <th>Maintenance</th>
     <th></th>
@@ -15,6 +17,8 @@
   <tr>
     <td><%= user.email %></td>
     <td><%= user.vname %></td>
+    <td><%= user.money %></td>
+    <td><%= user.admin %></td>
     <td><%= user.joined_on %></td>
     <td><%= user.maintenance %></td>
     <td><%= link_to 'Show', user %></td>

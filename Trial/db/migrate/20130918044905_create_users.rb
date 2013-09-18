@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.string :confirm
       t.integer :money
-      t.boolean :admin
+      t.boolean :admin, :default false
       t.date :joined_on
       t.boolean :maintenance
 

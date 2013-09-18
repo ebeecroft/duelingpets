@@ -29,14 +29,26 @@
   </div>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.text_field :password %>
   </div>
   <div class="field">
     <%= f.label :confirm %><br />
-    <%= f.password_field :confirm %>
+    <%= f.text_field :confirm %>
   </div>
   <div class="field">
-    <%= f.date_select(:joined_on, {:discard_day => true, :discard_month => true, :discard_year => true}, :order => [:day, :month, :year]) %>
+    <%= f.label :money %><br />
+    <%= f.number_field :money %>
+  </div>
+  <div class="field">
+    <%=# f.label :admin %><br />
+    <%=# f.hidden_field :admin %>
+  </div>
+  <div class="field">
+    <%= f.date_select :joined_on, {:discard_day => true, :discard_month => true, :discard_year => true}, :order => [:day, :month, :year] %>
+  </div>
+  <div class="field">
+    <%= f.label :maintenance %><br />
+    <%= f.check_box :maintenance %>
   </div>
   <div class="actions">
     <%= f.submit %>

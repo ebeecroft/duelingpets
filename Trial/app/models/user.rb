@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :confirm, :email, :first_name, :id, :joined_on, :last_name, :maintenance, :money, :password, :vname
+  attr_accessible :confirm, :email, :first_name, :joined_on, :last_name, :money, :password, :vname
 end

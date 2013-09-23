@@ -12,48 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
-  </div>
-  <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    <%= f.number_field :user_id %>
   </div>
   <div class="field">
     <%= f.label :pet_id %><br />
-    <%= f.text_field :pet_id %>
+    <%= f.number_field :pet_id %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :pet_name %><br />
+    <%= f.text_field :pet_name %>
   </div>
   <div class="field">
-    <%= f.label :level %><br />
-    <%= f.text_field :level %>
-  </div>
-  <div class="field">
-    <%= f.label :hp %><br />
-    <%= f.text_field :hp %>
-  </div>
-  <div class="field">
-    <%= f.label :def %><br />
-    <%= f.text_field :def %>
-  </div>
-  <div class="field">
-    <%= f.label :atk %><br />
-    <%= f.text_field :atk %>
-  </div>
-  <div class="field">
-    <%= f.label :spd %><br />
-    <%= f.text_field :spd %>
-  </div>
-  <div class="field">
-    <%= f.label :hp_max %><br />
-    <%= f.text_field :hp_max %>
-  </div>
-  <div class="field">
-    <%= f.label :exp %><br />
-    <%= f.text_field :exp %>
+    <%= f.label :adopted_on %><br />
+    <%= f.datetime_select :adopted_on %>
   </div>
   <div class="actions">
     <%= f.submit %>

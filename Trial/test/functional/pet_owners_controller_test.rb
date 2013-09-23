@@ -18,7 +18,7 @@ class PetOwnersControllerTest < ActionController::TestCase
 
   test "should create pet_owner" do
     assert_difference('PetOwner.count') do
-      post :create, pet_owner: { atk: @pet_owner.atk, def: @pet_owner.def, exp: @pet_owner.exp, hp: @pet_owner.hp, hp_max: @pet_owner.hp_max, id: @pet_owner.id, level: @pet_owner.level, name: @pet_owner.name, pet_id: @pet_owner.pet_id, spd: @pet_owner.spd, user_id: @pet_owner.user_id }
+      post :create, pet_owner: { adopted_on: @pet_owner.adopted_on, pet_id: @pet_owner.pet_id, pet_name: @pet_owner.pet_name, user_id: @pet_owner.user_id }
     end
 
     assert_redirected_to pet_owner_path(assigns(:pet_owner))
@@ -35,7 +35,7 @@ class PetOwnersControllerTest < ActionController::TestCase
   end
 
   test "should update pet_owner" do
-    put :update, id: @pet_owner, pet_owner: { atk: @pet_owner.atk, def: @pet_owner.def, exp: @pet_owner.exp, hp: @pet_owner.hp, hp_max: @pet_owner.hp_max, id: @pet_owner.id, level: @pet_owner.level, name: @pet_owner.name, pet_id: @pet_owner.pet_id, spd: @pet_owner.spd, user_id: @pet_owner.user_id }
+    put :update, id: @pet_owner, pet_owner: { adopted_on: @pet_owner.adopted_on, pet_id: @pet_owner.pet_id, pet_name: @pet_owner.pet_name, user_id: @pet_owner.user_id }
     assert_redirected_to pet_owner_path(assigns(:pet_owner))
   end
 

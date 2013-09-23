@@ -1,27 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 
-  user_id: 
-  pet_id: 
-  name: 
-  level: 
-  hp: 
-  def: 
-  atk: 
-  spd: 
-  hp_max: 
-  exp: 
+  user_id: 1
+  pet_id: 1
+  pet_name: MyString
+  adopted_on: 2013-09-23 12:48:05
 
 two:
-  id: 
-  user_id: 
-  pet_id: 
-  name: 
-  level: 
-  hp: 
-  def: 
-  atk: 
-  spd: 
-  hp_max: 
-  exp: 
+  user_id: 1
+  pet_id: 1
+  pet_name: MyString
+  adopted_on: 2013-09-23 12:48:05

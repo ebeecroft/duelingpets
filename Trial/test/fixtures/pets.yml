@@ -1,31 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 
-  species_name: 
-  description: 
-  image: 
-  level: 
-  hp: 
-  def: 
-  atk: 
-  spd: 
-  cost: 
-  p_m_r: 
-  created_by: 
-  created_on: 2013-09-11
+  species_name: MyString
+  description: MyText
+  created_on: 2013-09-22 18:11:09
 
 two:
-  id: 
-  species_name: 
-  description: 
-  image: 
-  level: 
-  hp: 
-  def: 
-  atk: 
-  spd: 
-  cost: 
-  p_m_r: 
-  created_by: 
-  created_on: 2013-09-11
+  species_name: MyString
+  description: MyText
+  created_on: 2013-09-22 18:11:09

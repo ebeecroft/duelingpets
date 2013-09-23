@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'date'
   # GET /users
   # GET /users.json
   def index
@@ -39,7 +40,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    
     @user = User.new(params[:user])
+    #current_time = Date.today
+    #start_time = current_time.strftime("%m/%d/%Y")
+    #@user.joined_on = (Date.today.to_s.to_date)
     @user.joined_on = Date.today
     respond_to do |format|
       if @user.save

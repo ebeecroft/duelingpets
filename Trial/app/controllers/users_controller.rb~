@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'date'
   # GET /users
   # GET /users.json
   def index
@@ -39,8 +40,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    
     @user = User.new(params[:user])
-    @user.joined_on.to_s = Date.today
+    #current_time = Date.today
+    #start_time = current_time.strftime("%m/%d/%Y")
+    @user.joined_on = (Date.today.to_s.to_date)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

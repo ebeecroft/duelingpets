@@ -41,7 +41,7 @@ class PetOwnersController < ApplicationController
   # POST /pet_owners.json
   def create
     @pet_owner = PetOwner.new(params[:pet_owner])
-    @pet_owner.adopted_on = Date.today
+
     respond_to do |format|
       if @pet_owner.save
         format.html { redirect_to @pet_owner, notice: 'Pet owner was successfully created.' }

@@ -25,7 +25,6 @@
   <%= @user.joined_on %>
 </p>
 
-<p>Users owned pets</p>
 <table border="1">
    <tr>
       <th>Pet_id</th>

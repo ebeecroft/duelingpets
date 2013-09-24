@@ -23,6 +23,10 @@
     <%= f.label :pet_name %><br />
     <%= f.text_field :pet_name %>
   </div>
+  <div class="field">
+    <%= f.label :adopted_on %><br />
+    <%= f.datetime_select :adopted_on %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Species name:</b>
+  <%= @pet.species_name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @pet.description %>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%= @pet.created_on %>
+</p>
+<table border="1">
+   <tr>
+      <th>User_id</th>
+      <th>Pet_name</th>
+      <th>Species_name</th>
+      <th>Description</th>
+   </tr>
+<% @pet.pet_owners.each do |pet_owner| %>
+   <% if pet_owner.pet_id == @pet.id %>
+      <tr>
+         <td><%= pet_owner.user_id %></td>
+         <td><%= pet_owner.pet_name %></td>
+         <td><%= pet_owner.pet.species_name %></td>
+         <td><%= pet_owner.pet.description %></td>
+      </tr>
+   <% end %>
+<% end %>
+</table>
+<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<%= link_to 'Back', pets_path %>

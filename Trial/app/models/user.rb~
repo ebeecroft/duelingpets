@@ -4,6 +4,7 @@ has_secure_password
 
 before_save { |user| user.email = user.email.downcase }
 
+has_many :pet_owners
 validates :first_name, presence: true
 validates :last_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

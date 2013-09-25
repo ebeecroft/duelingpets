@@ -42,6 +42,9 @@ class PetOwnersController < ApplicationController
   def create
     @pet_owner = PetOwner.new(params[:pet_owner])
     @pet_owner.adopted_on = Date.today
+    @pet = Pet.find_by_id(params[:pet][:pet_id])
+    @pet_owner.pet_id = @pet
+
     respond_to do |format|
       if @pet_owner.save
         format.html { redirect_to @pet_owner, notice: 'Pet owner was successfully created.' }

@@ -14,6 +14,12 @@
   <b>Created on:</b>
   <%= @pet.created_on %>
 </p>
-
+<% if !User.find(:all).empty? %>
+  I do not have an empty user table
+  I will also choose from a list of pets that are available
+  <%= form_for :pet, :url => pet_owners_path(@pet) do |form| %>
+     <%= form.collection_select :id, Pet.all, :id, :species_name %>
+  <% end %>
+<% end %>
 <%= link_to 'Edit', edit_pet_path(@pet) %> |
 <%= link_to 'Back', pets_path %>

@@ -1,3 +1,5 @@
 class Item < ActiveRecord::Base
-  attr_accessible :created_on, :description, :name
+  attr_accessible :description, :name
+  validates :description, presence: true
+  validates :name, presence: true
 end

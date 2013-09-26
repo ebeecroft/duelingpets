@@ -12,56 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :image %><br />
-    <%= f.text_field :image %>
-  </div>
-  <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :hp %><br />
-    <%= f.text_field :hp %>
-  </div>
-  <div class="field">
-    <%= f.label :atk %><br />
-    <%= f.text_field :atk %>
-  </div>
-  <div class="field">
-    <%= f.label :def %><br />
-    <%= f.text_field :def %>
-  </div>
-  <div class="field">
-    <%= f.label :spd %><br />
-    <%= f.text_field :spd %>
-  </div>
-  <div class="field">
-    <%= f.label :cost %><br />
-    <%= f.text_field :cost %>
-  </div>
-  <div class="field">
-    <%= f.label :equip_flag %><br />
-    <%= f.text_field :equip_flag %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :created_at %><br />
-    <%= f.date_select :created_at %>
-  </div>
-  <div class="field">
-    <%= f.label :maintenance %><br />
-    <%= f.text_field :maintenance %>
+    <%= f.label :created_on %><br />
+    <%= f.datetime_select :created_on %>
   </div>
   <div class="actions">
     <%= f.submit %>

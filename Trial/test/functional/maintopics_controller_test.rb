@@ -18,7 +18,7 @@ class MaintopicsControllerTest < ActionController::TestCase
 
   test "should create maintopic" do
     assert_difference('Maintopic.count') do
-      post :create, maintopic: { created_on: @maintopic.created_on, id: @maintopic.id, maintenance: @maintopic.maintenance, topicname: @maintopic.topicname, user_id: @maintopic.user_id }
+      post :create, maintopic: { description: @maintopic.description, topicname: @maintopic.topicname, user_id: @maintopic.user_id }
     end
 
     assert_redirected_to maintopic_path(assigns(:maintopic))
@@ -35,7 +35,7 @@ class MaintopicsControllerTest < ActionController::TestCase
   end
 
   test "should update maintopic" do
-    put :update, id: @maintopic, maintopic: { created_on: @maintopic.created_on, id: @maintopic.id, maintenance: @maintopic.maintenance, topicname: @maintopic.topicname, user_id: @maintopic.user_id }
+    put :update, id: @maintopic, maintopic: { description: @maintopic.description, topicname: @maintopic.topicname, user_id: @maintopic.user_id }
     assert_redirected_to maintopic_path(assigns(:maintopic))
   end
 

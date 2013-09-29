@@ -1,5 +1,5 @@
 <h1>Listing items</h1>
-<p>Say welcome to my shop, can I interest you in a particular item?</p>
+
 <table>
   <tr>
     <th>Name</th>

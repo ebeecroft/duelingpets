@@ -41,7 +41,7 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
 #    @inventory = Inventory.new(params[:inventory])
-     @item = Item.find_by_id(params[:item][:item_id])
+     @item = Item.find_by_name(params[:id])
      @inventory.item = @item
      @user = User.find_by_id(params[:user][:user_id])
      @inventory.user = @user

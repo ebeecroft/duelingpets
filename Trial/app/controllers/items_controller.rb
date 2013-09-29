@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
+  def shop
+     @items = Item.all
+  end
   def index
     @items = Item.all
 
@@ -13,7 +16,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.find(params[:id])
+#    @groupee = Groupee.find_by_username(params[:id])
+    @item = Item.find_by_name(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

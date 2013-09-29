@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Id</th>
     <th>User</th>
     <th>Item</th>
     <th></th>
@@ -12,7 +11,6 @@
 
 <% @inventories.each do |inventory| %>
   <tr>
-    <td><%= inventory.id %></td>
     <td><%= inventory.user_id %></td>
     <td><%= inventory.item_id %></td>
     <td><%= link_to 'Show', inventory %></td>

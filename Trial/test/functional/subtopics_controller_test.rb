@@ -18,7 +18,7 @@ class SubtopicsControllerTest < ActionController::TestCase
 
   test "should create subtopic" do
     assert_difference('Subtopic.count') do
-      post :create, subtopic: { created_on: @subtopic.created_on, id: @subtopic.id, main_id: @subtopic.main_id, maintenance: @subtopic.maintenance, topicname: @subtopic.topicname, user_id: @subtopic.user_id }
+      post :create, subtopic: { description: @subtopic.description, main_id: @subtopic.main_id, topicname: @subtopic.topicname, user_id: @subtopic.user_id }
     end
 
     assert_redirected_to subtopic_path(assigns(:subtopic))
@@ -35,7 +35,7 @@ class SubtopicsControllerTest < ActionController::TestCase
   end
 
   test "should update subtopic" do
-    put :update, id: @subtopic, subtopic: { created_on: @subtopic.created_on, id: @subtopic.id, main_id: @subtopic.main_id, maintenance: @subtopic.maintenance, topicname: @subtopic.topicname, user_id: @subtopic.user_id }
+    put :update, id: @subtopic, subtopic: { description: @subtopic.description, main_id: @subtopic.main_id, topicname: @subtopic.topicname, user_id: @subtopic.user_id }
     assert_redirected_to subtopic_path(assigns(:subtopic))
   end
 

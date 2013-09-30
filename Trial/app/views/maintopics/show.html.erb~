@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
-<h1>Listing maintopics</h1>
+<h1><%= @maintopic.topicname %></h1>
 
 <table>
-<% @maintopic.subtopics.each do |subtopic| %> %>
+<% @maintopic.subtopics.each do |subtopic| %>
   <tr>
-    <td>Topic: <%#= link_to subtopic.topicname, maintopic_subtopic %></td>
+    <td><h2> <%= link_to subtopic.topicname, maintopic_subtopic_path(subtopic) %></h2></td>
     <td><%#= link_to 'Edit', edit_maintopic_subtopic_path(subtopic) %></td>
     <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <tr>
-    <td><%#= subtopic.description %></td>
+    <td>by<%= subtopic.user_id %><%#= subtopic.description %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to "New Subtopic", new_subtopic_path %>
+<%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %>

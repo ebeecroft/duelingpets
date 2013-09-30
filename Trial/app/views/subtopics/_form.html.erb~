@@ -1,15 +1,15 @@
-<%= form_for(@maintopic, @subtopic) do |f| %>
-  <%# if @subtopic.errors.any? %>
+<%= form_for(@subtopic) do |f| %>
+  <% if @subtopic.errors.any? %>
     <div id="error_explanation">
-      <h2><%#= pluralize(@subtopic.errors.count, "error") %> prohibited this subtopic from being saved:</h2>
+      <h2><%= pluralize(@subtopic.errors.count, "error") %> prohibited this subtopic from being saved:</h2>
 
       <ul>
-      <%# @subtopic.errors.full_messages.each do |msg| %>
-        <li><%#= msg %></li>
-      <%# end %>
+      <% @subtopic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
       </ul>
     </div>
-  <%# end %>
+  <% end %>
 
   <div class="field">
     <%= f.label :main_id %><br />

@@ -1,4 +1,4 @@
-<%= form_for(@subtopic) do |f| %>
+<%= form_for([@maintopic,@subtopic]) do |f| %>
   <% if @subtopic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subtopic.errors.count, "error") %> prohibited this subtopic from being saved:</h2>

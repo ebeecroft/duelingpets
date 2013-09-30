@@ -21,5 +21,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic) %> |
+<%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic.subtopic) %> |
 <%#= link_to 'Back', subtopics_path %>

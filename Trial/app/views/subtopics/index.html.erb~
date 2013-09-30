@@ -17,9 +17,9 @@
     <td><%= subtopic.user_id %></td>
     <td><%= subtopic.topicname %></td>
     <td><%= subtopic.description %></td>
-    <td><%#= link_to 'Show', subtopic %></td>
-    <td><%#= link_to 'Edit', edit_subtopic_path(subtopic) %></td>
-    <td><%#= link_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', subtopic %></td>
+    <td><%= link_to 'Edit', edit_subtopic_path(subtopic) %></td>
+    <td><%= link_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

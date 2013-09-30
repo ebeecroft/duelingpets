@@ -16,4 +16,4 @@
 
 <br />
 
-<%= link_to "New Subtopic" %>
+<%= link_to "New Subtopic", new_subtopic_path %>

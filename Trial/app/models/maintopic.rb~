@@ -1,4 +1,4 @@
 class Maintopic < ActiveRecord::Base
-   has_many :subtopics, :foreign_key => "main_id", :dependent => :destroy
+   has_many :subtopics
   attr_accessible :description, :topicname, :user_id
 end

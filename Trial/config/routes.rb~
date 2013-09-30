@@ -1,12 +1,12 @@
 Trial::Application.routes.draw do
+  resources :users
+
+
   resources :narratives
 
-
-  resources :subtopics
-
-
-  resources :maintopics
-
+  resources :maintopics do
+     resources :subtopics
+  end
 
   resources :comments
 
@@ -28,9 +28,4 @@ Trial::Application.routes.draw do
 
   resources :pets
 
-
-  resources :users
-
-
-   resources :users
 end

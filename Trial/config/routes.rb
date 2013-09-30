@@ -4,12 +4,9 @@ Trial::Application.routes.draw do
 
   resources :narratives
 
-
-  resources :subtopics
-
-
-  resources :maintopics
-
+  resources :maintopics do
+     resources :subtopics
+  end
 
   resources :comments
 

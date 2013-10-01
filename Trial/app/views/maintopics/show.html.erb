@@ -4,7 +4,7 @@
 <table>
 <% @maintopic.subtopics.each do |subtopic| %>
   <tr>
-    <td><h2> <%= link_to subtopic.topicname, maintopic_subtopic_path(subtopic) %></h2></td>
+    <td><h2> <%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %></h2></td>
     <td><%#= link_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic) %></td>
     <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

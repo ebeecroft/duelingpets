@@ -33,7 +33,7 @@ class SubtopicsController < ApplicationController
 #      format.html # new.html.erb
 #      format.json { render json: @subtopic }
 #    end
-     @maintopic = Maintopic.find(params[:maintopic_id])
+     @maintopic.id = Maintopic.find(params[:maintopic_id])
      @subtopic = @maintopic.subtopics.build
   end
 
@@ -56,7 +56,7 @@ class SubtopicsController < ApplicationController
      #else
      #   render "new";
      #end
-     redirect_to @subtopics
+     redirect_to @maintopic
   end
 
   # PUT /subtopics/1

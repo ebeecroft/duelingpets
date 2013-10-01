@@ -14,7 +14,8 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/1.json
   def show
     @maintopic = Maintopic.find(params[:id])
-    @subtopic = @maintopic.subtopics.all
+
+#    @subtopic = @maintopic.subtopics.all
 #    respond_to do |format|
 #      format.html # show.html.erb
 #      format.json { render json: @maintopic }

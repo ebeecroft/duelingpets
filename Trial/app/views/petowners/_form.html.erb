@@ -1,0 +1,33 @@
+<%= form_for(@petowner) do |f| %>
+  <% if @petowner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@petowner.errors.count, "error") %> prohibited this petowner from being saved:</h2>
+
+      <ul>
+      <% @petowner.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pet_id %><br />
+    <%= f.number_field :pet_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pet_name %><br />
+    <%= f.text_field :pet_name %>
+  </div>
+  <div class="field">
+    <%= f.label :adopted_on %><br />
+    <%= f.datetime_select :adopted_on %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

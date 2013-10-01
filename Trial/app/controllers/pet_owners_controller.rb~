@@ -2,12 +2,17 @@ class PetOwnersController < ApplicationController
   # GET /pet_owners
   # GET /pet_owners.json
   def index
+    @user = User.find(params[:user_id])
     @pet_owners = PetOwner.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pet_owners }
-    end
+    #if !@user.id.nil?
+    #   @pet_owners = PetOwner.all
+    #else
+    #   redirect_to @users
+    #end
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @pet_owners }
+    #end
   end
 
   # GET /pet_owners/1
@@ -24,7 +29,10 @@ class PetOwnersController < ApplicationController
   # GET /pet_owners/new
   # GET /pet_owners/new.json
   def new
-    @pet_owner = PetOwner.new
+    #@pet_owner = PetOwner.new
+    @user = User.find(params[:user_id])
+    @pet_owner = @user.pet_owners.build
+    @pet_owner.pet = Pet.find(params[:pet_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +48,7 @@ class PetOwnersController < ApplicationController
   # POST /pet_owners
   # POST /pet_owners.json
   def create
-    #@pet_owner = PetOwner.new(params[:pet_owner])
+    @pet_owner = PetOwner.new(params[:pet_owner])
     #@pet_owner.adopted_on = Date.today
     #@pet = Pet.find_by_id(params[:id])
     #@pet_owner.pet_id = @pet

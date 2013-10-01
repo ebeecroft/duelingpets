@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @petowner.user_id %>
+</p>
+
+<p>
+  <b>Pet:</b>
+  <%= @petowner.pet_id %>
+</p>
+
+<p>
+  <b>Pet name:</b>
+  <%= @petowner.pet_name %>
+</p>
+
+<p>
+  <b>Adopted on:</b>
+  <%= @petowner.adopted_on %>
+</p>
+
+
+<%= link_to 'Edit', edit_petowner_path(@petowner) %> |
+<%= link_to 'Back', petowners_path %>

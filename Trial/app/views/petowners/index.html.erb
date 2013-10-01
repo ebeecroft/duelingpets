@@ -1,0 +1,29 @@
+<h1>Listing petowners</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Pet</th>
+    <th>Pet name</th>
+    <th>Adopted on</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @petowners.each do |petowner| %>
+  <tr>
+    <td><%= petowner.user_id %></td>
+    <td><%= petowner.pet_id %></td>
+    <td><%= petowner.pet_name %></td>
+    <td><%= petowner.adopted_on %></td>
+    <td><%= link_to 'Show', petowner %></td>
+    <td><%= link_to 'Edit', edit_petowner_path(petowner) %></td>
+    <td><%= link_to 'Destroy', petowner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Petowner', new_petowner_path %>

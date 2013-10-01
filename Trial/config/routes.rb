@@ -1,12 +1,17 @@
 Trial::Application.routes.draw do
-  resources :users
 
+  resources :users do
+     resources :petowners
+  end
 
-  resources :narratives
+  resources :pets
 
   resources :maintopics do
      resources :subtopics
   end
+
+  resources :narratives
+
 
   resources :comments
 
@@ -19,13 +24,6 @@ Trial::Application.routes.draw do
 
   resources :inventories
 
-
-  resources :pet_owners
-
-
   resources :items
-
-
-  resources :pets
 
 end

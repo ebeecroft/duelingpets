@@ -56,7 +56,7 @@ class SubtopicsController < ApplicationController
      #else
      #   render "new";
      #end
-     redirect_to @maintopic
+     redirect_to @subtopics
   end
 
   # PUT /subtopics/1
@@ -64,7 +64,7 @@ class SubtopicsController < ApplicationController
   def update
     @maintopic = Maintopic.find(params[:maintopic_id])
     #@subtopic = @maintopic.subtopics.new(params[:subtopic])
-    @subtopic = @maintopic.subtopic
+    @subtopic = Subtopic.find(params[:id])
 
     respond_to do |format|
       if @subtopic.update_attributes(params[:subtopic])

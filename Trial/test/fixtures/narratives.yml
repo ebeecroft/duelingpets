@@ -1,17 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 
-  sub_id: 
-  user_id: 
-  story: 
-  created_on: 2013-09-16
-  maintenance: 
+  subtopic_id: 1
+  user_id: 1
+  story: MyText
 
 two:
-  id: 
-  sub_id: 
-  user_id: 
-  story: 
-  created_on: 2013-09-16
-  maintenance: 
+  subtopic_id: 1
+  user_id: 1
+  story: MyText

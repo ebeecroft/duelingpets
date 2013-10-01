@@ -2,12 +2,9 @@
 
 <table>
   <tr>
-    <th>Id</th>
-    <th>Sub</th>
+    <th>Subtopic</th>
     <th>User</th>
     <th>Story</th>
-    <th>Created on</th>
-    <th>Maintenance</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,12 +12,9 @@
 
 <% @narratives.each do |narrative| %>
   <tr>
-    <td><%= narrative.id %></td>
-    <td><%= narrative.sub_id %></td>
+    <td><%= narrative.subtopic_id %></td>
     <td><%= narrative.user_id %></td>
     <td><%= narrative.story %></td>
-    <td><%= narrative.created_on %></td>
-    <td><%= narrative.maintenance %></td>
     <td><%= link_to 'Show', narrative %></td>
     <td><%= link_to 'Edit', edit_narrative_path(narrative) %></td>
     <td><%= link_to 'Destroy', narrative, method: :delete, data: { confirm: 'Are you sure?' } %></td>

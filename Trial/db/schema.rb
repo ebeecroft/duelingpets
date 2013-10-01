@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131001054546) do
+ActiveRecord::Schema.define(:version => 20131001061038) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -55,11 +55,9 @@ ActiveRecord::Schema.define(:version => 20131001054546) do
   end
 
   create_table "narratives", :force => true do |t|
-    t.integer  "sub_id"
+    t.integer  "subtopic_id"
     t.integer  "user_id"
     t.text     "story"
-    t.date     "created_on"
-    t.boolean  "maintenance"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

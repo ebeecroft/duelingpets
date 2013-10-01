@@ -12,28 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
-  </div>
-  <div class="field">
-    <%= f.label :sub_id %><br />
-    <%= f.text_field :sub_id %>
+    <%= f.label :subtopic_id %><br />
+    <%= f.number_field :subtopic_id %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    <%= f.number_field :user_id %>
   </div>
   <div class="field">
     <%= f.label :story %><br />
-    <%= f.text_field :story %>
-  </div>
-  <div class="field">
-    <%= f.label :created_on %><br />
-    <%= f.date_select :created_on %>
-  </div>
-  <div class="field">
-    <%= f.label :maintenance %><br />
-    <%= f.text_field :maintenance %>
+    <%= f.text_area :story %>
   </div>
   <div class="actions">
     <%= f.submit %>

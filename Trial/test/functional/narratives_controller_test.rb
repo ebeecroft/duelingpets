@@ -18,7 +18,7 @@ class NarrativesControllerTest < ActionController::TestCase
 
   test "should create narrative" do
     assert_difference('Narrative.count') do
-      post :create, narrative: { created_on: @narrative.created_on, id: @narrative.id, maintenance: @narrative.maintenance, story: @narrative.story, sub_id: @narrative.sub_id, user_id: @narrative.user_id }
+      post :create, narrative: { story: @narrative.story, subtopic_id: @narrative.subtopic_id, user_id: @narrative.user_id }
     end
 
     assert_redirected_to narrative_path(assigns(:narrative))
@@ -35,7 +35,7 @@ class NarrativesControllerTest < ActionController::TestCase
   end
 
   test "should update narrative" do
-    put :update, id: @narrative, narrative: { created_on: @narrative.created_on, id: @narrative.id, maintenance: @narrative.maintenance, story: @narrative.story, sub_id: @narrative.sub_id, user_id: @narrative.user_id }
+    put :update, id: @narrative, narrative: { story: @narrative.story, subtopic_id: @narrative.subtopic_id, user_id: @narrative.user_id }
     assert_redirected_to narrative_path(assigns(:narrative))
   end
 

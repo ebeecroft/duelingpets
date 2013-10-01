@@ -68,7 +68,7 @@ class SubtopicsController < ApplicationController
 
     respond_to do |format|
       if @subtopic.update_attributes(params[:subtopic])
-        format.html { redirect_to @subtopic, notice: 'Subtopic was successfully updated.' }
+        format.html { redirect_to @maintopic.subtopic, notice: 'Subtopic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -20,6 +20,6 @@
   <%= @subtopic.description %>
 </p>
 
-
+<%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic) %> |
 <%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic) %> |
-<%#= link_to 'Back', subtopics_path %>
+<%= link_to 'Back', maintopic_subtopics_path %>

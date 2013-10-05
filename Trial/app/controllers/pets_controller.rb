@@ -14,7 +14,6 @@ class PetsController < ApplicationController
   # GET /pets/1.json
   def show
     @pet = Pet.find(params[:id])
-    @pet_owner = PetOwner.new
     #@pet_owner.adopted_on = Date.today
     
     respond_to do |format|

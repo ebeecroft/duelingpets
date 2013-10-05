@@ -25,6 +25,7 @@
   <%= @user.joined_on %>
 </p>
 
+<p>Users owned pets</p>
 <table border="1">
    <tr>
       <th>Pet_id</th>
@@ -32,8 +33,8 @@
       <th>Species_name</th>
       <th>Description</th>
    </tr>
-<% @user.pet_owners.each do |pet_owner| %>
-   <% if pet_owner.user_id == @user.id %>
+<% @user.petowners.each do |pet_owner| %>
+   <% if petowner.user_id == @user.id %>
       <tr>
          <td><%= pet_owner.pet_id %></td>
          <td><%= pet_owner.pet_name %></td>

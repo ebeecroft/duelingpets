@@ -1,31 +1,27 @@
 Trial::Application.routes.draw do
-  resources :petowners
 
+   resources :users do
+      resources :petowners
+   end
 
-  resources :users do
-     resources :petowners
-  end
+   resources :pets
 
-  resources :pets
+   resources :maintopics do
+      resources :subtopics
+   end
 
-  resources :maintopics do
-     resources :subtopics
-  end
+   resources :subtopics, :only =>[] do #Prevents building the subtopics routes
+      resources :narratives
+   end
 
-  resources :narratives
+   resources :comments
 
+   resources :fights
 
-  resources :comments
+   resources :pet_items
 
+   resources :inventories
 
-  resources :fights
-
-
-  resources :pet_items
-
-
-  resources :inventories
-
-  resources :items
+   resources :items
 
 end

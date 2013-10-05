@@ -33,13 +33,13 @@
       <th>Species_name</th>
       <th>Description</th>
    </tr>
-<% @user.pet_owners.each do |pet_owner| %>
-   <% if pet_owner.user_id == @user.id %>
+<% @user.petowners.each do |petowner| %>
+   <% if petowner.user_id == @user.id %>
       <tr>
-         <td><%= pet_owner.pet_id %></td>
-         <td><%= pet_owner.pet_name %></td>
-         <td><%= pet_owner.pet.species_name %></td>
-         <td><%= pet_owner.pet.description %></td>
+         <td><%= petowner.pet_id %></td>
+         <td><%= petowner.pet_name %></td>
+         <td><%= petowner.pet.species_name %></td>
+         <td><%= petowner.pet.description %></td>
       </tr>
    <% end %>
 <% end %>

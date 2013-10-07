@@ -25,4 +25,4 @@
 <br />
 
 <%= link_to 'New Pet', new_pet_path %>
-<%= link_to 'Adopt', new_user_petowner_url %>
+<%#= link_to 'Adopt', new_user_petowner_url %>

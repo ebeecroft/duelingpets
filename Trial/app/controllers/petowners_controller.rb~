@@ -24,8 +24,10 @@ class PetownersController < ApplicationController
   # GET /petowners/new
   # GET /petowners/new.json
   def new
-    @petowner = Petowner.new
-
+#    @subtopic = @maintopic.subtopics.build
+#    @petowner = Petowner.new
+    @user = User.find(params[:user_id])
+    @petowner = @user.petowners.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @petowner }
@@ -48,12 +50,13 @@ class PetownersController < ApplicationController
 
     respond_to do |format|
       if @petowner.save
-        format.html { redirect_to @petowner, notice: 'Petowner was successfully created.' }
-        format.json { render json: @petowner, status: :created, location: @petowner }
+#        format.html { redirect_to @petowner, notice: 'Petowner was successfully created.' }
+#        format.json { render json: @petowner, status: :created, location: @petowner }
       else
         format.html { render action: "new" }
         format.json { render json: @petowner.errors, status: :unprocessable_entity }
       end
+      redirect_to @user
     end
   end
 

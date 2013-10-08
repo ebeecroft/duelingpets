@@ -24,8 +24,11 @@ class PetownersController < ApplicationController
   # GET /petowners/new
   # GET /petowners/new.json
   def new
-    @petowner = Petowner.new
-
+#    @subtopic = @maintopic.subtopics.build
+#    @petowner = Petowner.new
+    @user = User.find(params[:user_id])
+    @petowner = @user.petowners.build
+    @petowner.pet_id = params[:pet_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @petowner }

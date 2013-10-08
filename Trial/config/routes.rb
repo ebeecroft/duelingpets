@@ -29,4 +29,5 @@ Trial::Application.routes.draw do
 
    resources :items
 
+   root :to => "public_pages#home"
 end

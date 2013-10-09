@@ -47,8 +47,9 @@ class PetownersController < ApplicationController
   # POST /petowners.json
   def create
      @user = User.find_by_vname(params[:user_id])
-     @petowner = @user.petowners.build
-     @petowner.pet_id = params[:pet_id]
+#     @petowner = @user.petowners.build
+#     @petowner.pet_id = params[:pet_id]
+     @petowner = @user.petowners.new(params[:petowner])
 #     @petowner = Petowner.new(params[:petowner])
      #@pet = Pet.find(params[:pet][:pet_id])
      #@petowner.pet = @pet
@@ -57,11 +58,11 @@ class PetownersController < ApplicationController
       if @petowner.save
 #        format.html { redirect_to @petowner, notice: 'Petowner was successfully created.' }
 #        format.json { render json: @petowner, status: :created, location: @petowner }
+         redirect_to @current_user
       else
         format.html { render action: "new" }
         format.json { render json: @petowner.errors, status: :unprocessable_entity }
       end
-      redirect_to @user
     end
   end
 

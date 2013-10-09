@@ -16,6 +16,10 @@ validates :vname, presence: true, uniqueness: { case_sensitive: false}
 validates :password, length: {minimum: 6}
 validates :password_confirmation, presence: true
 
+def to_param
+   vname
+end
+
 private
    def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64

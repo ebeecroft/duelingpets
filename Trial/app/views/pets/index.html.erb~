@@ -16,7 +16,11 @@
     <td><%= pet.species_name %></td>
     <td><%= pet.description %></td>
     <td><%= pet.created_on %></td>
-    <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %><%= link_to 'Adopt', new_user_petowner_path(:user_id => 42, :pet_id =>pet.id) %></td>
+    <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
+    <% if !current_user.nil? %>
+    <%= link_to 'Adopt', new_user_petowner_path(@current_user, :pet_id =>pet.id) %>
+    <% end %>
+    </td>
     <td><%= link_to 'Show', pet %></td>
     <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
     <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>     

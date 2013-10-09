@@ -2,7 +2,10 @@ class PetownersController < ApplicationController
   # GET /petowners
   # GET /petowners.json
   def index
-    @petowners = Petowner.all
+#    @subtopics = @maintopic.subtopics.all
+    @user = User.find_by_vname(params[:user_id])
+    @petowners = @user.petowners.all
+#    @petowners = Petowner.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +29,7 @@ class PetownersController < ApplicationController
   def new
 #    @subtopic = @maintopic.subtopics.build
 #    @petowner = Petowner.new
-    @user = User.find(params[:user_id])
+    @user = User.find_by_vname(params[:user_id])
     @petowner = @user.petowners.build
     @petowner.pet_id = params[:pet_id]
     respond_to do |format|
@@ -43,11 +46,12 @@ class PetownersController < ApplicationController
   # POST /petowners
   # POST /petowners.json
   def create
-     @user = User.find(params[:user_id])
+     @user = User.find_by_vname(params[:user_id])
      @petowner = @user.petowners.build
+     @petowner.pet_id = params[:pet_id]
 #     @petowner = Petowner.new(params[:petowner])
-     @pet = Pet.find(params[:pet][:pet_id])
-     @petowner.pet = @pet
+     #@pet = Pet.find(params[:pet][:pet_id])
+     #@petowner.pet = @pet
 
     respond_to do |format|
       if @petowner.save

@@ -18,8 +18,11 @@
     <td><%#= link_to 'Edit', edit_inventory_path(inventory) %></td>
     <td><%#= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <td>
+<%# @user.petowners.each do |petowner| %>
     <% if !current_user.nil? %>
-       <%= link_to 'Equip', new_petowner_equip_path(petowner, :inventory_id =>inventory.id) %>
+       <% @user.petowners.each do |petowner| %>
+          <%= link_to 'Equip', new_petowner_equip_path(petowner, :inventory_id =>inventory.id) %>
+       <% end %>
     <% end %>
     </td>
   </tr>

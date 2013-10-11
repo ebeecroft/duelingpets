@@ -1,4 +1,4 @@
-<%= form_for([@petowner, @equip]) do |f| %>
+<%= form_for(@equip) do |f| %>
   <% if @equip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@equip.errors.count, "error") %> prohibited this equip from being saved:</h2>

@@ -28,12 +28,10 @@ class EquipsController < ApplicationController
   # GET /equips/new
   # GET /equips/new.json
   def new
-    @equip = Equip.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @equip }
-    end
+#    @equip = Equip.new
+    @petowner = Petowner.find_by_id(params[:petowner_id])
+    @equip = @petowner.equips.build
+    @equip.inventory_id = params[:inventory_id]   
   end
 
   # GET /equips/1/edit
@@ -44,17 +42,14 @@ class EquipsController < ApplicationController
   # POST /equips
   # POST /equips.json
   def create
-    @equip = Equip.new(params[:equip])
-
-    respond_to do |format|
+#    @equip = Equip.new(params[:equip])
+     @petowner = Petowner.find_by_id(params[:petowner_id])
+     @equip = @petowner.equips.new(params[:equip])
       if @equip.save
-        format.html { redirect_to @equip, notice: 'Equip was successfully created.' }
-        format.json { render json: @equip, status: :created, location: @equip }
+        redirect_to petowner_equips_path(@petowner)
       else
-        format.html { render action: "new" }
-        format.json { render json: @equip.errors, status: :unprocessable_entity }
+        render "new"
       end
-    end
   end
 
   # PUT /equips/1

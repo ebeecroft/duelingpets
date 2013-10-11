@@ -60,7 +60,7 @@ class PetownersController < ApplicationController
 #        format.html { redirect_to @petowner, notice: 'Petowner was successfully created.' }
 #        format.json { render json: @petowner, status: :created, location: @petowner }
 #maintopic_subtopics_url
-         redirect_to user_petowners_url #current_user_petowners_url
+         redirect_to @user #current_user_petowners_url
       else
         format.html { render action: "new" }
         format.json { render json: @petowner.errors, status: :unprocessable_entity }

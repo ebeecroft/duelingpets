@@ -52,14 +52,10 @@ class InventoriesController < ApplicationController
       @user = User.find_by_vname(params[:user_id])
       @inventory = @user.inventories.new(params[:inventory])
       if @inventory.save
-#        format.html { redirect_to @user, notice: 'Inventory was successfully created.' }
-#        format.json { render json: @inventory, status: :created, location: @inventory }
+         redirect_to @user
       else
-#        format.html { redirect_to @user }
-#        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+         render "new"
       end
-      redirect_to @user
-#    end
   end
 
   # PUT /inventories/1

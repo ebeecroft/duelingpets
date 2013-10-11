@@ -7,6 +7,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @inventories.each do |inventory| %>
@@ -16,6 +17,11 @@
     <td><%#= link_to 'Show', inventory %></td>
     <td><%#= link_to 'Edit', edit_inventory_path(inventory) %></td>
     <td><%#= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+    <% if !current_user.nil? %>
+       <%= link_to 'Equip', new_petowner_equip_path(petowner, :inventory_id =>inventory.id) %>
+    <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

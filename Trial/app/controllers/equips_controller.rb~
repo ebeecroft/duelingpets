@@ -2,11 +2,7 @@ class EquipsController < ApplicationController
   # GET /equips
   # GET /equips.json
   def index
-#    @user = User.find_by_vname(params[:user_id])
-#    @petowners = @user.petowners.all
-#    @equips = Equip.all
-     @petowner = Petowner.find_by_id(params[:petowner_id])
-     @equips = @petowner.equips.all
+    @equips = Equip.all
 
     respond_to do |format|
       format.html # index.html.erb

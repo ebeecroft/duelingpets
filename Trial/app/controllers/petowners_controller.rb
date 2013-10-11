@@ -54,18 +54,14 @@ class PetownersController < ApplicationController
 #     @petowner = Petowner.new(params[:petowner])
      #@pet = Pet.find(params[:pet][:pet_id])
      #@petowner.pet = @pet
-
-    respond_to do |format|
       if @petowner.save
 #        format.html { redirect_to @petowner, notice: 'Petowner was successfully created.' }
 #        format.json { render json: @petowner, status: :created, location: @petowner }
 #maintopic_subtopics_url
          redirect_to @user #current_user_petowners_url
       else
-        format.html { render action: "new" }
-        format.json { render json: @petowner.errors, status: :unprocessable_entity }
+         render "new"
       end
-    end
   end
 
   # PUT /petowners/1

@@ -46,18 +46,13 @@ class UsersController < ApplicationController
     #start_time = current_time.strftime("%m/%d/%Y")
     #@user.joined_on = (Date.today.to_s.to_date)
     @user.joined_on = Date.today
-    respond_to do |format|
       if @user.save
          sign_in @user
          flash[:success] = "Welcome to the Trial app"
          redirect_to @user
-        #format.html { redirect_to @user, notice: 'User was successfully created.' }
-        #format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+         render "new"
       end
-    end
   end
 
   # PUT /users/1

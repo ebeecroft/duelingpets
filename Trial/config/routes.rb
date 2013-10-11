@@ -5,6 +5,10 @@ Trial::Application.routes.draw do
       resources :inventories
    end
 
+   resources :petowners, :only =>[] do
+      resources :equips
+   end
+
    resources :pets
 
    resources :maintopics do
@@ -24,8 +28,6 @@ Trial::Application.routes.draw do
    resources :comments
 
    resources :fights
-
-   resources :pet_items
 
    resources :items
 

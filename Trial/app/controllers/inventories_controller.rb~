@@ -2,7 +2,9 @@ class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
   def index
-    @inventories = Inventory.all
+#    @inventories = Inventory.all
+    @user = User.find_by_vname(params[:user_id])
+    @inventories = @user.inventories.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,8 +26,10 @@ class InventoriesController < ApplicationController
   # GET /inventories/new
   # GET /inventories/new.json
   def new
-    @inventory = Inventory.new
-
+#    @inventory = Inventory.new
+    @user = User.find_by_vname(params[:user_id])
+    @inventory = @user.inventories.build
+    @inventory.item_id = params[:item_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @inventory }
@@ -41,10 +45,12 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
 #    @inventory = Inventory.new(params[:inventory])
-     @item = Item.find_by_name(params[:id])
-     @inventory.item = @item
-     @user = User.find_by_id(params[:user][:user_id])
-     @inventory.user = @user
+#     @item = Item.find_by_id(params[:item][:item_id])
+#     @inventory.item = @item
+#     @user = User.find_by_id(params[:user][:user_id])
+#     @inventory.user = @user
+      @user = User.find_by_vname(params[:user_id])
+      @inventory = @user.inventories.new(params[:inventory])
       if @inventory.save
 #        format.html { redirect_to @user, notice: 'Inventory was successfully created.' }
 #        format.json { render json: @inventory, status: :created, location: @inventory }

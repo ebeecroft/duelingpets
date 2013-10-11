@@ -5,6 +5,10 @@ Trial::Application.routes.draw do
       resources :inventories
    end
 
+   resources :petowners, :only =>[] do
+      resources :equips
+   end
+
    resources :pets
 
    resources :maintopics do
@@ -25,8 +29,7 @@ Trial::Application.routes.draw do
 
    resources :fights
 
-   resources :pet_items
-
    resources :items
 
+   root :to => "public_pages#home"
 end

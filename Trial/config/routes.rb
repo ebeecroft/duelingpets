@@ -1,5 +1,8 @@
 Trial::Application.routes.draw do
 
+  resources :fights
+
+
    resources :users do
       resources :petowners
       resources :inventories
@@ -26,8 +29,6 @@ Trial::Application.routes.draw do
    match '/logout', to: 'sessions#destroy', via: :delete
 
    resources :comments
-
-   resources :fights
 
    resources :items
 

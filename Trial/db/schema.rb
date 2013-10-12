@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011015844) do
+ActiveRecord::Schema.define(:version => 20131012193518) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -29,13 +29,10 @@ ActiveRecord::Schema.define(:version => 20131011015844) do
   end
 
   create_table "fights", :force => true do |t|
-    t.integer  "petown_id"
+    t.integer  "petowner_id"
     t.integer  "monster_id"
-    t.integer  "round"
-    t.integer  "damage"
-    t.boolean  "miss"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "inventories", :force => true do |t|

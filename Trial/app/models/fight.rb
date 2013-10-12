@@ -1,3 +1,3 @@
 class Fight < ActiveRecord::Base
-  attr_accessible :damage, :id, :miss, :monster_id, :petown_id, :round
+  attr_accessible :monster_id, :petowner_id
 end

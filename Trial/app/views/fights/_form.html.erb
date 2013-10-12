@@ -12,28 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
-  </div>
-  <div class="field">
-    <%= f.label :petown_id %><br />
-    <%= f.text_field :petown_id %>
+    <%= f.label :petowner_id %><br />
+    <%= f.number_field :petowner_id %>
   </div>
   <div class="field">
     <%= f.label :monster_id %><br />
-    <%= f.text_field :monster_id %>
-  </div>
-  <div class="field">
-    <%= f.label :round %><br />
-    <%= f.text_field :round %>
-  </div>
-  <div class="field">
-    <%= f.label :damage %><br />
-    <%= f.text_field :damage %>
-  </div>
-  <div class="field">
-    <%= f.label :miss %><br />
-    <%= f.text_field :miss %>
+    <%= f.number_field :monster_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

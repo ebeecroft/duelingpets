@@ -1,17 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 
-  petown_id: 
-  monster_id: 
-  round: 
-  damage: 
-  miss: 
+  petowner_id: 1
+  monster_id: 1
 
 two:
-  id: 
-  petown_id: 
-  monster_id: 
-  round: 
-  damage: 
-  miss: 
+  petowner_id: 1
+  monster_id: 1

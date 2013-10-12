@@ -18,7 +18,7 @@ class FightsControllerTest < ActionController::TestCase
 
   test "should create fight" do
     assert_difference('Fight.count') do
-      post :create, fight: { damage: @fight.damage, id: @fight.id, miss: @fight.miss, monster_id: @fight.monster_id, petown_id: @fight.petown_id, round: @fight.round }
+      post :create, fight: { monster_id: @fight.monster_id, petowner_id: @fight.petowner_id }
     end
 
     assert_redirected_to fight_path(assigns(:fight))
@@ -35,7 +35,7 @@ class FightsControllerTest < ActionController::TestCase
   end
 
   test "should update fight" do
-    put :update, id: @fight, fight: { damage: @fight.damage, id: @fight.id, miss: @fight.miss, monster_id: @fight.monster_id, petown_id: @fight.petown_id, round: @fight.round }
+    put :update, id: @fight, fight: { monster_id: @fight.monster_id, petowner_id: @fight.petowner_id }
     assert_redirected_to fight_path(assigns(:fight))
   end
 

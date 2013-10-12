@@ -2,12 +2,8 @@
 
 <table>
   <tr>
-    <th>Id</th>
-    <th>Petown</th>
+    <th>Petowner</th>
     <th>Monster</th>
-    <th>Round</th>
-    <th>Damage</th>
-    <th>Miss</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,12 +11,8 @@
 
 <% @fights.each do |fight| %>
   <tr>
-    <td><%= fight.id %></td>
-    <td><%= fight.petown_id %></td>
+    <td><%= fight.petowner_id %></td>
     <td><%= fight.monster_id %></td>
-    <td><%= fight.round %></td>
-    <td><%= fight.damage %></td>
-    <td><%= fight.miss %></td>
     <td><%= link_to 'Show', fight %></td>
     <td><%= link_to 'Edit', edit_fight_path(fight) %></td>
     <td><%= link_to 'Destroy', fight, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -11,6 +11,7 @@
   </tr>
 
 <% @inventories.each do |inventory| %>
+  <%# if inventory.id not in equips
   <tr>
     <td><%= inventory.user_id %></td>
     <td><%= inventory.item_id %></td>

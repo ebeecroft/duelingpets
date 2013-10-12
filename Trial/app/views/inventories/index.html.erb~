@@ -22,7 +22,7 @@
     <% if !current_user.nil? %>
        <% @user.petowners.each do |petowner| %>
           <%= link_to 'Equip', new_petowner_equip_path(petowner, :inventory_id =>inventory.id) %>
-          <% end %>
+       <% end %>
     <% end %>
     </td>
   </tr>

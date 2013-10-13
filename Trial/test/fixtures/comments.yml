@@ -1,15 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 
-  user_id: 
-  message: 
-  created_at: 2013-09-16
-  maintenance: 
+  user_id: 1
+  message: MyText
 
 two:
-  id: 
-  user_id: 
-  message: 
-  created_at: 2013-09-16
-  maintenance: 
+  user_id: 1
+  message: MyText

@@ -8,7 +8,7 @@ Trial::Application.routes.draw do
    resources :pets
    resources :items
 
-   resources :petowners, :only =>[] do
+   resources :petowners, :only =>[] do #Prevents building the petowners routes
       resources :equips
       resources :fights
    end

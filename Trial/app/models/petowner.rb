@@ -3,6 +3,7 @@ class Petowner < ActiveRecord::Base
   belongs_to :pet
   belongs_to :user
   has_many :equips, :foreign_key => "petowner_id", :dependent => :destroy
+  has_many :fights, :foreign_key => "petowner_id", :dependent => :destroy
 
 #has_many :inventories, :foreign_key => "user_id", :dependent
   #validates :user_id, presence: true

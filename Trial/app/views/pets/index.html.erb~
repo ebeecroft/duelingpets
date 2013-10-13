@@ -18,7 +18,14 @@
     <td><%= pet.created_on %></td>
     <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
     <% if !current_user.nil? %>
-    <%= link_to 'Adopt', new_user_petowner_path(@current_user, :pet_id =>pet.id) %>
+    <%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>
+    <% end %>
+    </td>
+    <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
+    <% if !current_user.nil? %>
+       <% @user.petowners.each do |petowner| %>
+          <%= link_to 'Fights', new_petowner_fight_path(petowner, :monster_id =>pet.id) %>
+       <% end %>
     <% end %>
     </td>
     <td><%= link_to 'Show', pet %></td>

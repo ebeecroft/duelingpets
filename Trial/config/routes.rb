@@ -1,18 +1,17 @@
 Trial::Application.routes.draw do
 
-  resources :fights
-
-
    resources :users do
       resources :petowners
       resources :inventories
    end
 
-   resources :petowners, :only =>[] do
-      resources :equips
-   end
-
    resources :pets
+   resources :items
+
+   resources :petowners, :only =>[] do #Prevents building the petowners routes
+      resources :equips
+      resources :fights
+   end
 
    resources :maintopics do
       resources :subtopics
@@ -29,8 +28,6 @@ Trial::Application.routes.draw do
    match '/logout', to: 'sessions#destroy', via: :delete
 
    resources :comments
-
-   resources :items
 
    root :to => "public_pages#home"
 end

@@ -50,7 +50,7 @@ class FightsController < ApplicationController
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @fight = @petowner.fights.new(params[:fight])
       if @fight.save
-        redirect_to petowner_fights_path(@petowner)
+        redirect_to petowner_equips_path(@petowner)
       else
         render "new"
       end

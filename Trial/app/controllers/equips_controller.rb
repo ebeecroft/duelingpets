@@ -31,7 +31,7 @@ class EquipsController < ApplicationController
 #    @equip = Equip.new
     @petowner = Petowner.find_by_id(params[:petowner_id])
     @equip = @petowner.equips.build
-    @equip.inventory_id = params[:inventory_id]   
+    @equip.inventory_id = params[:inventory_id]
   end
 
   # GET /equips/1/edit

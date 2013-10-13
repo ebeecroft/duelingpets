@@ -5,11 +5,13 @@ Trial::Application.routes.draw do
       resources :inventories
    end
 
+   resources :pets
+   resources :items
+
    resources :petowners, :only =>[] do
       resources :equips
+      resources :fights
    end
-
-   resources :pets
 
    resources :maintopics do
       resources :subtopics
@@ -26,10 +28,6 @@ Trial::Application.routes.draw do
    match '/logout', to: 'sessions#destroy', via: :delete
 
    resources :comments
-
-   resources :fights
-
-   resources :items
 
    root :to => "public_pages#home"
 end

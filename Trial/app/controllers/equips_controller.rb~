@@ -45,12 +45,6 @@ class EquipsController < ApplicationController
 #    @equip = Equip.new(params[:equip])
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @equip = @petowner.equips.new(params[:equip])
-#     if @equip.inventory_id == @intable
-#        raise "I contain a match"
-#     else
-#        raise "I contain no match"
-#     end
-
       if @equip.save
         redirect_to petowner_equips_path(@petowner)
       else

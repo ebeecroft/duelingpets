@@ -26,7 +26,11 @@ class SubtopicsController < ApplicationController
   # GET /subtopics/new
   # GET /subtopics/new.json
   def new
+@user = User.find_by_vname(params[:user_id])
+#    @maintopic = @user.maintopics.build
+     @user = User.find_by_vname(params[:user_id])
      @subtopic = @maintopic.subtopics.build
+     @subtopic.user_id = @user.id
   end
 
   # GET /subtopics/1/edit

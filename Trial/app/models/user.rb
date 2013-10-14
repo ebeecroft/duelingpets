@@ -8,6 +8,11 @@ before_save :create_remember_token
 has_many :petowners
 has_many :pets, :through => :petowners
 has_many :inventories, :foreign_key => "user_id", :dependent => :destroy
+has_many :comments, :foreign_key => "user_id", :dependent => :destroy
+
+
+
+
 validates :first_name, presence: true
 validates :last_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

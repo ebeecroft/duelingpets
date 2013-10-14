@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
 #     @petowner = Petowner.find_by_id(params[:petowner_id])
 #     @equip = @petowner.equips.new(params[:equip])
 
-     @user = User.find_by_vname(params[:user_id])
+     @user = User.find_by_id(params[:user_id])
 
 #raise "What now?"
      @comment = @user.comments.create(params[:comment])

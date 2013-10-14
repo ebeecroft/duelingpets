@@ -3,6 +3,7 @@ Trial::Application.routes.draw do
    resources :users do
       resources :petowners
       resources :inventories
+      resources :comments
    end
 
    resources :pets
@@ -26,8 +27,6 @@ Trial::Application.routes.draw do
    match '/signup', to: 'users#new'
    match '/signin', to: 'sessions#new'
    match '/logout', to: 'sessions#destroy', via: :delete
-
-   resources :comments
 
    root :to => "public_pages#home"
 end

@@ -1,11 +1,9 @@
 Trial::Application.routes.draw do
 
-  resources :comments
-
-
    resources :users do
       resources :petowners
       resources :inventories
+      resources :comments
    end
 
    resources :pets

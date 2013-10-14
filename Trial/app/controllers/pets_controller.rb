@@ -13,7 +13,7 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
-    @pet = Pet.find(params[:id])
+    @pet = Pet.find_by_species_name(params[:id])
     #@pet_owner.adopted_on = Date.today
     
     respond_to do |format|
@@ -35,7 +35,7 @@ class PetsController < ApplicationController
 
   # GET /pets/1/edit
   def edit
-    @pet = Pet.find(params[:id])
+    @pet = Pet.find_by_species_name(params[:id])
   end
 
   # POST /pets
@@ -57,7 +57,7 @@ class PetsController < ApplicationController
   # PUT /pets/1
   # PUT /pets/1.json
   def update
-    @pet = Pet.find(params[:id])
+        @pet = Pet.find_by_species_name(params[:id])
 
     respond_to do |format|
       if @pet.update_attributes(params[:pet])
@@ -73,7 +73,7 @@ class PetsController < ApplicationController
   # DELETE /pets/1
   # DELETE /pets/1.json
   def destroy
-    @pet = Pet.find(params[:id])
+    @pet = Pet.find_by_species_name(params[:id])
     @pet.destroy
 
     respond_to do |format|

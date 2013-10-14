@@ -49,6 +49,8 @@ class CommentsController < ApplicationController
 
 #raise "What now?"
      @comment = @user.comments.create(params[:comment])
+#     @comment.author_id = current_user.id
+#     raise "User_id foreign key appears to be overwritten"
 #     raise "What am I?"
 #     @petowner = Petowner.find_by_id(params[:petowner_id])
 #     @equip = @petowner.equips.new(params[:equip])

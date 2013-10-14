@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_vname(params[:id])
   end
 
   # POST /users
@@ -46,7 +46,6 @@ class UsersController < ApplicationController
     #start_time = current_time.strftime("%m/%d/%Y")
     #@user.joined_on = (Date.today.to_s.to_date)
     @user.joined_on = Date.today
-    respond_to do |format|
       if @user.save
          sign_in @user
          flash[:success] = "Welcome to the Trial app"
@@ -54,13 +53,12 @@ class UsersController < ApplicationController
       else
          render "new"
       end
-    end
   end
 
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_vname(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -76,7 +74,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+        @user = User.find_by_vname(params[:id])
     @user.destroy
 
     respond_to do |format|

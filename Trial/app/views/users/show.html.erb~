@@ -52,7 +52,7 @@
       <div class="entry">
          <hr />
          <tr>
-            <td>By: <%= comment.user_name %></td>
+            <td>By: <%= comment.author_id %></td>
             <% if !current_user.nil? %> <%#&& current_user.admin? %>
             <td>
                <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>
@@ -71,11 +71,8 @@
 <% if !current_user.nil? %>
 <div>
 <h3 class="colorstyleh3">Add Comment</h3>
-   <%= form_for [@user, Comment.new] do |form| %>
+   <%= form_for [current_user, Comment.new] do |form| %>
       <table>
-         <tr>
-            <td><%= form.hidden_field :user_id, :value => current_user.vname %></td>
-         </tr>
          <tr>
             <td><%= form.label :message %></td>
          </tr>

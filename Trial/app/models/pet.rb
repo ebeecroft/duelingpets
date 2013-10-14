@@ -5,4 +5,8 @@ class Pet < ActiveRecord::Base
   has_many :fights, :foreign_key => "monster_id", :dependent => :destroy
   validates :species_name, presence: true, uniqueness: { case_sensitive: false}
   validates :description, presence: true
+
+  def to_param
+     species_name
+  end
 end

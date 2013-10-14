@@ -18,7 +18,7 @@
     <td><%= item.created_on %></td>
     <td>
     <% if !current_user.nil? %>
-       <%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>
+       <%= link_to 'Buy', new_user_inventory_path(current_user, :item_id =>item.name) %>
     <% end %>
     </td>
     <td><%= link_to 'Show', item %></td>

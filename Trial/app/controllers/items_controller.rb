@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
 #    @groupee = Groupee.find_by_username(params[:id])
-    @item = Item.find_by_name(params[:id])
+    @item = Item.find_by_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    @item = Item.find_by_name(params[:id])
+    @item = Item.find_by_id(params[:id])
   end
 
   # POST /items
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = Item.find_by_name(params[:id])
+    @item = Item.find_by_id(params[:id])
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
@@ -76,7 +76,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item = Item.find_by_name(params[:id])
+    @item = Item.find_by_id(params[:id])
     @item.destroy
 
     respond_to do |format|

@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   validates :description, presence: true
   validates :name, presence: true, uniqueness: { case_sensitive: false}
 
-  def to_param # overridden
-      name
-   end
+#  def to_param # overridden
+#      name
+#   end
 end

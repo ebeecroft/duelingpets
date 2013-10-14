@@ -25,7 +25,9 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/new
   # GET /maintopics/new.json
   def new
-    @maintopic = Maintopic.new
+    @user = User.find_by_vname(params[:user_id])
+    @maintopic = @user.maintopics.build
+#    @maintopic = Maintopic.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,7 +44,7 @@ class MaintopicsController < ApplicationController
   # POST /maintopics.json
   def create
     @maintopic = Maintopic.new(params[:maintopic])
-
+#     @maintopic = @maintopic.subtopics.new(params[:subtopic])
     respond_to do |format|
       if @maintopic.save
         format.html { redirect_to @maintopic, notice: 'Maintopic was successfully created.' }

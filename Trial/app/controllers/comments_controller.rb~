@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
   # GET /comments.json
   #include SessionsHelper
   def index
-     @user = User.find_by_vname(params[:user_id])
-     @comments = @user.comments.all
-
+#     @user = User.find_by_vname(params[:user_id])
+#     @comments = @user.comments.all
+      @comments = Comment.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }
@@ -53,10 +53,11 @@ class CommentsController < ApplicationController
 
      @user = User.find_by_vname(params[:user_id])
      @comment = @user.comments.new(params[:comment])
-     @comment.author_id = current_user.id
+     @comment.author = current_user.vname
 
      if @comment.save
-
+        #@comment.author.inspect
+        #raise "I am saving the comment"
      else
         raise "I couldn't save"
      end

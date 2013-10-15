@@ -52,7 +52,7 @@
       <div class="entry">
          <hr />
          <tr>
-            <td>By: <%= comment.author_id %></td>
+            <td>By: <%= comment.author %></td>
             <% if !current_user.nil? %> <%#&& current_user.admin? %>
             <td>
                <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>

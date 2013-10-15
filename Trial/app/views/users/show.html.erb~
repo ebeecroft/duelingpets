@@ -71,7 +71,7 @@
 <% if !current_user.nil? %>
 <div>
 <h3 class="colorstyleh3">Add Comment</h3>
-   <%= form_for [current_user, Comment.new] do |form| %>
+   <%= form_for [@user, Comment.new] do |form| %>
       <table>
          <tr>
             <td><%= form.label :message %></td>

@@ -54,6 +54,14 @@ class CommentsController < ApplicationController
      @user = User.find_by_vname(params[:user_id])
      @comment = @user.comments.new(params[:comment])
      @comment.author_id = current_user.id
+
+     if @comment.save
+        raise "I am saving the comment"
+     else
+        raise "I couldn't save"
+     end
+     redirect_to @user
+
 #     @comment.inspect
 #     raise "Am here"
 #      @current_user.inspect
@@ -63,13 +71,14 @@ class CommentsController < ApplicationController
 #     raise "What am I?"
 #     @petowner = Petowner.find_by_id(params[:petowner_id])
 #     @equip = @petowner.equips.new(params[:equip])
-     if @comment.message.empty?
-        flash[:failure] = "Message failed"
-     else
-        if @comment.save
-        end
-     end
-     redirect_to @user
+#     if @comment.message.empty?
+#        flash[:failure] = "Message failed"
+#     else
+#        if @comment.save
+#        end
+#     end
+
+#     redirect_to @user
 
 #     if @user.tag.name.empty?
 #         flash[:failure] = "Tag failed."

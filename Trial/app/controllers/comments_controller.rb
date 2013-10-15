@@ -49,9 +49,13 @@ class CommentsController < ApplicationController
 #     @user = User.find_by_vname(params[:user_id])
 
 #raise "What now?"
-     puts 'inside current_user'
-     @comment = current_user.comments.create(params[:comment])
-     raise "Am here"
+#     puts 'inside current_user'
+
+     @user = User.find_by_vname(params[:user_id])
+     @comment = @user.comments.new(params[:comment])
+     @comment.author_id = current_user.id
+#     @comment.inspect
+#     raise "Am here"
 #      @current_user.inspect
 #      raise "I am here"
 #     @comment.author_id = current_user.id
@@ -65,7 +69,6 @@ class CommentsController < ApplicationController
         if @comment.save
         end
      end
-     @user = User.find_by_vname(params[:user_id])
      redirect_to @user
 
 #     if @user.tag.name.empty?
@@ -107,11 +110,12 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    @user = User.find_by_vname(params[:user_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to @user }
       format.json { head :no_content }
     end
   end

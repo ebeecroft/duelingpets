@@ -1,37 +1,33 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Main:</b>
-  <%= @subtopic.maintopic_id %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @subtopic.user_id %>
-</p>
-
-<p>
-  <b>Topicname:</b>
-  <%= @subtopic.topicname %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @subtopic.description %>
-</p>
-
-
+<div>
+   <table>
+      <tr>
+         <td><%= @subtopic.topicname %></td>
+      </tr>
+      <tr>
+         <td>by: <%= @subtopic.user.vname %></td>
+      </tr>
+      <tr>
+         <td><%= @subtopic.description %></td>
+      </tr>
+   </table>
+<div>
+<br>
+<table>
 <% @subtopic.narratives.each do |narrative| %>
   <tr>
-    <td><%= link_to narrative.story #, subtopic_naratives_path(@subtopic) %></td>
+     <td>re: <%= narrative.subtopic.topicname %></td>
+  </tr>
+  <tr>
+    <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
+  </tr>
+  <tr>
+    <td><%= narrative.story %></td>
     <td><%#= link_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic) %></td>
     <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
-  <tr>
-    <td>By: <%= narrative.user.vname %><%#= subtopic.description %></td>
-  </tr>
 <% end %>
-
+</table>
 
 <%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic, :user_id => current_user) %> |
 <%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic) %> |

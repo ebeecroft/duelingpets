@@ -28,7 +28,11 @@ class NarrativesController < ApplicationController
   # GET /narratives/new.json
   def new
 #    @narrative = Narrative.new
-    @narrative = @subtopic.narratives.build
+     @user = User.find_by_vname(params[:user_id])
+     @narrative = @subtopic.narratives.build
+     @narrative.user_id = @user.id
+
+#    @narrative = @subtopic.narratives.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @narrative }

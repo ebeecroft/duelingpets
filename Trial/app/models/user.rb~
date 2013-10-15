@@ -10,6 +10,7 @@ has_many :pets, :through => :petowners
 has_many :inventories, :foreign_key => "user_id", :dependent => :destroy
 has_many :comments, :foreign_key => "author_id", :dependent => :destroy
 has_many :maintopics
+has_many :subtopics
 
 
 

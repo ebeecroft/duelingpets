@@ -6,7 +6,7 @@ class NarrativesController < ApplicationController
   def index
 #    @narratives = Narrative.all
     @narratives = @subtopic.narratives.all
-    @maintopic = Maintopic.find(@subtopic.maintopic_id)
+#    @maintopic = Maintopic.find(@subtopic.maintopic_id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @narratives }
@@ -28,7 +28,11 @@ class NarrativesController < ApplicationController
   # GET /narratives/new.json
   def new
 #    @narrative = Narrative.new
-    @narrative = @subtopic.narratives.build
+     @user = User.find_by_vname(params[:user_id])
+     @narrative = @subtopic.narratives.build
+     @narrative.user_id = @user.id
+
+#    @narrative = @subtopic.narratives.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @narrative }
@@ -67,7 +71,7 @@ class NarrativesController < ApplicationController
      @maintopic = Maintopic.find(@subtopic.maintopic_id)
     respond_to do |format|
       if @narrative.update_attributes(params[:narrative])
-        format.html { redirect_to maintopic_subtopics(@maintopic), notice: 'Narrative was successfully updated.' }
+        format.html { redirect_to maintopic_subtopics_path(@maintopic), notice: 'Narrative was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

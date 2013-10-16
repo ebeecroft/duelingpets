@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 has_secure_password
 
 before_save { |user| user.email = user.email.downcase }
+before_save { |user| user.first_name = user.first_name.humanize }
 before_save :create_remember_token
 
 has_many :petowners
@@ -15,9 +16,11 @@ has_many :narratives
 
 
 
-validates :first_name, presence: true
+#validates :first_name, presence: true
 validates :last_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+VALID_NAME_REGEX = /\A[a-z][a-z][a-z]+\z/i
+validates :first_name, presence: true, format: { with: VALID_NAME_REGEX}
 validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}
 validates :vname, presence: true, uniqueness: { case_sensitive: false}
 validates :password, length: {minimum: 6}

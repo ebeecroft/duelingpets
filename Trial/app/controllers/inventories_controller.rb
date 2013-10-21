@@ -77,11 +77,12 @@ class InventoriesController < ApplicationController
   # DELETE /inventories/1
   # DELETE /inventories/1.json
   def destroy
+    @user = User.find_by_vname(params[:user_id])
     @inventory = Inventory.find(params[:id])
     @inventory.destroy
 
     respond_to do |format|
-      format.html { redirect_to inventories_url }
+      format.html { redirect_to user_inventories_path(@user) }
       format.json { head :no_content }
     end
   end

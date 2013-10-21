@@ -17,7 +17,7 @@
     <td><%= narrative.story %></td>
     <td><%#= link_to 'Show', narrative %></td>
     <td><%#= link_to 'Edit', edit_narrative_path(narrative) %></td>
-    <td><%#= link_to 'Destroy', narrative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', [@subtopic,narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

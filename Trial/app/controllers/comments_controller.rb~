@@ -36,6 +36,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+#  @maintopic = Maintopic.find(params[:maintopic_id])
+#  @subtopic = Subtopic.find(params[:id])
+    @user = User.find_by_vname(params[:user_id])
     @comment = Comment.find(params[:id])
   end
 

@@ -83,11 +83,12 @@ class NarrativesController < ApplicationController
   # DELETE /narratives/1
   # DELETE /narratives/1.json
   def destroy
+    @maintopic = Maintopic.find(@subtopic.maintopic_id)
     @narrative = Narrative.find(params[:id])
     @narrative.destroy
 
     respond_to do |format|
-      format.html { redirect_to maintopic_subtopic_url }
+      format.html { redirect_to maintopic_subtopic_path(@maintopic,@subtopic) }
       format.json { head :no_content }
     end
   end

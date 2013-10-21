@@ -29,7 +29,7 @@ class InventoriesController < ApplicationController
 #    @inventory = Inventory.new
     @user = User.find_by_vname(params[:user_id])
     @inventory = @user.inventories.build
-    @inventory.item_id = Item.find(params[:item_id])
+    @inventory.item_id = params[:item_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @inventory }
@@ -77,6 +77,7 @@ class InventoriesController < ApplicationController
   # DELETE /inventories/1
   # DELETE /inventories/1.json
   def destroy
+    @user = User.find_by_vname(params[:user_id])
     @inventory = Inventory.find(params[:id])
     @inventory.destroy
 

@@ -16,8 +16,8 @@ class PetownersController < ApplicationController
   # GET /petowners/1
   # GET /petowners/1.json
   def show
+    @user = User.find_by_vname(params[:user_id])
     @petowner = Petowner.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @petowner }
@@ -40,6 +40,7 @@ class PetownersController < ApplicationController
 
   # GET /petowners/1/edit
   def edit
+    @user = User.find_by_vname(params[:user_id])
     @petowner = Petowner.find(params[:id])
   end
 
@@ -67,27 +68,27 @@ class PetownersController < ApplicationController
   # PUT /petowners/1
   # PUT /petowners/1.json
   def update
+#         @maintopic = Maintopic.find(params[:maintopic_id])
+#         @subtopic = Subtopic.find(params[:id])
+    @user = User.find_by_vname(params[:user_id])
     @petowner = Petowner.find(params[:id])
 
-    respond_to do |format|
       if @petowner.update_attributes(params[:petowner])
-        format.html { redirect_to @petowner, notice: 'Petowner was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to user_petowners_path(@user), notice: 'Petowner was successfully updated.' 
       else
-        format.html { render action: "edit" }
-        format.json { render json: @petowner.errors, status: :unprocessable_entity }
+        render action: "edit" 
       end
-    end
   end
 
   # DELETE /petowners/1
   # DELETE /petowners/1.json
   def destroy
+    @user = User.find_by_vname(params[:user_id])
     @petowner = Petowner.find(params[:id])
     @petowner.destroy
 
     respond_to do |format|
-      format.html { redirect_to petowners_url }
+      format.html { redirect_to user_petowners_url }
       format.json { head :no_content }
     end
   end

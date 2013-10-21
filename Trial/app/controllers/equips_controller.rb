@@ -17,6 +17,7 @@ class EquipsController < ApplicationController
   # GET /equips/1
   # GET /equips/1.json
   def show
+    @petowner = Petowner.find_by_id(params[:petowner_id])
     @equip = Equip.find(params[:id])
 
     respond_to do |format|
@@ -71,11 +72,12 @@ class EquipsController < ApplicationController
   # DELETE /equips/1
   # DELETE /equips/1.json
   def destroy
+    @petowner = Petowner.find_by_id(params[:petowner_id])
     @equip = Equip.find(params[:id])
     @equip.destroy
 
     respond_to do |format|
-      format.html { redirect_to equips_url }
+      format.html { redirect_to petowner_equips_url }
       format.json { head :no_content }
     end
   end

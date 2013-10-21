@@ -15,11 +15,11 @@
   <tr>
     <td><%= petowner.user_id %></td>
     <td><%= petowner.pet_id %></td>
-    <td><%= petowner.pet_name %></td>
+    <td><%= link_to petowner.pet_name, user_petowner_path(@user, petowner) %></td>
     <td><%= petowner.adopted_on %></td>
     <td><%#= link_to 'Show', petowner %></td>
-    <td><%#= link_to 'Edit', edit_petowner_path(petowner) %></td>
-    <td><%#= link_to 'Destroy', petowner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Edit', edit_user_petowner_path(@user, petowner), method: :get %><%#= link_to 'Edit', edit_user_petowner_path(current_user, petowner) %></td>
+    <td><%= button_to 'Destroy', [@user, petowner], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

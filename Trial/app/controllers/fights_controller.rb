@@ -2,6 +2,7 @@ class FightsController < ApplicationController
   # GET /fights
   # GET /fights.json
   def index
+#     @pets = Pet.all
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @fights = @petowner.fights.all
 #    @fights = Fight.all
@@ -16,6 +17,7 @@ class FightsController < ApplicationController
   # GET /fights/1
   # GET /fights/1.json
   def show
+    @petowner = Petowner.find_by_id(params[:petowner_id])
     @fight = Fight.find(params[:id])
 
     respond_to do |format|
@@ -40,6 +42,7 @@ class FightsController < ApplicationController
 
   # GET /fights/1/edit
   def edit
+    @petowner = Petowner.find_by_id(params[:petowner_id])
     @fight = Fight.find(params[:id])
   end
 
@@ -59,27 +62,26 @@ class FightsController < ApplicationController
   # PUT /fights/1
   # PUT /fights/1.json
   def update
+    @petowner = Petowner.find_by_id(params[:petowner_id])
     @fight = Fight.find(params[:id])
 
-    respond_to do |format|
       if @fight.update_attributes(params[:fight])
-        format.html { redirect_to @fight, notice: 'Fight was successfully updated.' }
-        format.json { head :no_content }
+#        redirect_to petowner_fight_path(@petowner, @fight), notice: 'Fight was successfully updated.'
       else
-        format.html { render action: "edit" }
-        format.json { render json: @fight.errors, status: :unprocessable_entity }
+#        render action: "edit" 
       end
-    end
+      redirect_to petowner_fight_path(@petowner, @fight)
   end
 
   # DELETE /fights/1
   # DELETE /fights/1.json
   def destroy
+    @petowner = Petowner.find_by_id(params[:petowner_id])
     @fight = Fight.find(params[:id])
     @fight.destroy
 
     respond_to do |format|
-      format.html { redirect_to fights_url }
+      format.html { redirect_to petowner_fights_url }
       format.json { head :no_content }
     end
   end

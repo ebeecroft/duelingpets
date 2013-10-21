@@ -13,9 +13,10 @@
   <tr>
     <td><%= equip.petowner_id %></td>
     <td><%= equip.inventory_id %></td>
-    <td><%= link_to 'Show', equip %></td>
-    <td><%= link_to 'Edit', edit_equip_path(equip) %></td>
-    <td><%= link_to 'Destroy', equip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to equip.inventory.item.name, petowner_equip_path (@petowner, equip) %></td>
+    <td><%#= link_to 'Show', equip %></td>
+    <td><%#= link_to 'Edit', edit_equip_path(equip) %></td>
+    <td><%= link_to 'Destroy', [@petowner, equip], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

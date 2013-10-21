@@ -17,12 +17,13 @@ has_many :narratives
 
 
 #validates :first_name, presence: true
-validates :last_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 VALID_NAME_REGEX = /\A[a-z][a-z][a-z]+\z/i
+VALID_VNAME_REGEX = /\A[A-Za-z][A-Za-z][A-Za-z][A-Za-z0-9 ]+([-][A-Za-z0-9 ]+)?\z/
 validates :first_name, presence: true, format: { with: VALID_NAME_REGEX}
+validates :last_name, presence: true, format: { with: VALID_NAME_REGEX}
 validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}
-validates :vname, presence: true, uniqueness: { case_sensitive: false}
+validates :vname, presence: true, format: { with: VALID_VNAME_REGEX}, uniqueness: { case_sensitive: false}
 validates :password, length: {minimum: 6}
 validates :password_confirmation, presence: true
 

@@ -2,16 +2,16 @@ Trial::Application.routes.draw do
 
    resources :users do
       resources :petowners
-      resources :inventories
-      resources :comments
+      resources :inventories, :except =>[:show, :edit, :update]
+      resources :comments, :only => [:create, :destroy, :index]
    end
 
    resources :pets
    resources :items
 
    resources :petowners, :only =>[] do #Prevents building the petowners routes
-      resources :equips
-      resources :fights
+      resources :equips, :except => [:edit, :update]
+      resources :fights, :except => [:edit]
    end
 
    resources :maintopics do
@@ -19,7 +19,7 @@ Trial::Application.routes.draw do
    end
 
    resources :subtopics, :only =>[] do #Prevents building the subtopics routes
-      resources :narratives
+      resources :narratives, :except => [:show]
    end
 
    resources :sessions, :only => [:new, :create, :destroy]

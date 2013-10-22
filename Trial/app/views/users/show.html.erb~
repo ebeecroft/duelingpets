@@ -21,6 +21,12 @@
 </p>
 
 <p>
+  <b>
+     <%= @user.password_digest %>
+  </b>
+</p>
+
+<p>
   <b>Joined on:</b>
   <%= @user.joined_on %>
 </p>
@@ -56,7 +62,7 @@
             <% if !current_user.nil? %> <%#&& current_user.admin? %>
             <td>
                <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>
-            <td><%= link_to
+            <td></td>
             <% end %>
          </tr>
          <tr>

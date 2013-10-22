@@ -9,7 +9,6 @@
     <th>Joined on</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @users.each do |user| %>
@@ -17,9 +16,9 @@
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.email %></td>
-    <td><%= user.vname %></td>
+    <td><%= link_to user.vname, user %></td>
+    <td><%= user.password %></td>
     <td><%= user.joined_on %></td>
-    <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -28,4 +27,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%#= link_to 'New User', new_user_path %>

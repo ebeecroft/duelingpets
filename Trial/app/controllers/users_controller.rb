@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   require 'date'
+  before_filter :signed_in_user, :only =>[:edit, :update]
+  before_filter :correct_user, :only=>[:edit, :update]
   # GET /users
   # GET /users.json
   def index
@@ -34,7 +36,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find_by_vname(params[:id])
   end
 
   # POST /users
@@ -62,6 +63,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        sign_in @user
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -82,4 +84,14 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+     def signed_in_user
+        redirect_to signin_path unless signed_in?
+     end
+
+     def correct_user
+        @user = User.find_by_vname(params[:id])
+        redirect_to root_path unless current_user?(@user)
+     end
 end

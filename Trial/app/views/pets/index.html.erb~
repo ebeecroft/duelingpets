@@ -5,6 +5,12 @@
     <th>Species name</th>
     <th>Description</th>
     <th>Created on</th>
+    <th>Level</th>
+    <th>Health</th>
+    <th>Attack</th>
+    <th>Defense</th>
+    <th>Speed</th>
+    <th>Cost</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,6 +22,7 @@
     <td><%= pet.species_name %></td>
     <td><%= pet.description %></td>
     <td><%= pet.created_on %></td>
+    <td><%= pet.level %></td>
     <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
     <% if !current_user.nil? %>
     <%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>
@@ -23,7 +30,7 @@
     </td>
     <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
     <% if !current_user.nil? %>
-       <% @user.petowners.each do |petowner| %>
+       <% @current_user.petowners.each do |petowner| %>
           <%= link_to 'Fights', new_petowner_fight_path(petowner, :monster_id =>pet.id) %>
        <% end %>
     <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023011123) do
+ActiveRecord::Schema.define(:version => 20131023040834) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -79,8 +79,14 @@ ActiveRecord::Schema.define(:version => 20131023011123) do
     t.string   "species_name"
     t.text     "description"
     t.datetime "created_on"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "level",        :default => 1
+    t.integer  "hp",           :default => 1
+    t.integer  "atk",          :default => 1
+    t.integer  "def",          :default => 1
+    t.integer  "spd",          :default => 1
+    t.integer  "cost",         :default => 1
   end
 
   create_table "subtopics", :force => true do |t|

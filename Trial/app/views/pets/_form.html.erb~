@@ -20,6 +20,10 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :monster %><br />
+    <%= f.check_box :monster %>
+  </div>
+  <div class="field">
     <%= f.label :level %><br />
     <%= f.text_field :level %>
   </div>
@@ -34,6 +38,14 @@
   <div class="field">
     <%= f.label :def %><br />
     <%= f.text_field :def %>
+  </div>
+  <div class="field">
+    <%= f.label :spd %><br />
+    <%= f.text_field :spd %>
+  </div>
+  <div class="field">
+    <%= f.label :cost %><br />
+    <%= f.text_field :cost %>
   </div>
   <div class="actions">
     <%= f.submit %>

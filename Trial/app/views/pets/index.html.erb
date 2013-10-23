@@ -11,6 +11,8 @@
     <th>Defense</th>
     <th>Speed</th>
     <th>Cost</th>
+    <th>Monster</th>
+    <th>Reviewed</th>
     <th></th>
     <th></th>
     <th></th>
@@ -28,6 +30,8 @@
     <td><%= pet.def %></td>
     <td><%= pet.spd %></td>
     <td><%= pet.cost %></td>
+    <td><%= pet.monster %></td>
+    <td><%= pet.reviewed %></td>
     <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
     <% if !current_user.nil? %>
     <%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>

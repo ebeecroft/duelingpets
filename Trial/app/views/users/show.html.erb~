@@ -1,35 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Vname:</b>
-  <%= @user.vname %>
-</p>
-
-<p>
-  <b>
-     <%= @user.password_digest %>
-  </b>
-</p>
-
-<p>
-  <b>Joined on:</b>
-  <%= @user.joined_on %>
-</p>
+<div>
+<table>
+   <% if @user.id == current_user.id %>
+   <tr>
+      <td><b>First name:</b> <%= @user.first_name %></td>
+      <td><b>Last name:</b> <%= @user.last_name %></td>
+   </tr>
+   <tr>
+      <td><b>Email:</b> <%= @user.email %></td>
+   </tr>
+   <tr>
+      <td><b>Vname:</b> <%= @user.vname %></td>
+      <td><b>Joined on:</b> <%= @user.joined_on %></td>
+   </tr>
+   <tr>
+      <td><b>Money:</b> <%= @user.money %></td>
+   </tr>
+   <% else %>
+   <tr>
+      <td><b>First name:</b> <%= @user.first_name %></td>
+   </tr>
+   <tr>
+      <td><b>Vname:</b> <%= @user.vname %></td>
+      <td><b>Joined on:</b> <%= @user.joined_on %></td>
+   </tr>
+   <% end %>
+</table>
 
 <p>Users owned pets</p>
 <table border="1">

@@ -1,6 +1,33 @@
 class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
+
+  def monsters
+     @pets = Pet.all
+  end
+
+  def reviews
+     @pets = Pet.all
+  end
+
+  def deny
+#    raise "I hit the deny place"
+    @pet = Pet.find_by_id(params[:pet_id])
+    #send_email_to user that pet has been denied and be able to resend it
+    redirect_to pets_reviews_url
+  end
+
+  def approve
+    @pet = Pet.find_by_id(params[:pet_id])
+    @pet.inspect
+#raise "I am here"
+    @pet.reviewed = true
+#    raise "I am here"
+    @pet.update_attributes(params[:pet])
+#    raise "I am here"
+    redirect_to pets_reviews_url
+  end
+
   def index
     @pets = Pet.all
 
@@ -13,12 +40,11 @@ class PetsController < ApplicationController
   # GET /pets/1
   # GET /pets/1.json
   def show
+    
     @pet = Pet.find_by_species_name(params[:id])
     #@pet_owner.adopted_on = Date.today
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @pet }
+    if !@pet.reviewed?
+       redirect_to root_path
     end
   end
 
@@ -41,11 +67,13 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
+#@comment.author = current_user.vname
     @pet = Pet.new(params[:pet])
     @pet.created_on = Date.today
+    @pet.created_by = current_user.vname
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+        format.html { redirect_to pets_url, notice: 'Pet was successfully created.' }
         format.json { render json: @pet, status: :created, location: @pet }
       else
         format.html { render action: "new" }

@@ -1,57 +1,70 @@
 <h1>Listing pets</h1>
 
-<table>
-  <tr>
-    <th>Species name</th>
-    <th>Description</th>
-    <th>Created on</th>
-    <th>Level</th>
-    <th>Health</th>
-    <th>Attack</th>
-    <th>Defense</th>
-    <th>Speed</th>
-    <th>Cost</th>
-    <th>Monster</th>
-    <th>Reviewed</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @pets.each do |pet| %>
+  <% if pet.reviewed?  && !pet.monster? %>
+  <table>
   <tr>
-    <td><%= pet.species_name %></td>
-    <td><%= pet.description %></td>
-    <td><%= pet.created_on %></td>
-    <td><%= pet.level %></td>
-    <td><%= pet.hp %></td>
-    <td><%= pet.atk %></td>
-    <td><%= pet.def %></td>
-    <td><%= pet.spd %></td>
-    <td><%= pet.cost %></td>
-    <td><%= pet.monster %></td>
-    <td><%= pet.reviewed %></td>
-    <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
+    <td><%= link_to pet.species_name, pet %></td>
     <% if !current_user.nil? %>
-    <%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>
+    <td><%= radio_button_tag('Choice', pet.id) %></td>
     <% end %>
-    </td>
-    <td><%#= link_to 'Adopt', new_user_petowner_path(:pet_id=>pet.id) %>
-    <% if !current_user.nil? %>
-       <% @current_user.petowners.each do |petowner| %>
-          <%= link_to 'Fights', new_petowner_fight_path(petowner, :monster_id =>pet.id) %>
-       <% end %>
+    <% if !current_user.nil? && current_user.admin? %>
+       <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+       <td><%= button_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
-    </td>
-    <td><%= link_to 'Show', pet %></td>
-    <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-    <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>     
+  </tr>
+  <tr>
+    <td></td>
+    <td>Level: <%= pet.level %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>HP: <%= pet.hp %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>ATK: <%= pet.atk %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>DEF: <%= pet.def %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>SPD: <%= pet.spd %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Cost: <%= pet.cost %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Creator: <%= pet.created_by %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Created_on: <%= pet.created_on %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= pet.description %></td>
+  </tr>
+</table>
+  <% end %>
+<% end %>
+
+<%= link_to 'Adopt', new_user_petowner_path(current_user) %>
+<table>
+<% if !current_user.nil? %>
+  <tr>
+     <td><%#= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Pet', new_pet_path %>
+<% if !current_user.nil? %>
+   <%= link_to 'New Pet', new_pet_path %>
+<% end %>
+
 <%#= link_to 'Adopt', new_user_petowner_path(@user) %>

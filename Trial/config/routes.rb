@@ -8,7 +8,13 @@ Trial::Application.routes.draw do
    end
 
    #Builds the pet and item actions
+   get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
+   get '/pets/monsters' => 'pets#monsters'
+   post '/pets/reviews' => 'pets#approve'
+   match '/pets/:id' => 'pets#deny', via: :post
+#   match '/pets/reviews/:id' => 'pets#deny', via: :delete
    resources :pets
+#   get '/pets/reviews' => 'pets#reviews'
    resources :items
 
    #Builds the equips and fights actions

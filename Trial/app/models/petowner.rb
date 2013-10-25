@@ -1,5 +1,5 @@
 class Petowner < ActiveRecord::Base
-  attr_accessible :adopted_on, :pet_id, :pet_name, :user_id
+  attr_accessible :adopted_on, :pet_id, :pet_name, :user_id, :level
   belongs_to :pet
   belongs_to :user
   has_many :equips, :foreign_key => "petowner_id", :dependent => :destroy

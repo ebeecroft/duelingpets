@@ -1,70 +1,28 @@
 <h1>Listing pets</h1>
 
 <% @pets.each do |pet| %>
-  <% if pet.reviewed?  && !pet.monster? %>
-  <table>
-  <tr>
-    <td><%= link_to pet.species_name, pet %></td>
-    <% if !current_user.nil? %>
-    <td><%= radio_button_tag('Choice', pet.id) %></td>
-    <% end %>
-    <% if !current_user.nil? && current_user.admin? %>
-       <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-       <td><%= button_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Level: <%= pet.level %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>HP: <%= pet.hp %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>ATK: <%= pet.atk %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>DEF: <%= pet.def %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>SPD: <%= pet.spd %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Cost: <%= pet.cost %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Creator: <%= pet.created_by %></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>Created_on: <%= pet.created_on %></td>
-  </tr>
-  <tr>
-    <td colspan="2"><%= pet.description %></td>
-  </tr>
-</table>
-  <% end %>
+   <% if pet.reviewed  && !pet.monster? %>
+      <%= render 'petinfo', object: pet %>
+      <% if (pet.id%3) == 0 %>         
+         <div class="outer">
+         </div>
+      <% end %>
+   <% end %>
+<%#= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>
 <% end %>
 
-<%= link_to 'Adopt', new_user_petowner_path(current_user) %>
-<table>
-<% if !current_user.nil? %>
-  <tr>
-     <td><%#= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %></td>
-  </tr>
+<!---Don't want a null user to adopt or create a new pet--->
+<% if !current_user.nil? %><!--A reviewed pet with a flag condition of true means a pet that has been accepted into the system--->
+   <% if !@pets.empty? %><!---Would like an additional condition to say here if count of pets reviewed is > 0 then make adopts button active-->
+      <!---I want this Adopt button to only appear once and be used by a selected radio button --->
+      <!---Would like to pass the data into this button when the choice of a pet is selected based on a radio button.---->
+      <p><%= link_to 'Adopt', new_user_petowner_path(current_user) %></p><!--Makes no sense to adopt something that isn't there-->
+   <% end %>
+   <p><%= link_to 'New Pet', new_pet_path %></p>
 <% end %>
-</table>
+<!--- old code:pet_id =>pet.id --->
 
-<br />
+<!---Below code for trying to build a counter of pet.reviewed pets without respect to any id but with the respect to how many of these objects are in the table pets, don't know the syntax for build a counter object in ruby on rails to be used later for secondary condition for adopts. Thinking it might need to be global or potentially local or some way to count in the controller itself and then feedback the information into the view itself so that when modulus of x is used on it, the data is then diveded between inner and outer divs--->
+<% @pets.each do |pet| %>
 
-<% if !current_user.nil? %>
-   <%= link_to 'New Pet', new_pet_path %>
 <% end %>
-
-<%#= link_to 'Adopt', new_user_petowner_path(@user) %>

@@ -13,15 +13,19 @@
 
   <div class="field">
     <%= f.label :user_id %><br />
-    <%#= f.number_field :user_id %>
+    <%= f.number_field :user_id %>
   </div>
   <div class="field">
     <%= f.label :pet_id %><br />
-    <%#= f.number_field :pet_id %>
+    <%= f.number_field :pet_id %>
   </div>
   <div class="field">
     <%= f.label :pet_name %><br />
-    <%#= f.text_field :pet_name %>
+    <%= f.text_field :pet_name %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br />
+    <%= f.text_field :level %>
   </div>
   <div class="field">
     <%= f.label :adopted_on %><br />

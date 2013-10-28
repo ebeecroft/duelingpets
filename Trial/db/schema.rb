@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028161447) do
+ActiveRecord::Schema.define(:version => 20131028185927) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20131028161447) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.date     "created_on"
+    t.boolean  "maintenance"
   end
 
   create_table "narratives", :force => true do |t|
@@ -73,6 +75,8 @@ ActiveRecord::Schema.define(:version => 20131028161447) do
     t.text     "story"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.date     "created_on"
+    t.boolean  "maintenance"
   end
 
   create_table "petowners", :force => true do |t|
@@ -115,6 +119,8 @@ ActiveRecord::Schema.define(:version => 20131028161447) do
     t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.date     "created_on"
+    t.boolean  "maintenance"
   end
 
   create_table "users", :force => true do |t|

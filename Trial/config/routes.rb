@@ -45,5 +45,6 @@ Trial::Application.routes.draw do
    get 'about' => "start#about"
    get 'update' => "start#update"
    get 'contact' => "start#contact"
+   post 'create_adoption', to: "petowners#create"
    root :to => "start#home"
 end

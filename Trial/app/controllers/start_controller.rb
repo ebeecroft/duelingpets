@@ -11,4 +11,5 @@ class StartController < ApplicationController
 
    def contact
    end
+
 end

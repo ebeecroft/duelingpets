@@ -50,18 +50,22 @@ class InventoriesController < ApplicationController
 #     @user = User.find_by_id(params[:user][:user_id])
 #     @inventory.user = @user
       @user = User.find_by_vname(params[:user_id])
-      @amount = @user.money
       @inventory = @user.inventories.new(params[:inventory])
-      @item = Item.find_by_id(params[:inventory][:item_id])
-      @price = @item.cost
-      if @price > @amount
+      @item = Item.find(@inventory.item_id)
+      #@price = @item.cost
+      if @inventory.item.cost > @user.money
          redirect_to items_url
          return
       else
-         @change = (@amount - @price)
+         @user.money -= @inventory.item.cost #This should be setting change based on user's money - items price
       end
-      @user.money = @change
+      @user.money = @change #This is not changing the users money.
       #raise "What is going on? Why is it not updating money?"
+      if @user.save
+      
+      else
+         raise "May be null or price is not found"
+      end
       #@user.update_attributes(params[:money])
       #raise "What is going on? Why is it not updating money?"
       if @inventory.save

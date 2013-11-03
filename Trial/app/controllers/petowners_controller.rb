@@ -1,6 +1,17 @@
 class PetownersController < ApplicationController
   # GET /petowners
   # GET /petowners.json
+   def create_adoption
+      params[:pet_id]
+      new_petowner= Petowner.new
+      new_petowner.pet_id = params[:pet_id]
+      new_petowner.user_id = current_user.id
+      new_petowner.save
+
+
+      redirect_to root_url
+   end
+
   def index
 #    @subtopics = @maintopic.subtopics.all
     @user = User.find_by_vname(params[:user_id])
@@ -49,7 +60,10 @@ class PetownersController < ApplicationController
   # POST /petowners
   # POST /petowners.json
   def create
-     @user = User.find_by_vname(params[:user_id])
+     puts '***********************************************************************'
+     puts params[:pick_pet]
+     #raise "I am here"
+     @user = User.find_by_vname(current_user.vname)
      @pet = Pet.find_by_id(params[:pet_id])
 #     raise "Hello"
 #     @petowner = @user.petowners.build

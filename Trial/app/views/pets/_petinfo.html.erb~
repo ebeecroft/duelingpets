@@ -3,7 +3,7 @@
       <tr>
          <td><%= link_to object.species_name, object %></td>
          <% if !current_user.nil? %>
-            <td><%= radio_button :object, :species_name, object.id %></td><!---radio_button is clickable but does not do anything when submit button is clicked. Doesn't fill in with the data from this. ---->
+            <td><%#= radio_button :Lappy, :species_name, object.id %></td><!---radio_button is clickable but does not do anything when submit button is clicked. Doesn't fill in with the data from this. ---->
          <% end %>
          <% if !current_user.nil? && current_user.admin? %>
             <td><%= link_to 'Edit', edit_pet_path(object) %></td>

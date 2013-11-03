@@ -3,7 +3,7 @@
       <tr>
          <td><%= link_to object.species_name, object %></td>
          <% if !current_user.nil? %>
-            <td><%= radio_button :object, :species_name, object.id %></td><!---radio_button is clickable but does not do anything when submit button is clicked. Doesn't fill in with the data from this. ---->
+            <td><%#= radio_button :Lappy, :species_name, object.id %></td><!---radio_button is clickable but does not do anything when submit button is clicked. Doesn't fill in with the data from this. ---->
          <% end %>
          <% if !current_user.nil? && current_user.admin? %>
             <td><%= link_to 'Edit', edit_pet_path(object) %></td>
@@ -46,7 +46,7 @@
          <td colspan="2"><%= object.description %></td>
       </tr>
       <tr>
-         <td><%#= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>object.id) %></td><!---The working pet adopt button which appears multiple times. Want this button to only appear once and be used with the radio button <%#= radio_button :pet, :species_name, pet.id %> Used to differentiate different choices of pets--->
+         <td><%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %></td><!---The working pet adopt button which appears multiple times. Want this button to only appear once and be used with the radio button <%#= radio_button :pet, :species_name, pet.id %> Used to differentiate different choices of pets--->
       </tr>
    </table>
 </div>

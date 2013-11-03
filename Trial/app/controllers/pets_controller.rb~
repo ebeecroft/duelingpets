@@ -29,7 +29,17 @@ class PetsController < ApplicationController
   end
 
   def index
+    @count = 0
     @pets = Pet.all
+    @pets.each do
+      @count+=1
+    end
+
+    @count.inspect
+    raise "I am this much" 
+    @rows = Array.new
+    #@count.length
+    #@pets = Pet.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -73,7 +83,7 @@ class PetsController < ApplicationController
     @pet.created_by = current_user.vname
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pets, notice: 'Pet was successfully created.' }
+        format.html { redirect_to pets_url, notice: 'Pet was successfully created.' }
         format.json { render json: @pet, status: :created, location: @pet }
       else
         format.html { render action: "new" }

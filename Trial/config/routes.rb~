@@ -8,10 +8,10 @@ Trial::Application.routes.draw do
    end
 
    #Builds the pet and item actions
-   match '/pets/:id' => 'pets#deny', via: :post
    get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
    get '/pets/monsters' => 'pets#monsters'
    post '/pets/reviews' => 'pets#approve'
+   match '/pets/:id' => 'pets#deny', via: :post
 #   match '/pets/reviews/:id' => 'pets#deny', via: :delete
    resources :pets
 #   get '/pets/reviews' => 'pets#reviews'
@@ -45,5 +45,6 @@ Trial::Application.routes.draw do
    get 'about' => "start#about"
    get 'update' => "start#update"
    get 'contact' => "start#contact"
+   post 'create_adoption', to: "start#create_adoption"
    root :to => "start#home"
 end

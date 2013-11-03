@@ -29,7 +29,16 @@ class PetsController < ApplicationController
   end
 
   def index
+    @count = 0
     @pets = Pet.all
+    @pets.each do
+      @count+=1
+    end
+
+     
+    @rows = Array.new
+    #@count.length
+    #@pets = Pet.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,1 +1,11 @@
-<h1>Listing petowners</h1>
+<h1>Home Page</h1>
+
+<p>Welcome to my new pet website that I created. I have been working on this for quite some time.
+I hope you all will enjoy this site.</p>
+
+<%= form_tag("/create_adoption", method: "post") do %>
+  <p><%= radio_button_tag :pet_id, 40 %>Happy</p>
+  <p><%= radio_button_tag :pet_id, 41 %>Sad</p>
+  <p><%= radio_button_tag :pet_id, 42 %>Angry</p>
+  <%= submit_tag("Adopt Selected Pet") %>
+<% end %>

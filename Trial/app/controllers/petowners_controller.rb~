@@ -63,12 +63,13 @@ class PetownersController < ApplicationController
      puts '***********************************************************************'
      puts params[:pick_pet]
      #raise "I am here"
-     @user = User.find_by_vname(params[:user_id])
+     @user = User.find_by_vname(current_user.vname)
      @pet = Pet.find_by_id(params[:pet_id])
 #     raise "Hello"
 #     @petowner = @user.petowners.build
 #     @petowner.pet_id = params[:pet_id]
      @petowner = @user.petowners.new(params[:petowner])
+     @petowner.hp = @pet.hp
 #     @petowner.level = @pet.level
 #     @petowner = Petowner.new(params[:petowner])
      #@pet = Pet.find(params[:pet][:pet_id])

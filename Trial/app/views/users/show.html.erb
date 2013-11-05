@@ -12,7 +12,7 @@
    </tr>
    <tr>
       <td><b>Vname:</b> <%= @user.vname %></td>
-      <td><b>Joined on:</b> <%= @user.joined_on %></td>
+      <td><b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
    </tr>
    <tr>
       <td><b>Money:</b> <%= @user.money %></td>
@@ -63,7 +63,7 @@
             <% end %>
          </tr>
          <tr>
-            <td><%= comment.message %></td>
+            <td><pre><%= comment.message %></pre></td>
          </tr>
       </div>
    </table>

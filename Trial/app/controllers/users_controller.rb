@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_vname(params[:id])
+
 #    if @user.maintenance?
 #       raise "I am in maintenance mode"
 #    end
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   def create
     
     @user = User.new(params[:user])
-    #current_time = Date.today
+    current_time = Date.today
     #start_time = current_time.strftime("%m/%d/%Y")
     #@user.joined_on = (Date.today.to_s.to_date)
     @user.joined_on = Date.today

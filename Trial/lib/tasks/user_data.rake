@@ -8,5 +8,6 @@ namespace :db do
                            password_confirmation: "Mole12")
       admin.toggle!(:admin)
       admin.joined_on = Date.today
+      admin.save
    end
 end

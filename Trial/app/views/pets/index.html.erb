@@ -1,7 +1,7 @@
 <h1>Listing pets</h1>
-<%= form_tag("/create_adoption", method: "post") do %>
+<%= form_tag(new_user_petowner_path(current_user), method: "get") do %>
 
-<% @pets.each do |pet| %>
+<% @pets.each_with_index do |pet, index| %>
    <% if pet.reviewed  && !pet.monster? %>
       <%#= render 'petinfo', object: pet %>
       <div class="inner">
@@ -14,7 +14,7 @@
          <% if !current_user.nil? && current_user.admin? %>
             
             <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-            <td><%#= button_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             
          <% end %>
       </tr>
@@ -58,14 +58,14 @@
       </tr>
    </table>
 </div>
-      <% if (pet.id%@count) == 0 %>         
+      <% if ((index + 1)%3) == 0 %>         
          <div class="outer">
          </div>
       <% end %>
    <% end %>
 <%#= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>pet.id) %>
 <% end %>
-<%#= submit_tag("Adopt Selected Pet") %>
+<%= submit_tag("Adopt Selected Pet") %>
 <% end %>
 <!---Don't want a null user to adopt or create a new pet--->
 <% if !current_user.nil? %><!--A reviewed pet with a flag condition of true means a pet that has been accepted into the system--->

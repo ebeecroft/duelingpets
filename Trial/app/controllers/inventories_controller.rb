@@ -64,7 +64,7 @@ class InventoriesController < ApplicationController
       if @user.save
       
       else
-         raise "May be null or price is not found"
+         raise @user.errors.full_messages.to_s
       end
       #@user.update_attributes(params[:money])
       #raise "What is going on? Why is it not updating money?"

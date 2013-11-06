@@ -42,6 +42,9 @@ class PetownersController < ApplicationController
 #    @petowner = Petowner.new
     @user = User.find_by_vname(params[:user_id])
     @pet = Pet.find_by_id(params[:pet_id])
+    if @pet.nil?
+       raise "You must be a really dumb user"
+    end
     @petowner = @user.petowners.build
     @petowner.pet_id = @pet.id
     @petowner.level = @pet.level
@@ -64,7 +67,7 @@ class PetownersController < ApplicationController
      puts params[:pick_pet]
      #raise "I am here"
      @user = User.find_by_vname(current_user.vname)
-     @pet = Pet.find_by_id(params[:pet_id])
+     @pet = Pet.find_by_id(params[:petowner][:pet_id])
 #     raise "Hello"
 #     @petowner = @user.petowners.build
 #     @petowner.pet_id = params[:pet_id]

@@ -31,14 +31,11 @@ class PetsController < ApplicationController
   def index
     @count = 0
     @pets = Pet.all
-    @pets.each do
-      @count+=1
+    @pets.each do |pet|
+      if pet.reviewed?
+         @count+=1
+      end
     end
-
-     
-    @rows = Array.new
-    #@count.length
-    #@pets = Pet.all
 
     respond_to do |format|
       format.html # index.html.erb

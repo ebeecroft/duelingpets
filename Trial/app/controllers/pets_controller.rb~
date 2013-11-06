@@ -32,14 +32,10 @@ class PetsController < ApplicationController
     @count = 0
     @pets = Pet.all
     @pets.each do
-      @count+=1
+      if @pets.reviewed?
+         @count+=1
+      end
     end
-
-    @count.inspect
-    raise "I am this much" 
-    @rows = Array.new
-    #@count.length
-    #@pets = Pet.all
 
     respond_to do |format|
       format.html # index.html.erb

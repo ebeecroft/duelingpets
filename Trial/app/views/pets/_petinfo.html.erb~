@@ -1,52 +1,56 @@
-<div class="inner">
-   <table>
-      <tr>
-         <td><%= link_to object.species_name, object %></td>
-         <% if !current_user.nil? %>
-            <td><%#= radio_button :Lappy, :species_name, object.id %></td><!---radio_button is clickable but does not do anything when submit button is clicked. Doesn't fill in with the data from this. ---->
-         <% end %>
-         <% if !current_user.nil? && current_user.admin? %>
-            <td><%= link_to 'Edit', edit_pet_path(object) %></td>
-            <td><%= button_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-         <% end %>
-      </tr>
-      <tr>
-         <td></td>
-         <td>Level: <%= object.level %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>HP: <%= object.hp %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>ATK: <%= object.atk %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>DEF: <%= object.def %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>SPD: <%= object.spd %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>Cost: <%= object.cost %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>Creator: <%= object.created_by %></td>
-      </tr>
-      <tr>
-         <td></td>
-         <td>Created_on: <%= object.created_on %></td>
-      </tr>
-      <tr>
-         <td colspan="2"><%= object.description %></td>
-      </tr>
-      <tr>
-         <td><%= link_to 'Adopt', new_user_petowner_path(current_user, :pet_id =>object.id) %></td><!---The working pet adopt button which appears multiple times. Want this button to only appear once and be used with the radio button <%#= radio_button :pet, :species_name, pet.id %> Used to differentiate different choices of pets--->
-      </tr>
-   </table>
-</div>
+<% @pets.each_with_index do |pet, index| %>
+   <% if pet.reviewed  && !pet.monster? %>
+      <div class="inner">
+         <table>
+            <tr>
+               <td><%= link_to pet.species_name, pet %></td>
+               <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
+               <% if !current_user.nil? %> <!---Difference when current_user is nil-->
+                  <td><%= radio_button_tag :pet_id, pet.id %></td>
+               <% end %>
+            </tr>
+            <tr>
+               <td></td>
+               <td>Level: <%= pet.level %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>HP: <%= pet.hp %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>ATK: <%= pet.atk %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>DEF: <%= pet.def %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>SPD: <%= pet.spd %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>Cost: <%= pet.cost %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <!--Displays the user who created this pet -->
+               <td>Creator: <%= pet.created_by %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <!--Displays the date the pet was created -->
+               <td>Created_on: <%= pet.created_on %></td>
+            </tr>
+            <tr>
+               <td colspan="2"><%= pet.description %></td>
+            </tr>
+         </table>
+      </div>
+      <!--Sets how many pets to display per line-->
+      <% if ((index + 1)%3) == 0 %>         
+         <div class="outer"></div>
+      <% end %>
+   <% end %>
+<% end %>

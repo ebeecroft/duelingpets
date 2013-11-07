@@ -2,7 +2,7 @@
 
 <div>
 <table>
-   <% if @user.id == current_user.id %>
+   <% if !current_user.nil? && @user.id == current_user.id %>
    <tr>
       <td><b>First name:</b> <%= @user.first_name %></td>
       <td><b>Last name:</b> <%= @user.last_name %></td>
@@ -10,10 +10,7 @@
    <tr>
       <td><b>Email:</b> <%= @user.email %></td>
    </tr>
-   <tr>
-      <td><b>Vname:</b> <%= @user.vname %></td>
-      <td><b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
-   </tr>
+   <%= render 'userinfo', object: @user %>
    <tr>
       <td><b>Money:</b> <%= @user.money %></td>
    </tr>
@@ -21,10 +18,7 @@
    <tr>
       <td><b>Name:</b> <%= @user.first_name %></td>
    </tr>
-   <tr>
-      <td><b>Vname:</b> <%= @user.vname %></td>
-      <td><b>Joined on:</b> <%= @user.joined_on %></td>
-   </tr>
+   <%= render 'userinfo', object: @user %>
    <% end %>
 </table>
 
@@ -63,7 +57,7 @@
             <% end %>
          </tr>
          <tr>
-            <td><%= simple_format(comment.message) %></td>
+            <td><pre><%= comment.message %></pre></td>
          </tr>
       </div>
    </table>

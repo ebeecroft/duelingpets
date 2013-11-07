@@ -11,7 +11,7 @@
             </tr>
             <tr>
                <td></td>
-               <td>HP: <%= petowner.hp %>/<%= petowner.hp_max %><</td>
+               <td>HP: <%= petowner.hp %>/<%= petowner.hp_max %></td>
             </tr>
             <tr>
                <td></td>
@@ -33,7 +33,7 @@
             <tr>
                <td></td>
                <!--Displays the date the pet was created -->
-               <td>Created_on: <%= petowner.adopted_on %></td>
+               <td>Adopted_on: <%= petowner.adopted_on %></td>
             </tr>
          </table>
       </div>

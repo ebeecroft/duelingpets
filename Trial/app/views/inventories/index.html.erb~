@@ -1,35 +1,15 @@
 <h1>Listing inventories</h1>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Item</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @inventories.each do |inventory| %>
-  <%# if inventory.id not in equips %>
-  <tr>
-    <td><%= inventory.user_id %></td>
-    <td><%= inventory.item_id %></td>
-    <td><%#= link_to 'Show', inventory %></td>
-    <td><%#= link_to 'Edit', edit_inventory_path(inventory) %></td>
-    <td><%#= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td>
-<%# @user.petowners.each do |petowner| %>
-    <% if !current_user.nil? %>
-       <% @user.petowners.each do |petowner| %>
-          <%= link_to 'Equip', new_petowner_equip_path(petowner, :inventory_id =>inventory.id) %>
-       <% end %>
-    <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%#= link_to 'New Inventory', new_inventory_path %>
+<!--Checks to see if any pets are available -->
+<%# if @count > 0 %>
+   <!--Checks if the current user is signed in -->
+   <% if !current_user.nil? %>
+      <%#= form_tag(new_user_petowner_path(current_user), method: "get") do %>
+         <%= render 'inventoryinfo' %>
+         <div class="outer"></div>
+         <%#= submit_tag("Adopt Selected Pet") %>
+      <%# end %>
+   <% else %>
+      <%#= render 'inventoryinfo' %>
+   <% end %>
+<%# end %>

@@ -68,22 +68,24 @@ class PetownersController < ApplicationController
      #raise "I am here"
      @user = User.find_by_vname(current_user.vname)
      @pet = Pet.find_by_id(params[:petowner][:pet_id])
+     
+#     raise "Hello"
+#     @petowner = @user.petowners.build
+#     @petowner.pet_id = params[:pet_id]
+     @petowner = @user.petowners.new(params[:petowner])
      if @petowner.pet.cost > @user.money
          redirect_to items_url
          return
      else
          @user.money -= @petowner.pet.cost #This should be setting change based on user's money - items price
      end
-#     raise "Hello"
-#     @petowner = @user.petowners.build
-#     @petowner.pet_id = params[:pet_id]
-     @petowner = @user.petowners.new(params[:petowner])
      @petowner.level = @pet.level
      @petowner.hp = @pet.hp
      @petowner.atk = @pet.atk
      @petowner.def = @pet.def
      @petowner.spd = @pet.spd
      @petowner.hp_max = @pet.hp
+     @petowner.adopted_on = Date.today
      if @user.save
          sign_in @user
      end

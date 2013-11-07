@@ -30,6 +30,9 @@ class InventoriesController < ApplicationController
     @user = User.find_by_vname(params[:user_id])
     @inventory = @user.inventories.build
     @inventory.item_id = params[:item_id]
+    if @inventory.item_id.nil?
+       raise "You are a really dumb user"
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @inventory }

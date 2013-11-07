@@ -31,8 +31,12 @@ class FightsController < ApplicationController
   def new
 #    @fight = Fight.new
      @petowner = Petowner.find_by_id(params[:petowner_id])
+#     raise "I am error"
+     if @petowner.nil?
+        raise "there is no petowner here"
+     end
      @fight = @petowner.fights.build
-     @fight.monster_id = params[:monster_id]
+     @fight.monster_id = params[:pet_id]
 
     respond_to do |format|
       format.html # new.html.erb

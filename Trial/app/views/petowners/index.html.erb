@@ -1,31 +1,14 @@
 <h1>Listing petowners</h1>
-
-<table>
-  <tr>
-    <th>User</th>
-    <th>Pet</th>
-    <th>Pet name</th>
-    <th>Adopted on</th>
-    <th>Health</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @petowners.each do |petowner| %>
-  <tr>
-    <td><%= petowner.user_id %></td>
-    <td><%= petowner.pet_id %></td>
-    <td><%= link_to petowner.pet_name, user_petowner_path(@user, petowner) %></td>
-    <td><%= petowner.adopted_on %></td>
-    <td><%= petowner.hp %></td>
-    <td><%#= link_to 'Show', petowner %></td>
-    <td><%= button_to 'Edit', edit_user_petowner_path(@user, petowner), method: :get %><%#= link_to 'Edit', edit_user_petowner_path(current_user, petowner) %></td>
-    <td><%= button_to 'Destroy', [@user, petowner], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%#= link_to 'New Petowner', new_petowner_path %>
+<!--Checks to see if any pets are available -->
+<%# if @count > 0 %>
+   <!--Checks if the current user is signed in -->
+   <% if !current_user.nil? %>
+      <%#= form_tag(new_user_petowner_path(current_user), method: "get") do %>
+         <%= render 'petownerinfo' %>
+         <div class="outer"></div>
+         <%#= submit_tag("Adopt Selected Pet") %>
+      <%# end %>
+   <% else %>
+      <%= render 'petownerinfo' %>
+   <% end %>
+<%# end %>

@@ -62,7 +62,7 @@ class InventoriesController < ApplicationController
       #@user.money = @change #This is not changing the users money.
       #raise "What is going on? Why is it not updating money?"
       if @user.save
-      
+         sign_in @user
       else
          raise @user.errors.full_messages.to_s
       end

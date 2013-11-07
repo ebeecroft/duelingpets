@@ -1,5 +1,5 @@
 <% @pets.each_with_index do |pet, index| %>
-   <% if pet.reviewed? && !pet.monster? %>
+   <% if pet.reviewed? && pet.monster? %>
       <div class="inner">
          <table>
             <tr>
@@ -54,3 +54,4 @@
       <% end %>
    <% end %>
 <% end %>
+<div class="outer"></div>

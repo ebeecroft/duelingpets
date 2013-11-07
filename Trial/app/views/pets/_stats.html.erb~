@@ -1,6 +1,4 @@
-<% @pets.each_with_index do |pet, index| %>
-   <% if pet.reviewed? && !pet.monster? %>
-      <div class="inner">
+<div class="inner">
          <table>
             <tr>
                <td><%= link_to pet.species_name, pet %></td>
@@ -52,5 +50,3 @@
       <% if ((index + 1)%3) == 0 %>         
          <div class="outer"></div>
       <% end %>
-   <% end %>
-<% end %>

@@ -1,0 +1,45 @@
+<% @petowners.each_with_index do |petowner, index| %>
+   <%# if pet.reviewed? && !pet.monster? %>
+      <div class="inner">
+         <table>
+            <tr>
+               <td><%= link_to petowner.pet_name, user_petowner_path(@user, petowner) %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>Level: <%= petowner.level %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>HP: <%= petowner.hp %>/<%= petowner.hp_max %><</td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>ATK: <%= petowner.atk %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>DEF: <%= petowner.def %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>SPD: <%= petowner.spd %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <!--Displays the user who created this pet -->
+               <td>Species: <%= petowner.pet.species_name %></td>
+            </tr>
+            <tr>
+               <td></td>
+               <!--Displays the date the pet was created -->
+               <td>Created_on: <%= petowner.adopted_on %></td>
+            </tr>
+         </table>
+      </div>
+      <!--Sets how many pets to display per line-->
+      <% if ((index + 1)%3) == 0 %>         
+         <div class="outer"></div>
+      <% end %>
+   <%# end %>
+<% end %>

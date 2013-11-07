@@ -5,6 +5,7 @@
    <% if !current_user.nil? %>
       <%= form_tag(new_user_petowner_path(current_user), method: "get") do %>
          <%= render 'petinfo' %>
+         <div class="outer"></div>
          <%= submit_tag("Adopt Selected Pet") %>
       <% end %>
    <% else %>

@@ -3,7 +3,14 @@ class PetsController < ApplicationController
   # GET /pets.json
 
   def monsters
-     @pets = Pet.all
+    @user = User.find_by_vname(current_user.vname)
+    @pets = Pet.all
+    @count = 0
+    @pets.each do |pet|
+      if pet.reviewed? && pet.monster?
+         @count+=1
+      end
+    end
   end
 
   def reviews
@@ -31,8 +38,8 @@ class PetsController < ApplicationController
   def index
     @count = 0
     @pets = Pet.all
-    @pets.each do
-      if @pets.reviewed?
+    @pets.each do |pet|
+      if pet.reviewed?
          @count+=1
       end
     end

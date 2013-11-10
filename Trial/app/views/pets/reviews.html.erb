@@ -22,6 +22,7 @@
   <% if !pet.reviewed? %>
   <tr>
     <td><%= pet.species_name %></td>
+    <td><%= image_tag pet.image_url.to_s %></td>
     <td><%= pet.description %></td>
     <td><%= pet.created_on %></td>
     <td><%= pet.level %></td>

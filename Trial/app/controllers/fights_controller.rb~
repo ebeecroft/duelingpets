@@ -18,8 +18,10 @@ class FightsController < ApplicationController
   # GET /fights/1.json
   def show
     @petowner = Petowner.find_by_id(params[:petowner_id])
+    #@pet = Pet.find_by_id(params[:pet_id])
     @fight = Fight.find(params[:id])
-
+    @pet = Pet.find_by_id(params[:pet_id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @fight }
@@ -36,7 +38,7 @@ class FightsController < ApplicationController
         raise "there is no petowner here"
      end
      @fight = @petowner.fights.build
-     @fight.monster_id = params[:monster_id]
+     @fight.pet_id = params[:pet_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -56,6 +58,12 @@ class FightsController < ApplicationController
 #    @fight = Fight.new(params[:fight])
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @fight = @petowner.fights.new(params[:fight])
+     @pet = Pet.find_by_id(@fight.pet_id)
+     @fight.monster_current_hp = @pet.hp
+     if @user.save
+         sign_in @user
+     end
+
       if @fight.save
         redirect_to petowner_fights_path(@petowner)
       else

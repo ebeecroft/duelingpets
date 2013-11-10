@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= image_tag @pet.image_url(:thumb).to_s %>
+</p>
+
+<p>
   <b>Species name:</b>
   <%= @pet.species_name %>
 </p>
@@ -29,4 +33,4 @@
 <%# end %>
 <%#= link_to 'Edit', edit_pet_path(@pet) %> |
 <%#= link_to 'Back', pets_path %>
-<%= link_to "New Pet Adopt", new_user_pet_owner_path(@user) %>
+<%#= link_to "New Pet Adopt", new_user_pet_owner_path(@user) %>

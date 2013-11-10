@@ -12,10 +12,10 @@
 <% @fights.each do |fight| %>
   <tr>
     <td><%= fight.petowner_id %></td>
-    <td><%= link_to fight.monster_id, petowner_fight_path(@petowner, fight) %></td>
+    <td><%= link_to fight.pet_id, petowner_fight_path(@petowner, fight) %></td>
     <td><%#= link_to 'Show', fight %></td>
-    <td><%= link_to 'Edit', edit_petowner_fight_path(@petowner, fight) %></td>
-    <td><%= link_to 'Destroy', [@petowner, fight], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%#= link_to 'Edit', edit_petowner_fight_path(@petowner, fight) %></td>
+    <td><%#= link_to 'Destroy', [@petowner, fight], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

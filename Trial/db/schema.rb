@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028202853) do
+ActiveRecord::Schema.define(:version => 20131107214839) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20131028202853) do
 
   create_table "fights", :force => true do |t|
     t.integer  "petowner_id"
-    t.integer  "monster_id"
+    t.integer  "pet_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "round"
@@ -88,14 +88,14 @@ ActiveRecord::Schema.define(:version => 20131028202853) do
     t.integer  "pet_id"
     t.string   "pet_name"
     t.datetime "adopted_on"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "level"
     t.integer  "hp"
     t.integer  "atk"
     t.integer  "def"
     t.integer  "spd"
-    t.integer  "exp"
+    t.integer  "exp",        :default => 0
     t.integer  "hp_max"
   end
 
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20131028202853) do
     t.boolean  "monster",      :default => false
     t.boolean  "reviewed",     :default => false
     t.string   "created_by"
+    t.string   "image"
   end
 
   create_table "subtopics", :force => true do |t|

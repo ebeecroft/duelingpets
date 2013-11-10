@@ -2,14 +2,53 @@
 
 <p>
   <b>Petowner:</b>
-  <%= @fight.petowner_id %>
 </p>
+<div class="inner">
+    <%= image_tag @fight.petowner.pet.image_url.to_s %></td>
+</div>
 
-<p>
-  <b>Monster:</b>
-  <%= @fight.monster_id %>
-</p>
+<div class="inner">
+   <table>
+      <tr>
+         <td>Level: <%= @fight.petowner.level %></td>
+         <td>EXP: <%= @fight.petowner.exp %></td>
+      </tr>
+      <tr>
+         <td>HP: <%= @fight.petowner.hp %>/<%= @fight.petowner.hp_max %></td>
+      </tr>
+      <tr>
+         <td>ATK: <%= @fight.petowner.atk %></td>
+      </tr>
+      <tr>
+         <td>DEF: <%= @fight.petowner.def %></td>
+      </tr>
+      <tr>
+         <td>SPD: <%= @fight.petowner.spd %></td>
+      </tr>
+   </table>
+</div>
 
+<div class="inner">
+   <%= image_tag @fight.pet.image_url.to_s %></td>
+</div>
 
-<%#= link_to 'Edit', edit_fight_path(@fight) %> |
-<%#= link_to 'Back', fights_path %>
+<div class="inner">
+   <table>
+      <tr>
+         <td>Level: <%= @fight.pet.level %></td>
+      </tr>
+      <tr>
+         <td>HP: <%= @fight.pet.hp %>/<%= @fight.monster_current_hp %></td>
+      </tr>
+      <tr>
+         <td>ATK: <%= @fight.pet.atk %></td>
+      </tr>
+      <tr>
+         <td>DEF: <%= @fight.pet.def %></td>
+      </tr>
+      <tr>
+         <td>SPD: <%= @fight.pet.spd %></td>
+      </tr>
+   </table>
+</div>
+<%= button_to "Fight" %>

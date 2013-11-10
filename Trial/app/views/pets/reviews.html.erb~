@@ -21,7 +21,6 @@
 <% @pets.each do |pet| %>
   <% if !pet.reviewed? %>
   <tr>
-    <td><%= pet.id %></td>
     <td><%= pet.species_name %></td>
     <td><%= pet.description %></td>
     <td><%= pet.created_on %></td>

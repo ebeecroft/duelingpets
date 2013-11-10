@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= image_tag @pet.image_url.to_s %>
+</p>
+
+<p>
   <b>Species name:</b>
   <%= @pet.species_name %>
 </p>

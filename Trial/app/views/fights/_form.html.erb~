@@ -1,4 +1,4 @@
-<%= form_for(@fight) do |f| %>
+<%= form_for([@petowner,@fight]) do |f| %>
   <% if @fight.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@fight.errors.count, "error") %> prohibited this fight from being saved:</h2>
@@ -16,8 +16,8 @@
     <%= f.number_field :petowner_id %>
   </div>
   <div class="field">
-    <%= f.label :monster_id %><br />
-    <%= f.number_field :monster_id %>
+    <%= f.label :pet_id "Monster"%><br />
+    <%= f.number_field :pet_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

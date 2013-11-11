@@ -1,6 +1,46 @@
 <% @pets.each_with_index do |pet, index| %>
    <% if pet.reviewed? && !pet.monster? %>
       <div class="inner">
+    <p><%= link_to pet.species_name, pet %></p>
+    <%= image_tag pet.image_url(:thumb).to_s %></td>
+</div>
+<div class="inner">
+   <table>
+      <% if !current_user.nil? %> <!---Difference when current_user is nil-->
+      <tr>
+                  <td><%= radio_button_tag :pet_id, pet.id %></td>
+      </tr>
+      <% end %>
+      <tr>
+         <td>Level: <%= pet.level %></td>
+      </tr>
+      <tr>
+         <td>HP: <%= pet.hp %></td>
+      </tr>
+      <tr>
+         <td>ATK: <%= pet.atk %></td>
+      </tr>
+      <tr>
+         <td>DEF: <%= pet.def %></td>
+      </tr>
+      <tr>
+         <td>SPD: <%= pet.spd %></td>
+      </tr>
+      <tr>
+         <td>Cost: <%= pet.cost %></td>
+      </tr>
+      <tr>
+         <td>Creator: <%= pet.created_by %></td>
+      </tr>
+      <tr>
+         <td>Created_on: <%= pet.created_on %></td>
+      </tr>
+      <tr>
+         <td>Description: <%= pet.description %></td>
+      </tr>
+   </table>
+</div>
+      <div class="inner">
          <table>
             <tr>
                <td><%= link_to pet.species_name, pet %></td>

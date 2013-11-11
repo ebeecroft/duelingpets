@@ -27,7 +27,7 @@ gem 'jquery-rails'
 
 #For file uploads using carrierwave and rmagick
  gem "carrierwave"
-# gem "rmagick"
+ gem "rmagick"
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

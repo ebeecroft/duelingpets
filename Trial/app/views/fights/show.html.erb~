@@ -4,7 +4,7 @@
   <b>Petowner:</b>
 </p>
 <div class="inner">
-    <%= image_tag @fight.petowner.pet.image_url.to_s %></td>
+    <%= image_tag @fight.petowner.pet.image_url(:thumb).to_s %></td>
 </div>
 
 <div class="inner">
@@ -29,7 +29,7 @@
 </div>
 
 <div class="inner">
-   <%= image_tag @fight.petowner.pet.image_url.to_s %></td>
+   <%= image_tag @fight.pet.image_url(:thumb).to_s %></td>
 </div>
 
 <div class="inner">

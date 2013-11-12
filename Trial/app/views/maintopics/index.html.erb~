@@ -3,15 +3,14 @@
 <table>
 <% @maintopics.each do |maintopic| %>
   <tr>
-    <td>Topic: <%= link_to maintopic.topicname, maintopic %></td>
-    <td><%= link_to 'Edit', edit_maintopic_path(maintopic) %></td>
+    <td>Topic: <%= link_to maintopic.topicname, maintopic %> <%= link_to 'Edit', edit_maintopic_path(maintopic) %> </td>
     <td><%= button_to 'Destroy', maintopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <tr>
-     <td>Author: <%= maintopic.user.vname %></td>
+     <td>By: <%= maintopic.user.vname %></td>
   </tr>
   <tr>
-    <td><%= maintopic.description %></td>
+    <td><pre><%= maintopic.description %></pre></td>
   </tr>
 <% end %>
 </table>

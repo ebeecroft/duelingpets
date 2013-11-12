@@ -1,6 +1,10 @@
 class FightsController < ApplicationController
   # GET /fights
   # GET /fights.json
+  def calcdamage
+     @petowner = Petowner.find_by_id(params[:petowner_id])
+     @mdamage = ((@pet + 3)/(@petowner.def**0.5)+@pet.level**0.7)
+  end
   def index
 #     @pets = Pet.all
      @petowner = Petowner.find_by_id(params[:petowner_id])

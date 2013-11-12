@@ -8,11 +8,10 @@
          <td>by: <%= @subtopic.user.vname %></td>
       </tr>
       <tr>
-         <td><%= @subtopic.description %></td>
+         <td><pre><%= @subtopic.description %></pre></td>
       </tr>
    </table>
 <div>
-<br>
 <table>
 <% @subtopic.narratives.each do |narrative| %>
   <tr>

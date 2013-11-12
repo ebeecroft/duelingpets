@@ -1,16 +1,18 @@
 <% @pets.each_with_index do |pet, index| %>
    <% if pet.reviewed? && !pet.monster? %>
       <div class="inner">
-    <p><%= link_to pet.species_name, pet %></p>
-    <%= image_tag pet.image_url(:thumb).to_s %></td>
+      <table>
+      <tr>
+         <td>
+    <p><%= link_to pet.species_name, pet %><% if !current_user.nil? %><!---Difference when current_user is nil--><%= radio_button_tag :pet_id, pet.id %><% end %></p></td>
+      </tr>
+      <tr>
+         <td><%= image_tag pet.image_url(:thumb).to_s %></td>
+      </tr>
+    </table>
 </div>
 <div class="inner">
    <table>
-      <% if !current_user.nil? %> <!---Difference when current_user is nil-->
-      <tr>
-                  <td><%= radio_button_tag :pet_id, pet.id %></td>
-      </tr>
-      <% end %>
       <tr>
          <td>Level: <%= pet.level %></td>
       </tr>
@@ -31,12 +33,6 @@
       </tr>
       <tr>
          <td>Creator: <%= pet.created_by %></td>
-      </tr>
-      <tr>
-         <td>Created_on: <%= pet.created_on %></td>
-      </tr>
-      <tr>
-         <td>Description: <%= pet.description %></td>
       </tr>
    </table>
 </div>

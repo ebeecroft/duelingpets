@@ -8,7 +8,7 @@
          <td>by: <%= @subtopic.user.vname %></td>
       </tr>
       <tr>
-         <td><%= @subtopic.description %></td>
+         <td><pre><%= @subtopic.description %></pre></td>
       </tr>
    </table>
 <div>
@@ -21,7 +21,7 @@
     <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
   </tr>
   <tr>
-    <td><%= narrative.story %></td>
+    <td><pre><%= narrative.story %></pre></td>
     <td><%#= link_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic) %></td>
     <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

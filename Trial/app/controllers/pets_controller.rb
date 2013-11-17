@@ -3,8 +3,12 @@ class PetsController < ApplicationController
   # GET /pets.json
 
   def monsters
+    #Finds the current user
     @user = User.find_by_vname(current_user.vname)
-    @petowner = Petowner.find_by_id(@user.id)
+
+    #Find the petowners that the user currently has
+    @petowners = @user.petowners.all
+
     @pets = Pet.all
     @count = 0
     @pets.each do |pet|

@@ -51,4 +51,6 @@
       </tr>
    </table>
 </div>
-<%= button_to "Fight" %>
+<%#= button_to 'Approve', pets_reviews_path(:pet_id=>pet.id) %>
+<%#= button_to 'Deny', pet, method: :post %>
+<%= button_to 'Fight', petowner %>

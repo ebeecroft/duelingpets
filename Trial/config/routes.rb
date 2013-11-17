@@ -20,6 +20,7 @@ Trial::Application.routes.draw do
    #Builds the equips and fights actions
    resources :petowners, :only =>[] do #Prevents building the petowners routes
       resources :equips, :except => [:edit, :update]
+      post 'petowners/:id/fights/:id' => 'fights#attack'
       resources :fights, :except => [:edit]
    end
 

@@ -1,6 +1,15 @@
 class FightsController < ApplicationController
   # GET /fights
   # GET /fights.json
+  def attack
+     require 'socket'  
+     streamSock = TCPSocket.new( "127.0.0.1", 3000 )  
+     #streamSock.send( "Hello\n" )  
+     str = streamSock.recv( 100 )  
+     print str  
+     streamSock.close
+  end
+
   def calcdamage
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @mdamage = ((@pet + 3)/(@petowner.def**0.5)+@pet.level**0.7)

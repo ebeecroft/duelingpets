@@ -1,0 +1,11 @@
+/* Code for my website standards */
+
+.outer
+{
+   display: block;
+}
+
+.inner
+{
+   display: inline-block;
+}

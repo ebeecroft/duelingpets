@@ -22,8 +22,10 @@ Trial::Application.routes.draw do
    #Builds the equips and fights actions
    resources :petowners, :only =>[] do #Prevents building the petowners routes
       resources :equips, :except => [:edit, :update]
-      post 'petowners/:id/fights/:id' => 'fights#attack'
-      resources :fights, :except => [:edit]
+#       PUT    /petowners/:petowner_id/fights/:id(.:format)               fights#update
+#      post 'petowners/:id/fights/:id' => 'fights#attack'
+      match'/fights/:id(.:format)' => 'fights#runner', via: :put
+      resources :fights, :except => [:edit, :update]
    end
 
    #Build the forum maintopics actions and the nested actions

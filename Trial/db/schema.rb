@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107214839) do
+ActiveRecord::Schema.define(:version => 20131117203812) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20131107214839) do
     t.integer  "cost"
     t.boolean  "manyuses"
     t.string   "type"
+    t.string   "ipicture"
   end
 
   create_table "maintopics", :force => true do |t|

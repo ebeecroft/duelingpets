@@ -6,7 +6,8 @@
       <!--Need someway to put in a petowner to be chosen to fight -->
       <% form_for current_user do |f| %>
       <!-- Need a selection to be used to pull in a single petowner to fight a monster --->
-      <%= f.collection_select :petowner_id, @petowners, :id, :pet_name %>
+<!--option_groups_from_collection_for_select(@continents, :countries, :name, :id, :name, 3)--->
+      <%= f.collection_select :petowner, :user_id, User.all, :id, :vname %>
       <%#= select_tag "Pets", options_from_collection_for_select(@petowner, "id", "pet name") %>
       <% end %>
       <% if !@petowner.nil? %>

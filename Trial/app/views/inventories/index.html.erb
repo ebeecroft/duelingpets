@@ -4,6 +4,9 @@
 <%# if @count > 0 %>
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
+      <% if !@mypets.empty? %>
+      <p>Select a pet <%= collection_select(:petowner, :user_id, @mypets, :id, :pet_name) %></p>
+      <% end %>
       <%#= form_tag(new_user_petowner_path(current_user), method: "get") do %>
          <%= render 'inventoryinfo' %>
          <div class="outer"></div>

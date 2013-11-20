@@ -3,6 +3,8 @@ Trial::Application.routes.draw do
    #Builds the users actions and the nested actions
    resources :users, :except => [:new] do
       resources :petowners
+      #PUT    /users/:id(.:format)                                       users#update
+      match '/inventories/:id' => 'inventories#use', via: :put
       resources :inventories, :except =>[:show, :edit, :update]
       resources :comments, :only => [:create, :destroy, :index]
    end

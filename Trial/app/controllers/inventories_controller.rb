@@ -1,7 +1,26 @@
 class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
+
+
+#PUT    /users/:id(.:format)                                       users#update
+  def use
+      @user = User.find_by_vname(params[:user_id])
+      @inventory = Inventory.find(params[:id])
+      @petowner = Petowner.find_by_id(@user.id)
+      @petowner.hp += @inventory.item.hp
+#      @inventory.destroy
+      @inventories = @user.inventories.all
+      redirect_to @inventories
+  end
   def index
+    if !current_user.nil?
+    @cuser = User.find_by_vname(current_user.vname)
+
+    #Find the petowners that the user currently has
+    @mypets = @cuser.petowners
+    end
+
 #    @inventories = Inventory.all
     @user = User.find_by_vname(params[:user_id])
     @inventories = @user.inventories.all

@@ -26,7 +26,8 @@
                <td>SPD: <%= inventory.item.spd %></td>
             </tr>
             <tr>
-               <td><%= button_to "Equip me" %>Or<%= button_to "Use me" %></td>
+               <td><%#= button_to 'Approve', pets_reviews_path(:pet_id=>pet.id) %></td>
+               <td><%= button_to "Equip me" %> <%# new_petowner_equip_path(:petowner=>petowner.id) %>Or<%= button_to "Use me" %> <%#, user_user_id_inventories_id_path(inventory), method: :put %></td>
             </tr>
          </table>
       </div>

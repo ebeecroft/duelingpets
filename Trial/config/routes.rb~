@@ -3,6 +3,8 @@ Trial::Application.routes.draw do
    #Builds the users actions and the nested actions
    resources :users, :except => [:new] do
       resources :petowners
+      #PUT    /users/:id(.:format)                                       users#update
+      match '/users/:id/inventories/:id' => 'inventories#use', via: :put
       resources :inventories, :except =>[:show, :edit, :update]
       resources :comments, :only => [:create, :destroy, :index]
    end
@@ -20,7 +22,7 @@ Trial::Application.routes.draw do
    #Builds the equips and fights actions
    resources :petowners, :only =>[] do #Prevents building the petowners routes
       resources :equips, :except => [:edit, :update]
-      post 'petowners/:id/fights/' => 'fights#attack'
+      post 'petowners/:id/fights/:id' => 'fights#attack'
       resources :fights, :except => [:edit]
    end
 

@@ -1,6 +1,6 @@
 <h1>Pets to be reviewed</h1>
 
-<table>
+<table border="1">
   <tr>
     <th>Species name</th>
     <th>Description</th>
@@ -17,12 +17,13 @@
     <th></th>
     <th></th>
   </tr>
-
+</table>
+<table>
 <% @pets.each do |pet| %>
   <% if !pet.reviewed? %>
   <tr>
     <td><%= pet.species_name %></td>
-    <td><%= image_tag pet.image_url.to_s %></td>
+    <td><%= image_tag pet.image_url(:thumb).to_s %></td>
     <td><%= pet.description %></td>
     <td><%= pet.created_on %></td>
     <td><%= pet.level %></td>

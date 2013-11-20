@@ -10,6 +10,6 @@
          <%#= submit_tag("Adopt Selected Pet") %>
       <%# end %>
    <% else %>
-      <%#= render 'inventoryinfo' %>
+      <%= render 'inventoryinfo' %>
    <% end %>
 <%# end %>

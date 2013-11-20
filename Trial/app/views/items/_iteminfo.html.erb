@@ -30,6 +30,9 @@
                <td>Cost: <%= item.cost %></td>
             </tr>
             <tr>
+               <td><%= image_tag item.ipicture_url(:thumb).to_s %></td>
+            </tr>
+            <tr>
                <td></td>
                <!--Displays the date the pet was created -->
                <td>Created_on: <%= item.created_on %></td>

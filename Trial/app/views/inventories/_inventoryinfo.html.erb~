@@ -25,6 +25,9 @@
                <td></td>
                <td>SPD: <%= inventory.item.spd %></td>
             </tr>
+            <tr>
+               <td><%= button_to "Equip me" %></td>
+            </tr>
          </table>
       </div>
       <!--Sets how many pets to display per line-->

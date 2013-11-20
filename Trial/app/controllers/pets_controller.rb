@@ -7,7 +7,7 @@ class PetsController < ApplicationController
     @user = User.find_by_vname(current_user.vname)
 
     #Find the petowners that the user currently has
-    @petowners = @user.petowners.all
+    @mypets = @user.petowners
 
     @pets = Pet.all
     @count = 0

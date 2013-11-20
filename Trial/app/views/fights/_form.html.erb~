@@ -16,7 +16,7 @@
     <%= f.number_field :petowner_id %>
   </div>
   <div class="field">
-    <%= f.label :pet_id "Monster"%><br />
+    <%= f.label :pet_id %><br />
     <%= f.number_field :pet_id %>
   </div>
   <div class="actions">

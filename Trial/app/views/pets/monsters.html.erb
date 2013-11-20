@@ -7,11 +7,15 @@
       <% form_for current_user do |f| %>
       <!-- Need a selection to be used to pull in a single petowner to fight a monster --->
 <!--option_groups_from_collection_for_select(@continents, :countries, :name, :id, :name, 3)--->
-      <%= f.collection_select :petowner, :user_id, User.all, :id %>
+      <%#= f.collection_select :petowner, :user_id, User.all, :id %>
+      <%#= f.collection_select(:petowner, :user_id, @mypets, :id, :pet_name) %>
       <%#= select_tag "Pets", options_from_collection_for_select(@petowner, "id", "pet name") %>
       <% end %>
-      <% if !@petowner.nil? %>
-         <%= form_tag(new_petowner_fight_path(@petowner), method: "get") do %>
+      <% if !@mypets.empty? %>
+      <p>Select a pet <%= collection_select(:petowner, :user_id, @mypets, :id, :pet_name) %></p>
+      <% end %>
+      <% if !@mypets.empty? %>
+         <%= form_tag(new_petowner_fight_path(@mypets), method: "get") do %>
             <%= render 'monsterinfo' %>
             <div class="outer"></div>
             <%= submit_tag("Fight Selected Monster") %>

@@ -4,8 +4,10 @@ Trial::Application.routes.draw do
    resources :users, :except => [:new] do
       resources :petowners
       #PUT    /users/:id(.:format)                                       users#update
-      match '/inventories/:id' => 'inventories#use', via: :put
-      resources :inventories, :except =>[:show, :edit, :update]
+#      user_inventory PUT    /users/:user_id/inventories/:id(.:format)              inventories#update
+#      put '/inventories/:id(.:format)' => 'inventories#use'
+      put '/inventories/:id/petowners/:id(.:format)' => 'inventories#use'
+      resources :inventories, :except =>[:show, :edit]
       resources :comments, :only => [:create, :destroy, :index]
    end
 

@@ -8,10 +8,11 @@ class InventoriesController < ApplicationController
       @user = User.find_by_vname(params[:user_id])
       @inventory = Inventory.find(params[:id])
       @petowner = Petowner.find_by_id(@user.id)
+      raise "Petowner is"
       @petowner.hp += @inventory.item.hp
 #      @inventory.destroy
       @inventories = @user.inventories.all
-      redirect_to @inventories
+      redirect_to user_inventories_url
   end
   def index
     if !current_user.nil?

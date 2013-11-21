@@ -26,8 +26,19 @@
                <td>SPD: <%= inventory.item.spd %></td>
             </tr>
             <tr>
-               <td><%#= button_to 'Approve', pets_reviews_path(:pet_id=>pet.id) %></td>
-               <td><%= button_to "Equip me" %> <%# new_petowner_equip_path(:petowner=>petowner.id) %>Or<%= button_to "Use me" %> <%#, user_user_id_inventories_id_path(inventory), method: :put %></td>
+               <%#= button_to 'Runner', petowner_fight_path(@fight.petowner.id, @fight.id), method: :put %>
+               <%#= button_to 'Approve', pets_reviews_path(:pet_id=>pet.id) %>
+               <%#= button_to "Equip me" %><%#, new_petowner_equip_path(:petowner=>@user.petowner.id,:equip=>:equip) %> 
+               <%# new_petowner_equip_path(:petowner=>petowner.id) %>
+               <%#= button_to "Use item" %> 
+               <%#, user_inventory_path(@user.vname, inventory.id, :petowner => @user.petowner), method: :put %> 
+               <%#, user_user_id_inventories_id_path(inventory), method: :put %>
+
+               <% if inventory.item.manyuses? %>
+                  <td><%= button_to "Equip me" %></td>
+               <% else %>
+                  <td><%= button_to "Use item" %></td>
+               <% end %>
             </tr>
          </table>
       </div>

@@ -24,7 +24,7 @@ Trial::Application.routes.draw do
       resources :equips, :except => [:edit, :update]
 #       PUT    /petowners/:petowner_id/fights/:id(.:format)               fights#update
 #      post 'petowners/:id/fights/:id' => 'fights#attack'
-      match'/fights/:id(.:format)' => 'fights#runner', via: :put
+      put '/fights/:id(.:format)' => 'fights#runner'
       resources :fights, :except => [:edit, :update]
    end
 

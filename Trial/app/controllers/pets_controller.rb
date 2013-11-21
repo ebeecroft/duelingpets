@@ -5,10 +5,16 @@ class PetsController < ApplicationController
   def monsters
     #Finds the current user
     if !current_user.nil?
-    @user = User.find_by_vname(current_user.vname)
-
-    #Find the petowners that the user currently has
-    @mypets = @user.petowners
+       @user = User.find_by_vname(current_user.vname)
+       @pets_kept = 0
+       #Find the petowners that the user currently has
+       @mypets = @user.petowners
+       @mypets.each do |pet|
+          if pet.hp != 0
+             @pets_kept = pet
+          end
+       end
+       @mypets = @pets_kept
     end
 
     @pets = Pet.all

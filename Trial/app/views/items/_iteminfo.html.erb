@@ -1,14 +1,15 @@
 <% @items.each_with_index do |item, index| %>
    <%# if pet.reviewed? && !pet.monster? %>
       <div class="inner">
-         <table>
-            <tr>
-               <td><%= link_to item.name, item %></td>
+         <p><b><%= link_to item.name, item %>
                <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
                <% if !current_user.nil? %> <!---Difference when current_user is nil-->
-                  <td><%= radio_button_tag :item_id, item.id %></td>
-               <% end %>
-            </tr>
+                  <%= radio_button_tag :item_id, item.id %>
+               <% end %></b></p>
+         <p><%= image_tag item.ipicture_url(:thumb).to_s %></p>
+      </div>
+      <div class="inner">
+         <table>
             <tr>
                <td></td>
                <td>HP: <%= item.hp %></td>
@@ -28,9 +29,6 @@
             <tr>
                <td></td>
                <td>Cost: <%= item.cost %></td>
-            </tr>
-            <tr>
-               <td><%= image_tag item.ipicture_url(:thumb).to_s %></td>
             </tr>
             <tr>
                <td></td>

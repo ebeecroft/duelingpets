@@ -73,6 +73,7 @@ class InventoriesController < ApplicationController
 #     @user = User.find_by_id(params[:user][:user_id])
 #     @inventory.user = @user
       @user = User.find_by_vname(params[:user_id])
+      @pouch = Pouch.find_by_id(@user.id)
       @inventory = @user.inventories.new(params[:inventory])
       @item = Item.find(@inventory.item_id)
       #@price = @item.cost
@@ -82,29 +83,30 @@ class InventoriesController < ApplicationController
       puts '*'*50
       puts '*'*50
       puts "Inventory item cost= #{@inventory.item.cost}"
-      puts "User money is = #{@user.money}"
+      puts "User money is = #{@pouch.amount}"
       #raise "@inventory.item.cost"
-      if @inventory.item.cost > @user.money
+      if @inventory.item.cost > @pouch.amount
          redirect_to items_url
 	puts "I ran option 1"
          return
       else
-         @user.money -= @inventory.item.cost #This should be setting change based on user's money - items price
+         @pouch.amount -= @inventory.item.cost #This should be setting change based on user's money - items price
         puts "I ran option 2"
       end
-        puts "User money is now = #{@user.money}"
+        puts "User money is now = #{@pouch.amount}"
       #@user.money = @change #This is not changing the users money.
       #raise "What is going on? Why is it not updating money?"
-      if @user.save #validation fails due to password being empty
-      @user.save
-         sign_in @user
-      else
-         raise @user.errors.full_messages.to_s
-      end
+      #if @user.save #validation fails due to password being empty
+      #@user.save
+      #   sign_in @user
+      #else
+      #   raise @user.errors.full_messages.to_s
+      #end
       #@user.update_attributes(params[:money])
       #raise "What is going on? Why is it not updating money?"
       if @inventory.save
-         redirect_to @user
+         @pouch.save
+         redirect_to user_inventories_path(@user)#@inventory
       else
          render "new"
       end

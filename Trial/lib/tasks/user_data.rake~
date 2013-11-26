@@ -5,10 +5,10 @@ namespace :db do
                            email: "mmole@funhill.com",
                            vname: "mmole",
                            password: "Mole12",
-                           password_confirmation: "Mole12",
-                           money: 200)
+                           password_confirmation: "Mole12")
       admin.toggle!(:admin)
       admin.joined_on = Date.today
+      #admin.money = 200
       admin.save
    end
 end

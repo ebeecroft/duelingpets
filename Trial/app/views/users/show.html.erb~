@@ -2,6 +2,11 @@
 
 <div>
 <table>
+   <% if !@user.admin? %>
+      ~<%= @user.vname %>
+   <% else %>
+      $<%= @user.vname %>
+   <% end %>
    <% if !current_user.nil? && @user.id == current_user.id %>
    <tr>
       <td><b>First name:</b> <%= @user.first_name %></td>
@@ -12,7 +17,7 @@
    </tr>
    <%= render 'userinfo', object: @user %>
    <tr>
-      <td><b>Money:</b> <%= @user.money %></td>
+      <td><b>Money:</b> <%= @pouch.amount %></td>
    </tr>
    <% else %>
    <tr>

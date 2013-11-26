@@ -13,7 +13,7 @@ has_many :comments, :foreign_key => "user_id", :dependent => :destroy
 has_many :maintopics
 has_many :subtopics
 has_many :narratives
-
+has_one :money, :foreign_key => "user_id", :dependent => :destroy
 
 
 #validates :first_name, presence: true

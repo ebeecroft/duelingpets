@@ -13,13 +13,13 @@
   <tr>
     <td><%= pouch.amount %></td>
     <td><%= pouch.user_id %></td>
-    <td><%#= link_to 'Show', pouch %></td>
-    <td><%#= link_to 'Edit', edit_pouch_path(pouch) %></td>
-    <td><%#= link_to 'Destroy', pouch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', pouch %></td>
+    <td><%= link_to 'Edit', edit_pouch_path(pouch) %></td>
+    <td><%= link_to 'Destroy', pouch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%#= link_to 'New Pouch', new_pouch_path %>
+<%= link_to 'New Pouch', new_pouch_path %>

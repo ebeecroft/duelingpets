@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117203812) do
+ActiveRecord::Schema.define(:version => 20131126214350) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -106,16 +106,23 @@ ActiveRecord::Schema.define(:version => 20131117203812) do
     t.datetime "created_on"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.boolean  "monster",      :default => false
+    t.boolean  "reviewed",     :default => false
+    t.string   "created_by"
+    t.string   "image"
     t.integer  "level",        :default => 1
     t.integer  "hp",           :default => 1
     t.integer  "atk",          :default => 1
     t.integer  "def",          :default => 1
     t.integer  "spd",          :default => 1
     t.integer  "cost",         :default => 1
-    t.boolean  "monster",      :default => false
-    t.boolean  "reviewed",     :default => false
-    t.string   "created_by"
-    t.string   "image"
+  end
+
+  create_table "pouches", :force => true do |t|
+    t.integer  "amount",     :default => 200
+    t.integer  "user_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "subtopics", :force => true do |t|
@@ -141,7 +148,6 @@ ActiveRecord::Schema.define(:version => 20131117203812) do
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
     t.boolean  "maintenance",     :default => false
-    t.integer  "money",           :default => 200
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_vname(params[:id])
+    @pouch = Pouch.find_by_id(@user.id)
 
 #    if @user.maintenance?
 #       raise "I am in maintenance mode"
@@ -47,6 +48,9 @@ class UsersController < ApplicationController
     #@user.joined_on = (Date.today.to_s.to_date)
     @user.joined_on = Date.today
       if @user.save
+         @money = Money.new(params[:money])
+         @money.user_id = @user.id
+         @money.save
          sign_in @user
          flash[:success] = "Welcome to the Trial app"
          redirect_to @user

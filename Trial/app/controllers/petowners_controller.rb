@@ -67,17 +67,21 @@ class PetownersController < ApplicationController
      puts params[:pick_pet]
      #raise "I am here"
      @user = User.find_by_vname(current_user.vname)
-     @pet = Pet.find_by_id(params[:petowner][:pet_id])
-     
+#     @inventory = @user.inventories.new(params[:inventory])
+     @pouch = Pouch.find_by_id(@user.id)
+     @petowner = @user.petowners.new(params[:petowner])
+#     @item = Item.find(@inventory.item_id)
+#     @pet = Pet.find(params[:petowner][:pet_id])
+     @pet = Pet.find(@petowner.pet_id)
 #     raise "Hello"
 #     @petowner = @user.petowners.build
 #     @petowner.pet_id = params[:pet_id]
-     @petowner = @user.petowners.new(params[:petowner])
-     if @petowner.pet.cost > @user.money
+#     @petowner = @user.petowners.new(params[:petowner])
+     if @petowner.pet.cost > @pouch.amount
          redirect_to items_url
          return
      else
-         @user.money -= @petowner.pet.cost #This should be setting change based on user's money - items price
+         @pouch.amount -= @petowner.pet.cost #This should be setting change based on user's money - items price
      end
      @petowner.level = @pet.level
      @petowner.hp = @pet.hp
@@ -86,18 +90,19 @@ class PetownersController < ApplicationController
      @petowner.spd = @pet.spd
      @petowner.hp_max = @pet.hp
      @petowner.adopted_on = Date.today
-     if @user.save
-         sign_in @user
-     end
+     #if @user.save
+     #    sign_in @user
+     #end
 #     @petowner.level = @pet.level
 #     @petowner = Petowner.new(params[:petowner])
      #@pet = Pet.find(params[:pet][:pet_id])
      #@petowner.pet = @pet
       if @petowner.save
+         @pouch.save
 #        format.html { redirect_to @petowner, notice: 'Petowner was successfully created.' }
 #        format.json { render json: @petowner, status: :created, location: @petowner }
 #maintopic_subtopics_url
-         redirect_to @user #current_user_petowners_url
+         redirect_to user_petowners_path(@user) #current_user_petowners_url
       else
          render "new"
       end

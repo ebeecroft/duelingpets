@@ -26,6 +26,7 @@
                <td>SPD: <%= inventory.item.spd %></td>
             </tr>
             <tr>
+               <%#= button_to "Use item", inventory_petowner_path(inventory, :petowner_id=>@petowner.id), method: :put %>
                <%#= button_to 'Runner', petowner_fight_path(@fight.petowner.id, @fight.id), method: :put %>
                <%#= button_to 'Approve', pets_reviews_path(:pet_id=>pet.id) %>
                <%#= button_to "Equip me", new_petowner_equip_path(:petowner_id=>@mypets, :inventory_id =>inventory.id) %> 
@@ -35,7 +36,7 @@
                <%#, user_user_id_inventories_id_path(inventory), method: :put %>
 
                <% if inventory.item.manyuses? %>
-                  <td><%= button_to "Equip me", new_petowner_equip_path(:petowner_id=>@mypets, :inventory_id =>inventory.id) %> </td>
+                  <td><%= button_to "Equip me", new_petowner_equip_path(:petowner_id=>@mypets.id, :inventory_id =>inventory.id) %> </td>
                <% else %>
                   <td><%= button_to "Use item" %></td>
                <% end %>

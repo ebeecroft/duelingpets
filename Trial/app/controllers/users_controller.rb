@@ -41,7 +41,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    
     @user = User.new(params[:user])
     current_time = Date.today
     #start_time = current_time.strftime("%m/%d/%Y")

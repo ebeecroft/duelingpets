@@ -3,18 +3,49 @@ class PetsController < ApplicationController
   # GET /pets.json
 
   def monsters
+#    raise params.to_yaml
     #Finds the current user
-    if !current_user.nil?
-       @user = User.find_by_vname(current_user.vname)
-       @pets_kept = 0
+    if current_user
+       @user = current_user
+       @pets_kept = [] #why?
+       #@petowner = Petowner.find(params[:petowner][:id])
+       #if(params[:commit])
+       #end
+       @monster = "Eeeep"
+       @mypets=[]
+       @all_my_pets = @user.petowners
+       #raise params.to_yaml
+#options value = 2
+
+#params { selected_petowner[petowner_id]}
+#selected[petowner_id]
+       #raise params.to_yaml
+       #selectpet = params[:petowner][:id]
+       #@selectpet = selectpet
+       @selectpet = 3
+       @petowner = Petowner.find_by_id(params[:id])
+       @pet = Pet.find_by_id(params[:pet_id])
+       #raise params.to_yaml
        #Find the petowners that the user currently has
-       @mypets = @user.petowners
-       @mypets.each do |pet|
-          if pet.hp != 0
-             @pets_kept = pet
+       #@mypets = @user.petowners
+
+       #This is my way of doing things in a C++ fashion, I don't get all ruby things
+       @user.petowners.each do |pet|
+           #@selected_pet = pet.find(params[:selected])
+       #   if pet.hp != 0
+       #      @pets_kept << pet #Dont recall seeing the << before in ruby but for C++ statement used for cout statements
+             #if pet.select
+             #   @selected_pet = pet.select
+             #end
           end
-       end
-       @mypets = @pets_kept
+       #@selected_pet = Petowner.find(params[:petowner][:selected])
+       #end
+       @selected_pet = 1 #@user.petowners.find(params[:id])
+       
+       @mypets = current_user.petowners.select{|pet| pet.hp !=0}
+       #raise "I am here"
+       #@selected_pet = @mypets.find(params[:id][:selected])
+       #@mypets = @pets_kept
     end
 
     @pets = Pet.all

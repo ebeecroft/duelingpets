@@ -1,5 +1,6 @@
 <h1>Monsters</h1>
 <!--Checks to see if any pets are available -->
+
 <% if @count > 0 %>
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
@@ -10,16 +11,35 @@
       <%#= f.collection_select :petowner, :user_id, User.all, :id %>
       <%#= f.collection_select(:petowner, :user_id, @mypets, :id, :pet_name) %>
       <%#= select_tag "Pets", options_from_collection_for_select(@petowner, "id", "pet name") %>
+      
       <% end %>
-      <% if !@mypets.empty? %>
-      <p>Select a pet <%= collection_select(:petowner, :user_id, @mypets, :id, :pet_name) %></p>
+      <% if !@user.petowners.empty? %>
+         <p><!---Select a pet---> <%#= collection_select(:petowner, :user_id, @user.petowners, :id, :pet_name) %></p>
       <% end %>
-      <% if !@mypets.empty? %>
-         <%= form_tag(new_petowner_fight_path(@mypets), method: "get") do %>
-            <%= render 'monsterinfo' %>
-            <div class="outer"></div>
-            <%= submit_tag("Fight Selected Monster") %>
+      <select id="petowner_id" name="petowner[id]">
+         <%= @all_my_pets.each do |petowner| %>
+            <option value="<%= petowner.id %>"><%= petowner.pet_name %></option>
          <% end %>
+      </select>
+      <%#= @selectpet %>
+
+      <!-- POST   /petowners/:petowner_id/fights(.:format)               fights#create--->
+
+      <% if !@user.petowners.empty? %><!---/petowners/petowner_id/fights/pet_id--->
+         <%#= form_tag(petowner_fights_path(3), method: "post") do  %>
+             <p><!---Select a pet---> <%#= collection_select(:petowner, :user_id, @user.petowners, :id, :pet_name) %></p>
+
+            <%#= form_for :tag, :url => bookmark_taggings_path(@bookmark) do |form| %>
+            <%= form_for :petowner, :url => petowner_fights_path(@selectpet, @pet) do |f| %>
+            
+               <p>Select a pet <%#= f.collection_select(:petowner, :petowner_id, @user.petowners, :petowner_id, :pet_name) %></p>
+               <%= render 'monsterinfo' %>
+               
+               <div class="outer"></div>
+               <%= f.submit "Fight Selected Monster" %>
+            <% end %>
+            <%#= submit_tag("Fight Selected Monster") %>
+         <%# end %>
       <% else %>
          <%= render 'monsterinfo' %>
       <% end %>

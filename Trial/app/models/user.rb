@@ -24,7 +24,7 @@ validates :first_name, presence: true, format: { with: VALID_NAME_REGEX}
 validates :last_name, presence: true, format: { with: VALID_NAME_REGEX}
 validates :email, presence: true, format: { with: VALID_EMAIL_REGEX}
 validates :vname, presence: true, format: { with: VALID_VNAME_REGEX}, uniqueness: { case_sensitive: false}
-#validates :password, length: {minimum: 6}
+validates :password, length: {minimum: 6}  
 #validates :password_confirmation, presence: true
 
 def to_param

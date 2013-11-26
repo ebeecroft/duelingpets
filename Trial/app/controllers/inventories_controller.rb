@@ -76,15 +76,27 @@ class InventoriesController < ApplicationController
       @inventory = @user.inventories.new(params[:inventory])
       @item = Item.find(@inventory.item_id)
       #@price = @item.cost
+    
+      #@inventory.item.cost.inspect
+      puts '*'*50
+      puts '*'*50
+      puts '*'*50
+      puts "Inventory item cost= #{@inventory.item.cost}"
+      puts "User money is = #{@user.money}"
+      #raise "@inventory.item.cost"
       if @inventory.item.cost > @user.money
          redirect_to items_url
+	puts "I ran option 1"
          return
       else
          @user.money -= @inventory.item.cost #This should be setting change based on user's money - items price
+        puts "I ran option 2"
       end
+        puts "User money is now = #{@user.money}"
       #@user.money = @change #This is not changing the users money.
       #raise "What is going on? Why is it not updating money?"
-      if @user.save
+      if @user.save #validation fails due to password being empty
+      @user.save
          sign_in @user
       else
          raise @user.errors.full_messages.to_s

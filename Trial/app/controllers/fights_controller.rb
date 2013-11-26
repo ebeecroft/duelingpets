@@ -93,6 +93,8 @@ class FightsController < ApplicationController
      #Calls the end battle function if hp of pet or monster is zero
      if global_pet_hp == 0 || global_monster_hp == 0
         #Inputs data into the C++ program
+        p_hp = global_pet_hp
+        m_hp = global_monster_hp
         results = `formulas/formula #{p_level} #{p_atk} #{p_def} #{p_spd} #{p_hp} #{p_maxhp} #{p_exp} #{coins} #{p_damage} #{m_damage} #{m_level} #{m_def} #{m_atk} #{m_spd} #{m_hp}`
 
         #Retrieves the data from the C++ program
@@ -118,7 +120,7 @@ class FightsController < ApplicationController
         #Display the results
         if c_p_level > p_level
            puts "pet level now = #{c_p_level}"
-           #@petowner.level = c_p_level
+           @petowner.level = c_p_level
         end
         if c_p_atk > p_atk
            puts "pet attack now = #{c_p_atk}"
@@ -142,12 +144,13 @@ class FightsController < ApplicationController
         end
         if c_p_exp > 0
            puts "Your pet gained #{c_p_exp} points of experience!"
-           #@petowner.exp += c_p_exp
+           @petowner.exp += c_p_exp
         end
         if c_coins > 0
            puts "You found #{c_coins} coins!"
-           #@user.money += c_coins
-           #@user.save
+           @user.money += c_coins
+           @user.save
+           sign_in @user
         end
      end
 
@@ -229,10 +232,15 @@ class FightsController < ApplicationController
   def create
 #    @fight = Fight.new(params[:fight])
      @petowner = Petowner.find_by_id(params[:petowner_id])
-     @fight = @petowner.fights.new(params[:fight])
-     @pet = Pet.find_by_id(@fight.pet_id)
+     #@fight = @petowner.fights.new(params[:fight])
+     @pet = Pet.find_by_id(params[:pet_id])
+     @fight = @petowner.fights.build
+     if @pet
+     @fight.pet_id = @pet.id
      @fight.monster_current_hp = @pet.hp
-
+     else
+        raise "You are a really dumb user"
+     end
       if @fight.save
         redirect_to petowner_fights_path(@petowner)
       else

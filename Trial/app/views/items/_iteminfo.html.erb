@@ -1,48 +1,37 @@
 <% @items.each_with_index do |item, index| %>
    <%# if pet.reviewed? && !pet.monster? %>
+   <div class="inner">
       <div class="inner">
          <p><b><%= link_to item.name, item %>
-               <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
-               <% if !current_user.nil? %> <!---Difference when current_user is nil-->
-                  <%= radio_button_tag :item_id, item.id %>
-               <% end %></b></p>
+            <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
+            <% if !current_user.nil? %> <!---Difference when current_user is nil-->
+               <%= radio_button_tag :item_id, item.id %>
+            <% end %></b></p>
          <p><%= image_tag item.ipicture_url(:thumb).to_s %></p>
+         <p><pre><%= item.description %></pre></p>
       </div>
       <div class="inner">
          <table>
             <tr>
-               <td></td>
                <td>HP: <%= item.hp %></td>
             </tr>
             <tr>
-               <td></td>
                <td>ATK: <%= item.atk %></td>
             </tr>
             <tr>
-               <td></td>
                <td>DEF: <%= item.def %></td>
             </tr>
             <tr>
-               <td></td>
                <td>SPD: <%= item.spd %></td>
             </tr>
             <tr>
-               <td></td>
                <td>Cost: <%= item.cost %></td>
-            </tr>
-            <tr>
-               <td></td>
-               <!--Displays the date the pet was created -->
-               <td>Created_on: <%= item.created_on %></td>
-            </tr>
-            <tr>
-               <td colspan="2"><pre><%= item.description %></pre></td>
             </tr>
          </table>
       </div>
-      <!--Sets how many pets to display per line-->
-      <% if ((index + 1)%3) == 0 %>         
-         <div class="outer"></div>
-      <% end %>
-   <%# end %>
+   </div>
+   <!--Sets how many pets to display per line-->
+   <% if ((index + 1)%3) == 0 %>         
+      <div class="outer"></div>
+   <% end %>
 <% end %>

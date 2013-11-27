@@ -23,7 +23,7 @@
       <% if !@user.petowners.empty? %><!---/petowners/petowner_id/fights/pet_id--->
          <%#= form_tag(petowner_fights_path(3), method: "post") do  %>
              <p><!---Select a pet---> <%#= collection_select(:petowner, :user_id, @user.petowners, :id, :pet_name) %></p>
-
+<!-- => you were below -->
             <%#= form_for :tag, :url => bookmark_taggings_path(@bookmark) do |form| %>
             <%= form_for :petowner, :url => petowner_fights_path(@selectpet, @pet) do |f| %>
               <!-- <select id="petowner_id" name="petowner[id]">--->
@@ -35,7 +35,8 @@
 
                <p>Select a pet <%#= f.collection_select(:petowner_id, @user.petowners, :id, :pet_name  ) %></p>
 
-               <%= f.select(:petowners, @user.petowners.collect {|c| [ c.pet_name, c.id ] }, { :include_blank => "Select Category", :selected => @selectpet }}) %>
+<%= collection_select(:pickpet, :petoid, @user.petowners.all,:id,:pet_name)%>               
+<%#= f.select(:petowners, @user.petowners.collect {|c| [ c.pet_name, c.id ] }, { :include_blank => "Select Category", :selected => @selectpet }}) %>
                <%= render 'monsterinfo' %>
                
                <div class="outer"></div>

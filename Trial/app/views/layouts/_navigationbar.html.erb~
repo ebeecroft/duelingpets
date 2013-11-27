@@ -1,0 +1,14 @@
+<div>
+   <%= link_to "root", root_path %>
+   <%= link_to "About", about_path %>
+   <%= link_to "Update", update_path %>
+   <%= link_to "Contact", contact_path %>
+   <%= link_to "Monsters", pets_monsters_path %>
+   <%= link_to "Shop", items_path %>
+   <% if current_user %>
+      <%= link_to "Inventory", user_inventories_path(current_user.vname) %>
+      <%= link_to "My Pets", user_petowners_path(current_user.vname) %>
+   <% end %>
+   <%= link_to "Forum", maintopics_path %>
+   <%= link_to "Adopt a pet", pets_path %>
+</div>

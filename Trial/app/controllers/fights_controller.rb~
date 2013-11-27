@@ -1,19 +1,6 @@
 class FightsController < ApplicationController
   # GET /fights
   # GET /fights.json
-#  def attack
-#     require 'socket'  
-#     streamSock = TCPSocket.new( "127.0.0.1", 3000 )  
-     #streamSock.send( "Hello\n" )  
-#     str = streamSock.recv( 100 )  
-#     print str  
-#     streamSock.close
-#  end
-
-#  def calcdamage
-#     @petowner = Petowner.find_by_id(params[:petowner_id])
-#     @mdamage = ((@pet + 3)/(@petowner.def**0.5)+@pet.level**0.7)
-#  end
 
      def runner
      #Collets information to be sent to C++ program
@@ -144,8 +131,9 @@ class FightsController < ApplicationController
            @petowner.hp_max = c_p_maxhp
         end
         if c_p_exp > 0
-           puts "Your pet gained #{c_p_exp} points of experience!"
-           @petowner.exp += c_p_exp
+           expgainlol = c_p_exp-@petowner.exp
+           puts "Your pet gained #{expgainlol} points of experience!"
+           @petowner.exp = c_p_exp
         end
         if c_coins > 0
            puts "You found #{c_coins} coins!"
@@ -164,7 +152,6 @@ class FightsController < ApplicationController
         raise "Monster couldn't have stats saved"
      end
      
-     #raise "I am here"
      #Redirect to the current fight or redirect to the root path
      if global_pet_hp == 0 || global_monster_hp == 0
         redirect_to root_url
@@ -173,11 +160,8 @@ class FightsController < ApplicationController
      end
     end
   def index
-#     @pets = Pet.all
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @fights = @petowner.fights.all
-#    @fights = Fight.all
-
 
     respond_to do |format|
       format.html # index.html.erb
@@ -189,7 +173,6 @@ class FightsController < ApplicationController
   # GET /fights/1.json
   def show
     @petowner = Petowner.find_by_id(params[:petowner_id])
-    #@pet = Pet.find_by_id(params[:pet_id])
     @fight = Fight.find(params[:id])
     @pet = Pet.find_by_id(params[:pet_id])
     
@@ -202,16 +185,13 @@ class FightsController < ApplicationController
   # GET /fights/new
   # GET /fights/new.json
   def new
-#    @fight = Fight.new
      @petowner = Petowner.find_by_id(params[:petowner_id])
      @pet = Pet.find_by_id(params[:pet_id])
-#     raise "I am error"
+@selectpet = params[:pickpet][:petoid]
      if @pet.nil?
         raise "You are a really dumb user"
      end
-     #if @petowner.nil?
-     #   raise "there is no petowner here"
-     #end
+
      @fight = @petowner.fights.build
      @fight.pet_id = @pet.id
 
@@ -230,13 +210,13 @@ class FightsController < ApplicationController
   # POST /fights
   # POST /fights.json
   def create
-     put "The pet ID is #{petowner[id]}"
-#    @fight = Fight.new(params[:fight])
-     @petowner = Petowner.find_by_id(params[:petowner_id])
-     #@fight = @petowner.fights.new(params[:fight])
+     @selectpet = params[:pickpet][:petoid]
+     @petowner = Petowner.find_by_id(params[:pickpet][:petoid])
      @pet = Pet.find_by_id(params[:pet_id])
      @fight = @petowner.fights.build
+     
      if @pet
+     
      @fight.pet_id = @pet.id
      @fight.monster_current_hp = @pet.hp
      else

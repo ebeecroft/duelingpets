@@ -18,8 +18,9 @@ class FightsController < ApplicationController
      def runner
      #Collets information to be sent to C++ program
      @user = User.find_by_vname(current_user.vname)
-     @petowner = Petowner.find_by_id(params[:petowner_id])
+     @pouch = Pouch.find_by_id(@user.id)
      @fight = Fight.find_by_id(params[:id])
+     @petowner = Petowner.find_by_id(@fight.petowner_id)
      p_level = @petowner.level
      p_atk = @petowner.atk
      p_def = @petowner.def
@@ -148,9 +149,8 @@ class FightsController < ApplicationController
         end
         if c_coins > 0
            puts "You found #{c_coins} coins!"
-           @user.money += c_coins
-           @user.save
-           sign_in @user
+           @pouch.amount += c_coins
+           @pouch.save
         end
      end
 

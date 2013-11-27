@@ -22,7 +22,7 @@ class PetsController < ApplicationController
        #raise params.to_yaml
        #selectpet = params[:petowner][:id]
        #@selectpet = selectpet
-       @selectpet = 3
+       @selectpet = 2
        @petowner = Petowner.find_by_id(params[:id])
        @pet = Pet.find_by_id(params[:pet_id])
        #raise params.to_yaml

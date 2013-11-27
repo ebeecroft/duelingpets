@@ -16,11 +16,6 @@
       <% if !@user.petowners.empty? %>
          <p><!---Select a pet---> <%#= collection_select(:petowner, :user_id, @user.petowners, :id, :pet_name) %></p>
       <% end %>
-      <select id="petowner_id" name="petowner[id]">
-         <%= @all_my_pets.each do |pet| %>
-            <option value="<%= pet.id %>"><%= pet.pet_name %></option>
-         <% end %>
-      </select>
       <%#= @selectpet %>
 
       <!-- POST   /petowners/:petowner_id/fights(.:format)               fights#create--->
@@ -31,8 +26,14 @@
 
             <%#= form_for :tag, :url => bookmark_taggings_path(@bookmark) do |form| %>
             <%= form_for :petowner, :url => petowner_fights_path(@selectpet, @pet) do |f| %>
-            
-               <p>Select a pet <%#= f.collection_select(:petowner, :petowner_id, @user.petowners, :petowner_id, :pet_name) %></p>
+              <!-- <select id="petowner_id" name="petowner[id]">--->
+                  <%#= @all_my_pets.each do |petowner| %>
+                     <!---<option value="<%#= petowner.id %>"><%#= petowner.pet_name %></option>-->
+                  <%# end %>
+               <!---</select>            ---->
+
+
+               <p>Select a pet <%= f.collection_select(:petowner_id, @user.petowners, :id, :pet_name  ) %></p>
                <%= render 'monsterinfo' %>
                
                <div class="outer"></div>

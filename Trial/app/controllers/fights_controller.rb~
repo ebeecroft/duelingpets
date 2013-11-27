@@ -150,8 +150,7 @@ class FightsController < ApplicationController
         if c_coins > 0
            puts "You found #{c_coins} coins!"
            @pouch.amount += c_coins
-           @user.save
-           sign_in @user
+           @pouch.save
         end
      end
 
@@ -231,6 +230,7 @@ class FightsController < ApplicationController
   # POST /fights
   # POST /fights.json
   def create
+     put "The pet ID is #{petowner[id]}"
 #    @fight = Fight.new(params[:fight])
      @petowner = Petowner.find_by_id(params[:petowner_id])
      #@fight = @petowner.fights.new(params[:fight])

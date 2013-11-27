@@ -8,7 +8,7 @@ class PetsController < ApplicationController
     if current_user
        @user = current_user
        @pets_kept = [] #why?
-       #@petowner = Petowner.find(params[:petowner][:id])
+       @petowner = Petowner.find(@user.id)
        #if(params[:commit])
        #end
        @monster = "Eeeep"
@@ -20,10 +20,14 @@ class PetsController < ApplicationController
 #params { selected_petowner[petowner_id]}
 #selected[petowner_id]
        #raise params.to_yaml
-       #selectpet = params[:petowner][:id]
-       #@selectpet = selectpet
+        #category = (params[:petowner][:petowner_id])
        @selectpet = 1
-       @petowner = Petowner.find_by_id(params[:id])
+       #@selectpet = params[:petowner][:id]
+#	put "*"*50       
+#	put "The select pet value is #{@selectpet2}"
+       #@selectpet = selectpet
+       #@selectpet = 2
+       #@petowner = Petowner.find_by_id(params[:id])
        @pet = Pet.find_by_id(params[:pet_id])
        #raise params.to_yaml
        #Find the petowners that the user currently has
@@ -31,6 +35,7 @@ class PetsController < ApplicationController
 
        #This is my way of doing things in a C++ fashion, I don't get all ruby things
        @user.petowners.each do |pet|
+           @selectpet2 = (params[:petowner][:petowner_id])
            #@selected_pet = pet.find(params[:selected])
        #   if pet.hp != 0
        #      @pets_kept << pet #Dont recall seeing the << before in ruby but for C++ statement used for cout statements
@@ -40,7 +45,7 @@ class PetsController < ApplicationController
           end
        #@selected_pet = Petowner.find(params[:petowner][:selected])
        #end
-       @selected_pet = 1 #@user.petowners.find(params[:id])
+       #@selected_pet = 1 #@user.petowners.find(params[:id])
        
        @mypets = current_user.petowners.select{|pet| pet.hp !=0}
        #raise "I am here"

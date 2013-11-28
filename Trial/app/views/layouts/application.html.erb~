@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Trial <%= yield(:title) %></title>
+  <title>Dueling Pets Unlimited</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<img src="../../../abie2.png" width=100% min-width=1000px height=150px>
    <%= render 'layouts/header' %>
    <div><br></div>
+
+
    <%= render 'layouts/navigationbar' %>
    <div>
       <%= yield %>

@@ -26,8 +26,6 @@ time, mark, audio, video {
 
 pre {
   background-color: #fff;
-  padding: 0px;
-  font-size: 11px;
 }
 
 /* HTML5 display-role reset for older browsers */

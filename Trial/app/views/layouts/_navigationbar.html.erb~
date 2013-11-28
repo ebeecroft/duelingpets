@@ -1,20 +1,21 @@
-<div>
+<div class="nav_style" id="pizzapie">
+   <%= link_to "Home", root_path %><!---Same--->
+   <%= link_to "Adopt a Pet", pets_path %><!---Same-->
+
    <% if !current_user %>
-      <%= link_to "Home", root_path %><!---Same--->
-      <%= link_to "Adopt a Pet", pets_path %><!---Same-->
-      <%= link_to "Forum", maintopics_path %>
-      <%#= link_to "About", about_path %>
-      <%#= link_to "Update", update_path %>
-      <%#= link_to "Contact", contact_path %>
-      <%= link_to "Fight Monsters", pets_monsters_path %>
-      <%= link_to "Shop", items_path %>
+      <%= render 'layouts/forumlink' %>
    <% else %>
-      <%= link_to "Home", root_path %>
-      <%= link_to "Adopt a Pet", pets_path %>
-      <%= link_to "My Pets", user_petowners_path(current_user.vname) %>
-      <%= link_to "Shop", items_path %>
-      <%= link_to "My Inventory", user_inventories_path(current_user.vname) %>
-      <%= link_to "Fight Monsters", pets_monsters_path %>
-      <%= link_to "Forum", maintopics_path %>
+      <%= link_to "My Pets", user_petowners_path(current_user.vname) %><!---Different--->
+      <%= link_to "Shop", items_path %><!---Different--->
+      <%= link_to "My Inventory", user_inventories_path(current_user.vname) %><!--Different-->
+   <% end %>
+
+   <%= link_to "Fight Monsters", pets_monsters_path %><!---Same-->
+
+   <% if !current_user %>
+      <%= link_to "Shop", items_path %><!--Different--->
+   <% else %>
+      <%= render 'layouts/forumlink' %>
    <% end %>
 </div>
+   

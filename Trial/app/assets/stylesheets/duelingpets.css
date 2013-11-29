@@ -3,11 +3,20 @@
 .outer
 {
    display: block;
+
 }
 
 .inner
 {
    display: inline-block;
+
+}
+
+.limittext
+{
+ width: 300px;
+padding-right:50px;
+word-wrap:break-word;
 }
 
 body
@@ -46,6 +55,11 @@ vertical-align:text-middle;
 .userbar
 {
    text-align:right;
+}
+
+.imagecenter
+{
+text-align:center;
 }
 
 .welcome

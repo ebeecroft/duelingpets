@@ -1,6 +1,9 @@
-<h1>Pet list</h1>
+<h1 class="welcome">Sunny Hills Pet Adoption Center</h1>
 <br>
 <p>Need a pet? Then head over to our pet adoption page where we have many pets for users to chose from.    Some of the pets here at the pet adoption will be created by yours truly the lovely founder of this site, *applause*  thank you, thank you, you are all too kind! However, I am not the only one, other pets will be created by the actual users, so this is not your typical buy a pet that only the admins create, no, no, no, you the users get to step inside the creativity seat and show us all what makes you a good artist! So to the buyers, please be sure to thank the lovely creators of these pets and appreciate their great creativity.</p>
+<br>
+<p><pre>HP = Pet's Health Points or Life   ATK = Pet's Attack   DEF = Pet's Defense   SPD = Pet's Speed and Agility</pre></p>
+<br>
 <!--Checks to see if any pets are available -->
 <% if @count > 0 %>
    <!--Checks if the current user is signed in -->
@@ -16,6 +19,7 @@
 <% end %>
 
 <!--Prevents a visting user from creating a pet if not logged in -->
+<br>
 <% if !current_user.nil? %>
-   <p><%= link_to 'New Pet', new_pet_path %></p>
+   <p><%= link_to 'Create a New Pet', new_pet_path %></p>
 <% end %>

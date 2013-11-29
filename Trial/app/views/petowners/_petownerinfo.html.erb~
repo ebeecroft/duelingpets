@@ -26,17 +26,13 @@
             </tr>
             <tr>
                <!--Displays the user who created this pet -->
-               <td>Species: <%= petowner.pet.species_name %></td>
+               <td><pre>Species: <%= petowner.pet.species_name %>    </pre></td>
             </tr>
          </table>
       </div>
       <div class="outer"></div>
       <!--Displays the date the pet was created -->
       <p>Adopted_on: <%= petowner.adopted_on.strftime("%B-%d-%Y") %></p>
-      <!--Sets how many pets to display per line-->
-      <% if ((index + 1)%3) == 0 %>         
-         <div class="outer"></div>
-      <% end %>
    </div>
    <!--Sets how many pets to display per line-->
    <% if ((index + 1)%3) == 0 %>         

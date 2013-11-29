@@ -1,14 +1,14 @@
-<h1>Listing petowners</h1>
+<h1 class="welcome">My Pets</h1>
 <!--Checks to see if any pets are available -->
 <%# if @count > 0 %>
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
       <%#= form_tag(new_user_petowner_path(current_user), method: "get") do %>
-         <%#= render 'petownerinfo' %>
+         <%= render 'petownerinfo' %>
          <div class="outer"></div>
          <%#= submit_tag("Adopt Selected Pet") %>
       <%# end %>
    <% else %>
-      <%#= render 'petownerinfo' %>
+      <%= render 'petownerinfo' %>
    <% end %>
 <%# end %>

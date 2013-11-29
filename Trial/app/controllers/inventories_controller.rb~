@@ -15,11 +15,15 @@ class InventoriesController < ApplicationController
       redirect_to user_inventories_url
   end
   def index
-    if !current_user.nil?
-    @cuser = User.find_by_vname(current_user.vname)
-
+    if current_user
+    @cuser = current_user
+    #@cuser = User.find_by_vname(current_user.vname)
+    @petowner = Petowner.find(@cuser.id)
+    #@inventory = Inventory.find_by_id(params[:inventory_id])
     #Find the petowners that the user currently has
     @mypets = @cuser.petowners
+    @selectpet = 1
+    #:petowner, :user_id
     end
 
 #    @inventories = Inventory.all
@@ -89,7 +93,7 @@ class InventoriesController < ApplicationController
          redirect_to items_url
 	puts "I ran option 1"
          return
-      else
+      elseparams : rails
          @pouch.amount -= @inventory.item.cost #This should be setting change based on user's money - items price
         puts "I ran option 2"
       end
@@ -106,7 +110,7 @@ class InventoriesController < ApplicationController
       #raise "What is going on? Why is it not updating money?"
       if @inventory.save
          @pouch.save
-         redirect_to user_inventories(@user)#@inventory
+         redirect_to user_inventories_path(@user)#@inventory
       else
          render "new"
       end

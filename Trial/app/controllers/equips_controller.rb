@@ -44,8 +44,33 @@ class EquipsController < ApplicationController
   # POST /equips.json
   def create
 #    @equip = Equip.new(params[:equip])
-     @petowner = Petowner.find_by_id(params[:petowner_id])
-     @equip = @petowner.equips.new(params[:equip])
+     #@selectpet = params[:petowner][:user_id]
+     
+     @selectpet = params[:pickpet2][:petoid2]
+     @petowner = Petowner.find_by_id(@selectpet)
+      puts "*"*100   
+      puts :inventory_id
+	@itempick=params[:itempick]
+  @inventory = Inventory.find_by_id(@itempick)
+#     puts "The value of inventory.id #{inventory.id}"
+ #    puts "The value of inventory_id #{inventory_id}"
+     #puts "The value of inventory.id #{@inventory.id}"
+puts "The value of pickpet2 = #{@pickpet2}" 
+puts "The value of inventory_id #{@inventory_id}"
+     puts "The value of selectpet is #{@selectpet}"
+     puts "The value of inventory = #{@inventory}"
+     puts "The value of petowner = #{@petowner.id}"
+     puts "The value of itempick = #{@itempick}"
+
+     @item = Item.find_by_id(@inventory.item_id)
+     #@equip = @petowner.equips.new(params[:equip])
+     @equip = @petowner.equips.build
+     @equip.inventory_id = @inventory.id
+     if @equip.inventory.item.manyuses?
+        raise "I may be used many times!"
+     else
+        raise "I may be used only once!"
+     end
       if @equip.save
         redirect_to petowner_equips_path(@petowner)
       else

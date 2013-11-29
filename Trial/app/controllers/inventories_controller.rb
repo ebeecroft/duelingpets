@@ -15,11 +15,15 @@ class InventoriesController < ApplicationController
       redirect_to user_inventories_url
   end
   def index
-    if !current_user.nil?
-    @cuser = User.find_by_vname(current_user.vname)
-
+    if current_user
+    @cuser = current_user
+    #@cuser = User.find_by_vname(current_user.vname)
+    @petowner = Petowner.find(@cuser.id)
+    #@inventory = Inventory.find_by_id(params[:inventory_id])
     #Find the petowners that the user currently has
     @mypets = @cuser.petowners
+    @selectpet = 1
+    #:petowner, :user_id
     end
 
 #    @inventories = Inventory.all

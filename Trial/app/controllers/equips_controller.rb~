@@ -51,7 +51,7 @@ class EquipsController < ApplicationController
       puts "*"*100   
       puts :inventory_id
 	@itempick=params[:itempick]
-  @inventory = Inventory.find_by_id(params[:inventory_id])
+  @inventory = Inventory.find_by_id(@itempick)
 #     puts "The value of inventory.id #{inventory.id}"
  #    puts "The value of inventory_id #{inventory_id}"
      #puts "The value of inventory.id #{@inventory.id}"

@@ -67,15 +67,14 @@ puts "The value of inventory_id #{@inventory_id}"
      @equip = @petowner.equips.build
      @equip.inventory_id = @inventory.id
      if @equip.inventory.item.manyuses?
-        raise "I may be used many times!"
+        if @equip.save
+           redirect_to petowner_equips_path(@petowner)
+        else
+           render "new"
+        end
      else
         raise "I may be used only once!"
      end
-      if @equip.save
-        redirect_to petowner_equips_path(@petowner)
-      else
-        render "new"
-      end
   end
 
   # PUT /equips/1

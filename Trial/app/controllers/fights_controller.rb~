@@ -215,10 +215,9 @@ class FightsController < ApplicationController
      @pet = Pet.find_by_id(params[:pet_id])
      @fight = @petowner.fights.build
      
-     if @pet
-     
-     @fight.pet_id = @pet.id
-     @fight.monster_current_hp = @pet.hp
+     if @pet  
+       @fight.pet_id = @pet.id
+       @fight.monster_current_hp = @pet.hp
      else
         raise "You are a really dumb user"
      end

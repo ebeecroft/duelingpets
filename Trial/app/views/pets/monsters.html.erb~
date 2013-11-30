@@ -4,38 +4,9 @@
 <% if @count > 0 %>
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
-      <!--Need someway to put in a petowner to be chosen to fight -->
-      <% form_for current_user do |f| %>
-      <!-- Need a selection to be used to pull in a single petowner to fight a monster --->
-<!--option_groups_from_collection_for_select(@continents, :countries, :name, :id, :name, 3)--->
-      <%#= f.collection_select :petowner, :user_id, User.all, :id %>
-      <%#= f.collection_select(:petowner, :user_id, @mypets, :id, :pet_name) %>
-      <%#= select_tag "Pets", options_from_collection_for_select(@petowner, "id", "pet name") %>
-      
-      <% end %>
-      <% if !@user.petowners.empty? %>
-         <p><!---Select a pet---> <%#= collection_select(:petowner, :user_id, @user.petowners, :id, :pet_name) %></p>
-      <% end %>
-      <%#= @selectpet %>
-
-      <!-- POST   /petowners/:petowner_id/fights(.:format)               fights#create--->
-
       <% if !@user.petowners.empty? %><!---/petowners/petowner_id/fights/pet_id--->
-         <%#= form_tag(petowner_fights_path(3), method: "post") do  %>
-             <p><!---Select a pet---> <%#= collection_select(:petowner, :user_id, @user.petowners, :id, :pet_name) %></p>
-<!-- => you were below -->
-            <%#= form_for :tag, :url => bookmark_taggings_path(@bookmark) do |form| %>
-            <%= form_for :petowner, :url petowner_fights_path(@selectpet, @pet) do |f| %>
-              <!-- <select id="petowner_id" name="petowner[id]">--->
-                  <%#= @all_my_pets.each do |petowner| %>
-                     <!---<option value="<%#= petowner.id %>"><%#= petowner.pet_name %></option>-->
-                  <%# end %>
-               <!---</select>            ---->
-
-
-               <p>Select a pet <%#= f.collection_select(:petowner_id, @user.petowners, :id, :pet_name  ) %></p>
-
-<%= collection_select(:pickpet, :petoid, @user.petowners.all,:id,:pet_name)%>               
+            <%= form_for :petowner, :url => petowner_fights_path(@selectpet, @pet) do |f| %>
+<p>Select a pet <%= collection_select(:pickpet, :petoid, @user.petowners.all,:id,:pet_name)%></p>               
 <%#= f.select(:petowners, @user.petowners.collect {|c| [ c.pet_name, c.id ] }, { :include_blank => "Select Category", :selected => @selectpet }}) %>
                <%= render 'monsterinfo' %>
                

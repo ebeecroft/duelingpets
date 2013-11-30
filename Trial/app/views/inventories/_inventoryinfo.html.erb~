@@ -29,7 +29,7 @@
       </div>
       <div class="outer">
          <% if inventory.item.manyuses? %>
-<td>Equip me!></td>
+            <td>Equip me!</td>
             <td><%= object.submit "Equip me!", :name => :itempick, :value=>inventory.id %><!---button_to "Equip me", petowner_equips_path(:petowner_id => @selectpet, :inventory_id => inventory.id)----></td>
          <% else %>
             <td><%= button_to "Use item" %></td>

@@ -32,12 +32,10 @@
       </div>
       <div class="outer">
          <p class="limittext"><%= item.description %></p>
-         <br>
       </div>
    </div>
    <!--Sets how many pets to display per line-->
    <% if ((index + 1)%3) == 0 %>         
       <div class="outer"></div>
-      <br>
    <% end %>
 <% end %>

@@ -6,7 +6,7 @@
 <% if @count > 0 %>
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
-      <%= form_tag(new_user_inventory_path(current_user), method: "get") do %>
+      <%= form_tag(user_inventories_path(current_user)) do %>
          <%= render 'iteminfo' %>
          <div class="outer"></div>
          <%= submit_tag("Buy Selected Item") %>

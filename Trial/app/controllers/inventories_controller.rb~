@@ -78,8 +78,9 @@ class InventoriesController < ApplicationController
 #     @inventory.user = @user
       @user = User.find_by_vname(params[:user_id])
       @pouch = Pouch.find_by_id(@user.id)
-      @inventory = @user.inventories.new(params[:inventory])
-      @item = Item.find(@inventory.item_id)
+      @inventory = @user.inventories.build
+#      @inventory = @user.inventories.new(params[:inventory])
+      @item = Item.find(params[:item_id])
       #@price = @item.cost
     
       #@inventory.item.cost.inspect
@@ -93,7 +94,7 @@ class InventoriesController < ApplicationController
          redirect_to items_url
 	puts "I ran option 1"
          return
-      elseparams : rails
+      else
          @pouch.amount -= @inventory.item.cost #This should be setting change based on user's money - items price
         puts "I ran option 2"
       end

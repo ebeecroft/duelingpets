@@ -78,8 +78,10 @@ class InventoriesController < ApplicationController
 #     @inventory.user = @user
       @user = User.find_by_vname(params[:user_id])
       @pouch = Pouch.find_by_id(@user.id)
-      @inventory = @user.inventories.new(params[:inventory])
-      @item = Item.find(@inventory.item_id)
+      @inventory = @user.inventories.build
+#      @inventory = @user.inventories.new(params[:inventory])
+      @item = Item.find(params[:item_id])
+      @inventory.item_id = @item.id
       #@price = @item.cost
     
       #@inventory.item.cost.inspect

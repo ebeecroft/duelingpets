@@ -35,11 +35,15 @@ class ItemsController < ApplicationController
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Item.new
+    if current_user && current_user.admin
+       @item = Item.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @item }
+       respond_to do |format|
+         format.html # new.html.erb
+         format.json { render json: @item }
+       end
+    else
+       redirect_to root_url
     end
   end
 

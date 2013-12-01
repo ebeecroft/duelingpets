@@ -1,6 +1,6 @@
 Trial::Application.routes.draw do
 
-  resources :pouches
+  #resources :pouches
 
 
    #Builds the users actions and the nested actions

@@ -17,6 +17,6 @@
 <% end %>
 
 <!--Prevents a visting user from creating a pet if not logged in -->
-<% if !current_user.nil? %>
+<% if !current_user.nil? && current_user.admin %>
    <p><%= link_to 'New Item', new_item_path %></p>
 <% end %>

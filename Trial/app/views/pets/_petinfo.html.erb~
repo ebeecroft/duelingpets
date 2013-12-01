@@ -15,7 +15,7 @@
          <div class="inner">
             <table>
                <tr>
-                  <td><pre>Level: <%= pet.level %>   </pre></td>
+                  <td><pre>Level: <%= pet.level %> </pre></td>
                </tr>
                <tr>
                   <td>HP: <%= pet.hp %></td>
@@ -35,7 +35,7 @@
             </table>
          </div>
          <div class="outer">
-             <p class="limittext"><pre><%= pet.description %></pre></p>
+             <p class="limittext"><%= pet.description %></p>
              <p>Creator: <%= pet.created_by %></p>
 <br>
          </div>

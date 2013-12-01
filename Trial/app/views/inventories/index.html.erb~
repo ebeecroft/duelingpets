@@ -3,13 +3,15 @@
 <!--Checks to see if any pets are available -->
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
-      <%# if !@mypets.empty? %>
-      <%#= collection_select(:pickpet, :petoid, @user.petowners.all,:id,:pet_name)%>
-      <%= form_for :petowner, :url => petowner_equips_path(@selectpet, :inventory_id => @inventory.id) do |f| %>
-         <p>Select a pet <%= collection_select(:pickpet2, :petoid2, @user.petowners.all, :id, :pet_name) %></p>
-         <%= render 'inventoryinfo', :object => f %>
-         <div class="outer"></div>
+      <% if !@mypets.empty? %>
+         <%= form_for :petowner, :url => petowner_equips_path(@selectpet, @inventory) do |f| %>
+            <p>Select a pet <%= collection_select(:pickpet2, :petoid2, @user.petowners.all, :id, :pet_name) %></p>
+            <%= render 'inventoryinfo', :object => f %>
+            <div class="outer"></div>
+         <% end %>
+      <% else %>
+         <%= render 'inventoryinfo2' %>
       <% end %>
    <% else %>
-      <%= render 'inventoryinfo' %>
+         <%= render 'inventoryinfo2' %>
    <% end %>

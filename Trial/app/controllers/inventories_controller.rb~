@@ -18,7 +18,7 @@ class InventoriesController < ApplicationController
     if current_user
     @cuser = current_user
     #@cuser = User.find_by_vname(current_user.vname)
-    @petowner = Petowner.find(@cuser.id)
+    #@petowner = Petowner.find(@cuser.id)
     #@inventory = Inventory.find_by_id(params[:inventory_id])
     #Find the petowners that the user currently has
     @mypets = @cuser.petowners
@@ -80,7 +80,12 @@ class InventoriesController < ApplicationController
       @pouch = Pouch.find_by_id(@user.id)
       @inventory = @user.inventories.build
 #      @inventory = @user.inventories.new(params[:inventory])
-      @item = Item.find(params[:item_id])
+      @item_reader = params[:item_id]
+      if @item_reader.nil?
+         raise "You are a really dumb user"
+      end
+      @item = Item.find(@item_reader)
+      @inventory.item_id = @item.id
       #@price = @item.cost
     
       #@inventory.item.cost.inspect

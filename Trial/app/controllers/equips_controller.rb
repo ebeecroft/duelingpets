@@ -68,12 +68,15 @@ puts "The value of inventory_id #{@inventory_id}"
      @equip.inventory_id = @inventory.id
      if @equip.inventory.item.manyuses?
         if @equip.save
+           @inventory.equipped = true
+           @inventory.save
            redirect_to petowner_equips_path(@petowner)
         else
-           render "new"
+           redirect_to user_inventories_path(@petowner.user.vname)
         end
      else
         raise "I may be used only once!"
+        @inventory.destroy
      end
   end
 
@@ -98,6 +101,9 @@ puts "The value of inventory_id #{@inventory_id}"
   def destroy
     @petowner = Petowner.find_by_id(params[:petowner_id])
     @equip = Equip.find(params[:id])
+    @inventory = Inventory.find(@equip.inventory_id)
+    @inventory.equipped = false
+    @inventory.save
     @equip.destroy
 
     respond_to do |format|

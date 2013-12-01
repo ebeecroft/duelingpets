@@ -2,7 +2,7 @@
    <% if !inventory.equipped %>
       <div class="inner">
          <div class="outer">
-            <p><%= link_to inventory.item.name, item_path(inventory.item.id) %>
+            <p><%= link_to inventory.item.name, item_path(inventory.item.name) %>
                <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
                <% if !inventory.nil? %>
                   <% @inventory = inventory.id %>

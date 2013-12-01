@@ -1,9 +1,4 @@
 <% @inventories.each_with_index do |inventory, index| %>
-   <% if inventory.equipped %>
-      <%= raise "I am equipped!" %>
-   <% else %>
-      <%= raise "I am not equipped yet!" %>
-   <% end %>
    <% if !inventory.equipped %>
       <div class="inner">
          <div class="outer">

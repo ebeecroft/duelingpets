@@ -75,8 +75,17 @@ puts "The value of inventory_id #{@inventory_id}"
            redirect_to user_inventories_path(@petowner.user.vname)
         end
      else
-        raise "I may be used only once!"
+        #@leftoverpotion = @inventory.item.hp+@petowner.hp
+        if @inventory.item.hp+@petowner.hp > @petowner.hp_max
+           @petowner.hp = @petowner.max_hp
+           #@petowner.hp+=@inventory.item.hp
+        else
+           @petowner.hp+=@inventory.item.hp
+        end
+        @petowner.save
+        #raise "I may be used only once!"
         @inventory.destroy
+        redirect_to user_inventories_path(@petowner.user.vname)
      end
   end
 
@@ -101,6 +110,9 @@ puts "The value of inventory_id #{@inventory_id}"
   def destroy
     @petowner = Petowner.find_by_id(params[:petowner_id])
     @equip = Equip.find(params[:id])
+    @inventory = Inventory.find(@equip.inventory_id)
+    @inventory.equipped = false
+    @inventory.save
     @equip.destroy
 
     respond_to do |format|

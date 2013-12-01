@@ -1,15 +1,26 @@
 /* Code for my website standards */
 
+.pageheader
+{
+  font-size: 24px;
+  text-align:center;
+}
+
+.logo
+{
+  font-size: 24px;
+  text-align:left;
+  font-weight: bold;
+}
+
 .outer
 {
    display: block;
-
 }
 
 .inner
 {
    display: inline-block;
-
 }
 
 .limittext
@@ -54,6 +65,7 @@ vertical-align:text-middle;
 
 .userbar
 {
+   padding-left: 705px;
    text-align:right;
 }
 

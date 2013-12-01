@@ -8,31 +8,14 @@ class PetsController < ApplicationController
     if current_user
        @user = current_user
        @pets_kept = [] #why?
-       @petowner = Petowner.find(@user.id)
+       #@petowner = Petowner.find(@user.id)
        #if(params[:commit])
        #end
        @monster = "Eeeep"
        @mypets=[]
-       @all_my_pets = @user.petowners
-       #raise params.to_yaml
-#options value = 2
-
-#params { selected_petowner[petowner_id]}
-#selected[petowner_id]
-       #raise params.to_yaml
-        #category = (params[:petowner][:petowner_id])
-       #@selectpet = params[:pickpet][:petoid]       
-@selectpet = 1
-       #@selectpet = params[:petowner][:id]
-#	put "*"*50       
-#	put "The select pet value is #{@selectpet2}"
-       #@selectpet = selectpet
-       #@selectpet = 2
-       #@petowner = Petowner.find_by_id(params[:id])
+       @all_my_pets = @user.petowners       
+       @selectpet = 1
        @pet = Pet.find_by_id(params[:pet_id])
-       #raise params.to_yaml
-       #Find the petowners that the user currently has
-       #@mypets = @user.petowners
 
        #This is my way of doing things in a C++ fashion, I don't get all ruby things
        @user.petowners.each do |pet|
@@ -44,14 +27,7 @@ class PetsController < ApplicationController
              #   @selected_pet = pet.select
              #end
           end
-       #@selected_pet = Petowner.find(params[:petowner][:selected])
-       #end
-       #@selected_pet = 1 #@user.petowners.find(params[:id])
-       #@selectpet = params[:pickpet][:petoid]
        @mypets = current_user.petowners.select{|pet| pet.hp !=0}
-       #raise "I am here"
-       #@selected_pet = @mypets.find(params[:id][:selected])
-       #@mypets = @pets_kept
     end
 
     @pets = Pet.all

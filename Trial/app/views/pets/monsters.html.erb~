@@ -13,8 +13,6 @@
                <div class="outer"></div>
                <%= f.submit "Fight Selected Monster" %>
             <% end %>
-            <%#= submit_tag("Fight Selected Monster") %>
-         <%# end %>
       <% else %>
          <%= render 'monsterinfo' %>
       <% end %>

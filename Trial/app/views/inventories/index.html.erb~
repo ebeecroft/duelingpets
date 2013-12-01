@@ -1,5 +1,5 @@
-<h1>Listing inventories</h1>
-
+<h1 class="pageheader">Listing inventories</h1>
+<br>
 <!--Checks to see if any pets are available -->
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>

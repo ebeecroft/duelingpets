@@ -1,15 +1,20 @@
 /* Code for my website standards */
 
+.logo
+{
+  font-size: 24px;
+  text-align:left;
+  font-weight: bold;
+}
+
 .outer
 {
    display: block;
-
 }
 
 .inner
 {
    display: inline-block;
-
 }
 
 .limittext
@@ -39,7 +44,7 @@ padding:8px;
 #pizzapie a
 {
 text-decoration:none;
-        color:#0431b4;
+        color:#faac58;
             padding-left:5px;
 padding-top:6px;
 padding-bottom:6px;
@@ -54,6 +59,7 @@ vertical-align:text-middle;
 
 .userbar
 {
+   padding-left: 705px;
    text-align:right;
 }
 

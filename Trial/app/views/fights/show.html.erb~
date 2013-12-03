@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="inner">
-    <p><b>Petowner:</b></p>
+    <p><b><%= @fight.petowner.pet_name</b></p>
     <%= image_tag @fight.petowner.pet.image_url(:thumb).to_s %></td>
 </div>
 
@@ -27,6 +27,7 @@
 </div>
 
 <div class="inner">
+   <p><b><%= @fight.pet.species_name %></b></p>
    <%= image_tag @fight.pet.image_url(:thumb).to_s %></td>
 </div>
 
@@ -36,7 +37,7 @@
          <td>Level: <%= @fight.pet.level %></td>
       </tr>
       <tr>
-         <td>HP: <%= @fight.pet.hp %>/<%= @fight.monster_current_hp %></td>
+         <td>HP: <%= @fight.monster_current_hp %>/<%= @fight.pet.hp %></td>
       </tr>
       <tr>
          <td>ATK: <%= @fight.pet.atk %></td>

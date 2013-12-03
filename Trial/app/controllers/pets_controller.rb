@@ -103,11 +103,27 @@ class PetsController < ApplicationController
     @pet = Pet.find_by_species_name(params[:id])
   end
 
+health = valuesetterfunc(argv, count);
+   attack = valuesetterfunc(argv, count);
+   defense = valuesetterfunc(argv, count);
+   speed = valuesetterfunc(argv, count);
   # POST /pets
   # POST /pets.json
   def create
 #@comment.author = current_user.vname
     @pet = Pet.new(params[:pet])
+#    @pet.cost = (1+(@pet.hp/10) + (@pet.atk/5) + (@pet.def/5) + (@pet.spd/5))*10
+    health = @pet.hp
+    attack = @pet.atk
+    defense = @pet.def
+    speed = @pet.spd
+
+    #Sends the Ruby data into the C++ calc program and retrieves the result
+    results = `calc/calc #{health} #{attack} #{defense} #{speed}`
+    string_array = results.split(",")
+    r_cost = string_array.map { |str| str.to_i }
+
+    @cost = r_cost
     @pet.created_on = Date.today
     @pet.created_by = current_user.vname
     respond_to do |format|

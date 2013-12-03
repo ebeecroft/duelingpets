@@ -1,5 +1,11 @@
 /* Code for my website standards */
 
+.pageheader
+{
+  font-size: 24px;
+  text-align:center;
+}
+
 .logo
 {
   font-size: 24px;
@@ -59,7 +65,7 @@ vertical-align:text-middle;
 
 .userbar
 {
-   padding-left: 705px;
+   padding-left: 89.7%;
    text-align:right;
 }
 

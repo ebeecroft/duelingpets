@@ -1,4 +1,4 @@
-<h1 class="pageheader">Listing maintopics</h1>
+<h1 class="pageheader">Maintopics</h1>
 
 <table>
 <% @maintopics.each do |maintopic| %>

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @maintopic.topicname %></h1>
-
+<p><%= @maintopic.user_id %></p>
 <table>
 <% @maintopic.subtopics.each do |subtopic| %>
   <tr>
@@ -9,7 +9,7 @@
     <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <tr>
-    <td>by: <%= subtopic.user.vname %><%#= subtopic.description %></td>
+    <td>By: <%= subtopic.user.vname %><%#= subtopic.description %></td>
   </tr>
 <% end %>
 </table>

@@ -25,13 +25,18 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/new
   # GET /maintopics/new.json
   def new
-    @user = User.find_by_vname(params[:user_id])
-    @maintopic = @user.maintopics.build
-#    @maintopic = Maintopic.new
+    if current_user
+       @user = current_user.id
+       @maintopic = @user.maintopics.build
+       #    @maintopic.user_id = @user
+       #    @maintopic = Maintopic.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @maintopic }
+       respond_to do |format|
+          format.html # new.html.erb
+          format.json { render json: @maintopic }
+       end
+    else
+       redirect_to root_url
     end
   end
 
@@ -43,17 +48,22 @@ class MaintopicsController < ApplicationController
   # POST /maintopics
   # POST /maintopics.json
   def create
-    @maintopic = Maintopic.new(params[:maintopic])
-#     @maintopic = @maintopic.subtopics.new(params[:subtopic])
-    respond_to do |format|
-      if @maintopic.save
-        format.html { redirect_to @maintopic, notice: 'Maintopic was successfully created.' }
-        format.json { render json: @maintopic, status: :created, location: @maintopic }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @maintopic.errors, status: :unprocessable_entity }
-      end
-    end
+     if current_user
+        @user = current_user.id
+        @maintopic = Maintopic.new(params[:maintopic])
+        @maintopic.user_id = @user
+        respond_to do |format|
+           if @maintopic.save
+              format.html { redirect_to @maintopic, notice: 'Maintopic was successfully created.' }
+              format.json { render json: @maintopic, status: :created, location: @maintopic }
+           else
+              format.html { render action: "new" }
+              format.json { render json: @maintopic.errors, status: :unprocessable_entity }
+           end
+        end
+     else
+        redirect_to root_url
+     end
   end
 
   # PUT /maintopics/1

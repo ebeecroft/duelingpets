@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @maintopic.topicname %></h1>
-
+<p>by: <%= @maintopic.user_id %></p>
 <table>
 <% @maintopic.subtopics.each do |subtopic| %>
   <tr>

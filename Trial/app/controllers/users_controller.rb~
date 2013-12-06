@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_vname(params[:id])
-    @pouch = @user.pouches
+    @pouch = Pouch.find_by_id(@user.id)
     #raise "I am here"
 
 #    if @user.maintenance?

@@ -1,21 +1,13 @@
 Trial::Application.routes.draw do
 
-  #resources :pouches
-
-
    #Builds the users actions and the nested actions
    resources :users, :except => [:new] do
       resources :petowners
-      resources :pouches, :only => [:index, :create]
-      #PUT    /users/:id(.:format)                                       users#update
-#      user_inventory PUT    /users/:user_id/inventories/:id(.:format)              inventories#update
-#      put '/inventories/:id(.:format)' => 'inventories#use'
-#      put '/inventories/:id/petowners/:id(.:format)' => 'inventories#use'
+      resources :pouches, :only => [:index, :create, :new]
       resources :inventories, :except =>[:show, :edit, :update]
       resources :comments, :only => [:create, :destroy, :index]
    end
 
-   put '/inventories/:id/petowners/:id(.:format)' => 'inventories#use'
    #Builds the pet and item actions
    get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
    get '/pets/monsters' => 'pets#monsters'
@@ -29,8 +21,6 @@ Trial::Application.routes.draw do
    #Builds the equips and fights actions
    resources :petowners, :only =>[] do #Prevents building the petowners routes
       resources :equips, :except => [:edit, :update]
-#       PUT    /petowners/:petowner_id/fights/:id(.:format)               fights#update
-#      post 'petowners/:id/fights/:id' => 'fights#attack'
       put '/fights/:id(.:format)' => 'fights#runner'
       resources :fights, :except => [:edit, :update]
    end

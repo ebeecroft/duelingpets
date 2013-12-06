@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <br>
-<h1>Create a Pet</h1>
+<h1 class="pageheader">Create a Pet</h1>
 <br>
 <%= render 'form' %>
 

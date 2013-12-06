@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <%= form_for @pet, :html => {:multipart => true} do |f| %>
   <% if @pet.errors.any? %>
     <div id="error_explanation">
@@ -29,10 +31,6 @@
   <div class="field">
     <%= f.label :monster %>?<br />
     <%= f.check_box :monster %>
-  </div>
-  <div class="field">
-    <%= f.label :level %><br />
-    <%= f.text_field :level %>
   </div>
   <div class="field">
     <%= f.label :hp %><br />

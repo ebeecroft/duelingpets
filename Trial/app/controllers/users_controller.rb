@@ -53,7 +53,7 @@ class UsersController < ApplicationController
          #@pouch = @user.pouches.build
          @pouch.user_id = @user.id
          @pouch.save
-         #sign_in @user
+         sign_in @user
          flash[:success] = "Welcome to the Trial app"
          redirect_to @user
       else

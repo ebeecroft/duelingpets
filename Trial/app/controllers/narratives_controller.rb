@@ -28,9 +28,9 @@ class NarrativesController < ApplicationController
   # GET /narratives/new.json
   def new
 #    @narrative = Narrative.new
-     @user = User.find_by_vname(params[:user_id])
+     @user = current_user.id
      @narrative = @subtopic.narratives.build
-     @narrative.user_id = @user.id
+     @narrative.user_id = @user
 
 #    @narrative = @subtopic.narratives.build
     respond_to do |format|
@@ -47,7 +47,9 @@ class NarrativesController < ApplicationController
   # POST /narratives.json
   def create
 #     @narrative = Narrative.new(params[:narrative])
+     @user = current_user.id
      @narrative = @subtopic.narratives.new(params[:narrative])
+     @narrative.user_id = @user
      if !(@narrative.subtopic_id == @subtopic.id) #Prevents a narrative from being assigned data to a subtopic that doesn't match
         redirect_to maintopic_subtopic_url
         return
@@ -56,7 +58,7 @@ class NarrativesController < ApplicationController
 
     respond_to do |format|
       if @narrative.save
-        format.html { redirect_to maintopic_subtopics_path(@maintopic), notice: 'Narrative was successfully created.' }
+        format.html { redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Narrative was successfully created.' }
         format.json { render json: @narrative, status: :created, location: @narrative }
       else
         format.html { render action: "new" }

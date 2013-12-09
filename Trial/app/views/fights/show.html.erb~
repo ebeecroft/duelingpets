@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="pageheader">The Battle</h1>
+
 <div class="inner">
     <p><b><%= @fight.petowner.pet_name %></b></p>
     <%= image_tag @fight.petowner.pet.image_url(:thumb).to_s %></td>
@@ -50,7 +52,11 @@
       </tr>
    </table>
 </div>
-<%= button_to 'Runner', petowner_fight_path(@fight.petowner.id, @fight.id), method: :put %>
+<% if @fight.battle_done %>
+   <div>
+      <%= button_to 'Runner', petowner_fight_path(@fight.petowner.id, @fight.id), method: :put %>
+   </div>
+<% end %>
 <%#= button_to 'Approve', pets_reviews_path(:pet_id=>pet.id) %>
 <%#= button_to 'Deny', pet, method: :post %>
 <%#= button_to 'Fight', petowner %>

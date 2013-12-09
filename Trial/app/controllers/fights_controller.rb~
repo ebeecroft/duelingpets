@@ -222,7 +222,7 @@ class FightsController < ApplicationController
         raise "You are a really dumb user"
      end
       if @fight.save
-        redirect_to petowner_fights_path(@petowner)
+        redirect_to petowner_fight_path(@petowner, @fight)
       else
         render "new"
       end

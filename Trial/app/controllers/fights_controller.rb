@@ -140,6 +140,7 @@ class FightsController < ApplicationController
            @pouch.amount += c_coins
            @pouch.save
         end
+        @fight.battle_done = true
      end
 
      #Update petowners status by calling save on petowner

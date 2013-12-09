@@ -20,6 +20,8 @@
   <%= @petowner.adopted_on %>
 </p>
 
-
-<%#= link_to 'Edit', edit_petowner_path(@petowner) %> |
-<%#= link_to 'Back', petowners_path %>
+<%= link_to 'View Equipped Items', petowner_equips_path(@petowner) %> | <%= link_to 'View Fights', petowner_fights_path(@petowner) %>
+<%#= link_to 'Edit', edit_petowner_path(@petowner) %>
+<br>
+<br>
+<%= link_to 'Back', user_petowners_path(@user) %>

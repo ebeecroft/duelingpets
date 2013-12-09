@@ -11,7 +11,7 @@
          <td><pre><%= @subtopic.description %></pre></td>
       </tr>
    </table>
-<div>
+</div>
 <table>
 <% @subtopic.narratives.each do |narrative| %>
   <tr>
@@ -21,9 +21,9 @@
     <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
   </tr>
   <tr>
-    <td><pre><%= narrative.story %></pre></td>
+    <td><div><pre class="narrative_pre"><%= narrative.story %></pre></div></td>
     <td><%= link_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative) %></td>
-    <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

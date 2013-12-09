@@ -1,5 +1,17 @@
 /* Code for my website standards */
 
+.narrative_pre
+{
+   white-space: pre-wrap;
+   max-width: 75%;
+}
+
+
+.narrative_text
+{
+  max-width: 500px;
+  word-wrap: break-word;
+}
 .pageheader
 {
   font-size: 24px;

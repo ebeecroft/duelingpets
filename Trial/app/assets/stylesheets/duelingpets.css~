@@ -1,5 +1,17 @@
 /* Code for my website standards */
 
+.narrative_pre
+{
+   white-space: pre-wrap;
+   max-width: 100%;
+}
+
+
+.narrative_text
+{
+  max-width: 500px;
+  word-wrap: break-word;
+}
 .pageheader
 {
   font-size: 24px;
@@ -65,7 +77,7 @@ vertical-align:text-middle;
 
 .userbar
 {
-   padding-left: 89.7%;
+   padding-left: 89.5%;
    text-align:right;
 }
 

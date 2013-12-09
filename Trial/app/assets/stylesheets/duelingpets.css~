@@ -1,9 +1,14 @@
 /* Code for my website standards */
 
+.imagerules
+{
+   white-space: pre-wrap;
+   max-width: 50%;
+}
 .narrative_pre
 {
    white-space: pre-wrap;
-   max-width: 100%;
+   max-width: 75%;
 }
 
 

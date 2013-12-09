@@ -1,5 +1,10 @@
 /* Code for my website standards */
 
+.imagerules
+{
+   white-space: pre-wrap;
+   max-width: 40%;
+}
 .narrative_pre
 {
    white-space: pre-wrap;

@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <%= form_for @pet, :html => {:multipart => true} do |f| %>
   <% if @pet.errors.any? %>
     <div id="error_explanation">
@@ -47,6 +45,9 @@
   <div class="field">
     <%= f.label :spd %><br />
     <%= f.text_field :spd %>
+  </div>
+  <div>
+  <p class="imagerules">Images submitted must be free from copyright restrictions, and appropriate for all ages. Inappropriate images will be removed and user privileges may be revoked. Please contact webmaster if you encounter inappropriate content.</p>
   </div>
   <div class="actions">
     <%= f.submit %>

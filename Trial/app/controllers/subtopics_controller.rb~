@@ -53,7 +53,7 @@ class SubtopicsController < ApplicationController
      #else
      #   render "new";
      #end
-     redirect_to maintopic_subtopics_url
+     redirect_to maintopic_subtopic_path(@maintopic, @subtopic)
   end
 
   # PUT /subtopics/1
@@ -76,7 +76,7 @@ class SubtopicsController < ApplicationController
     @subtopic.destroy
     
     respond_to do |format|
-      format.html { redirect_to maintopic_subtopics_url }
+      format.html { redirect_to maintopic_url }
       format.json { head :no_content }
     end
   end

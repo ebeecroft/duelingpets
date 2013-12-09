@@ -58,7 +58,7 @@ class NarrativesController < ApplicationController
 
     respond_to do |format|
       if @narrative.save
-        format.html { redirect_to maintopic_subtopics_path(@maintopic), notice: 'Narrative was successfully created.' }
+        format.html { redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Narrative was successfully created.' }
         format.json { render json: @narrative, status: :created, location: @narrative }
       else
         format.html { render action: "new" }
@@ -73,7 +73,7 @@ class NarrativesController < ApplicationController
      @maintopic = Maintopic.find(@subtopic.maintopic_id)
     respond_to do |format|
       if @narrative.update_attributes(params[:narrative])
-        format.html { redirect_to maintopic_subtopics_path(@maintopic), notice: 'Narrative was successfully updated.' }
+        format.html { redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Narrative was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

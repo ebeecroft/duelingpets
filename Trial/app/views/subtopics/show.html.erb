@@ -22,12 +22,12 @@
   </tr>
   <tr>
     <td><pre><%= narrative.story %></pre></td>
-    <td><%#= link_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic) %></td>
-    <td><%#= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative) %></td>
+    <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
+<br>
 <%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic, :user_id => current_user) %> |
 <%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic) %> |
-<%= link_to 'Back', maintopic_subtopics_path %>
+<%= link_to 'Back', maintopic_path(@maintopic) %>

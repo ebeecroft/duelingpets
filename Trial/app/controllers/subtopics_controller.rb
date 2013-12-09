@@ -76,7 +76,7 @@ class SubtopicsController < ApplicationController
     @subtopic.destroy
     
     respond_to do |format|
-      format.html { redirect_to maintopic_subtopics_url }
+      format.html { redirect_to maintopic_path(@maintopic) }
       format.json { head :no_content }
     end
   end

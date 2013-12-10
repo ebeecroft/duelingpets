@@ -6,7 +6,7 @@
    <% if !current_user.nil? %>
       <% if !@user.petowners.empty? %><!---/petowners/petowner_id/fights/pet_id--->
             <%= form_for :petowner, :url => petowner_fights_path(@selectpet, @pet) do |f| %>
-<p>Select a pet <%= collection_select(:pickpet, :petoid, @user.petowners.all,:id,:pet_name)%></p>               
+<p>Select a pet <%= collection_select(:pickpet, :petoid, @mypets,:id,:pet_name)%></p>               
 <%#= f.select(:petowners, @user.petowners.collect {|c| [ c.pet_name, c.id ] }, { :include_blank => "Select Category", :selected => @selectpet }}) %>
                <%= render 'monsterinfo' %>
                

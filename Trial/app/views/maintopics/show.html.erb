@@ -15,7 +15,8 @@
 </table>
 
 <br />
-
+<% if current_user %>
 <p><%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %></p>
 <br>
+<% end %>
 <p><%= link_to 'Back', maintopics_path %></p>

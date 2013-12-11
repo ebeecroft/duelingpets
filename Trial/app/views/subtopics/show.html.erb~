@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<h1 class="forumheader"><%= @subtopic.topicname %></h1>
+<br>
 <div>
    <table>
       <tr>
@@ -8,7 +10,7 @@
          <td>by: <%= @subtopic.user.vname %></td>
       </tr>
       <tr>
-         <td><pre><%= @subtopic.description %></pre></td>
+         <td><pre class="narrative_pre"><%= @subtopic.description %></pre></td>
       </tr>
    </table>
 </div>

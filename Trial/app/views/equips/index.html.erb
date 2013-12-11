@@ -4,11 +4,7 @@
 <%# if @count > 0 %>
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
-      <%#= form_tag(new_user_petowner_path(current_user), method: "get") do %>
-         <%= render 'equipinfo' %>
-         <div class="outer"></div>
-         <%#= submit_tag("Adopt Selected Pet") %>
-      <%# end %>
+      <%= render 'equipinfo' %>
    <% else %>
       <%= render 'equipinfo' %>
    <% end %>

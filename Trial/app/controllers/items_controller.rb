@@ -49,7 +49,11 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    @item = Item.find_by_name(params[:id])
+     if current_user && current_user.admin
+        @item = Item.find_by_name(params[:id])
+     else
+        redirect_to root_url
+     end
   end
 
   # POST /items

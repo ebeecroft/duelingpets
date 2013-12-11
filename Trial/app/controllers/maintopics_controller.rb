@@ -26,7 +26,7 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/new.json
   def new
     if current_user
-       @user = current_user.id
+       @user = current_user
        @maintopic = @user.maintopics.build
        #    @maintopic.user_id = @user
        #    @maintopic = Maintopic.new

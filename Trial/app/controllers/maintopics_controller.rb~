@@ -48,19 +48,22 @@ class MaintopicsController < ApplicationController
   # POST /maintopics
   # POST /maintopics.json
   def create
-    @user = current_user.id
-    @maintopic = Maintopic.new(params[:maintopic])
-#     @maintopic = @maintopic.subtopics.new(params[:subtopic])
-    @maintopic.user_id = @user
-    respond_to do |format|
-      if @maintopic.save
-        format.html { redirect_to @maintopic, notice: 'Maintopic was successfully created.' }
-        format.json { render json: @maintopic, status: :created, location: @maintopic }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @maintopic.errors, status: :unprocessable_entity }
-      end
-    end
+     if current_user
+        @user = current_user.id
+        @maintopic = Maintopic.new(params[:maintopic])
+        @maintopic.user_id = @user
+        respond_to do |format|
+           if @maintopic.save
+              format.html { redirect_to @maintopic, notice: 'Maintopic was successfully created.' }
+              format.json { render json: @maintopic, status: :created, location: @maintopic }
+           else
+              format.html { render action: "new" }
+              format.json { render json: @maintopic.errors, status: :unprocessable_entity }
+           end
+        end
+     else
+        redirect_to root_url
+     end
   end
 
   # PUT /maintopics/1

@@ -3,7 +3,7 @@
 .imagerules
 {
    white-space: pre-wrap;
-   max-width: 50%;
+   max-width: 40%;
 }
 .narrative_pre
 {

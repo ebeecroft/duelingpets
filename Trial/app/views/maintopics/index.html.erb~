@@ -12,11 +12,11 @@
      <td>By: <%= maintopic.user.vname %></td>
   </tr>
   <tr>
-    <td><pre><%= maintopic.description %></pre></td>
+    <td><pre class="narrative_pre"><%= maintopic.description %></pre></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Maintopic', new_maintopic_path(:user_id=>current_user) %>
+<%= link_to 'New Maintopic', new_maintopic_path %>

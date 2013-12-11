@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @maintopic.topicname %></h1>
-<p>by: <%= @maintopic.user_id %></p>
+<br>
 <table>
 <% @maintopic.subtopics.each do |subtopic| %>
   <tr>
     <td><%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %></td>
     <td><%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic, subtopic) %></td>
-    <td><%= button_to 'Destroy', subtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', [@maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <tr>
     <td>By: <%= subtopic.user.vname %><%#= subtopic.description %></td>

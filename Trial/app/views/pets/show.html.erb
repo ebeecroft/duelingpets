@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= image_tag @pet.image_url.to_s %>
+  <%= image_tag @pet.image_url(:thumb).to_s %>
 </p>
 
 <p>
@@ -18,19 +18,4 @@
   <b>Created on:</b>
   <%= @pet.created_on %>
 </p>
-<%# if !User.find(:all).empty? %>
-  I do not have an empty user table
-  I will also choose from a list of pets that are available
-  <%#= form_for (@pet_owners) do |form| %>
-     <%#= form.label :user_id %>
-     <%#= form.number_field :user_id %>
-     <%#= form.label :pet_id %>
-     <%#= form.number_field :pet_id %>
-     <%#= form.label :pet_name %>
-     <%#= form.text_field :pet_name %>
-     <%#= form.submit %>
-  <%# end %>
-<%# end %>
-<%#= link_to 'Edit', edit_pet_path(@pet) %> |
-<%#= link_to 'Back', pets_path %>
-<%#= link_to "New Pet Adopt", new_user_pet_owner_path(@user) %>
+<%= link_to 'Back', pets_path %>

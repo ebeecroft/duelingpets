@@ -19,3 +19,6 @@
   <%= @pet.created_on %>
 </p>
 <%= link_to 'Back', pets_path %>
+<% if current_user && current_user.admin %>
+   <%= button_to 'Destroy', @pet, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

@@ -26,11 +26,13 @@ class SubtopicsController < ApplicationController
   # GET /subtopics/new
   # GET /subtopics/new.json
   def new
-#@user = User.find_by_vname(params[:user_id])
-#    @maintopic = @user.maintopics.build
-     @user = current_user.id
-     @subtopic = @maintopic.subtopics.build
-     @subtopic.user_id = @user
+     if current_user
+        @user = current_user.id
+        @subtopic = @maintopic.subtopics.build
+        @subtopic.user_id = @user
+     else
+        redirect_to root_url
+     end
   end
 
   # GET /subtopics/1/edit
@@ -40,20 +42,24 @@ class SubtopicsController < ApplicationController
   # POST /subtopics
   # POST /subtopics.json
   def create
-     @user = current_user.id
-     @subtopic = @maintopic.subtopics.new(params[:subtopic])
-     @subtopic.user_id = @user
-     if !(@subtopic.maintopic_id == @maintopic.id) #Prevents a subtopic from being assigned data to a maintopic that doesn't match
-       redirect_to @maintopic
-       return
+     if current_user
+        @user = current_user.id
+        @subtopic = @maintopic.subtopics.new(params[:subtopic])
+        @subtopic.user_id = @user
+        if !(@subtopic.maintopic_id == @maintopic.id) #Prevents a subtopic from being assigned data to a maintopic that doesn't match
+           redirect_to @maintopic
+           return
+        end
+        @subtopic.save
+        #if @subtopic.save
+        #   redirect_to @maintopic.subtopic
+        #else
+        #   render "new";
+        #end
+        redirect_to maintopic_subtopic_path(@maintopic, @subtopic)
+     else
+        redirect_to root_url
      end
-     @subtopic.save
-     #if @subtopic.save
-     #   redirect_to @maintopic.subtopic
-     #else
-     #   render "new";
-     #end
-     redirect_to maintopic_subtopic_path(@maintopic, @subtopic)
   end
 
   # PUT /subtopics/1

@@ -27,16 +27,20 @@ class NarrativesController < ApplicationController
   # GET /narratives/new
   # GET /narratives/new.json
   def new
-#    @narrative = Narrative.new
-     @user = current_user.id
-     @narrative = @subtopic.narratives.build
-     @narrative.user_id = @user
+     if current_user
+        #    @narrative = Narrative.new
+        @user = current_user.id
+        @narrative = @subtopic.narratives.build
+        @narrative.user_id = @user
 
-#    @narrative = @subtopic.narratives.build
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @narrative }
-    end
+        #    @narrative = @subtopic.narratives.build
+        respond_to do |format|
+           format.html # new.html.erb
+           format.json { render json: @narrative }
+        end
+     else
+        redirect_to root_url
+     end
   end
 
   # GET /narratives/1/edit
@@ -46,25 +50,29 @@ class NarrativesController < ApplicationController
   # POST /narratives
   # POST /narratives.json
   def create
-#     @narrative = Narrative.new(params[:narrative])
-     @user = current_user.id
-     @narrative = @subtopic.narratives.new(params[:narrative])
-     @narrative.user_id = @user
-     if !(@narrative.subtopic_id == @subtopic.id) #Prevents a narrative from being assigned data to a subtopic that doesn't match
-        redirect_to maintopic_subtopic_url
-        return
-     end
-     @maintopic = Maintopic.find(@subtopic.maintopic_id)
+     if current_user
+        #     @narrative = Narrative.new(params[:narrative])
+        @user = current_user.id
+        @narrative = @subtopic.narratives.new(params[:narrative])
+        @narrative.user_id = @user
+        if !(@narrative.subtopic_id == @subtopic.id) #Prevents a narrative from being assigned data to a subtopic that doesn't match
+           redirect_to maintopic_subtopic_url
+           return
+        end
+        @maintopic = Maintopic.find(@subtopic.maintopic_id)
 
-    respond_to do |format|
-      if @narrative.save
-        format.html { redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Narrative was successfully created.' }
-        format.json { render json: @narrative, status: :created, location: @narrative }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @narrative.errors, status: :unprocessable_entity }
-      end
-    end
+        respond_to do |format|
+           if @narrative.save
+              format.html { redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Narrative was successfully created.' }
+              format.json { render json: @narrative, status: :created, location: @narrative }
+           else
+              format.html { render action: "new" }
+              format.json { render json: @narrative.errors, status: :unprocessable_entity }
+           end
+        end
+     else
+        redirect_to root_url
+     end
   end
 
   # PUT /narratives/1

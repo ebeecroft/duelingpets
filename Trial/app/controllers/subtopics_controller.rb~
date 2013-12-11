@@ -26,11 +26,13 @@ class SubtopicsController < ApplicationController
   # GET /subtopics/new
   # GET /subtopics/new.json
   def new
-#@user = User.find_by_vname(params[:user_id])
-#    @maintopic = @user.maintopics.build
-     @user = current_user.id
-     @subtopic = @maintopic.subtopics.build
-     @subtopic.user_id = @user
+     if current_user
+        @user = current_user.id
+        @subtopic = @maintopic.subtopics.build
+        @subtopic.user_id = @user
+     else
+        redirect_to root_url
+     end
   end
 
   # GET /subtopics/1/edit
@@ -76,7 +78,7 @@ class SubtopicsController < ApplicationController
     @subtopic.destroy
     
     respond_to do |format|
-      format.html { redirect_to maintopic_url }
+      format.html { redirect_to maintopic_path(@maintopic) }
       format.json { head :no_content }
     end
   end

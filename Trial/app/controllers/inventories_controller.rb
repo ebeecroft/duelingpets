@@ -25,10 +25,16 @@ class InventoriesController < ApplicationController
     @selectpet = 1
     #:petowner, :user_id
     end
+    @icount = 0
 
 #    @inventories = Inventory.all
     @user = User.find_by_vname(params[:user_id])
     @inventories = @user.inventories.all
+    @inventories.each do |inventory|
+       if !inventory.equipped?
+          @icount+=1
+       end
+    end
 
     respond_to do |format|
       format.html # index.html.erb

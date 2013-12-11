@@ -4,10 +4,12 @@
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
       <% if !@mypets.empty? %>
-         <%= form_for :petowner, :url => petowner_equips_path(@selectpet, @inventory) do |f| %>
-            <p>Select a pet <%= collection_select(:pickpet2, :petoid2, @user.petowners.all, :id, :pet_name) %></p>
-            <%= render 'inventoryinfo', :object => f %>
-            <div class="outer"></div>
+         <% if @icount > 0 %>
+            <%= form_for :petowner, :url => petowner_equips_path(@selectpet, @inventory) do |f| %>
+               <p>Select a pet <%= collection_select(:pickpet2, :petoid2, @user.petowners.all, :id, :pet_name) %></p>
+               <%= render 'inventoryinfo', :object => f %>
+               <div class="outer"></div>
+            <% end %>
          <% end %>
       <% else %>
          <%= render 'inventoryinfo2' %>

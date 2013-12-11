@@ -1,5 +1,6 @@
 <% @pets.each_with_index do |pet, index| %>
    <% if pet.reviewed? && pet.monster? %>
+      <% @count3 %>
       <div class="inner">
          <div class="outer">
             <p><%= link_to pet.species_name, pet %>
@@ -37,9 +38,10 @@
          </div>
       </div>
       <!--Sets how many pets to display per line-->
-      <% if ((index - @count +1)%3) == 0 %>         
+      <% if ((@count3 + 1)%3) == 0 %>         
          <div class="outer"></div>
          <br>
       <% end %>
+      <% @count3+=1 %>
    <% end %>
 <% end %>

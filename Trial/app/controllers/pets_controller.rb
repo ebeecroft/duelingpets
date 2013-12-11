@@ -24,6 +24,7 @@ class PetsController < ApplicationController
 
       @pets = Pet.all
       @count = 0
+      @count3 = 0
       @pets.each do |pet|
          if pet.reviewed? && pet.monster?
             @count+=1

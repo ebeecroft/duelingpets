@@ -62,6 +62,7 @@ class PetsController < ApplicationController
 
    def index
       @count = 0
+      @count2 = 0
       @pets = Pet.all
       @pets.each do |pet|
          if pet.reviewed?

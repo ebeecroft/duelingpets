@@ -5,11 +5,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user && current_user.admin
+       @users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+       respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @users }
+       end
+    else
+       render "public/404"
     end
   end
 

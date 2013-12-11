@@ -5,11 +5,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user && current_user.admin
+       @users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+       respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @users }
+       end
+    else
+       render "404"
     end
   end
 
@@ -53,7 +57,7 @@ class UsersController < ApplicationController
          #@pouch = @user.pouches.build
          @pouch.user_id = @user.id
          @pouch.save
-         #sign_in @user
+         sign_in @user
          flash[:success] = "Welcome to the Trial app"
          redirect_to @user
       else

@@ -24,8 +24,10 @@
   </tr>
   <tr>
     <td><div><pre class="narrative_pre"><%= narrative.story %></pre></div></td>
+    <% if current_user && current_user.id == narrative.user_id %>
     <td><%= link_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative) %></td>
     <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

@@ -3,11 +3,17 @@
 <table>
 <% @maintopics.each do |maintopic| %>
   <tr>
-    <td>Topic: <%= link_to maintopic.topicname, maintopic %> <%= link_to 'Edit', edit_maintopic_path(maintopic) %> </td>
+    <td>Topic: <%= link_to maintopic.topicname, maintopic %> 
+    <% if current_user && current_user.id == maintopic.user_id %>
+       <%= link_to 'Edit', edit_maintopic_path(maintopic) %> 
+    <% end %>
+    </td>
   </tr>
+  <% if current_user && current_user.id == maintopic.user_id %>
   <tr>
     <td><%= button_to 'Destroy', maintopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <% end %>
   <tr>
      <td>By: <%= maintopic.user.vname %></td>
   </tr>

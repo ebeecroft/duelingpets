@@ -5,7 +5,7 @@
 <% @maintopic.subtopics.each do |subtopic| %>
   <tr>
     <td><%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %></td>
-    <% if current_user.id == subtopic.user_id %>
+    <% if current_user && current_user.id == subtopic.user_id %>
     <td><%= link_to 'Edit', edit_maintopic_subtopic_path(@maintopic, subtopic) %></td>
     <td><%= button_to 'Destroy', [@maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>

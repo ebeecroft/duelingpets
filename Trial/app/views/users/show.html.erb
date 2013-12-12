@@ -36,13 +36,8 @@
       <div class="entry">
          <hr />
          <tr>
-            <% @user2 = User.find_by_vname(comment.author) %>
-            <td>By: <% if @user2.admin? %>
-                       $<%= comment.author %>
-                    <% else %>
-                       ~<%= comment.author %>
-                    <% end %>
-            </td>
+            <!---Bad practice for adding symbols to comments but right idea -->
+            <td>By: <%= comment.author %></td>
             <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
             <td>
                <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
           format.json { render json: @users }
        end
     else
-       render "404"
+       render "public/404"
     end
   end
 

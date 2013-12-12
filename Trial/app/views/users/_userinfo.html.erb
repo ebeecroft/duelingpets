@@ -3,8 +3,8 @@
       <% if !@user.admin? %>
          ~<%= @user.vname %>
       <% else %>
-         $<%= @user.vname %>
+         $<%= @user.vname %> 
       <% end %>
       </td>
-      <td><b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
+      <td>&nbsp; &nbsp;<b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
 </tr>

@@ -27,26 +27,7 @@
    <% end %>
 </table>
 
-<p>Users owned pets</p>
-<table border="1">
-   <tr>
-      <th>Pet_id</th>
-      <th>Pet_name</th>
-      <th>Species_name</th>
-      <th>Description</th>
-   </tr>
-<% @user.petowners.each do |petowner| %>
-   <% if petowner.user_id == @user.id %>
-      <tr>
-         <td><%= petowner.pet_id %></td>
-         <td><%= petowner.pet_name %></td>
-         <td><%= petowner.pet.species_name %></td>
-         <td><%= petowner.pet.description %></td>
-      </tr>
-   <% end %>
-<% end %>
-</table>
-
+<% if @count > 0 %>
 <div>
 <h2 class ="colorstyleh2">Comments</h2>
 <% @user.comments.each do |comment| %>
@@ -68,7 +49,7 @@
    </table>
 <% end %>
 </div>
-
+<% end %>
 
 
 <% if !current_user.nil? %>
@@ -89,6 +70,7 @@
    <% end %>
 </div>
 <% end %>
-
+<% if current_user && current_user.id == @user.id %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>

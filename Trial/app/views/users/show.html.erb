@@ -29,14 +29,21 @@
 
 <% if @count > 0 %>
 <div>
+<br>
 <h2 class ="colorstyleh2">Comments</h2>
 <% @user.comments.each do |comment| %>
    <table>
       <div class="entry">
          <hr />
          <tr>
-            <td>By: <%= comment.author %></td>
-            <% if !current_user.nil? %> <%#&& current_user.admin? %>
+            <% @user2 = User.find_by_vname(comment.author) %>
+            <td>By: <% if @user2.admin? %>
+                       $<%= comment.author %>
+                    <% else %>
+                       ~<%= comment.author %>
+                    <% end %>
+            </td>
+            <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
             <td>
                <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>
             <td></td>
@@ -54,6 +61,7 @@
 
 <% if !current_user.nil? %>
 <div>
+<br>
 <h3 class="colorstyleh3">Add Comment</h3>
    <%= form_for [@user, Comment.new] do |form| %>
       <table>

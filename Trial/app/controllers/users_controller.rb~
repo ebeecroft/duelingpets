@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_vname(params[:id])
     @pouch = Pouch.find_by_id(@user.id)
+    @count = 0
+    @user.comments.each do |comment|
+       @count+=1
+    end
     #raise "I am here"
 
 #    if @user.maintenance?

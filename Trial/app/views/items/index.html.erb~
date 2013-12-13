@@ -9,14 +9,14 @@
       <%= form_tag(user_inventories_path(current_user)) do %>
          <%= render 'iteminfo' %>
          <div class="outer"></div>
-         <%= submit_tag("Buy Selected Item") %>
+         <div class="petcontainer"><%= submit_tag("Buy Selected Item") %></p>
       <% end %>
    <% else %>
       <%= render 'iteminfo' %>
    <% end %>
 <% end %>
-
+<br>
 <!--Prevents a visting user from creating a pet if not logged in -->
 <% if !current_user.nil? && current_user.admin %>
-   <p><%= link_to 'New Item', new_item_path %></p>
+   <p class="petcontainer"><%= link_to 'New Item', new_item_path %></p>
 <% end %>

@@ -9,7 +9,7 @@
       <%= form_tag(user_inventories_path(current_user)) do %>
          <%= render 'iteminfo' %>
          <div class="outer"></div>
-         <%= submit_tag("Buy Selected Item") %>
+         <div class="petcontainer"><%= submit_tag("Buy Selected Item") %></p>
       <% end %>
    <% else %>
       <%= render 'iteminfo' %>

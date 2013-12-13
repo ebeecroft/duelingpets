@@ -1,6 +1,6 @@
 <% @pets.each_with_index do |pet, index| %>
    <% if pet.reviewed? && !pet.monster? %>
-      <div class="inner">
+      <div class="petcontainer">
          <div class="outer">
             <p><%= link_to pet.species_name, pet %>
             <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
@@ -42,7 +42,7 @@
          </div>
       </div>
       <!--Sets how many pets to display per line-->
-      <% if ((@count2 + 1) % 4) == 0 %>         
+      <% if ((@count2 + 1) % 3) == 0 %>         
          <div class="outer"></div>
       <% end %>
    <% @count2+=1 %>

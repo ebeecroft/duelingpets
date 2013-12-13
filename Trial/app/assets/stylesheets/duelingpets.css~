@@ -1,4 +1,10 @@
 /* Code for my website standards */
+.petcontainer
+{
+   display: inline-block;
+   margin-left: 70px;
+}
+
 
 .imagerules
 {
@@ -17,6 +23,13 @@
   max-width: 500px;
   word-wrap: break-word;
 }
+
+.forumheader
+{
+   font-size: 24px;
+   font-weight: bold;
+}
+
 .pageheader
 {
   font-size: 24px;

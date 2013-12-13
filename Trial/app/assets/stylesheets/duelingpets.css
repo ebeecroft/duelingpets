@@ -1,4 +1,10 @@
 /* Code for my website standards */
+.petcontainer
+{
+   display: inline-block;
+   margin-left: 75px;
+}
+
 
 .imagerules
 {

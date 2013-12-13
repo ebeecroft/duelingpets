@@ -1,7 +1,7 @@
 <% @pets.each_with_index do |pet, index| %>
    <% if pet.reviewed? && pet.monster? %>
       <% @count3 %>
-      <div class="inner">
+      <div class="petcontainer">
          <div class="outer">
             <p><%= link_to pet.species_name, pet %>
             <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->

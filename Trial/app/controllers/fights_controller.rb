@@ -4,14 +4,56 @@ class FightsController < ApplicationController
 
      def runner
      #Collets information to be sent to C++ program
+     modified_atk = 0
+     modified_def = 0
+     modified_spd = 0
      @user = User.find_by_vname(current_user.vname)
      @pouch = Pouch.find_by_id(@user.id)
      @fight = Fight.find_by_id(params[:id])
      @petowner = Petowner.find_by_id(@fight.petowner_id)
+     @equips = @petowner.equips.all
+     @equips.each do |equip|
+        modified_atk += equip.inventory.item.atk
+        modified_def += equip.inventory.item.def
+        modified_spd += equip.inventory.item.spd
+     end
+     puts '*'*50
+     puts '*'*50
+     puts '*'*50
+     puts '*'*50
+     puts "Equipped items attack_power is: #{modified_atk}"
+     puts "Equipped items defense_power is: #{modified_def}"
+     puts "Equipped items speed_power is: #{modified_spd}"
+
+     #raise "I am before p_level"
+     pet_attack = @petowner.atk
+     pet_defense = @petowner.def
+     pet_speed = @petowner.spd
+     puts '*'*50
+     puts '*'*50
+     puts '*'*50
+     puts '*'*50
+     puts "Pet attack is: #{pet_attack}"
+     puts "Pet defense is: #{pet_defense}"
+     puts "Pet speed is: #{pet_speed}"
+
+     total_atk = pet_attack + modified_atk
+     total_def = pet_defense + modified_def
+     total_spd = pet_speed + modified_spd
+
      p_level = @petowner.level
-     p_atk = @petowner.atk
-     p_def = @petowner.def
-     p_spd = @petowner.spd
+     p_atk = total_atk
+     p_def = total_def
+     p_spd = total_spd
+     puts '*'*50
+     puts '*'*50
+     puts '*'*50
+     puts '*'*50
+     puts "Total attack_power is: #{p_atk}"
+     puts "Total defense_power is: #{p_def}"
+     puts "Total speed_power is: #{p_spd}"
+     raise "I am before hp"
+
      p_hp = @petowner.hp #this one
      p_maxhp = @petowner.hp_max
      p_exp = @petowner.exp

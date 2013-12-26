@@ -1,4 +1,4 @@
-<%= form_for(@maintopic) do |f| %>
+<%= form_for([@tcontainer, @maintopic]) do |f| %>
   <% if @maintopic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@maintopic.errors.count, "error") %> prohibited this maintopic from being saved:</h2>

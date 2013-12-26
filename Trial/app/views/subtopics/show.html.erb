@@ -36,4 +36,4 @@
    <p><%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic) %></p>
    <br>
 <% end %>
-<p><%= link_to 'Back', maintopic_path(@maintopic) %></p>
+<p><%= link_to 'Back', tcontainer_maintopic_path(@maintopic.tcontainer_id, @maintopic) %></p>

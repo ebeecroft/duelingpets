@@ -1,5 +1,8 @@
 Trial::Application.routes.draw do
 
+  resources :tcontainers
+
+
    #Builds the users actions and the nested actions
    resources :users, :except => [:new] do
       resources :petowners

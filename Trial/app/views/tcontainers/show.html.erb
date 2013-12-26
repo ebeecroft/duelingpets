@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @tcontainer.name %>
+</p>
+
+<p>
+  <b>Forum:</b>
+  <%= @tcontainer.forum_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_tcontainer_path(@tcontainer) %> |
+<%= link_to 'Back', tcontainers_path %>

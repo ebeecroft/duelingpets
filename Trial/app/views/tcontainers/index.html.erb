@@ -1,0 +1,38 @@
+<h1>Listing tcontainers</h1>
+
+<table>
+  <tr>
+    <th><!---Name--></th>
+    <th><!--Forum--></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tcontainers.each do |tcontainer| %>
+  <tr>
+    <td><h1><%= link_to tcontainer.name, tcontainer %></h1></td>
+  </tr>
+  <tr>
+    <td><div style="border: 1px solid;">I am a giant box to contain things for<%= tcontainer.name %>
+    <% tcontainer.maintopics.each do |maintopic| %>
+       <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(tcontainer, maintopic) %></p>
+    <% end %>
+    <% if current_user %>
+    <br>
+    <p><%= link_to "New Topic", new_tcontainer_maintopic_path(tcontainer) %></p>
+    <% end %>
+    </div></td>
+  </tr>
+  <tr>
+    <td><%#= tcontainer.forum_id %></td>
+    <td><%#= link_to 'Edit', edit_tcontainer_path(tcontainer) %></td>
+    <td><%#= link_to 'Destroy', tcontainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<% if current_user %>
+<%= link_to 'New Tcontainer', new_tcontainer_path %>
+<% end %>

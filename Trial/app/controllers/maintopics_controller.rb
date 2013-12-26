@@ -2,7 +2,9 @@ class MaintopicsController < ApplicationController
   # GET /maintopics
   # GET /maintopics.json
   def index
-    @maintopics = Maintopic.all
+    @tcontainer = Tcontainer.find(params[:tcontainer_id])
+    @maintopics = @tcontainer.maintopics.all
+#    @maintopics = Maintopic.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +29,9 @@ class MaintopicsController < ApplicationController
   def new
     if current_user
        @user = current_user
-       @maintopic = @user.maintopics.build
+       @tcontainer = Tcontainer.find(params[:tcontainer_id])
+       #@topic = @seperator.topics.build
+       @maintopic = @tcontainer.maintopics.build
        #    @maintopic.user_id = @user
        #    @maintopic = Maintopic.new
 
@@ -50,17 +54,14 @@ class MaintopicsController < ApplicationController
   def create
      if current_user
         @user = current_user.id
-        @maintopic = Maintopic.new(params[:maintopic])
+        @tcontainer = Tcontainer.find(params[:tcontainer_id])
+        @maintopic = @tcontainer.maintopics.new(params[:maintopic])
         @maintopic.user_id = @user
-        respond_to do |format|
            if @maintopic.save
-              format.html { redirect_to @maintopic, notice: 'Maintopic was successfully created.' }
-              format.json { render json: @maintopic, status: :created, location: @maintopic }
+              redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully created.'
            else
-              format.html { render action: "new" }
-              format.json { render json: @maintopic.errors, status: :unprocessable_entity }
+              render "new"
            end
-        end
      else
         redirect_to root_url
      end

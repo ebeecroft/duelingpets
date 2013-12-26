@@ -1,5 +1,8 @@
 Trial::Application.routes.draw do
 
+  resources :tcontainers
+
+
    #Builds the users actions and the nested actions
    resources :users, :except => [:new] do
       resources :petowners
@@ -25,8 +28,13 @@ Trial::Application.routes.draw do
       resources :fights, :except => [:edit, :update]
    end
 
+   #Builds the container for the topics and the nested routes
+   resources :tcontainers do
+      resources :maintopics
+   end
+
    #Build the forum maintopics actions and the nested actions
-   resources :maintopics do
+   resources :maintopics, :only =>[] do
       resources :subtopics
    end
 

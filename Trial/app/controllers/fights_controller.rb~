@@ -13,59 +13,42 @@ class FightsController < ApplicationController
      @petowner = Petowner.find_by_id(@fight.petowner_id)
      @equips = @petowner.equips.all
      @equips.each do |equip|
-        modified_atk += equip.atk
-        modified_def += equip.def
-        modified_spd += equip.spd
+        modified_atk += equip.inventory.item.atk
+        modified_def += equip.inventory.item.def
+        modified_spd += equip.inventory.item.spd
      end
-     puts '*'*50
-     puts '*'*50
-     puts '*'*50
-     puts '*'*50
-     puts "Equipped items attack_power is: #{modified_atk}"
-     puts "Equipped items defense_power is: #{modified_def}"
-     puts "Equipped items speed_power is: #{modified_spd}"
 
-     #raise "I am before p_level"
+     #Base pet stats
      pet_attack = @petowner.atk
      pet_defense = @petowner.def
      pet_speed = @petowner.spd
-     puts '*'*50
-     puts '*'*50
-     puts '*'*50
-     puts '*'*50
-     puts "Pet attack is: #{pet_attack}"
-     puts "Pet defense is: #{pet_defense}"
-     puts "Pet speed is: #{pet_speed}"
 
+     #Total stats of the pet
      total_atk = pet_attack + modified_atk
      total_def = pet_defense + modified_def
      total_spd = pet_speed + modified_spd
 
+     #Set pet stats
      p_level = @petowner.level
      p_atk = total_atk
      p_def = total_def
      p_spd = total_spd
-     puts '*'*50
-     puts '*'*50
-     puts '*'*50
-     puts '*'*50
-     puts "Total attack_power is: #{p_atk}"
-     puts "Total defense_power is: #{p_def}"
-     puts "Total speed_power is: #{p_spd}"
      raise "I am before hp"
-
      p_hp = @petowner.hp #this one
      p_maxhp = @petowner.hp_max
      p_exp = @petowner.exp
+     
+     #Damage and coins
      coins = 0
      p_damage = 0
      m_damage = 0
+
+     #Set the monsters stats
      m_level = @fight.pet.level
      m_def = @fight.pet.def
      m_atk = @fight.pet.atk
      m_spd = @fight.pet.spd
      m_hp = @fight.monster_current_hp #this one
-     #m_hp = 1
 
      puts '*'*50
      puts '*'*50
@@ -125,6 +108,10 @@ class FightsController < ApplicationController
         #Inputs data into the C++ program
         p_hp = global_pet_hp
         m_hp = global_monster_hp
+        p_atk = total_atk - modified_atk
+        p_def = total_def - modified_def
+        p_spd = total_spd - modified_spd
+
         results = `formulas/formula #{p_level} #{p_atk} #{p_def} #{p_spd} #{p_hp} #{p_maxhp} #{p_exp} #{coins} #{p_damage} #{m_damage} #{m_level} #{m_def} #{m_atk} #{m_spd} #{m_hp}`
 
         #Retrieves the data from the C++ program

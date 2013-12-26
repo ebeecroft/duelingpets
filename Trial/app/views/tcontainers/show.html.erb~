@@ -9,6 +9,6 @@
        <%# end %>
 <% end %>
 </div>
-<br>
+
 <%= link_to 'Edit', edit_tcontainer_path(@tcontainer) %> |
 <%= link_to 'Back', tcontainers_path %>

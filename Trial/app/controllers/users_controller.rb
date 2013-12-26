@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   require 'date'
-  before_filter :signed_in_user, :only =>[:edit, :update]
+  before_filter :signed_in_user, :only =>[:edit, :update, :destroy]
   before_filter :correct_user, :only=>[:edit, :update]
+  before_filter :admin, :only=>[:destory]
   # GET /users
   # GET /users.json
   def index
@@ -21,10 +22,14 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find_by_vname(params[:id])
-    @pouch = Pouch.find_by_id(@user.id)
-    @count = 0
-    @user.comments.each do |comment|
-       @count+=1
+    if @user
+       @pouch = Pouch.find_by_id(@user.id)
+       @count = 0
+       @user.comments.each do |comment|
+          @count+=1
+       end
+    else
+       render "public/404"
     end
     #raise "I am here"
 
@@ -105,6 +110,10 @@ class UsersController < ApplicationController
 
      def correct_user
         @user = User.find_by_vname(params[:id])
-        redirect_to root_path unless current_user?(@user)
+        redirect_to root_path unless (current_user?(@user) || current_user.admin?)
+     end
+
+     def admin
+        redirect_to root_path unless (current_user && current_user.admin?)
      end
 end

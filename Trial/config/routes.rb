@@ -1,5 +1,8 @@
 Trial::Application.routes.draw do
 
+#  resources :forums
+
+
   resources :suggestions, :except =>[:edit, :update, :show]
 
 
@@ -12,6 +15,7 @@ Trial::Application.routes.draw do
       resources :pouches, :only => [:index, :create, :new]
       resources :inventories, :except =>[:show, :edit, :update]
       resources :comments, :only => [:create, :destroy, :index]
+      resources :forums
    end
 
    #Builds the pet and item actions
@@ -30,6 +34,9 @@ Trial::Application.routes.draw do
       put '/fights/:id(.:format)' => 'fights#runner'
       resources :fights, :except => [:edit, :update]
    end
+
+   #Builds the forum index page and nested routes
+   resources :forums, :only =>[:index]
 
    #Builds the container for the topics and the nested routes
    resources :tcontainers do

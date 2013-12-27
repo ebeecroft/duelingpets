@@ -7,7 +7,7 @@
    <% else %>
       $<%= @user.vname %>
    <% end %>
-   <% if !current_user.nil? && @user.id == current_user.id || current_user.admin? %>
+   <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
    <tr>
       <td><b>First name:</b> <%= @user.first_name %></td>
       <td><b>Last name:</b> <%= @user.last_name %></td>
@@ -26,6 +26,8 @@
    <%= render 'userinfo', object: @user %>
    <% end %>
 </table>
+
+<%= link_to 'New Forum', new_user_forum_path(@user) %>
 
 <% if @count > 0 %>
 <div>

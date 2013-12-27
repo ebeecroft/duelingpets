@@ -1,6 +1,9 @@
 Trial::Application.routes.draw do
 
-  resources :tcontainers
+  resources :suggestions, :except =>[:edit, :update, :show]
+
+
+#  resources :tcontainers
 
 
    #Builds the users actions and the nested actions

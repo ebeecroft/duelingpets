@@ -1,6 +1,7 @@
 <div class="nav_style" id="pizzapie">
    <%= link_to "Home", root_path %><!---Same--->
    <%= link_to "Adopt a Pet", pets_path %><!---Same-->
+   <%= link_to "Suggestions", new_suggestion_path %>
 
    <% if !current_user %>
       <%= render 'layouts/forumlink' %>

@@ -6,14 +6,14 @@
       <%= render 'layouts/forumlink' %>
    <% else %>
       <%= link_to "My Pets", user_petowners_path(current_user.vname) %><!---Different--->
-      <%= link_to "Shop", items_path %><!---Different--->
+      <%= render 'layouts/shoplink' %>
       <%= link_to "My Inventory", user_inventories_path(current_user.vname) %><!--Different-->
    <% end %>
 
    <%= link_to "Fight Monsters", pets_monsters_path %><!---Same-->
 
    <% if !current_user %>
-      <%= link_to "Shop", items_path %><!--Different--->
+      <%= render 'layouts/shoplink' %>
    <% else %>
       <%= render 'layouts/forumlink' %>
    <% end %>

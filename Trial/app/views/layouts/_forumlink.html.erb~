@@ -1,1 +1,1 @@
-<%#= link_to "Forum", tcontainer_maintopics_path %>
+<%= link_to "Forum", tcontainers_path %>

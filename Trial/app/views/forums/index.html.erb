@@ -1,7 +1,7 @@
 <h1><% if !@user %>
        Listing forums
     <% else %>
-       <%= @user.name %>'s forums
+       <%= @user.vname %>'s forums
     <% end %>
 </h1>
 
@@ -9,7 +9,9 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <% if !@user %>
     <th>User</th>
+    <% end %>
     <th></th>
     <th></th>
     <th></th>
@@ -17,9 +19,11 @@
 
 <% @forums.each do |forum| %>
   <tr>
-    <td><%= forum.name %></td>
+    <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
     <td><%= forum.description %></td>
+    <% if !@user %>
     <td><%= forum.user.vname %></td>
+    <% end %>
     <td><%#= link_to 'Show', forum %></td>
     <td><%#= link_to 'Edit', edit_forum_path(forum) %></td>
     <td><%#= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>

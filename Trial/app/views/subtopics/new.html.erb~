@@ -3,4 +3,5 @@
 <%= render 'form' %>
 
 <%#= link_to 'Back', subtopics_path %>
-<%= link_to 'Back', maintopics_path %>
+<%#= link_to 'Back', maintopics_path %>
+<%= link_to 'Back', tcontainer_maintopic_path(@tcontainer, @maintopic) %>

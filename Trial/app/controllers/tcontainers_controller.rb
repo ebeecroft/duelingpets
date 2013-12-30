@@ -24,7 +24,9 @@ class TcontainersController < ApplicationController
   # GET /tcontainers/new
   # GET /tcontainers/new.json
   def new
-    @tcontainer = Tcontainer.new
+    @forum = Forum.find(params[:forum_id])
+    @tcontainer = @forum.tcontainers.build
+#    @tcontainer = Tcontainer.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,16 +42,12 @@ class TcontainersController < ApplicationController
   # POST /tcontainers
   # POST /tcontainers.json
   def create
-    @tcontainer = Tcontainer.new(params[:tcontainer])
-
-    respond_to do |format|
-      if @tcontainer.save
-        format.html { redirect_to @tcontainer, notice: 'Tcontainer was successfully created.' }
-        format.json { render json: @tcontainer, status: :created, location: @tcontainer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @tcontainer.errors, status: :unprocessable_entity }
-      end
+    @forum = Forum.find(params[:forum_id])
+    @tcontainer = @forum.tcontainers.new(params[:tcontainer])
+    if @tcontainer.save
+        redirect_to forum_tcontainer_path(@forum, @tcontainer), notice: 'Tcontainer was successfully created.' 
+    else
+        render action: "new"
     end
   end
 

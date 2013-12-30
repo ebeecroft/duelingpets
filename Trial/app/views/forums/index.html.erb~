@@ -1,4 +1,9 @@
-<h1>Listing forums</h1>
+<h1><% if !@user %>
+       Listing forums
+    <% else %>
+       <%= @user.vname %>'s forums
+    <% end %>
+</h1>
 
 <table>
   <tr>
@@ -12,7 +17,7 @@
 
 <% @forums.each do |forum| %>
   <tr>
-    <td><%= forum.name %></td>
+    <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
     <td><%= forum.description %></td>
     <td><%= forum.user.vname %></td>
     <td><%#= link_to 'Show', forum %></td>

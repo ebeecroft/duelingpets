@@ -15,6 +15,7 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/1
   # GET /maintopics/1.json
   def show
+    @tcontainer = Tcontainer.find(params[:tcontainer_id])
     @maintopic = Maintopic.find(params[:id])
 
 #    @subtopic = @maintopic.subtopics.all

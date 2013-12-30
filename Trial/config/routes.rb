@@ -36,10 +36,12 @@ Trial::Application.routes.draw do
    end
 
    #Builds the forum index page and nested routes
-   resources :forums, :only =>[:index]
+   resources :forums, :only =>[:index] do
+      resources :tcontainers
+   end
 
    #Builds the container for the topics and the nested routes
-   resources :tcontainers do
+   resources :tcontainers, :only =>[] do
       resources :maintopics
    end
 

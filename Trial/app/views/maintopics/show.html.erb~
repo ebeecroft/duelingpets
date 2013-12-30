@@ -21,4 +21,4 @@
 <p><%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %></p>
 <br>
 <% end %>
-<p><%= link_to 'Back', tcontainers_path %></p>
+<p><%= link_to 'Back', tcontainer_path(@maintopic.tcontainer_id) %></p>

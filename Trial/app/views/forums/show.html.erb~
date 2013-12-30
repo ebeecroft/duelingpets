@@ -29,15 +29,16 @@
 <tr>
     <td><h1><%= link_to tcontainer.name, forum_tcontainer_path(@forum, tcontainer) %></h1></td>
   </tr>
-  <% if !tcontainer.maintopics.empty? %>
   <tr>
     <td><div style="border: 1px solid;">I am a giant box to contain things for<%= tcontainer.name %>
+    <% if tcontainer.maintopics.empty? %>
+       <% raise "I am empty" %>
+    <% end %>
     <% tcontainer.maintopics.each do |maintopic| %>
        <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(tcontainer, maintopic) %></p>
     <% end %>
     </div></td>
   </tr>
-  <% end %>
   <tr>
     <td><%#= tcontainer.forum_id %></td>
     <td><%#= link_to 'Edit', edit_tcontainer_path(tcontainer) %></td>

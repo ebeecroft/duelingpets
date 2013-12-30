@@ -24,7 +24,9 @@ class TcontainersController < ApplicationController
   # GET /tcontainers/new
   # GET /tcontainers/new.json
   def new
-    @tcontainer = Tcontainer.new
+    @forum = Forum.find(params[:forum_id])
+    @tcontainer = @forum.tcontainers.build
+#    @tcontainer = Tcontainer.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +42,8 @@ class TcontainersController < ApplicationController
   # POST /tcontainers
   # POST /tcontainers.json
   def create
+    @forum = Forum.find(params[:forum_id])
+    @tcontainer = @forum.tcontainers.new(params[:tcontainer])
     @tcontainer = Tcontainer.new(params[:tcontainer])
 
     respond_to do |format|

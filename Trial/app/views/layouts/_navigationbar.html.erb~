@@ -1,10 +1,12 @@
 <div class="nav_style" id="pizzapie">
    <%= link_to "Home", root_path %><!---Same--->
    <%= link_to "Adopt a Pet", pets_path %><!---Same-->
+   <%= link_to "Suggestions", new_suggestion_path %>
 
    <% if !current_user %>
       <%= render 'layouts/forumlink' %>
    <% else %>
+      <%= link_to "My Forums", user_forums_path(current_user.vname) %>
       <%= link_to "My Pets", user_petowners_path(current_user.vname) %><!---Different--->
       <%= render 'layouts/shoplink' %>
       <%= link_to "My Inventory", user_inventories_path(current_user.vname) %><!--Different-->

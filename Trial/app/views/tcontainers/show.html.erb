@@ -2,13 +2,21 @@
 
 <p><h1 class="forumheader"><%= @tcontainer.name %></h1></p>
 <br>
+<% if !@tcontainer.maintopics.empty? %>
 <div style="border: 1px solid;">
 <% @tcontainer.maintopics.each do |maintopic| %>
        <%# if topic.seperator_id == seperator.id %>
           <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(@tcontainer, maintopic) %></p>
        <%# end %>
 <% end %>
+    <br>
+<% end %>
+<% if current_user %>
+    <p><%= link_to "New Topic", new_tcontainer_maintopic_path(@tcontainer) %></p>
+    <% end %>
+<% if !@tcontainer.maintopics.empty? %>
 </div>
 <br>
-<%= link_to 'Edit', edit_tcontainer_path(@tcontainer) %> |
-<%= link_to 'Back', tcontainers_path %>
+<% end %>
+<%#= link_to 'Edit', edit_tcontainer_path(@tcontainer) %> |
+<%= link_to 'Back', forums_path %>

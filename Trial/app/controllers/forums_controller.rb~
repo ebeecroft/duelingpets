@@ -2,7 +2,17 @@ class ForumsController < ApplicationController
   # GET /forums
   # GET /forums.json
   def index
-    @forums = Forum.all
+    @user = User.find_by_vname(params[:user_id])
+    if @user.nil?
+       if params[:user_id]
+          #raise "I am not empty"
+          render "public/404"
+          return
+       end
+       @forums = Forum.all
+    else
+       @forums = @user.forums.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,7 +59,7 @@ class ForumsController < ApplicationController
 
     respond_to do |format|
       if @forum.save
-        format.html { redirect_to user_forum(@user.id, @forum), notice: 'Forum was successfully created.' }
+        format.html { redirect_to user_forum(@user, @forum), notice: 'Forum was successfully created.' }
         format.json { render json: @forum, status: :created, location: @forum }
       else
         format.html { render action: "new" }

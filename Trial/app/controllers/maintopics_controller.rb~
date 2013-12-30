@@ -2,7 +2,9 @@ class MaintopicsController < ApplicationController
   # GET /maintopics
   # GET /maintopics.json
   def index
-    @maintopics = Maintopic.all
+    @tcontainer = Tcontainer.find(params[:tcontainer_id])
+    @maintopics = @tcontainer.maintopics.all
+#    @maintopics = Maintopic.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +15,8 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/1
   # GET /maintopics/1.json
   def show
+    @tcontainer = Tcontainer.find(params[:tcontainer_id])
+    @subtopic = Subtopic.find(params[:id])
     @maintopic = Maintopic.find(params[:id])
 
 #    @subtopic = @maintopic.subtopics.all

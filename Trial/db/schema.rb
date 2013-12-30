@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131230150358) do
+ActiveRecord::Schema.define(:version => 20131230184745) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.string   "author"
     t.text     "message"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.boolean  "maintenance"
-    t.date     "created_on"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.datetime "created_on"
+    t.boolean  "maintenance", :default => false
   end
 
   create_table "equips", :force => true do |t|
@@ -33,13 +33,15 @@ ActiveRecord::Schema.define(:version => 20131230150358) do
   create_table "fights", :force => true do |t|
     t.integer  "petowner_id"
     t.integer  "pet_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "round"
-    t.integer  "damage"
-    t.boolean  "miss"
-    t.integer  "monster_current_hp"
-    t.boolean  "battle_done",        :default => false
+    t.integer  "pdamage"
+    t.integer  "mdamage"
+    t.boolean  "p_miss",      :default => false
+    t.boolean  "m_miss",      :default => false
+    t.integer  "mhp"
+    t.boolean  "battle_done", :default => false
   end
 
   create_table "forums", :force => true do |t|
@@ -62,26 +64,26 @@ ActiveRecord::Schema.define(:version => 20131230150358) do
     t.string   "name"
     t.text     "description"
     t.datetime "created_on"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "hp"
     t.integer  "atk"
     t.integer  "def"
     t.integer  "spd"
     t.integer  "cost"
-    t.boolean  "manyuses"
-    t.string   "type"
     t.string   "ipicture"
+    t.string   "type"
+    t.boolean  "manyuses",    :default => false
   end
 
   create_table "maintopics", :force => true do |t|
     t.integer  "user_id"
     t.string   "topicname"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.date     "created_on"
-    t.boolean  "maintenance"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.datetime "created_on"
+    t.boolean  "maintenance",   :default => false
     t.integer  "tcontainer_id"
   end
 
@@ -89,10 +91,10 @@ ActiveRecord::Schema.define(:version => 20131230150358) do
     t.integer  "subtopic_id"
     t.integer  "user_id"
     t.text     "story"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.date     "created_on"
-    t.boolean  "maintenance"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.datetime "created_on"
+    t.boolean  "maintenance", :default => false
   end
 
   create_table "petowners", :force => true do |t|
@@ -117,16 +119,16 @@ ActiveRecord::Schema.define(:version => 20131230150358) do
     t.datetime "created_on"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.boolean  "monster",      :default => false
-    t.boolean  "reviewed",     :default => false
-    t.string   "created_by"
-    t.string   "image"
     t.integer  "level",        :default => 1
     t.integer  "hp",           :default => 1
     t.integer  "atk",          :default => 1
     t.integer  "def",          :default => 1
     t.integer  "spd",          :default => 1
     t.integer  "cost",         :default => 1
+    t.string   "image"
+    t.boolean  "monster",      :default => false
+    t.string   "created_by"
+    t.boolean  "reviewed",     :default => false
   end
 
   create_table "pouches", :force => true do |t|
@@ -141,10 +143,10 @@ ActiveRecord::Schema.define(:version => 20131230150358) do
     t.integer  "user_id"
     t.string   "topicname"
     t.text     "description"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.date     "created_on"
-    t.boolean  "maintenance"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.datetime "created_on"
+    t.boolean  "maintenance",  :default => false
   end
 
   create_table "suggestions", :force => true do |t|

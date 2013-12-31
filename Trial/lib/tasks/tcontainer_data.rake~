@@ -13,9 +13,9 @@ namespace :db do
       basics.save
 
       #Builds Misc container
-      basics = Tcontainer.create!(name: "Misc",
+      misc = Tcontainer.create!(name: "Misc",
                            forum_id: 1)
-      basics.user_id = 1
-      basics.save
+      misc.user_id = 1
+      misc.save
    end
 end

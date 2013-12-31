@@ -9,12 +9,7 @@
   <b>Description:</b>
   <%= @forum.description %>
 </p>
-
-<p>
-  <b>User:</b>
-  <%= @forum.user_id %>
-</p>
-
+<br>
 <table>
   <tr>
     <th><!---Name--></th>
@@ -23,7 +18,6 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @forum.tcontainers.each do |tcontainer| %>
 
 <tr>
@@ -31,9 +25,10 @@
   </tr>
   <% if !tcontainer.maintopics.empty? %>
   <tr>
-    <td><div style="border: 1px solid;">I am a giant box to contain things for<%= tcontainer.name %>
+    <td><div style="border: 1px solid;">
     <% tcontainer.maintopics.each do |maintopic| %>
        <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(tcontainer, maintopic) %></p>
+       <p><%= maintopic.description %></p>
     <% end %>
     </div></td>
   </tr>

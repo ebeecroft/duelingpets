@@ -1,11 +1,5 @@
 namespace :db do
    task populate: :environment do
-      #Builds Registraion container
-      registration = Tcontainer.create!(name: "Registration",
-                           forum_id: 1)
-      registration.user_id = 1
-      registration.save
-
       #Builds Basic container
       basics = Tcontainer.create!(name: "Basics",
                            forum_id: 1)

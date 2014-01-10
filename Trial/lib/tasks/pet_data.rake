@@ -1,6 +1,6 @@
 namespace :db do
    task populate: :environment do
-      image_location = "/home/eric/Desktop"
+      image_location = "/home/eric/Desktop/Gallery"
 
       #Builds the pet species Rooling
       rooling = Pet.create!(species_name: "Rooling",
@@ -15,7 +15,8 @@ namespace :db do
       rooling.cost = 50
       rooling.created_by = "mmole"
       rooling.created_on = Time.now
-      rooling.reviewed = true
+      rooling.toggle!(:reviewed)
+      rooling.toggle!(:starter)
       rooling.save
 
       #Builds the pet species Hooty
@@ -31,7 +32,8 @@ namespace :db do
       hooty.cost = 50
       hooty.created_by = "mmole"
       hooty.created_on = Time.now
-      hooty.reviewed = true
+      hooty.toggle!(:reviewed)
+      hooty.toggle!(:starter)
       hooty.save
 
       #Builds the pet species Stalk
@@ -47,7 +49,8 @@ namespace :db do
       stalk.cost = 50
       stalk.created_by = "mmole"
       stalk.created_on = Time.now
-      stalk.reviewed = true
+      stalk.toggle!(:reviewed)
+      stalk.toggle!(:starter)
       stalk.save
    end
 end

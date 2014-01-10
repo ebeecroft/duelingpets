@@ -5,7 +5,7 @@
          <div class="outer">
             <p><%= link_to pet.species_name, pet %>
             <!--Prevents a visting user from seeing the radio button of a pet if not logged in -->
-            <% if !current_user.nil? %> <!---Difference when current_user is nil-->
+            <% if !current_user.nil? && !@mypets.empty? %> <!---Difference when current_user is nil-->
                <%= radio_button_tag :pet_id, pet.id %>
             <% end %>
             </p>

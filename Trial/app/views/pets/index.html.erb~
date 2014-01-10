@@ -9,7 +9,11 @@
    <!--Checks if the current user is signed in -->
    <% if !current_user.nil? %>
       <%= form_tag(new_user_petowner_path(current_user), method: "get") do %>
-         <%= render 'petinfo' %>
+         <% if !current_user.petowners.empty? %>
+            <%= render 'petinfo' %>
+         <% else %>
+            <%= render 'petinfo2' %>
+         <% end %>
          <div class="outer"></div>
          <div class="petcontainer"><%= submit_tag("Adopt Selected Pet") %></div>
       <% end %>
@@ -21,7 +25,7 @@
 <!--Prevents a visting user from creating a pet if not logged in -->
 <br>
 <% if !current_user.nil? %>
-   <p><%= link_to 'Create a New Pet', new_pet_path %></p>
+   <p class="petcontainer"><%= link_to 'Create a New Pet', new_pet_path %></p>
 <% end %>
 
 <br>

@@ -7,5 +7,6 @@ class AddStatsToPetowners < ActiveRecord::Migration
     add_column :petowners, :spd, :integer
     add_column :petowners, :exp, :integer, default: 0
     add_column :petowners, :hp_max, :integer
+    add_column :petowners, :in_battle, :boolean, default: false
   end
 end

@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(:version => 20131230184745) do
     t.integer  "pet_id"
     t.string   "pet_name"
     t.datetime "adopted_on"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "level"
     t.integer  "hp"
     t.integer  "atk"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20131230184745) do
     t.integer  "spd"
     t.integer  "exp",        :default => 0
     t.integer  "hp_max"
+    t.boolean  "in_battle",  :default => false
   end
 
   create_table "pets", :force => true do |t|
@@ -129,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20131230184745) do
     t.boolean  "monster",      :default => false
     t.string   "created_by"
     t.boolean  "reviewed",     :default => false
+    t.boolean  "starter",      :default => false
   end
 
   create_table "pouches", :force => true do |t|

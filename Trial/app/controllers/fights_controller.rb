@@ -169,6 +169,7 @@ class FightsController < ApplicationController
            @pouch.save
         end
         @fight.battle_done = true
+        @petowner.in_battle = false
      end
 
      #Update petowners status by calling save on petowner
@@ -243,14 +244,16 @@ class FightsController < ApplicationController
      @petowner = Petowner.find_by_id(params[:pickpet][:petoid])
      @pet = Pet.find_by_id(params[:pet_id])
      @fight = @petowner.fights.build
-     
      if @pet  
        @fight.pet_id = @pet.id
-       @fight.monster_current_hp = @pet.hp
+       @fight.mhp = @pet.hp
+       @petowner.in_battle = true
      else
         raise "You are a really dumb user"
      end
+
       if @fight.save
+        @petowner.save
         redirect_to petowner_fight_path(@petowner, @fight)
       else
         render "new"

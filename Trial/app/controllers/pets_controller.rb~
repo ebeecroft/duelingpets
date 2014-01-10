@@ -19,11 +19,12 @@ class PetsController < ApplicationController
              #   @selected_pet = pet.select
              #end
          end
-         @mypets = current_user.petowners.select{|pet| pet.hp !=0}
+         @mypets = current_user.petowners.select{|pet| pet.in_battle != true or pet.hp !=0}
       end
 
       @pets = Pet.all
       @count = 0
+      @count3 = 0
       @pets.each do |pet|
          if pet.reviewed? && pet.monster?
             @count+=1

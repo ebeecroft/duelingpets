@@ -33,7 +33,7 @@ namespace :db do
       hooty.created_by = "mmole"
       hooty.created_on = Time.now
       hooty.toggle!(:reviewed)
-      hotty.toggle!(:starter)
+      hooty.toggle!(:starter)
       hooty.save
 
       #Builds the pet species Stalk

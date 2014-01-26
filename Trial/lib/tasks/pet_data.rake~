@@ -1,6 +1,6 @@
 namespace :db do
    task populate: :environment do
-      image_location = "/home/eric/Desktop/Gallery"
+      image_location = "/var/www/duelingpets.net/Gallery"
 
       #Builds the pet species Rooling
       rooling = Pet.create!(species_name: "Rooling",

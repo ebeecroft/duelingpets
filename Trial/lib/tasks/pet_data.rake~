@@ -1,6 +1,6 @@
 namespace :db do
    task populate: :environment do
-      image_location = "/../../../../Gallery"
+      image_location = "/var/www/162.243.59.103/public_html/Gallery"
 
       #Builds the pet species Rooling
       rooling = Pet.create!(species_name: "Rooling",

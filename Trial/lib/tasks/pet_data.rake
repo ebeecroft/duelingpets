@@ -52,5 +52,21 @@ namespace :db do
       stalk.toggle!(:reviewed)
       stalk.toggle!(:starter)
       stalk.save
+
+      #Builds the monster Mousling
+      mousling = Pet.create!(species_name: "Mousling",
+                          description: "An evil mouse from the chedder forces.",
+                          image: File.open(File.join(image_location, 'mousecakeredone.png')),
+                          hp: 10,
+                          atk: 5,
+                          def: 5,
+                          spd: 5,
+                          monster: true)
+      mousling.level = 1
+      mousling.cost = 50
+      mousling.created_by = "mmole"
+      mousling.created_on = Time.now
+      mousling.toggle!(:reviewed)
+      mousling.save
    end
 end

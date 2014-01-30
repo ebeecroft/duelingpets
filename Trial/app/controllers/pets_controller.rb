@@ -111,8 +111,6 @@ class PetsController < ApplicationController
       #flash[:success]
       @invalid = 0
 
-      raise "I work after the invalid variable"
-
          if @pet.hp < 10
             @invalid = 1
             flash[:notice] = "HP is lower then the minimum of 10 please correct" #{@contact.name}.

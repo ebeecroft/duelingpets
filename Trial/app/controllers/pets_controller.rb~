@@ -111,30 +111,33 @@ class PetsController < ApplicationController
       #flash[:success]
       @invalid = 0
 
-      if @pet.hp < 10 || @pet.atk < 5 || @pet.def < 5 || @pet.spd < 5
          if @pet.hp < 10
             @invalid = 1
             flash[:notice] = "HP is lower then the minimum of 10 please correct" #{@contact.name}.
+            render "new"
+            return
          end
 
          if @pet.atk < 5 && @invalid!=1
             @invalid = 1
             flash[:notice] = "ATK is lower then the minimum of 5 please correct"
+            render "new"
+            return
          end
 
          if @pet.def < 5 && @invalid!=1
             @invalid = 1
             flash[:notice] = "DEF is lower then the minimum of 5 please correct"
+            render "new"
+            return
          end
 
          if @pet.spd < 5 && @invalid!=1
             @invalid = 1
             flash[:notice] = "SPD is lower then the minimum of 5 please correct"
+            render "new"
+            return
          end
-
-         render "new"
-         return
-      end
 
       #    @pet.cost = (1+(@pet.hp/10) + (@pet.atk/5) + (@pet.def/5) + (@pet.spd/5))*10
       health = @pet.hp

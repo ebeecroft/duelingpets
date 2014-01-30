@@ -246,7 +246,7 @@ class FightsController < ApplicationController
      @fight = @petowner.fights.build
      if @pet  
        @fight.pet_id = @pet.id
-       @fight.monster_current_hp = @pet.hp
+       @fight.mhp = @pet.hp
        @petowner.in_battle = true
      else
         raise "You are a really dumb user"

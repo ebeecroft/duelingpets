@@ -47,13 +47,13 @@ class FightsController < ApplicationController
      m_def = @fight.pet.def
      m_atk = @fight.pet.atk
      m_spd = @fight.pet.spd
-     m_hp = @fight.monster_current_hp #this one
+     m_hp = @fight.mhp #this one
 
      puts '*'*50
      puts '*'*50
 
      #Global variables for hp
-     global_monster_hp = @fight.monster_current_hp
+     global_monster_hp = @fight.mhp
      global_pet_hp = @petowner.hp
 
      if p_hp > 0 && m_hp > 0
@@ -74,10 +74,10 @@ class FightsController < ApplicationController
            puts "pet damage = #{c_p_damage}"
            mhp_now = 0
            #Sets the current hp remaining after damage is taken
-           if @fight.monster_current_hp > c_p_damage
-              mhp_now = @fight.monster_current_hp - c_p_damage
+           if @fight.mhp > c_p_damage
+              mhp_now = @fight.mhp - c_p_damage
            end
-           @fight.monster_current_hp = mhp_now
+           @fight.mhp = mhp_now
            global_monster_hp = mhp_now
         else
            puts "The pets attack missed!"

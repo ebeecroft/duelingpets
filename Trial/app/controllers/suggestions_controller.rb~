@@ -2,11 +2,15 @@ class SuggestionsController < ApplicationController
   # GET /suggestions
   # GET /suggestions.json
   def index
-    @suggestions = Suggestion.all
+    if current_user && current_user.admin?
+       @suggestions = Suggestion.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @suggestions }
+       respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @suggestions }
+       end
+    else
+       render "public/404"
     end
   end
 

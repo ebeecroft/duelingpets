@@ -10,7 +10,7 @@ namespace :db do
                           atk: 0,
                           def: 0,
                           spd: 0,
-                          cost: 36
+                          cost: 36,
                           manyuses: false)
       mascot.save
 
@@ -22,7 +22,7 @@ namespace :db do
                           atk: 5,
                           def: 0,
                           spd: 2,
-                          cost: 35
+                          cost: 35,
                           manyuses: true)
       pinofdoom.save
 
@@ -34,7 +34,7 @@ namespace :db do
                           atk: 0,
                           def: 4,
                           spd: 0,
-                          cost: 33
+                          cost: 33,
                           manyuses: true)
       shield.save
 
@@ -46,7 +46,7 @@ namespace :db do
                           atk: 2,
                           def: 8,
                           spd: 3,
-                          cost: 38
+                          cost: 38,
                           manyuses: true)
       climber.save
 
@@ -58,7 +58,7 @@ namespace :db do
                           atk: 0,
                           def: 0,
                           spd: 2,
-                          cost: 32
+                          cost: 32,
                           manyuses: true)
       smallboost.save
 
@@ -70,7 +70,7 @@ namespace :db do
                           atk: 0,
                           def: 0,
                           spd: 5,
-                          cost: 34
+                          cost: 34,
                           manyuses: true)
       mediumboost.save
 
@@ -82,7 +82,7 @@ namespace :db do
                           atk: 3,
                           def: 0,
                           spd: 1,
-                          cost: 33
+                          cost: 33,
                           manyuses: true)
       slapper.save
    end

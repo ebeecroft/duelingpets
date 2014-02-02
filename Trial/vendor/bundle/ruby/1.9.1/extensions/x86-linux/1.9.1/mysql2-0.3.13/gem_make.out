@@ -1,0 +1,35 @@
+/usr/local/rvm/rubies/ruby-1.9.3-p484/bin/ruby extconf.rb 
+checking for rb_thread_blocking_region()... yes
+checking for rb_wait_for_single_fd()... yes
+checking for rb_hash_dup()... yes
+checking for rb_intern3()... yes
+checking for mysql.h... yes
+checking for errmsg.h... yes
+checking for mysqld_error.h... yes
+creating Makefile
+
+make  clean
+
+make
+compiling client.c
+client.c: In function ‘rb_raise_mysql2_error’:
+client.c:139:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+client.c: In function ‘rb_mysql_client_abandon_results’:
+client.c:535:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+client.c: In function ‘rb_mysql_client_socket’:
+client.c:809:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+client.c: In function ‘rb_mysql_client_next_result’:
+client.c:938:5: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+compiling result.c
+result.c: In function ‘rb_mysql_result_fetch_row’:
+result.c:280:15: warning: variable ‘tokens’ set but not used [-Wunused-but-set-variable]
+result.c:295:15: warning: variable ‘tokens’ set but not used [-Wunused-but-set-variable]
+result.c:339:15: warning: variable ‘tokens’ set but not used [-Wunused-but-set-variable]
+result.c: In function ‘rb_mysql_result_fetch_fields’:
+result.c:407:35: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+compiling mysql2_ext.c
+linking shared-object mysql2/mysql2.so
+
+make  install
+/usr/bin/install -c -m 0755 mysql2.so /var/www/162.243.59.103/public_html/duelingpets.git/Trial/vendor/bundle/ruby/1.9.1/gems/mysql2-0.3.13/ext/mysql2/.gem.20140202-9771-1rhvm3p/mysql2
+installing default mysql2 libraries

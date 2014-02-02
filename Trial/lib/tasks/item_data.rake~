@@ -76,7 +76,7 @@ namespace :db do
 
       #Build the item Slapper
       slapper = Item.create!(name: "Slapper",
-                          description: "A light weapon for attacking evil monsters.",
+                          description: "A light weapon for attacking.",
                           ipicture: File.open(File.join(ipicture_location, 'slapper.jpg')),
                           hp: 0,
                           atk: 3,

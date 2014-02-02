@@ -9,5 +9,15 @@ namespace :db do
       admin.toggle!(:admin)
       admin.joined_on = Date.today
       admin.save
+
+      #Builds petcreator who is in charge of the pets
+      petcreator = User.create!(first_name: "Pet",
+                           last_name: "Creator",
+                           email: "petcreator@duelingpets.net",
+                           vname: "petcreator",
+                           password: "petcreator",
+                           password_confirmation: "petcreator")
+      petcreator.joined_on = Date.today
+      petcreator.save
    end
 end

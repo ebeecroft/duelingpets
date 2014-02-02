@@ -13,7 +13,7 @@ namespace :db do
                           monster: false)
       rooling.level = 1
       rooling.cost = 50
-      rooling.created_by = "mmole"
+      rooling.created_by = "petcreator"
       rooling.created_on = Time.now
       rooling.toggle!(:reviewed)
       rooling.toggle!(:starter)
@@ -30,7 +30,7 @@ namespace :db do
                           monster: false)
       hooty.level = 1
       hooty.cost = 50
-      hooty.created_by = "mmole"
+      hooty.created_by = "petcreator"
       hooty.created_on = Time.now
       hooty.toggle!(:reviewed)
       hooty.toggle!(:starter)
@@ -47,10 +47,26 @@ namespace :db do
                           monster: false)
       stalk.level = 1
       stalk.cost = 50
-      stalk.created_by = "mmole"
+      stalk.created_by = "petcreator"
       stalk.created_on = Time.now
       stalk.toggle!(:reviewed)
       stalk.toggle!(:starter)
       stalk.save
+
+      #Builds the monster Mousling
+      mousling = Pet.create!(species_name: "Mousling",
+                          description: "An evil mouse from the chedder forces.",
+                          image: File.open(File.join(image_location, 'mousecakeredone.png')),
+                          hp: 10,
+                          atk: 5,
+                          def: 5,
+                          spd: 5,
+                          monster: true)
+      mousling.level = 1
+      mousling.cost = 50
+      mousling.created_by = "petcreator"
+      mousling.created_on = Time.now
+      mousling.toggle!(:reviewed)
+      mousling.save
    end
 end

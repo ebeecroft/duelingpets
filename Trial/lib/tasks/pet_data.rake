@@ -13,8 +13,8 @@ namespace :db do
                           monster: false)
       rooling.level = 1
       rooling.cost = 50
-      rooling.created_by = "mmole"
-      rooling.created_on = Time.now
+      rooling.created_by = "petcreator"
+      rooling.created_on = Date.today
       rooling.toggle!(:reviewed)
       rooling.toggle!(:starter)
       rooling.save
@@ -30,8 +30,8 @@ namespace :db do
                           monster: false)
       hooty.level = 1
       hooty.cost = 50
-      hooty.created_by = "mmole"
-      hooty.created_on = Time.now
+      hooty.created_by = "petcreator"
+      hooty.created_on = Date.today
       hooty.toggle!(:reviewed)
       hooty.toggle!(:starter)
       hooty.save
@@ -47,8 +47,8 @@ namespace :db do
                           monster: false)
       stalk.level = 1
       stalk.cost = 50
-      stalk.created_by = "mmole"
-      stalk.created_on = Time.now
+      stalk.created_by = "petcreator"
+      stalk.created_on = Date.today
       stalk.toggle!(:reviewed)
       stalk.toggle!(:starter)
       stalk.save
@@ -64,8 +64,8 @@ namespace :db do
                           monster: true)
       mousling.level = 1
       mousling.cost = 50
-      mousling.created_by = "mmole"
-      mousling.created_on = Time.now
+      mousling.created_by = "petcreator"
+      mousling.created_on = Date.today
       mousling.toggle!(:reviewed)
       mousling.save
    end

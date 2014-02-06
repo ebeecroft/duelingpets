@@ -1,34 +1,64 @@
 /* Code for my website standards */
-.petcontainer
+
+/* The code below this point sets up the header of my website */
+.headerbox
 {
-   display: inline-block;
-   margin-left: 75px;
+   max-width: 100%;
 }
 
-
-.imagerules
+.backgroundbox
 {
-   white-space: pre-wrap;
-   max-width: 40%;
-}
-.narrative_pre
-{
-   white-space: pre-wrap;
-   max-width: 75%;
+   max-width: 100%;
 }
 
-
-.narrative_text
+.forestbackground
 {
-  max-width: 500px;
-  word-wrap: break-word;
+   width: 100%;
+   height: 150px;
 }
 
-.forumheader
+.logo
 {
-   font-size: 24px;
-   font-weight: bold;
+  max-width: 100%;
+  font-size: 24px;
+  text-align:left;
+  font-weight: bold;
 }
+
+.profilebar
+{
+   max-width: 100%;
+   text-align: right;
+}
+
+.navigation
+{
+   max-width: 100%;
+   text-align: center;
+   padding: 8px;
+   background: #088A29;
+   font-family: 'Lucida Sans Unicode','Lucida Grande',Helvetica,Arial,sans-serif;
+   font-weight: bold; /*Looks better here*/
+}
+
+.navigation a
+{
+   text-decoration: none;
+   color: #faac58;
+   padding-left:5px;
+   padding-top:6px;
+   padding-bottom:6px;
+   padding-right:5px;
+}
+
+.pagecontent
+{
+   background-color: #F2F5A9;
+}
+
+/* End of Header section */
+
+/* Builds the lower pages */
 
 .pageheader
 {
@@ -36,11 +66,40 @@
   text-align:center;
 }
 
-.logo
+/* End of lower pages */
+
+.limittext
+{
+ width: 300px;
+padding-right:50px;
+word-wrap:break-word;
+}
+
+.imagerules
+{
+   white-space: pre-wrap;
+   max-width: 40%;
+}
+
+/* The Welcome page */
+.welcome
 {
   font-size: 24px;
-  text-align:left;
-  font-weight: bold;
+  text-align:center;
+}
+
+.imagecenter
+{
+text-align:center;
+}
+
+/* End of Welcome page */
+
+/* Builds the pets and monsters */
+.petcontainer
+{
+   display: inline-block;
+   margin-left: 75px;
 }
 
 .outer
@@ -53,60 +112,27 @@
    display: inline-block;
 }
 
-.limittext
+/* End of pets and monsters */
+
+/* Builds the forum */
+.forumheader
 {
- width: 300px;
-padding-right:50px;
-word-wrap:break-word;
+   font-size: 24px;
+   font-weight: bold;
 }
 
-body
+.narrative_pre
 {
-background-color:#F2F5A9;
+   white-space: pre-wrap;
+   max-width: 75%;
 }
 
-#pizzapie
+.narrative_text
 {
-text-align:center;
-width:100%;
-        height:16px;
-        float: center;
-        position: center;
-        background:#088A29;
-padding:8px;
-        
+  max-width: 500px;
+  word-wrap: break-word;
 }
 
-#pizzapie a
-{
-text-decoration:none;
-        color:#faac58;
-            padding-left:5px;
-padding-top:6px;
-padding-bottom:6px;
-        padding-right:5px;
-        font-family: 'Lucida Sans Unicode','Lucida Grande',Helvetica,Arial,sans-serif;
-        font-size:16px;
-        text-align: center;
-        font-weight:bold;
-vertical-align:text-middle;
-        
-}
+/* End of the forum */
 
-.userbar
-{
-   padding-left: 89.5%;
-   text-align:right;
-}
-
-.imagecenter
-{
-text-align:center;
-}
-
-.welcome
-{
-  font-size: 24px;
-  text-align:center;
-}
 /*Header class, footer class, navigation bar class, drop down menus,*/

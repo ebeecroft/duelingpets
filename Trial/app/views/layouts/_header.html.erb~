@@ -1,17 +1,14 @@
-<div class="inner">
-   <div class="logo">
-      DuelingPets.net
-   </div>
+<div class="backgroundbox">
+   <img src="../../../abie2.png" class="forestbackground"> <!--width=100% min-width=1000px height=150px--->
 </div>
-<div class="inner">
-   <div class="userbar">
-      <% if signed_in? %>
-         <%#= link_to "Users", '#' %>
-         <%= link_to current_user.vname, current_user %>
-         <%= link_to "Log out", logout_path, method: "delete" %>
-      <% else %>
-         <%= link_to "Sign in", signin_path %>
-         <%= link_to "Sign up", signup_path %>
-      <% end %>
-   </div>
+<!---Place div here--->
+<div class="logo">
+   DuelingPets.net
+</div>
+<div class="profilebar">
+   <%= render 'layouts/profile' %>
+</div>
+<br>
+<div class="navigation">
+   <%= render 'layouts/navigationbar' %>
 </div>

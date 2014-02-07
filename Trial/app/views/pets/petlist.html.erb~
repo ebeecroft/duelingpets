@@ -1,0 +1,42 @@
+<h1>Pet list</h1>
+
+<table>
+  <tr>
+    <th>Species Name</th>
+    <th>Pet Image</th>
+    <th>Description</th>
+    <th>Created By</th>
+    <th>Level</th>
+    <th>Health</th>
+    <th>Attack</th>
+    <th>Defense</th>
+    <th>Speed</th>
+    <th>Cost</th>
+    <th>Created On</th>
+    <th>Monster</th>
+    <th>Reviewed</th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+<table>
+<% @pets.each do |pet| %>
+  <tr>
+    <td><%= pet.species_name %></td>
+    <td>Image</td>
+    <td><%= pet.description %></td>
+    <td><%= pet.created_by %></td>
+    <td><%= pet.level %></td>
+    <td><%= pet.hp %></td>
+    <td><%= pet.atk %></td>
+    <td><%= pet.def %></td>
+    <td><%= pet.spd %></td>
+    <td><%= pet.cost %></td>
+    <td><%= pet.created_on %></td>
+    <td><%= pet.monster %></td>
+    <td><%= pet.reviewed %></td>
+    <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+    <td><%= link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

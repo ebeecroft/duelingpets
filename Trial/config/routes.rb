@@ -19,6 +19,7 @@ Trial::Application.routes.draw do
    end
 
    #Builds the pet and item actions
+   get '/pets/petlist' => 'pets#petlist'
    get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
    get '/pets/monsters' => 'pets#monsters'
    post '/pets/reviews' => 'pets#approve'

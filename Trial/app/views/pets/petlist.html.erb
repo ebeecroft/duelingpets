@@ -1,0 +1,59 @@
+<h1 class="pageheader">Pet list</h1>
+
+<% @pets.each do |pet| %>
+   <div class="petcontainer">
+      <div class="outer">
+         
+            <table>
+               <tr>
+                  <td><%= link_to pet.species_name, pet %>&nbsp;&nbsp;</td>
+                  <td><%= button_to 'Edit', edit_pet_path(pet), method: :get %>&nbsp;&nbsp;</td>
+                  <td><%= button_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               </tr>
+            </table>
+         
+      </div>
+      <div class="inner">
+         <p><%= image_tag pet.image_url(:thumb).to_s %></p>
+      </div>
+      <div class="inner">
+         <table>
+            <tr>
+               <td><b>Creator:</b> <%= pet.created_by %></td>
+            </tr>
+            <tr>
+               <td><b>Date:</b> <%= pet.created_on %></td>
+            </tr>
+            <tr>
+               <td><b>Level:</b> <%= pet.level %></td>
+            </tr>
+            <tr>
+               <td><b>Health:</b> <%= pet.hp %></td>
+            </tr>
+            <tr>
+               <td><b>Attack:</b> <%= pet.atk %></td>
+            </tr>
+            <tr>
+               <td><b>Defense:</b> <%= pet.def %></td>
+            </tr>
+            <tr>
+               <td><b>Speed:</b> <%= pet.spd %></td>
+            </tr>
+            <tr>
+               <td><b>Cost:</b> <%= pet.cost %></td>
+            </tr>
+            <tr>
+               <td><b>Monster:</b> <%= pet.monster %></td>
+            </tr>
+            <tr>
+               <td><b>Reviewed:</b> <%= pet.reviewed %></td>
+            </tr>
+         </table>
+      </div>
+      <div class="outer">
+         <p class="limittext"><%= pet.description %></p>
+      </div>
+   </div>
+   <div class="outer"></div>
+   <br>
+<% end %>

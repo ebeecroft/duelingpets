@@ -61,6 +61,10 @@ class PetsController < ApplicationController
       end
    end
 
+   def petlist
+      @pets = Pet.all
+   end
+
    def index
       @count = 0
       @count2 = 0
@@ -111,6 +115,8 @@ class PetsController < ApplicationController
       #flash[:success]
       @invalid = 0
 
+      #raise "I work after the invalid variable"
+
          if @pet.hp < 10
             @invalid = 1
             flash[:notice] = "HP is lower then the minimum of 10 please correct" #{@contact.name}.
@@ -139,6 +145,8 @@ class PetsController < ApplicationController
             return
          end
 
+      #raise "I work for succesful pet attributes"
+
       #    @pet.cost = (1+(@pet.hp/10) + (@pet.atk/5) + (@pet.def/5) + (@pet.spd/5))*10
       health = @pet.hp
       attack = @pet.atk
@@ -147,6 +155,8 @@ class PetsController < ApplicationController
 
       #Sends the Ruby data into the C++ calc program and retrieves the result
       results = `calc/calc #{health} #{attack} #{defense} #{speed}`
+      #raise "I work after sending my attributes to the c++ calc program"
+
       string_array = results.split(",")
       r_cost, r_level = string_array.map { |str| str.to_i }
 
@@ -154,6 +164,8 @@ class PetsController < ApplicationController
       @pet.level = r_level
       @pet.created_on = Date.today
       @pet.created_by = current_user.vname
+      #raise "I work after setting the pet cost, level, date of pet created and the creator of the pet"
+
       respond_to do |format|
          if @pet.save
             format.html { redirect_to pets_url, notice: 'Pet was successfully created.' }

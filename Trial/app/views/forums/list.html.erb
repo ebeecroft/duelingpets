@@ -1,0 +1,21 @@
+<h1 class="pageheader">Forum list</h1>
+
+<% @forums.each do |forum| %>
+   <div class="outer">
+   <table>
+      <tr>
+         <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
+         <td><%= button_to 'Edit', edit_user_forum_path(forum.user, forum), method: :get %></td>
+         <td><%= button_to 'Destroy', [forum.user, forum], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+   </table>
+   </div>
+   <div class="inner">
+         <p>Owner: <%= forum.user.vname %></p>   
+   </div>
+   <div class="outer">
+      <p class="limittext"><%= forum.description %></p>
+   </div>
+   <div class="outer"></div>
+   <br>
+<% end %>

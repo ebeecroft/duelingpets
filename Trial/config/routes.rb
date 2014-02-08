@@ -39,6 +39,7 @@ Trial::Application.routes.draw do
    end
 
    #Builds the forum index page and nested routes
+   get '/forums/list' => 'forums#list'
    resources :forums, :only =>[:index] do
       resources :tcontainers
    end

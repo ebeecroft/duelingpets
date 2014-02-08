@@ -1,6 +1,11 @@
 class ForumsController < ApplicationController
   # GET /forums
   # GET /forums.json
+
+  def list
+    @forums = Forum.all
+  end
+
   def index
     @user = User.find_by_vname(params[:user_id])
     if @user.nil?
@@ -48,6 +53,7 @@ class ForumsController < ApplicationController
 
   # GET /forums/1/edit
   def edit
+    @user = User.find_by_vname(params[:user_id])
     @forum = Forum.find(params[:id])
   end
 
@@ -75,7 +81,7 @@ class ForumsController < ApplicationController
 
     respond_to do |format|
       if @forum.update_attributes(params[:forum])
-        format.html { redirect_to @forum, notice: 'Forum was successfully updated.' }
+        format.html { redirect_to user_forum_path(@forum.user, @forum), notice: 'Forum was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -87,6 +93,7 @@ class ForumsController < ApplicationController
   # DELETE /forums/1
   # DELETE /forums/1.json
   def destroy
+    @user = User.find_by_vname(params[:user_id])
     @forum = Forum.find(params[:id])
     @forum.destroy
 

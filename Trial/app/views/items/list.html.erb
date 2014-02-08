@@ -1,0 +1,47 @@
+<h1 class="pageheader">Item list</h1>
+
+<% @items.each do |item| %>
+   <div class="petcontainer">
+      <div class="outer">
+         
+            <table>
+               <tr>
+                  <td><%= link_to item.name, item %>&nbsp;&nbsp;</td>
+                  <td><%= button_to 'Edit', edit_item_path(item), method: :get %>&nbsp;&nbsp;</td>
+                  <td><%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               </tr>
+            </table>
+         
+      </div>
+      <div class="inner">
+         <p><%= image_tag item.ipicture_url(:thumb).to_s %></p>
+      </div>
+      <div class="inner">
+         <table>
+            <tr>
+               <td><b>Health:</b> <%= item.hp %></td>
+            </tr>
+            <tr>
+               <td><b>Attack:</b> <%= item.atk %></td>
+            </tr>
+            <tr>
+               <td><b>Defense:</b> <%= item.def %></td>
+            </tr>
+            <tr>
+               <td><b>Speed:</b> <%= item.spd %></td>
+            </tr>
+            <tr>
+               <td><b>Cost:</b> <%= item.cost %></td>
+            </tr>
+            <tr>
+               <td><b>Re-Usable:</b> <%= item.manyuses %></td>
+            </tr>
+         </table>
+      </div>
+      <div class="outer">
+         <p class="limittext"><%= item.description %></p>
+      </div>
+   </div>
+   <div class="outer"></div>
+   <br>
+<% end %>

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
-  def shop
+  def list
      @items = Item.all
   end
   def index

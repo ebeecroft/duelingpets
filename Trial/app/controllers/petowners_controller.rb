@@ -12,6 +12,10 @@ class PetownersController < ApplicationController
       redirect_to root_url
    end
 
+  def list
+    @petowners = Petowner.all
+  end
+
   def index
 #    @subtopics = @maintopic.subtopics.all
     @user = User.find_by_vname(params[:user_id])

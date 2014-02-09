@@ -73,11 +73,8 @@ class PetownersController < ApplicationController
      @pet = Pet.find(@petowner.pet_id)
      free_pet = false
 
-     #Checks to see if the user owns a pet
-     if !current_user.petowners.empty?
-        #Allow any pet to be selected
-        raise "I have at least one pet"
-     else
+     #Checks to see if the user doesn't own a single pet
+     if current_user.petowners.empty?
         #Only allow starter pets to be selected
         if !@petowner.pet.starter?
            redirect_to pets_path

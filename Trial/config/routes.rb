@@ -11,10 +11,14 @@ Trial::Application.routes.draw do
       resources :forums
    end
 
+   #Builds the list actions for better admin support
+   get '/items/list' => 'items#list'
+   get 'equips/list' => 'equips#list'
    get '/petowners/list' => 'petowners#list'
+   get '/forums/list' => 'forums#list'
+   get '/pets/petlist' => 'pets#petlist'
 
    #Builds the pets actions
-   get '/pets/petlist' => 'pets#petlist'
    get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
    get '/pets/monsters' => 'pets#monsters'
    post '/pets/reviews' => 'pets#approve'
@@ -23,7 +27,6 @@ Trial::Application.routes.draw do
    resources :pets
 
    #Builds the items actions
-   get '/items/list' => 'items#list'
    resources :items
 
    #Builds the equips and fights actions
@@ -34,7 +37,6 @@ Trial::Application.routes.draw do
    end
 
    #Builds the forum index page and nested routes
-   get '/forums/list' => 'forums#list'
    resources :forums, :only =>[:index] do
       resources :tcontainers
    end

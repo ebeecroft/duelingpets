@@ -1,13 +1,6 @@
 Trial::Application.routes.draw do
 
-#  resources :forums
-
-
   resources :suggestions, :except =>[:edit, :update, :show]
-
-
-#  resources :tcontainers
-
 
    #Builds the users actions and the nested actions
    resources :users, :except => [:new] do
@@ -17,6 +10,8 @@ Trial::Application.routes.draw do
       resources :comments, :only => [:create, :destroy, :index]
       resources :forums
    end
+
+   get '/petowners/list' => 'petowners#list'
 
    #Builds the pets actions
    get '/pets/petlist' => 'pets#petlist'

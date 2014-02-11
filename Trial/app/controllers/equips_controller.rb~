@@ -77,7 +77,7 @@ puts "The value of inventory_id #{@inventory_id}"
      else
         #@leftoverpotion = @inventory.item.hp+@petowner.hp
         if @inventory.item.hp+@petowner.hp > @petowner.hp_max
-           @petowner.hp = @petowner.max_hp
+           @petowner.hp = @petowner.hp_max
            #@petowner.hp+=@inventory.item.hp
         else
            @petowner.hp+=@inventory.item.hp

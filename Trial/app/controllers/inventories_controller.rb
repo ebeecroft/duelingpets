@@ -3,6 +3,11 @@ class InventoriesController < ApplicationController
   # GET /inventories.json
 
 
+
+  def list
+     @inventories = Inventory.all
+  end
+
 #PUT    /users/:id(.:format)                                       users#update
   def use
       @user = User.find_by_vname(params[:user_id])

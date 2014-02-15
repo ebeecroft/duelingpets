@@ -1,6 +1,10 @@
 class FightsController < ApplicationController
   # GET /fights
   # GET /fights.json
+  
+  def list
+     @fights = Fight.all
+  end
 
      def runner
      #Collets information to be sent to C++ program

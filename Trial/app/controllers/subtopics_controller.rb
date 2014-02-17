@@ -2,8 +2,10 @@ class SubtopicsController < ApplicationController
   # GET /subtopics
   # GET /subtopics.json
   #before_filter :load_forum
+
+  before_filter :load_topic, :only => [:edit, :update, :show, :destroy]
   before_filter :load_maintopic, :only =>[:create, :index, :new]
-  before_filter :valid_maintopic_connections, :except =>[:create, :index, :new]
+
   def index
     @subtopics = @maintopic.subtopics.all
 
@@ -67,7 +69,7 @@ class SubtopicsController < ApplicationController
   def update
     respond_to do |format|
       if @subtopic.update_attributes(params[:subtopic])
-        format.html { redirect_to maintopic_subtopic_path([@maintopic]), notice: 'Subtopic was successfully updated.' }
+        format.html { redirect_to maintopic_subtopic_path([@maintopic, @subtopic]), notice: 'Subtopic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,30 +84,21 @@ class SubtopicsController < ApplicationController
     @subtopic.destroy
     
     respond_to do |format|
-      format.html { redirect_to maintopic_path(@maintopic) }
+      format.html { redirect_to tcontainer_maintopic_path(@maintopic.tcontainer_id, @maintopic.id) }
       format.json { head :no_content }
     end
   end
    private
-      def load_forum
-         if (params[:id])
-            @subtopic = Subtopic.find(params[:id])
-            @maintopic = @subtopic.maintopic #rescue redirect_to(maintopics_path)
-         elsif (params[:forum_id])
-            @maintopic = Maintopic.find(params[:maintopic_id])
-         else
-            #redirect_to(maintopics_path)
-            #echo "I am here."
-         end
+      def load_topic
+        @subtopic = Subtopic.find(params[:id])
+        @maintopic = Maintopic.find(@subtopic.maintopic_id)
+        @content = Maintopic.find(params[:maintopic_id])
+        if @content.id != @maintopic.id
+#           raise "I been tampered with and should redirect to the root page"
+           redirect_to root_url
+        end
       end
-      def valid_maintopic_connections
-         @maintopic = Maintopic.find(params[:maintopic_id])
-         @subtopic = Subtopic.find(params[:id])
-         if !(@subtopic.maintopic_id == @maintopic.id) #Prevents a subtopic from being assigned data to a maintopic that doesn't match
-            redirect_to @maintopic
-            return
-         end
-      end
+
       def load_maintopic
          @maintopic = Maintopic.find(params[:maintopic_id])
       end

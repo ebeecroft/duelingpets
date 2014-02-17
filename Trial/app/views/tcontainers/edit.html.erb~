@@ -1,0 +1,6 @@
+<h1>Editing tcontainer</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @tcontainer %> |
+<%= link_to 'Back', tcontainers_path %>

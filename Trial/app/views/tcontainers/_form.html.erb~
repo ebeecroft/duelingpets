@@ -1,4 +1,4 @@
-<%= form_for(@tcontainer) do |f| %>
+<%= form_for([@forum, @tcontainer]) do |f| %>
   <% if @tcontainer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tcontainer.errors.count, "error") %> prohibited this tcontainer from being saved:</h2>
@@ -14,10 +14,6 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :forum_id %><br />
-    <%= f.number_field :forum_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

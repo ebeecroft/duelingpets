@@ -28,13 +28,12 @@
                </tr>
             </table>
          </div>
+         <%=  object.hidden_field :inventory_id, :name => :itempick, :value => inventory.id %>
          <div class="outer">
             <% if inventory.item.manyuses? %>
-               <td>Equip me!</td>
-               <td><%= object.submit "Equip me!", :name => :itempick, :value=>inventory.id %><!---button_to "Equip me", petowner_equips_path(:petowner_id => @selectpet, :inventory_id => inventory.id)----></td>
+               <td><%= object.submit "Equip me!" %></td>
             <% else %>
-               <td>Use item!</td>
-               <td><%= object.submit "Use item!", :name => :itempick, :value=>inventory.id %>
+               <td><%= object.submit "Use item!" %>
             <% end %>
          </div>
       </div>

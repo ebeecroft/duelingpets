@@ -25,5 +25,5 @@
 
 <br />
 <% if current_user %>
-   <%= link_to 'New Maintopic', new_maintopic_path %>
+   <%#= link_to 'New Maintopic', new_maintopic_path %>
 <% end %>

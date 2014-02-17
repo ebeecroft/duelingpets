@@ -1,6 +1,8 @@
 class MaintopicsController < ApplicationController
   # GET /maintopics
   # GET /maintopics.json
+  before_filter :load_topic, :only => [:edit, :update, :show, :destroy]
+
   def index
     @tcontainer = Tcontainer.find(params[:tcontainer_id])
     @maintopics = @tcontainer.maintopics.all
@@ -15,14 +17,6 @@ class MaintopicsController < ApplicationController
   # GET /maintopics/1
   # GET /maintopics/1.json
   def show
-    @tcontainer = Tcontainer.find(params[:tcontainer_id])
-    @maintopic = Maintopic.find(params[:id])
-
-#    @subtopic = @maintopic.subtopics.all
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.json { render json: @maintopic }
-#    end
   end
 
   # GET /maintopics/new
@@ -47,7 +41,6 @@ class MaintopicsController < ApplicationController
 
   # GET /maintopics/1/edit
   def edit
-    @maintopic = Maintopic.find(params[:id])
   end
 
   # POST /maintopics
@@ -71,11 +64,10 @@ class MaintopicsController < ApplicationController
   # PUT /maintopics/1
   # PUT /maintopics/1.json
   def update
-    @maintopic = Maintopic.find(params[:id])
 
     respond_to do |format|
       if @maintopic.update_attributes(params[:maintopic])
-        format.html { redirect_to @maintopic, notice: 'Maintopic was successfully updated.' }
+        format.html { redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -87,12 +79,23 @@ class MaintopicsController < ApplicationController
   # DELETE /maintopics/1
   # DELETE /maintopics/1.json
   def destroy
-    @maintopic = Maintopic.find(params[:id])
     @maintopic.destroy
 
     respond_to do |format|
-      format.html { redirect_to maintopics_url }
+      format.html { redirect_to forum_tcontainer_path(@tcontainer.forum_id, @tcontainer.id) }
       format.json { head :no_content }
     end
   end
+
+  private
+     def load_topic
+        @maintopic = Maintopic.find(params[:id])
+        @tcontainer = Tcontainer.find(@maintopic.tcontainer_id)
+        @content = Tcontainer.find(params[:tcontainer_id])
+        if @content.id != @tcontainer.id
+#           raise "I been tampered with and should redirect to the root page"
+           redirect_to root_url
+        end
+     end
+
 end

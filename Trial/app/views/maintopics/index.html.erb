@@ -1,29 +1,18 @@
-<h1 class="pageheader">Forum</h1>
+<h1 class="pageheader">Maintopics</h1>
 
 <table>
+   <tr>
+      <th>TContainer id</th>
+      <th>Maintopic id</th>
+      <th></th>
+      <th></th>
+   </tr>
 <% @maintopics.each do |maintopic| %>
   <tr>
-    <td>Topic: <%= link_to maintopic.topicname, tcontainer_maintopic_path(maintopic.tcontainer_id, maintopic.id) %> 
-    <% if current_user && (current_user.id == maintopic.user_id || current_user.admin? )%>
-       <%#= link_to 'Edit', edit_maintopic_path(maintopic) %> 
-    <% end %>
-    </td>
-  </tr>
-  <% if current_user && (current_user.id == maintopic.user_id || current_user.admin?) %>
-  <tr>
-    <td><%#= button_to 'Destroy', maintopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-  <% end %>
-  <tr>
-     <td>By: <%= maintopic.user.vname %></td>
-  </tr>
-  <tr>
-    <td><pre class="narrative_pre"><%= maintopic.description %></pre></td>
+    <td><%= maintopic.tcontainer_id %></td>
+    <td><%= maintopic.id %></td>
+    <td><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></td>
+    <td><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-<% if current_user %>
-   <%#= link_to 'New Maintopic', new_maintopic_path %>
-<% end %>

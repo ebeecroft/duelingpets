@@ -2,10 +2,8 @@
 
 <table>
   <tr>
-    <th>Subtopic</th>
-    <th>User</th>
-    <th>Story</th>
-    <th></th>
+    <th>Subtopic id</th>
+    <th>Narrative id</th>
     <th></th>
     <th></th>
   </tr>
@@ -13,16 +11,9 @@
 <% @narratives.each do |narrative| %>
   <tr>
     <td><%= narrative.subtopic_id %></td>
-    <td><%= narrative.user_id %></td>
-    <td><%= narrative.story %></td>
-    <td><%#= link_to 'Show', narrative %></td>
-    <td><%#= link_to 'Edit', edit_narrative_path(narrative) %></td>
-    <td><%= button_to 'Destroy', [@subtopic,narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= narrative.id %></td>
+    <td><%= button_to 'Edit', edit_subtopic_narrative_path(narrative.subtopic, narrative), method: :get %></td>
+    <td><%= button_to 'Destroy', [narrative.subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%#= link_to 'New Narrative', new_subtopic_narrative_path %>
-<%= link_to 'Back', maintopic_subtopics_path(@maintopic) %>

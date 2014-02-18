@@ -83,8 +83,10 @@ class FightsController < ApplicationController
            end
            @fight.mhp = mhp_now
            global_monster_hp = mhp_now
+           @fight.pdamage = c_p_damage
         else
            puts "The pets attack missed!"
+           @fight.pdamage = c_p_damage
         end
 
         #Displays damage that monster did or not
@@ -97,8 +99,10 @@ class FightsController < ApplicationController
            end
            global_pet_hp = php_now
            @petowner.hp = php_now
+           @fight.mdamage = c_m_damage
         else
            puts "The monsters attack missed!"
+           @fight.mdamage = 0
         end
      end
 

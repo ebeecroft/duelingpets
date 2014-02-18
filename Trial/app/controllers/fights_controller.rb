@@ -61,6 +61,10 @@ class FightsController < ApplicationController
      global_pet_hp = @petowner.hp
 
      if p_hp > 0 && m_hp > 0
+        if @fight.pdamage.nil?
+           @fight.round = 1
+        end
+        @fight.round += 1
         #Inputs data into the C++ program
         results = `formulas/formula #{p_level} #{p_atk} #{p_def} #{p_spd} #{p_hp} #{p_maxhp} #{p_exp} #{coins} #{p_damage} #{m_damage} #{m_level} #{m_def} #{m_atk} #{m_spd} #{m_hp}`
 

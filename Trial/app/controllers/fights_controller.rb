@@ -61,9 +61,6 @@ class FightsController < ApplicationController
      global_pet_hp = @petowner.hp
 
      if p_hp > 0 && m_hp > 0
-        if @fight.pdamage.nil?
-           @fight.round = 1
-        end
         @fight.round += 1
         #Inputs data into the C++ program
         results = `formulas/formula #{p_level} #{p_atk} #{p_def} #{p_spd} #{p_hp} #{p_maxhp} #{p_exp} #{coins} #{p_damage} #{m_damage} #{m_level} #{m_def} #{m_atk} #{m_spd} #{m_hp}`
@@ -195,12 +192,8 @@ class FightsController < ApplicationController
         raise "Monster couldn't have stats saved"
      end
      
-     #Redirect to the current fight or redirect to the root path
-     if global_pet_hp == 0 || global_monster_hp == 0
-        redirect_to root_url
-     else
-        redirect_to petowner_fight_url
-     end
+     #Display the result of the current combat
+     redirect_to petowner_fight_url
     end
   def index
      @petowner = Petowner.find_by_id(params[:petowner_id])

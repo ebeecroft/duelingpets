@@ -1,5 +1,7 @@
 namespace :db do
    task populate: :environment do
+
+      #Builds the admin who manages the site
       admin = User.create!(first_name: "Monty",
                            last_name: "Mole",
                            email: "mmole@funhill.com",

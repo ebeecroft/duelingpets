@@ -1,0 +1,8 @@
+namespace :db do
+   task populate: :environment do
+      #Builds the admin's money pouch
+      adminmoney = Pouch.create!(user_id: 1)
+      adminmoney.amount = 200
+      adminmoney.save
+   end
+end

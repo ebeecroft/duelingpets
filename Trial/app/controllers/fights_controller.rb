@@ -173,6 +173,7 @@ class FightsController < ApplicationController
         end
         if c_coins > 0
            puts "You found #{c_coins} coins!"
+           @fight.coins = c_coins
            @pouch.amount += c_coins
            @pouch.save
         end

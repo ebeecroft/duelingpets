@@ -28,11 +28,15 @@ class SuggestionsController < ApplicationController
   # GET /suggestions/new
   # GET /suggestions/new.json
   def new
-    @suggestion = Suggestion.new
+    if current_user
+       @suggestion = Suggestion.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @suggestion }
+       respond_to do |format|
+          format.html # new.html.erb
+          format.json { render json: @suggestion }
+       end
+    else
+       redirect_to root_url
     end
   end
 

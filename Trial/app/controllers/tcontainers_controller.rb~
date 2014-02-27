@@ -4,13 +4,12 @@ class TcontainersController < ApplicationController
   before_filter :load_topic, :only => [:edit, :update, :show, :destroy]
 
   def index
-    @forum = Forum.find(params[:forum_id])
-    @tcontainers = @forum.tcontainers.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tcontainers }
-    end
+     if current_user && current_user.admin?
+        @forum = Forum.find(params[:forum_id])
+        @tcontainers = @forum.tcontainers.all
+     else
+        render "public/404"
+     end
   end
 
   # GET /tcontainers/1

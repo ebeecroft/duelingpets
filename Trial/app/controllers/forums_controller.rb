@@ -3,7 +3,11 @@ class ForumsController < ApplicationController
   # GET /forums.json
 
   def list
-    @forums = Forum.all
+     if current_user && current_user.admin?
+        @forums = Forum.all
+     else
+        render "public/404"
+     end
   end
 
   def index

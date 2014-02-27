@@ -3,6 +3,15 @@ class InventoriesController < ApplicationController
   # GET /inventories.json
 
 
+
+  def list
+     if current_user && current_user.admin?
+        @inventories = Inventory.all
+     else
+        render "public/404"
+     end
+  end
+
 #PUT    /users/:id(.:format)                                       users#update
   def use
       @user = User.find_by_vname(params[:user_id])

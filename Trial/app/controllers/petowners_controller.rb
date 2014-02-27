@@ -13,7 +13,11 @@ class PetownersController < ApplicationController
    end
 
   def list
-    @petowners = Petowner.all
+     if current_user && current_user.admin?
+        @petowners = Petowner.all
+     else
+        render "public/404"
+     end
   end
 
   def index

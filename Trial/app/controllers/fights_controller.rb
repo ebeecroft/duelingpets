@@ -3,7 +3,11 @@ class FightsController < ApplicationController
   # GET /fights.json
   
   def list
-     @fights = Fight.all
+     if current_user && current_user.admin?
+        @fights = Fight.all
+     else
+        render "public/404"
+     end
   end
 
      def runner

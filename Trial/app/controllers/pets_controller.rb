@@ -61,8 +61,12 @@ class PetsController < ApplicationController
       end
    end
 
-   def petlist
-      @pets = Pet.all
+   def list
+      if current_user && current_user.admin?
+         @pets = Pet.all
+      else
+         render "public/404"
+      end
    end
 
    def index

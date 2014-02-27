@@ -7,12 +7,11 @@ class SubtopicsController < ApplicationController
   before_filter :load_maintopic, :only =>[:create, :index, :new]
 
   def index
-    @subtopics = @maintopic.subtopics.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @subtopics }
-    end
+     if current_user && current_user.admin?
+        @subtopics = @maintopic.subtopics.all
+     else
+        render "public/404"
+     end
   end
 
   # GET /subtopics/1
@@ -69,7 +68,7 @@ class SubtopicsController < ApplicationController
   def update
     respond_to do |format|
       if @subtopic.update_attributes(params[:subtopic])
-        format.html { redirect_to maintopic_subtopic_path([@maintopic]), notice: 'Subtopic was successfully updated.' }
+        format.html { redirect_to maintopic_subtopic_path([@maintopic, @subtopic]), notice: 'Subtopic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

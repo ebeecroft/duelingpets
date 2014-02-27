@@ -1,6 +1,11 @@
 class EquipsController < ApplicationController
   # GET /equips
   # GET /equips.json
+
+  def list
+     @equips = Equip.all
+  end
+
   def index
 #    @user = User.find_by_vname(params[:user_id])
 #    @petowners = @user.petowners.all

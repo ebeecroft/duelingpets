@@ -4,14 +4,12 @@ class MaintopicsController < ApplicationController
   before_filter :load_topic, :only => [:edit, :update, :show, :destroy]
 
   def index
-    @tcontainer = Tcontainer.find(params[:tcontainer_id])
-    @maintopics = @tcontainer.maintopics.all
-#    @maintopics = Maintopic.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @maintopics }
-    end
+     if current_user && current_user.admin?
+        @tcontainer = Tcontainer.find(params[:tcontainer_id])
+        @maintopics = @tcontainer.maintopics.all
+     else
+        render "public/404"
+     end
   end
 
   # GET /maintopics/1

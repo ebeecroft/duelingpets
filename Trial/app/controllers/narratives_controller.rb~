@@ -5,13 +5,12 @@ class NarrativesController < ApplicationController
   before_filter :load_subtopic, :only =>[:create, :index, :new]
 
   def index
-#    @narratives = Narrative.all
-    @narratives = @subtopic.narratives.all
-    @maintopic = Maintopic.find(@subtopic.maintopic_id)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @narratives }
-    end
+     if current_user && current_user.admin?
+        @narratives = @subtopic.narratives.all
+        @maintopic = Maintopic.find(@subtopic.maintopic_id)
+     else
+        render "public/404"
+     end
   end
 
   # GET /narratives/new

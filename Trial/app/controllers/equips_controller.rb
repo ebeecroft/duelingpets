@@ -3,7 +3,11 @@ class EquipsController < ApplicationController
   # GET /equips.json
 
   def list
-     @equips = Equip.all
+     if current_user && current_user.admin?
+        @equips = Equip.all
+     else
+        render "public/404"
+     end
   end
 
   def index

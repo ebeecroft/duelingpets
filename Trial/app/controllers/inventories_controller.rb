@@ -5,7 +5,11 @@ class InventoriesController < ApplicationController
 
 
   def list
-     @inventories = Inventory.all
+     if current_user && current_user.admin?
+        @inventories = Inventory.all
+     else
+        render "public/404"
+     end
   end
 
 #PUT    /users/:id(.:format)                                       users#update

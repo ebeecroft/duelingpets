@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
   # GET /comments.json
   #include SessionsHelper
   def index
-#     @user = User.find_by_vname(params[:user_id])
-#     @comments = @user.comments.all
-      @comments = Comment.all
+     @user = User.find_by_vname(params[:user_id])
+     @comments = @user.comments.all
+#      @comments = Comment.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @comments }

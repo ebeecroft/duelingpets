@@ -3,13 +3,12 @@ class CommentsController < ApplicationController
   # GET /comments.json
   #include SessionsHelper
   def index
-     @user = User.find_by_vname(params[:user_id])
-     @comments = @user.comments.all
-#      @comments = Comment.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @comments }
-    end
+     if current_user && current_user.admin?
+        @user = User.find_by_vname(params[:user_id])
+        @comments = @user.comments.all
+     else
+        render "public/404"
+     end
   end
 
   # GET /comments/1

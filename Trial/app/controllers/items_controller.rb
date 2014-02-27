@@ -2,8 +2,13 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def list
-     @items = Item.all
+     if current_user && current_user.admin?
+        @items = Item.all
+     else
+        render "public/404"
+     end
   end
+
   def index
     @count = 0
     @items = Item.all

@@ -14,8 +14,9 @@
       </tr>
    </table>
 </div>
-<table>
+<br>
 <% @subtopic.narratives.each do |narrative| %>
+<table>
   <tr>
      <td>re: <%= narrative.subtopic.topicname %></td>
   </tr>
@@ -29,9 +30,8 @@
     <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tr>
-  <br>
-<% end %>
 </table>
+<% end %>
 <br>
 <% if current_user %>
    <p><%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic) %></p>

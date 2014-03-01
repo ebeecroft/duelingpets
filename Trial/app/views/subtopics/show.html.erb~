@@ -18,7 +18,7 @@
 <% @subtopic.narratives.each do |narrative| %>
 <table>
   <tr>
-     <td>re: <%= narrative.subtopic.topicname %></td>
+     <td>re: <%= narrative.subtopic.topicname %>
      <% if current_user && (current_user.id == narrative.user_id || current_user.admin?)%>
         | <%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %>
         <%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -28,10 +28,8 @@
   <tr>
     <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
   </tr>
-  <tr>
-    <td><div><pre class="narrative_pre"><%= narrative.story %></pre></div></td>
-  </tr>
 </table>
+<p><div><pre class="narrative_pre"><%= narrative.story %></pre></div></p>
 <br>
 <% end %>
 <br>

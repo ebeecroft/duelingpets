@@ -5,7 +5,7 @@ class TcontainersController < ApplicationController
 
   def index
      if current_user && current_user.admin?
-        @forum = Forum.find(params[:forum_id])
+        @forum = Forum.find_by_name(params[:forum_id])
         @tcontainers = @forum.tcontainers.all
      else
         render "public/404"
@@ -20,7 +20,7 @@ class TcontainersController < ApplicationController
   # GET /tcontainers/new
   # GET /tcontainers/new.json
   def new
-    @forum = Forum.find(params[:forum_id])
+    @forum = Forum.find_by_name(params[:forum_id])
     @tcontainer = @forum.tcontainers.build
 #    @tcontainer = Tcontainer.new
 
@@ -37,7 +37,7 @@ class TcontainersController < ApplicationController
   # POST /tcontainers
   # POST /tcontainers.json
   def create
-    @forum = Forum.find(params[:forum_id])
+    @forum = Forum.find_by_name(params[:forum_id])
     @tcontainer = @forum.tcontainers.new(params[:tcontainer])
     if @tcontainer.save
         redirect_to forum_tcontainer_path(@forum, @tcontainer), notice: 'Tcontainer was successfully created.' 
@@ -75,7 +75,7 @@ class TcontainersController < ApplicationController
   private
      def load_topic
         @tcontainer = Tcontainer.find(params[:id])
-        @forum = Forum.find(@tcontainer.forum_id)
+        @forum = Forum.find_by_name(@tcontainer.forum_id)
         @content = Forum.find(params[:forum_id])
         if @content.id != @forum.id
 #           raise "I been tampered with and should redirect to the root page"

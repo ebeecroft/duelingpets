@@ -29,6 +29,7 @@
     <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tr>
+  <br>
 <% end %>
 </table>
 <br>

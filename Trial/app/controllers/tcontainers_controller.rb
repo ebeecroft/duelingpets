@@ -75,8 +75,8 @@ class TcontainersController < ApplicationController
   private
      def load_topic
         @tcontainer = Tcontainer.find(params[:id])
-        @forum = Forum.find_by_name(@tcontainer.forum_id)
-        @content = Forum.find(params[:forum_id])
+        @forum = Forum.find(@tcontainer.forum_id)
+        @content = Forum.find_by_name(params[:forum_id])
         if @content.id != @forum.id
 #           raise "I been tampered with and should redirect to the root page"
            redirect_to root_url

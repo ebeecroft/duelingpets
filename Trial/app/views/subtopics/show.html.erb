@@ -20,9 +20,10 @@
   <tr>
      <td>re: <%= narrative.subtopic.topicname %></td>
      <% if current_user && (current_user.id == narrative.user_id || current_user.admin?)%>
-        <td><%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %></td>
-        <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
+        | <%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %>
+        <%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %>
+     <% end %>
+     </td>
   </tr>
   <tr>
     <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>

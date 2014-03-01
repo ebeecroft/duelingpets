@@ -1,4 +1,8 @@
 class Tcontainer < ActiveRecord::Base
-  attr_accessible :forum_id, :name
-  has_many :maintopics
+  attr_accessible :name
+  has_many :maintopics, :dependent => :destroy
+  belongs_to :forum
+
+  VALID_NARRATIVE_REGEX = /\A[A-Za-z0-9 ]+\z/
+  validates :name, presence: true, format: { with: VALID_CONTAINER_REGEX}
 end

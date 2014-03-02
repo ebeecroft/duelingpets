@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   VALID_DEF_REGEX = /\A[0-9]+\z/
   VALID_SPD_REGEX = /\A[0-9]+\z/
   VALID_COST_REGEX = /\A[0-9]+\z/
-  VALID_ITEM_REGEX = /\A[A-Za-z0-9]+\z/
+  VALID_ITEM_REGEX = /\A[A-Za-z0-9 ]+\z/
   VALID_DESCRIPTION_REGEX = /\A[a-z0-9 ]+\z/i
   validates :name, presence: true, format: { with: VALID_ITEM_REGEX}, uniqueness: { case_sensitive: false}
   validates :description, presence: true, format: { with: VALID_DESCRIPTION_REGEX}

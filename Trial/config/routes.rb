@@ -16,7 +16,7 @@ Trial::Application.routes.draw do
    get 'equips/list' => 'equips#list'
    get '/petowners/list' => 'petowners#list'
    get '/forums/list' => 'forums#list'
-   get '/pets/petlist' => 'pets#petlist'
+   get '/pets/list' => 'pets#list'
    get '/inventories/list' => 'inventories#list'
    get '/fights/list' => 'fights#list'
 

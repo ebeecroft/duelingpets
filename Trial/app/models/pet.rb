@@ -10,7 +10,7 @@ class Pet < ActiveRecord::Base
   VALID_DEF_REGEX = /\A[0-9]+\z/
   VALID_SPD_REGEX = /\A[0-9]+\z/
   VALID_SPECIES_REGEX = /\A[A-Za-z0-9 ]+\z/
-  VALID_DESCRIPTION_REGEX = /\A[A-Za-z0-9 ]+\z/
+  VALID_DESCRIPTION_REGEX = /\A[ A-Za-z0-9!,.?]+\z/
   validates :species_name, presence: true, format: { with: VALID_SPECIES_REGEX}, uniqueness: { case_sensitive: false}
   validates :description, presence: true, format: { with: VALID_DESCRIPTION_REGEX}
   validates :hp, presence: true, format: { with: VALID_HP_REGEX}

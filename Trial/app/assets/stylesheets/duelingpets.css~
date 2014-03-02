@@ -59,6 +59,10 @@
 /* End of Header section */
 
 /* Builds the lower pages */
+.narrativecontainer
+{
+  max-width: 75%;
+}
 
 .pageheader
 {

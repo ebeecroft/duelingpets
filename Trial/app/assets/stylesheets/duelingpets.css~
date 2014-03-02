@@ -124,9 +124,12 @@ text-align:center;
 .narrative_pre
 {
    white-space: pre-wrap;
-   max-width: 75%;
 }
 
+.narrative_break
+{
+    word-wrap: break-word;
+}
 .narrative_text
 {
   max-width: 500px;

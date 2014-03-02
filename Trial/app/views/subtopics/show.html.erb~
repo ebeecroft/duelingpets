@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1 class="forumheader"><%= @subtopic.topicname %></h1>
-<br>
+<br><!---Gives space to start the narratives--->
+<div class="narrativecontainer">
    <table>
       <tr>
          <td><%= @subtopic.topicname %></td>
@@ -12,28 +13,28 @@
          <td><pre class="narrative_pre"><%= @subtopic.description %></pre></td>
       </tr>
    </table>
-<br>
-<% @subtopic.narratives.each do |narrative| %>
-<div class="outer">
-<table>
-  <tr>
-     <td>re:<%= narrative.subtopic.topicname %></td>
-     <% if current_user && (current_user.id == narrative.user_id || current_user.admin?)%>
-        <td><%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %></td>
-        <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-     <% end %>
-     </td>
-  </tr>
-  <tr>
-    <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
-  </tr>
-</table>
+   <br>
+   <% @subtopic.narratives.each do |narrative| %>
+      <div class="outer">
+         <table>
+            <tr>
+               <td>re:<%= narrative.subtopic.topicname %></td>
+               <% if current_user && (current_user.id == narrative.user_id || current_user.admin?)%>
+                  <td><%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %></td>
+                  <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               <% end %>
+            </tr>
+            <tr>
+               <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
+            </tr>
+         </table>
+      </div>
+      <div class="outer">
+         <pre class="narrative_pre"><%= narrative.story %></pre>
+      </div>
+      <br>
+   <% end %>
 </div>
-<div class="outer">
-    <pre class="narrative_pre"><%= narrative.story %></pre>
-</div>
-<br>
-<% end %>
 <br>
 <% if current_user %>
    <p><%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic) %></p>

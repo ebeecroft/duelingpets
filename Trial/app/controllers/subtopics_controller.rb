@@ -51,6 +51,8 @@ class SubtopicsController < ApplicationController
            redirect_to @maintopic
            return
         end
+
+        @subtopic.created_on = Time.now
         @subtopic.save
         #if @subtopic.save
         #   redirect_to @maintopic.subtopic

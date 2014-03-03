@@ -47,6 +47,7 @@ class CommentsController < ApplicationController
      @user = User.find_by_vname(params[:user_id])
      @comment = @user.comments.new(params[:comment])
      @comment.author = current_user.vname
+     @comment.created_on = Time.now
 
      if @comment.save
         #@comment.author.inspect

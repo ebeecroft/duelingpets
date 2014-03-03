@@ -66,6 +66,7 @@ class ForumsController < ApplicationController
   def create
     @user = current_user
     @forum = @user.forums.new(params[:forum])
+    @forum.created_on = Time.now
 
     respond_to do |format|
       if @forum.save

@@ -39,6 +39,7 @@ class TcontainersController < ApplicationController
   def create
     @forum = Forum.find_by_name(params[:forum_id])
     @tcontainer = @forum.tcontainers.new(params[:tcontainer])
+    @tcontainer.created_on = Time.now
     if @tcontainer.save
         redirect_to forum_tcontainer_path(@forum, @tcontainer), notice: 'Tcontainer was successfully created.' 
     else

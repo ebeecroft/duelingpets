@@ -166,7 +166,7 @@ class PetsController < ApplicationController
 
       @pet.cost = r_cost
       @pet.level = r_level
-      @pet.created_on = Date.today
+      @pet.created_on = Time.now
       @pet.created_by = current_user.vname
       #raise "I work after setting the pet cost, level, date of pet created and the creator of the pet"
 

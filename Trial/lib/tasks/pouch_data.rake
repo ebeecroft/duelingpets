@@ -10,5 +10,11 @@ namespace :db do
       creatormoney = Pouch.create!(user_id: 2)
       creatormoney.amount = 200
       creatormoney.save
+
+
+      #Builds the forumowner pouch
+      forummoney = Pouch.create!(user_id: 3)
+      forummoney.amount = 200
+      forummoney.save
    end
 end

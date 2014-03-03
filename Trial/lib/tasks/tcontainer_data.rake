@@ -1,15 +1,31 @@
 namespace :db do
    task populate: :environment do
       #Builds Basic container
-      basics = Tcontainer.create!(name: "Basics",
+      basic = Tcontainer.create!(name: "Basic",
                            forum_id: 1)
-      basics.user_id = 1
-      basics.save
+      basic.user_id = 3
+      basic.created_on = Time.now
+      basic.save
 
-      #Builds Misc container
-      misc = Tcontainer.create!(name: "Misc",
+      #Builds Intermediate container
+      intermediate = Tcontainer.create!(name: "Intermediate",
                            forum_id: 1)
-      misc.user_id = 1
-      misc.save
+      intermediate.user_id = 3
+      intermediate.created_on = Time.now
+      intermediate.save
+
+      #Builds Advanced container
+      advanced = Tcontainer.create!(name: "Advanced",
+                           forum_id: 1)
+      advanced.user_id = 3
+      advanced.created_on = Time.now
+      advanced.save
+
+      #Builds Stories container
+      stories = Tcontainer.create!(name: "Stories",
+                           forum_id: 1)
+      stories.user_id = 3
+      stories.created_on = Time.now
+      stories.save
    end
 end

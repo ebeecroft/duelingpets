@@ -85,22 +85,6 @@ namespace :db do
       slither.toggle!(:reviewed)
       slither.save
 
-      #Builds the pet species Stalk
-      stalk = Pet.create!(species_name: "Stalk",
-                          description: "A cat that roams the great jungle. It's eyes are as ferocious as its sharp teeth. Watch out for this one",
-                          image: File.open(File.join(image_location, 'tiger.jpg')),
-                          hp: 14,
-                          atk: 12,
-                          def: 8,
-                          spd: 7,
-                          monster: true)
-      stalk.level = 6
-      stalk.cost = 60
-      stalk.created_by = "petcreator"
-      stalk.created_on = Date.today
-      stalk.toggle!(:reviewed)
-      stalk.save
-
       #Builds the monster Mousling
       mousling = Pet.create!(species_name: "Mousling",
                           description: "An evil mouse from the chedder forces.",
@@ -132,6 +116,22 @@ namespace :db do
       redfang.created_on = Date.today
       redfang.toggle!(:reviewed)
       redfang.save
+
+      #Builds the pet species Stalk
+      stalk = Pet.create!(species_name: "Stalk",
+                          description: "A cat that roams the great jungle. It's eyes are as ferocious as its sharp teeth. Watch out for this one",
+                          image: File.open(File.join(image_location, 'tiger.jpg')),
+                          hp: 14,
+                          atk: 12,
+                          def: 8,
+                          spd: 7,
+                          monster: true)
+      stalk.level = 6
+      stalk.cost = 60
+      stalk.created_by = "petcreator"
+      stalk.created_on = Date.today
+      stalk.toggle!(:reviewed)
+      stalk.save
 
       #Builds the monster Bloodling
       bloodling = Pet.create!(species_name: "Bloodling",

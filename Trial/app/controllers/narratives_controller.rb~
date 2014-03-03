@@ -48,6 +48,7 @@ class NarrativesController < ApplicationController
            redirect_to maintopic_subtopic_url
            return
         end
+        @narrative.created_on = Time.now
         @maintopic = Maintopic.find(@subtopic.maintopic_id)
 
         respond_to do |format|

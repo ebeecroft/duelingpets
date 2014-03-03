@@ -1,12 +1,10 @@
-class CreateForums < ActiveRecord::Migration
+class CreateTcontainers < ActiveRecord::Migration
   def change
-    create_table :forums do |t|
+    create_table :tcontainers do |t|
       t.string :name
-      t.text :description
-      t.integer :user_id
+      t.integer :forum_id
       t.datetime :created_on
       t.boolean :maintenance, default: false
-
       t.timestamps
     end
   end

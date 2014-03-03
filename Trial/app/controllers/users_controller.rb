@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  require 'date'
   before_filter :signed_in_user, :only =>[:edit, :update, :destroy]
   before_filter :correct_user, :only=>[:edit, :update]
   before_filter :admin, :only=>[:destory]
@@ -57,10 +56,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    current_time = Date.today
     #start_time = current_time.strftime("%m/%d/%Y")
     #@user.joined_on = (Date.today.to_s.to_date)
-    @user.joined_on = Date.today
+    @user.joined_on = Time.today
       if @user.save
          @pouch = Pouch.new(params[:pouch])
          #@pouch = @user.pouches.build

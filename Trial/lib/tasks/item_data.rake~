@@ -1,6 +1,6 @@
 namespace :db do
    task populate: :environment do
-      image_location = "/var/www/162.243.59.103/public_html/Gallery/items"
+      ipicture_location = "/var/www/162.243.59.103/public_html/Gallery/items"
 
       #Build the item Veggie Mascot 
       mascot = Item.create!(name: "Veggie Mascot",
@@ -12,6 +12,7 @@ namespace :db do
                           spd: 0,
                           cost: 36,
                           manyuses: false)
+      mascot.created_on = Time.now
       mascot.save
 
       #Build the item Pin of Doom 
@@ -24,6 +25,7 @@ namespace :db do
                           spd: 2,
                           cost: 35,
                           manyuses: true)
+      pinofdoom.created_on = Time.now
       pinofdoom.save
 
       #Build the item Small Shield 
@@ -36,6 +38,7 @@ namespace :db do
                           spd: 0,
                           cost: 33,
                           manyuses: true)
+      shield.created_on = Time.now
       shield.save
 
       #Build the item Wall Climber
@@ -48,6 +51,7 @@ namespace :db do
                           spd: 3,
                           cost: 38,
                           manyuses: true)
+      climber.created_on = Time.now
       climber.save
 
       #Build the item Small Boost 
@@ -60,6 +64,7 @@ namespace :db do
                           spd: 2,
                           cost: 32,
                           manyuses: true)
+      smallboost.created_on = Time.now
       smallboost.save
 
       #Build the item Medium Boost 
@@ -72,6 +77,7 @@ namespace :db do
                           spd: 5,
                           cost: 34,
                           manyuses: true)
+      mediumboost.created_on = Time.now
       mediumboost.save
 
       #Build the item Slapper
@@ -84,6 +90,7 @@ namespace :db do
                           spd: 1,
                           cost: 33,
                           manyuses: true)
+      mascot.created_on = Time.now
       slapper.save
    end
 end

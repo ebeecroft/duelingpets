@@ -56,6 +56,7 @@ class PetownersController < ApplicationController
     @petowner = @user.petowners.build
     @petowner.pet_id = @pet.id
     @petowner.level = @pet.level
+    @petowner.adopted_on = Time.now
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @petowner }

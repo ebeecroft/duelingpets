@@ -52,10 +52,12 @@ class PetownersController < ApplicationController
     @pet = Pet.find_by_id(params[:pet_id])
     if @pet.nil?
        raise "You are a really dumb user"
+       render "shared/error"
     end
     @petowner = @user.petowners.build
     @petowner.pet_id = @pet.id
     @petowner.level = @pet.level
+    @petowner.adopted_on = Time.now
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @petowner }

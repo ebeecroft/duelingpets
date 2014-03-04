@@ -229,7 +229,7 @@ class FightsController < ApplicationController
      @pet = Pet.find_by_id(params[:pet_id])
 @selectpet = params[:pickpet][:petoid]
      if @pet.nil?
-        raise "You are a really dumb user"
+        render "shared/error"
      end
 
      @fight = @petowner.fights.build

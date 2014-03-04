@@ -70,7 +70,7 @@ class InventoriesController < ApplicationController
     @inventory = @user.inventories.build
     @inventory.item_id = params[:item_id]
     if @inventory.item_id.nil?
-       raise "You are a really dumb user"
+       render "shared/error"
     end
     respond_to do |format|
       format.html # new.html.erb

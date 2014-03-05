@@ -49,8 +49,6 @@ class PetownersController < ApplicationController
   # GET /petowners/new
   # GET /petowners/new.json
   def new
-#    @subtopic = @maintopic.subtopics.build
-#    @petowner = Petowner.new
     @user = User.find_by_vname(params[:user_id])
     @pet = Pet.find_by_id(params[:pet_id])  
     @petowner = @user.petowners.build

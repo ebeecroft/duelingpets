@@ -14,7 +14,7 @@ namespace :db do
       rooling.level = 1
       rooling.cost = 50
       rooling.created_by = "petcreator"
-      rooling.created_on = Date.today
+      rooling.created_on = Time.now
       rooling.toggle!(:reviewed)
       rooling.toggle!(:starter)
       rooling.save
@@ -31,7 +31,7 @@ namespace :db do
       hooty.level = 1
       hooty.cost = 50
       hooty.created_by = "petcreator"
-      hooty.created_on = Date.today
+      hooty.created_on = Time.now
       hooty.toggle!(:reviewed)
       hooty.toggle!(:starter)
       hooty.save
@@ -48,7 +48,7 @@ namespace :db do
       bandit.level = 1
       bandit.cost = 50
       bandit.created_by = "petcreator"
-      bandit.created_on = Date.today
+      bandit.created_on = Time.now
       bandit.toggle!(:reviewed)
       bandit.toggle!(:starter)
       bandit.save
@@ -65,7 +65,7 @@ namespace :db do
       klaus.level = 2
       klaus.cost = 50
       klaus.created_by = "petcreator"
-      klaus.created_on = Date.today
+      klaus.created_on = Time.now
       klaus.toggle!(:reviewed)
       klaus.save
 
@@ -81,7 +81,7 @@ namespace :db do
       slither.level = 9
       slither.cost = 70
       slither.created_by = "petcreator"
-      slither.created_on = Date.today
+      slither.created_on = Time.now
       slither.toggle!(:reviewed)
       slither.save
 
@@ -97,7 +97,7 @@ namespace :db do
       mousling.level = 1
       mousling.cost = 50
       mousling.created_by = "petcreator"
-      mousling.created_on = Date.today
+      mousling.created_on = Time.now
       mousling.toggle!(:reviewed)
       mousling.save
 
@@ -113,7 +113,7 @@ namespace :db do
       redfang.level = 4
       redfang.cost = 60
       redfang.created_by = "petcreator"
-      redfang.created_on = Date.today
+      redfang.created_on = Time.now
       redfang.toggle!(:reviewed)
       redfang.save
 
@@ -129,7 +129,7 @@ namespace :db do
       stalk.level = 6
       stalk.cost = 60
       stalk.created_by = "petcreator"
-      stalk.created_on = Date.today
+      stalk.created_on = Time.now
       stalk.toggle!(:reviewed)
       stalk.save
 
@@ -145,7 +145,7 @@ namespace :db do
       bloodling.level = 11
       bloodling.cost = 80
       bloodling.created_by = "petcreator"
-      bloodling.created_on = Date.today
+      bloodling.created_on = Time.now
       bloodling.toggle!(:reviewed)
       bloodling.save
    end

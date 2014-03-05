@@ -90,7 +90,7 @@ namespace :db do
                           spd: 1,
                           cost: 33,
                           manyuses: true)
-      mascot.created_on = Time.now
+      slapper.created_on = Time.now
       slapper.save
    end
 end

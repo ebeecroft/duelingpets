@@ -49,12 +49,12 @@ class PetownersController < ApplicationController
 #    @subtopic = @maintopic.subtopics.build
 #    @petowner = Petowner.new
     @user = User.find_by_vname(params[:user_id])
-    @pet = Pet.find_by_id(params[:pet_id])
+    @pet = Pet.find_by_id(params[:pet_id])  
+    @petowner = @user.petowners.build
     if @pet.nil?
-       redirect_to "shared/error"
+       render "shared/error"
        return
     end
-    @petowner = @user.petowners.build
     @petowner.pet_id = @pet.id
     @petowner.level = @pet.level
     @petowner.adopted_on = Time.now

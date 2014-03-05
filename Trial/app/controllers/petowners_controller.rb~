@@ -51,7 +51,7 @@ class PetownersController < ApplicationController
     @user = User.find_by_vname(params[:user_id])
     @pet = Pet.find_by_id(params[:pet_id])
     if @pet.nil?
-       render "shared/error"
+       redirect_to "shared/error"
        return
     end
     @petowner = @user.petowners.build

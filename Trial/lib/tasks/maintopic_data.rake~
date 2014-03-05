@@ -42,8 +42,8 @@ namespace :db do
 
       #Builds the topic Fairy Tales (A simple story)
       fairy = Maintopic.create!(topicname: "Fairy Tales",
-                           description: "A collection of simple stories.",
-                           user_id: 3)
+                           description: "A collection of simple stories.")
+      fairy.user_id: 3
       fairy.tcontainer_id = 4
       fairy.created_on = Time.now
       fairy.save

@@ -12,6 +12,9 @@ class PetownersController < ApplicationController
       redirect_to root_url
    end
 
+  def peterror
+  end
+
   def list
      if current_user && current_user.admin?
         @petowners = Petowner.all
@@ -52,7 +55,7 @@ class PetownersController < ApplicationController
     @pet = Pet.find_by_id(params[:pet_id])  
     @petowner = @user.petowners.build
     if @pet.nil?
-       render "shared/error"
+       redirect_to petowner_peterror_url
        return
     end
     @petowner.pet_id = @pet.id

@@ -21,6 +21,7 @@ Trial::Application.routes.draw do
    get '/fights/list' => 'fights#list'
 
    #Builds the pets actions
+   get '/petowners/peterror' => 'petowners#peterror'
    get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
    get '/pets/monsters' => 'pets#monsters'
    post '/pets/reviews' => 'pets#approve'

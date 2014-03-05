@@ -1,6 +1,6 @@
 namespace :db do
    task populate: :environment do
-      image_location = "/var/www/162.243.59.103/public_html/Gallery/pets"
+      image_location = "/var/www/duelingpets.net/public_html/Gallery/pets"
 
       #Builds the pet species Rooling
       rooling = Pet.create!(species_name: "Rooling",
@@ -39,7 +39,7 @@ namespace :db do
       #Builds the pet species Bandit
       bandit = Pet.create!(species_name: "Bandit",
                           description: "A creature who no one knows what lies below the mask",
-                          image: File.open(File.join(image_location, 'raccoon.jpg')),
+                          image: File.open(File.join(image_location, 'Raccoon.jpg')),
                           hp: 10,
                           atk: 10,
                           def: 5,

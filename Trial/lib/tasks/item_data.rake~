@@ -1,6 +1,6 @@
 namespace :db do
    task populate: :environment do
-      ipicture_location = "/var/www/162.243.59.103/public_html/Gallery/items"
+      ipicture_location = "/var/www/duelingpets.net/public_html/Gallery/items"
 
       #Build the item Veggie Mascot 
       mascot = Item.create!(name: "Veggie Mascot",

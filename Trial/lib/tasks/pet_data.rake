@@ -39,7 +39,7 @@ namespace :db do
       #Builds the pet species Bandit
       bandit = Pet.create!(species_name: "Bandit",
                           description: "A creature who no one knows what lies below the mask",
-                          image: File.open(File.join(image_location, 'raccoon.jpg')),
+                          image: File.open(File.join(image_location, 'Raccoon.jpg')),
                           hp: 10,
                           atk: 10,
                           def: 5,

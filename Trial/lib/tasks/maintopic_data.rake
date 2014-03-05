@@ -32,8 +32,6 @@ namespace :db do
       container.created_on = Time.now
       container.save
 
-This is unlike 2 tier forums which only contain a topic and replies, in a two tier system topics are connected directly too replies.
-
       #Builds the topic describing forums (Advanced Section)
       forum = Maintopic.create!(topicname: "Forum Explanation",
                            description: "Since you now have learned all the basics and intermediate steps prior to this you will be now able to successfully create your own forum. In order to create your own forum all you need to do is simply click the new forum link on your profile and you will be able to get yourself started. Once there type in the name of the forum and description you want and click submit. Once you have done this, you will finally have your own forum. I am hoping you found these tutorials useful, if you need refreshers feel free to come back and look at the examples. I wish your forum creating experience to be a very successful one. Good Luck! :)",

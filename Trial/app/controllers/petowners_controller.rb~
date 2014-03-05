@@ -55,7 +55,7 @@ class PetownersController < ApplicationController
     @pet = Pet.find_by_id(params[:pet_id])  
     @petowner = @user.petowners.build
     if @pet.nil?
-       redirect_to peterror_url
+       redirect_to "petowners/peterror"
        return
     end
     @petowner.pet_id = @pet.id

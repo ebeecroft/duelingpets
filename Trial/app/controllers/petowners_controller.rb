@@ -50,7 +50,7 @@ class PetownersController < ApplicationController
 #    @petowner = Petowner.new
     @user = User.find_by_vname(params[:user_id])
     @pet = Pet.find_by_id(params[:pet_id])
-    if @pet.nil?
+    if @pet.id.nil?
        render "shared/error"
     end
     @petowner = @user.petowners.build

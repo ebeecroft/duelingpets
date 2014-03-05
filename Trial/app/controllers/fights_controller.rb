@@ -241,6 +241,7 @@ class FightsController < ApplicationController
        @petowner.in_battle = true
      else
         render "shared/error"
+        return
      end
 
       if @fight.save

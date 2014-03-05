@@ -222,25 +222,6 @@ class FightsController < ApplicationController
     end
   end
 
-  # GET /fights/new
-  # GET /fights/new.json
-  def new
-     @petowner = Petowner.find_by_id(params[:petowner_id])
-     @pet = Pet.find_by_id(params[:pet_id])
-@selectpet = params[:pickpet][:petoid]
-     if @pet.nil?
-        render "shared/error"
-     end
-
-     @fight = @petowner.fights.build
-     @fight.pet_id = @pet.id
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @fight }
-    end
-  end
-
   # GET /fights/1/edit
   def edit
     @petowner = Petowner.find_by_id(params[:petowner_id])
@@ -259,7 +240,7 @@ class FightsController < ApplicationController
        @fight.mhp = @pet.hp
        @petowner.in_battle = true
      else
-        raise "You are a really dumb user"
+        render "shared/error"
      end
 
       if @fight.save

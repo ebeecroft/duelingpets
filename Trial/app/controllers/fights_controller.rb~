@@ -229,7 +229,6 @@ class FightsController < ApplicationController
      @pet = Pet.find_by_id(params[:pet_id])
 @selectpet = params[:pickpet][:petoid]
      if @pet.nil?
-        raise "You are a really dumb user"
         render "shared/error"
      end
 
@@ -260,7 +259,7 @@ class FightsController < ApplicationController
        @fight.mhp = @pet.hp
        @petowner.in_battle = true
      else
-        raise "You are a really dumb user"
+        render "shared/error"
      end
 
       if @fight.save

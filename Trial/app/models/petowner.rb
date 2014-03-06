@@ -1,5 +1,5 @@
 class Petowner < ActiveRecord::Base
-  attr_accessible :pet_name
+  attr_accessible :pet_name, :pet_id
   belongs_to :pet
   belongs_to :user
   has_many :equips, :foreign_key => "petowner_id", :dependent => :destroy

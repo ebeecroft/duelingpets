@@ -49,6 +49,8 @@ class MaintopicsController < ApplicationController
         @tcontainer = Tcontainer.find(params[:tcontainer_id])
         @maintopic = @tcontainer.maintopics.new(params[:maintopic])
         @maintopic.user_id = @user
+        @maintopic.created_on = Time.now
+
            if @maintopic.save
               redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully created.'
            else

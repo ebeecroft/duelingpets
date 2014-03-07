@@ -19,4 +19,4 @@
 <br>
 <% end %>
 <%#= link_to 'Edit', edit_tcontainer_path(@tcontainer) %> |
-<%= link_to 'Back', forums_path %>
+<%= link_to 'Back', user_forum_path(@tcontainer.forum.user, @tcontainer.forum) %>

@@ -1,10 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @forum.name %>
-</p>
-
+<div class="inner">
+<table>
+  <tr>
+  <td><b>Name:</b><%= @forum.name %></td>
+  <% if current_user && (current_user.id == @forum.user_id || current_user.admin? )%>
+  <td><%= button_to 'Edit', edit_user_forum_path(@forum.user, @forum), method: :get %></td>
+  <td><%= button_to 'Destroy', [@forum.user, @forum], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+  </tr>
+</table>
+</div>
 <p>
   <b>Description:</b>
   <%= @forum.description %>
@@ -22,22 +28,21 @@
 
 <tr>
     <td><h1><%= link_to tcontainer.name, forum_tcontainer_path(@forum, tcontainer) %></h1></td>
+    <% if current_user && (current_user.id == @forum.user_id || current_user.admin? )%>
+    <td><%= button_to 'Edit', edit_forum_tcontainer_path(@forum, tcontainer), method: :get %></td>
+    <td><%= button_to 'Destroy', [@forum, tcontainer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
   <% if !tcontainer.maintopics.empty? %>
   <tr>
     <td><div style="border: 1px solid;">
     <% tcontainer.maintopics.each do |maintopic| %>
        <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(tcontainer, maintopic) %></p>
-       <p><%= link_to maintopic.description %></p>
+       <p><%= maintopic.description %></p>
     <% end %>
     </div></td>
   </tr>
   <% end %>
-  <tr>
-    <td><%#= tcontainer.forum_id %></td>
-    <td><%#= link_to 'Edit', edit_tcontainer_path(tcontainer) %></td>
-    <td><%#= link_to 'Destroy', tcontainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
 <% end %>
 </table>
 
@@ -45,6 +50,6 @@
 <% if current_user %>
 <%= link_to 'New Tcontainer', new_forum_tcontainer_path(@forum) %>
 <% end %>
-
-<%#= link_to 'Edit', edit_forum_path(@forum) %> |
+<br>
+<br>
 <%= link_to 'Back', forums_path %>

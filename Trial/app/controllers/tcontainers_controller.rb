@@ -53,7 +53,7 @@ class TcontainersController < ApplicationController
 
     respond_to do |format|
       if @tcontainer.update_attributes(params[:tcontainer])
-        format.html { redirect_to forum_tcontainer_path(@tcontainer.forum_id, @tcontainer.id), notice: 'Tcontainer was successfully updated.' }
+        format.html { redirect_to forum_tcontainer_path(@tcontainer.forum, @tcontainer.id), notice: 'Tcontainer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

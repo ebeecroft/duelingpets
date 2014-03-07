@@ -4,11 +4,22 @@
 <br>
 <% if !@tcontainer.maintopics.empty? %>
 <div style="border: 1px solid;">
+<table>
 <% @tcontainer.maintopics.each do |maintopic| %>
+   <tr>
        <%# if topic.seperator_id == seperator.id %>
-          <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(@tcontainer, maintopic) %></p>
+          <td><%= link_to maintopic.topicname, tcontainer_maintopic_path(@tcontainer, maintopic) %></td>
+    <% if current_user && (current_user.id == maintopic.user_id || current_user.admin? )%>
+    <td><%= button_to 'Edit', edit_tcontainer_maintopic_path(@tcontainer, maintopic), method: :get %></td>
+    <td><%= button_to 'Destroy', [@tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    </tr>
+    <tr>
+        <td>By: <%= maintopic.user.vname %></td>
        <%# end %>
+   </tr>
 <% end %>
+</table>
     <br>
 <% end %>
 <% if current_user %>
@@ -18,5 +29,4 @@
 </div>
 <br>
 <% end %>
-<%#= link_to 'Edit', edit_tcontainer_path(@tcontainer) %> |
 <%= link_to 'Back', user_forum_path(@tcontainer.forum.user, @tcontainer.forum) %>

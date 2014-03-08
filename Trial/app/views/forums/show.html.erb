@@ -3,7 +3,7 @@
 <div class="inner">
 <table>
   <tr>
-  <td><b>Name:</b><%= @forum.name %></td>
+  <td><h1 class="welcome"><%= @forum.name %></h1></td>
   <% if current_user && (current_user.id == @forum.user_id || current_user.admin? )%>
   <td><%= button_to 'Edit', edit_user_forum_path(@forum.user, @forum), method: :get %></td>
   <td><%= button_to 'Destroy', [@forum.user, @forum], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -11,10 +11,7 @@
   </tr>
 </table>
 </div>
-<p>
-  <b>Description:</b>
-  <%= @forum.description %>
-</p>
+<p><%= @forum.description %></p>
 <br>
 <table>
   <tr>

@@ -14,12 +14,8 @@
     <td><%= user.email %>&nbsp;&nbsp;</td>
     <td><%= link_to user.vname, user %>&nbsp;&nbsp;</td>
     <td><%= user.joined_on %>&nbsp;&nbsp;</td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Edit', edit_user_path(user), method: :get %></td>
+    <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%#= link_to 'New User', new_user_path %>

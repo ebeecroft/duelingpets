@@ -27,7 +27,8 @@
 
 .profilebar
 {
-   max-width: 100%;
+   /*max-width: 100%;*/
+   padding-right: 1%;
    text-align: right;
 }
 

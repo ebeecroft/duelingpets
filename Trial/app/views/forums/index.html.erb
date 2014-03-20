@@ -6,35 +6,17 @@
 </h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <% if !@user %>
-    <th>User</th>
-    <% end %>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @forums.each do |forum| %>
-  <tr>
-    <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
-  </tr>
-  <tr>
-    <td><%= forum.description %></td>
-  </tr>
-  <% if !@user %>
-     <tr>
-        <td><%= forum.user.vname %></td>
-     </tr>
-  <% end %>
-    <td><%#= link_to 'Show', forum %></td>
-    <td><%#= link_to 'Edit', edit_forum_path(forum) %></td>
-    <td><%#= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   <tr>
+      <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
+   </tr>
+   <tr>
+      <td><%= forum.description %></td>
+   </tr>
+   <% if !@user %>
+      <tr>
+         <td><%= forum.user.vname %></td>
+      </tr>
+   <% end %>
 <% end %>
 </table>
-
-<br />
-
-<%#= link_to 'New Forum', new_forum_path %>

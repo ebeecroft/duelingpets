@@ -23,13 +23,15 @@
   </tr>
   <tr>
     <td><%= forum.description %></td>
-    <% if !@user %>
-    <td><%= forum.user.vname %></td>
-    <% end %>
+  </tr>
+  <% if !@user %>
+     <tr>
+        <td><%= forum.user.vname %></td>
+     </tr>
+  <% end %>
     <td><%#= link_to 'Show', forum %></td>
     <td><%#= link_to 'Edit', edit_forum_path(forum) %></td>
     <td><%#= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
 <% end %>
 </table>
 

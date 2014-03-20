@@ -57,6 +57,11 @@
    background-color: #F2F5A9;
 }
 
+
+.contentbox
+{
+   max-width: 100%;
+}
 /* End of Header section */
 
 /* Builds the lower pages */

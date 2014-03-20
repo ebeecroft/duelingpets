@@ -13,6 +13,8 @@
       </div>
       <br>
       <!---This builds the individual pages--->
-      <%= yield %>
+      <div class="contentbox">
+         <%= yield %>
+      </div>
    </body>
 </html>

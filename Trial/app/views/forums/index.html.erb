@@ -20,6 +20,8 @@
 <% @forums.each do |forum| %>
   <tr>
     <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
+  </tr>
+  <tr>
     <td><%= forum.description %></td>
     <% if !@user %>
     <td><%= forum.user.vname %></td>

@@ -10,36 +10,38 @@
             </p>
          </div>
          <div class="inner">
-            <p><%= image_tag pet.image_url(:thumb).to_s %></p>
+            <div class="inner">
+               <p><%= image_tag pet.image_url(:thumb).to_s %></p>
+            </div>
+            <div class="inner">
+               <table>
+                  <tr>
+                     <td><pre>Level: <%= pet.level %> </pre></td>
+                  </tr>
+                  <tr>
+                     <td>HP: <%= pet.hp %></td>
+                  </tr>
+                  <tr>
+                     <td>ATK: <%= pet.atk %></td>
+                  </tr>
+                  <tr>
+                     <td>DEF: <%= pet.def %></td>
+                  </tr>
+                  <tr>
+                     <td>SPD: <%= pet.spd %></td>
+                  </tr>
+                  <tr>
+                     <td>Cost: <%= pet.cost %></td>
+                     <% @count2 %>
+                  </tr>
+               </table>
+            </div>
          </div>
-         <div class="inner">
-            <table>
-               <tr>
-                  <td><pre>Level: <%= pet.level %> </pre></td>
-               </tr>
-               <tr>
-                  <td>HP: <%= pet.hp %></td>
-               </tr>
-               <tr>
-                  <td>ATK: <%= pet.atk %></td>
-               </tr>
-               <tr>
-                  <td>DEF: <%= pet.def %></td>
-               </tr>
-               <tr>
-                  <td>SPD: <%= pet.spd %></td>
-               </tr>
-               <tr>
-                  <td>Cost: <%= pet.cost %></td>
-                  <% @count2 %>
-               </tr>
-            </table>
+         <div class="outer">
+            <p class="limittext"><%#= pet.description %></p>
+            <p>Creator: <%#= pet.created_by %></p>
          </div>
       </div>
-      <!---div class="outer">
-         <p class="limittext"><%#= pet.description %></p>
-         <p>Creator: <%#= pet.created_by %></p>
-      </div>--->
       <!--Sets how many pets to display per line-->
       <% if ((@count2 + 1) % 4) == 0 %>         
          <div class="outer"></div>

@@ -29,6 +29,9 @@ gem 'jquery-rails'
  gem "carrierwave"
  gem "rmagick"
 
+#For pagination of differrent places
+ gem "kaminari"
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

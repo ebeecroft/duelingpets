@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :vname, :password, :password_confirmation
+  mount_uploader :avatar, AvatarUploader
 has_secure_password
 
 before_save { |user| user.email = user.email.downcase }
@@ -13,7 +14,7 @@ has_many :comments, :foreign_key => "user_id", :dependent => :destroy
 has_many :maintopics
 has_many :subtopics
 has_many :narratives
-has_one :money, :foreign_key => "user_id", :dependent => :destroy
+has_one :pouch, :foreign_key => "user_id", :dependent => :destroy
 has_many :forums
 
 #validates :first_name, presence: true

@@ -3,10 +3,11 @@
 <div>
 <table>
    <% if !@user.admin? %>
-      ~<%= @user.vname %><%= image_tag @user.avatar_url(:thumb).to_s %>
+      ~<%= @user.vname %>
    <% else %>
-      $<%= @user.vname %><%= image_tag @user.avatar_url(:thumb).to_s %>
+      $<%= @user.vname %>
    <% end %>
+   <%= image_tag @user.avatar_url(:thumb).to_s %>
    <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
    <tr>
       <td><b>First name:</b> <%= @user.first_name %></td>

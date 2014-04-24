@@ -3,7 +3,7 @@
 <div>
 <table>
    <% if !@user.admin? %>
-      ~<%= @user.vname %>
+      ~<%= @user.vname %><%= image_tag @user.avatar.image_url.to_s %>
    <% else %>
       $<%= @user.vname %>
    <% end %>

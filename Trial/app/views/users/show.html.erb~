@@ -7,7 +7,9 @@
    <% else %>
       $<%= @user.vname %>
    <% end %>
-   <%= image_tag @user.avatar_url(:thumb).to_s %>
+   <tr>
+      <td><%= image_tag @user.avatar_url(:thumb).to_s %></td>
+   </tr>
    <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
    <tr>
       <td><b>First name:</b> <%= @user.first_name %></td>

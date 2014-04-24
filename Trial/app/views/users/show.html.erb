@@ -29,6 +29,11 @@
    <%= render 'userinfo', object: @user %>
    <% end %>
 </table>
+<br>
+<% if current_user && current_user.id == @user.id %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
+<br>
 
 <%= link_to 'My Forums', user_forums_path(@user) %>
 <% if current_user && current_user.vname == @user.vname %>
@@ -80,7 +85,4 @@
       </table>
    <% end %>
 </div>
-<% end %>
-<% if current_user && current_user.id == @user.id %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>

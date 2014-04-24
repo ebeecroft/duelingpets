@@ -3,9 +3,9 @@
 <div>
 <table>
    <% if !@user.admin? %>
-      ~<%= @user.vname %><%= image_tag @user.avatar.image_url.to_s %>
+      ~<%= @user.vname %><%= image_tag @user.avatar.image_url(:thumb).to_s %>
    <% else %>
-      $<%= @user.vname %>
+      $<%= @user.vname %><%= image_tag @user.avatar.image_url(:thumb).to_s %>
    <% end %>
    <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
    <tr>

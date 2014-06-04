@@ -56,6 +56,7 @@ Trial::Application.routes.draw do
 
    #Builds the forum narratives actions
    resources :subtopics, :only =>[] do #Prevents building the subtopics routes
+      get '/:id/page/:page', :action => :show, :on => :collection
       resources :narratives, :except => [:show]
    end
 

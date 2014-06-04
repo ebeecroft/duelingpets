@@ -18,6 +18,7 @@ class SubtopicsController < ApplicationController
   # GET /subtopics/1.json
   def show
     #@subtopic.narratives.page(params[:page])
+    @narrative = Kaminari.paginate_array(@subtopic.narratives).page(params[:page]).per(25)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1 class="forumheader"><%= @subtopic.topicname %></h1>
+<%= paginate @narrative %>
 <br><!---Gives space to start the narratives--->
 <div class="narrativecontainer">
    <table>
@@ -14,7 +15,7 @@
       </tr>
    </table>
    <br>
-   <% @subtopic.narratives.each do |narrative| %>
+   <% @narrative.each do |narrative| %>
       <div class="outer">
          <table>
             <tr>

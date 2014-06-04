@@ -17,7 +17,7 @@ class SubtopicsController < ApplicationController
   # GET /subtopics/1
   # GET /subtopics/1.json
   def show
-    @subtopic.narratives.page(params[:page])
+    #@subtopic.narratives.page(params[:page])
 
     respond_to do |format|
       format.html # show.html.erb

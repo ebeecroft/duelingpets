@@ -46,7 +46,6 @@ class CommentsController < ApplicationController
   def create
      @user = User.find_by_vname(params[:user_id])
      @comment = @user.comments.new(params[:comment])
-     @comment.author = current_user.vname
      @comment.created_on = Time.now
      @comment.from_user_id = current_user.id
 

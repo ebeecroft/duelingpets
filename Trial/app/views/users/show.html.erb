@@ -50,8 +50,7 @@
          <hr />
          <tr>
             <!---Bad practice for adding symbols to comments but right idea -->
-            <td>By: <%= comment.author %></td>
-            <td>From_user_id:
+            <td>By:
             <% if comment.from_user.admin? %>
                $<%= comment.from_user.vname %>
             <% else %>

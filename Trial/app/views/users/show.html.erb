@@ -51,6 +51,13 @@
          <tr>
             <!---Bad practice for adding symbols to comments but right idea -->
             <td>By: <%= comment.author %></td>
+            <td>From_user_id:
+            <% if comment.from_user.admin? %>
+               $<%= comment.from_user.vname %>
+            <% else %>
+               ~<%= comment.from_user.vname %>
+            <% end %>
+            </td>
             <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
             <td>
                <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>

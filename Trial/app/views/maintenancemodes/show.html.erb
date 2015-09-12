@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @maintenancemode.name %>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%= @maintenancemode.created_on %>
+</p>
+
+<p>
+  <b>Maintenance on:</b>
+  <%= @maintenancemode.maintenance_on %>
+</p>
+
+
+<%= link_to 'Edit', edit_maintenancemode_path(@maintenancemode) %> |
+<%= link_to 'Back', maintenancemodes_path %>

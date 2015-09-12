@@ -1,5 +1,8 @@
 Trial::Application.routes.draw do
 
+  resources :maintenancemodes
+
+
   resources :suggestions, :except =>[:edit, :update, :show]
 
    #Builds the users actions and the nested actions

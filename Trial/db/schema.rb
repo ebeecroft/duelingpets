@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150512031001) do
+ActiveRecord::Schema.define(:version => 20150912231832) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(:version => 20150512031001) do
     t.string   "type"
     t.boolean  "manyuses",    :default => false
     t.boolean  "maintenance", :default => false
+  end
+
+  create_table "maintenancemodes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_on"
+    t.boolean  "maintenance_on", :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "maintopics", :force => true do |t|

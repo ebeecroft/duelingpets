@@ -1,11 +1,11 @@
-<h1 class="pageheader">Pet Equipment</h1>
-
-<!--Checks to see if any pets are available -->
-<%# if @count > 0 %>
-   <!--Checks if the current user is signed in -->
-   <% if !current_user.nil? %>
-      <%= render 'equipinfo' %>
+<h1 class="pageheader">
+   <% if getOptional %>
+      <%= @petowner.pet_name %>'s equipment
    <% else %>
-      <%= render 'equipinfo' %>
+      Listing equips
    <% end %>
-<%# end %>
+</h1>
+<br>
+<div class="pagebox"><%= paginate @equips %></div>
+<br>
+<%= render 'equipinfo' %>

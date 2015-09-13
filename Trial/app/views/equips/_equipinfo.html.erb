@@ -3,7 +3,7 @@
       <div class="outer">
          <p><%= link_to equip.inventory.item.name, item_path(equip.inventory.item.name) %>
          <% if !current_user.nil? %> <!---Difference when current_user is nil-->
-            <%= button_to 'Destroy', [@petowner, equip], method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= button_to 'Destroy', [equip.petowner, equip], method: :delete, data: { confirm: 'Are you sure?' } %>
          <% end %>
          </p>
       </div>
@@ -26,6 +26,11 @@
             </tr>
          </table>
       </div>
+      <% if !getOptional %>
+         <div class="outer">
+            <p>Belongs to pet: <%= equip.petowner.pet_name %></p>
+         </div>
+      <% end %>
    </div>
    <!--Sets how many pets to display per line-->
    <% if ((index + 1)%3) == 0 %>         

@@ -1,32 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p><h1 class="forumheader"><%= @tcontainer.name %></h1></p>
+<h1 class="pageheader"><%= @tcontainer.name %></h1>
 <br>
-<% if !@tcontainer.maintopics.empty? %>
-<div style="border: 1px solid;">
-<table>
-<% @tcontainer.maintopics.each do |maintopic| %>
-   <tr>
-       <%# if topic.seperator_id == seperator.id %>
-          <td><%= link_to maintopic.topicname, tcontainer_maintopic_path(@tcontainer, maintopic) %></td>
-    <% if current_user && (current_user.id == maintopic.user_id || current_user.admin? )%>
-    <td><%= button_to 'Edit', edit_tcontainer_maintopic_path(@tcontainer, maintopic), method: :get %></td>
-    <td><%= button_to 'Destroy', [@tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-    </tr>
-    <tr>
-        <td>By: <%= maintopic.user.vname %></td>
-       <%# end %>
-   </tr>
-<% end %>
-</table>
-    <br>
-<% end %>
-<% if current_user %>
-    <p><%= link_to "New Topic", new_tcontainer_maintopic_path(@tcontainer) %></p>
-    <% end %>
-<% if !@tcontainer.maintopics.empty? %>
-</div>
+<div class="pagebox"><%= paginate @maintopics %></div>
 <br>
+<% if !@maintopics.empty? %>
+   <div class="containerbox">
+   <% @maintopics.each do |maintopic| %>
+      <p><div class="inner"><%= link_to maintopic.topicname, tcontainer_maintopic_path(@tcontainer, maintopic) %></div>
+      <% if current_user && (current_user.id == maintopic.user_id || current_user.admin) %>
+         <div class="inner"><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></div>
+         <div class="inner"><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <% end %>
+      </p>
+      <br>
+   <% end %>
+   <% if current_user %>
+      <p><%= link_to "New Topic", new_tcontainer_maintopic_path(@tcontainer) %></p>
+   <% end %>
+   </div>
+   <br>
 <% end %>
-<%= link_to 'Back', user_forum_path(@tcontainer.forum.user, @tcontainer.forum) %>
+<%= link_to 'Back', user_forum_path(@forum.user, @forum) %>

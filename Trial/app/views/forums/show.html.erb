@@ -1,52 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<div class="inner">
-<table>
-  <tr>
-  <td><h1 class="welcome"><%= @forum.name %></h1></td>
-  <% if current_user && (current_user.id == @forum.user_id || current_user.admin? )%>
-  <td><%= button_to 'Edit', edit_user_forum_path(@forum.user, @forum), method: :get %></td>
-  <td><%= button_to 'Destroy', [@forum.user, @forum], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% end %>
-  </tr>
-</table>
-</div>
+<h1 class="pageheader">
+   <div class="inner"><%= @forum.name %></div>
+   <% if current_user && (current_user.id == @forum.user_id || current_user.admin) %>
+      <div class="inner"><%= button_to 'Edit', edit_user_forum_path(@forum.user, @forum), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [@forum.user, @forum], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <% end %>
+</h1>
 <p><%= @forum.description %></p>
 <br>
-<table>
-  <tr>
-    <th><!---Name--></th>
-    <th><!--Forum--></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-<% @forum.tcontainers.each do |tcontainer| %>
-
-<tr>
-    <td><h1><%= link_to tcontainer.name, forum_tcontainer_path(@forum, tcontainer) %></h1></td>
-    <% if current_user && (current_user.id == @forum.user_id || current_user.admin? )%>
-    <td><%= button_to 'Edit', edit_forum_tcontainer_path(@forum, tcontainer), method: :get %></td>
-    <td><%= button_to 'Destroy', [@forum, tcontainer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
-  <% if !tcontainer.maintopics.empty? %>
-  <tr>
-    <td><div style="border: 1px solid;">
-    <% tcontainer.maintopics.each do |maintopic| %>
-       <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(tcontainer, maintopic) %></p>
-       <p><%= maintopic.description %></p>
-    <% end %>
-    </div></td>
-  </tr>
-  <% end %>
+<div class="pagebox"><%= paginate @tcontainers %></div>
+<br>
+<% @tcontainers.each do |tcontainer| %>
+   <div class="inner"><%= link_to tcontainer.name, forum_tcontainer_path(@forum, tcontainer) %></div>
+   <% if current_user && (current_user.id == @forum.user_id || current_user.admin) %>
+      <div class="inner"><%= button_to 'Edit', edit_forum_tcontainer_path(@forum, tcontainer), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [@forum, tcontainer], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <% end %>
+   <br>
+   <% if !tcontainer.maintopics.empty? %>
+      <table>
+         <tr>
+            <td>
+               <div class="containerbox">
+                  <% tcontainer.maintopics.each do |maintopic| %>
+                     <p><%= link_to maintopic.topicname, tcontainer_maintopic_path(tcontainer, maintopic) %></p>
+                     <p><%= maintopic.description %></p>
+                     <br>
+                  <% end %>
+               </div>
+            </td>
+         </tr>
+      </table>
+   <% end %>
 <% end %>
-</table>
-
-<br />
 <% if current_user %>
-<%= link_to 'New Tcontainer', new_forum_tcontainer_path(@forum) %>
+   <br>
+   <p><%= link_to 'New Tcontainer', new_forum_tcontainer_path(@forum) %></p>
+   <br>
 <% end %>
-<br>
-<br>
-<%= link_to 'Back', forums_path %>
+<p><%= link_to 'Back', user_forums_path(@forum.user) %>

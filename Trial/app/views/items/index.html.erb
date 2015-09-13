@@ -1,6 +1,8 @@
-<h1 class="welcome">Zeriach's Item Shop</h1>
+<h1 class="pageheader">Zeriach's Item Shop</h1>
 <br>
 <p>Welcome to my shop of weird and wonderful things, can I interest you in a particular item?</p>
+<br>
+<div class="pagebox"><%= paginate @items %></div>
 <br>
 <!--Checks to see if any pets are available -->
 <% if @count > 0 %>

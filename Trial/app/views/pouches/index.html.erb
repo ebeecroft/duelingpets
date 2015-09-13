@@ -1,25 +1,16 @@
-<h1>Listing pouches</h1>
-
+<h1 class="pageheader">Listing pouches</h1>
+<br>
+<div class="pagebox"><%= paginate @pouches %></div>
+<br>
 <table>
-  <tr>
-    <th>Amount</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @pouches.each do |pouch| %>
-  <tr>
-    <td><%= pouch.amount %></td>
-    <td><%= pouch.user_id %></td>
-    <td><%#= link_to 'Show', pouch %></td>
-    <td><%#= link_to 'Edit', edit_pouch_path(pouch) %></td>
-    <td><%#= link_to 'Destroy', pouch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+   <tr>
+      <th>Amount</th>
+      <th>User</th>
+   </tr>
+   <% @pouches.each do |pouch| %>
+      <tr>
+         <td><%= pouch.amount %></td>
+         <td><%= pouch.user.vname %></td>
+      </tr>
+   <% end %>
 </table>
-
-<br />
-
-<%#= link_to 'New Pouch', new_pouch_path %>

@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%#= link_to 'Show', @petowner %> |
-<%#= link_to 'Back', petowners_path %>
+<%= link_to 'Back', user_petowner_path(@petowner.user, @petowner) %>

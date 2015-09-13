@@ -1,13 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<% if @petowner.user_id == current_user.id %>
+   <%= button_to 'Edit', edit_user_petowner_path(@petowner), method: :get %>
+<% end %>
+
 <p>
   <b>User:</b>
-  <%= @petowner.user_id %>
+  <%= @petowner.user.vname %>
 </p>
 
 <p>
   <b>Pet:</b>
-  <%= @petowner.pet_id %>
+  <%= @petowner.pet.species_name %>
 </p>
 
 <p>
@@ -17,11 +21,10 @@
 
 <p>
   <b>Adopted on:</b>
-  <%= @petowner.adopted_on %>
+  <%= @petowner.adopted_on.strftime("%B-%d-%Y") %>
 </p>
 
 <%= link_to 'View Equipped Items', petowner_equips_path(@petowner) %> | <%= link_to 'View Fights', petowner_fights_path(@petowner) %>
-<%#= link_to 'Edit', edit_petowner_path(@petowner) %>
 <br>
 <br>
-<%#= link_to 'Back', user_petowners_path(@user) %>
+<%= link_to 'Back', user_petowners_path(@petowner.user) %>

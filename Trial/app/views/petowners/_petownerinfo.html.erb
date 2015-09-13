@@ -1,7 +1,7 @@
 <% @petowners.each_with_index do |petowner, index| %>
    <div class = "inner">
       <div class="inner">
-         <p><%= link_to petowner.pet_name, user_petowner_path(@user, petowner) %></p>
+         <p><%= link_to petowner.pet_name, user_petowner_path(petowner.user, petowner) %></p>
          <p><%= image_tag petowner.pet.image_url(:thumb).to_s %></p>
       </div>
       <div class="inner">
@@ -26,7 +26,7 @@
             </tr>
             <tr>
                <!--Displays the user who created this pet -->
-               <td><pre>Species: <%= petowner.pet.species_name %>    </pre></td>
+               <td><pre>Species: <%= petowner.pet.species_name %></pre></td>
             </tr>
          </table>
       </div>
@@ -37,6 +37,6 @@
    <!--Sets how many pets to display per line-->
    <% if ((index + 1)%3) == 0 %>         
       <div class="outer"></div>
-<br>
+      <br>
    <% end %>
 <% end %>

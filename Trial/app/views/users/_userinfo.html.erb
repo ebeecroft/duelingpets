@@ -1,10 +1,28 @@
-<tr>
-      <td><b>Vname:</b> 
-      <% if !@user.admin? %>
-         ~<%= @user.vname %>
-      <% else %>
-         $<%= @user.vname %> 
-      <% end %>
+<% if current_user && (current_user.id == @user.id || current_user.admin?) %>
+   <tr>
+      <td><b>First name:</b> <%= @user.first_name %></td>
+      <td><b>Last name:</b> <%= @user.last_name %></td>
+   </tr>
+   <tr>
+      <td><b>Email:</b> <%= @user.email %></td>
+   </tr>
+   <tr>
+      <td><b>Vname:</b>
+      <%= render 'usertype' %>
       </td>
       <td>&nbsp; &nbsp;<b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
-</tr>
+   </tr>
+   <tr>
+      <td><b>Money:</b> <%= @pouch.amount %></td>
+   </tr>
+<% else %>
+   <tr>
+      <td><b>Name:</b> <%= @user.first_name %></td>
+   </tr>
+   <tr>
+      <td><b>Vname:</b>
+      <%= render 'usertype' %>
+      </td>
+      <td>&nbsp; &nbsp;<b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
+   </tr>
+<% end %>

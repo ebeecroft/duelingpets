@@ -1,94 +1,75 @@
-<p id="notice"><%= notice %></p>
-
+<!--For the divs in show come back to them later-->
 <div>
-<table>
-   <% if !@user.admin? %>
-      ~<%= @user.vname %>
-   <% else %>
-      $<%= @user.vname %>
-   <% end %>
-   <tr>
-      <td><%= image_tag @user.avatar_url(:thumb).to_s %></td>
-   </tr>
-   <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
-   <tr>
-      <td><b>First name:</b> <%= @user.first_name %></td>
-      <td><b>Last name:</b> <%= @user.last_name %></td>
-   </tr>
-   <tr>
-      <td><b>Email:</b> <%= @user.email %></td>
-   </tr>
-   <%= render 'userinfo', object: @user %>
-   <tr>
-      <td><b>Money:</b> <%= @pouch.amount %></td>
-   </tr>
-   <% else %>
-   <tr>
-      <td><b>Name:</b> <%= @user.first_name %></td>
-   </tr>
-   <%= render 'userinfo', object: @user %>
-   <% end %>
-</table>
-<br>
-<% if current_user && current_user.id == @user.id %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
-<br>
-
-<%= link_to 'My Forums', user_forums_path(@user) %>
-<% if current_user && current_user.vname == @user.vname %>
-   <%= link_to 'New Forum', new_user_forum_path(@user) %>
-<% end %>
-
-<% if @count > 0 %>
-<div>
-<br>
-<h2 class ="colorstyleh2">Comments</h2>
-<% @user.comments.each do |comment| %>
    <table>
-      <div class="entry">
-         <hr />
-         <tr>
-            <!---Bad practice for adding symbols to comments but right idea -->
-            <td>By:
-            <% if comment.from_user.admin? %>
-               $<%= comment.from_user.vname %>
-            <% else %>
-               ~<%= comment.from_user.vname %>
-            <% end %>
-            </td>
-            <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
-            <td>
-               <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>
-            <td></td>
-            <% end %>
-         </tr>
-         <tr>
-            <td><pre><%= comment.message %></pre></td>
-         </tr>
-      </div>
+      <%= render 'usertype' %>
+      <p><%= image_tag @user.avatar_url(:thumb).to_s %></p>
+      <% if current_user && current_user.id == @user.id %>
+         <%= button_to 'Edit', edit_user_path(@user), method: :get %>
+         <br>
+      <% end %>
+      <%= render 'userinfo' %>
    </table>
-<% end %>
-</div>
-<% end %>
+   
+   <!--My forums should only exist if forum count is greater than 0-->
+   <% if @fcount > 0 %>
+      <%= link_to 'My Forums', user_forums_path(@user) %>
+   <% end %>
+   <% if current_user && current_user.id == @user.id %>
+      <%= link_to 'New Forum', new_user_forum_path(@user) %>
+   <% end %>
 
-
-<% if !current_user.nil? %>
-<div>
-<br>
-<h3 class="colorstyleh3">Add Comment</h3>
-   <%= form_for [@user, Comment.new] do |form| %>
-      <table>
-         <tr>
-            <td><%= form.label :message %></td>
-         </tr>
-         <tr>
-            <td><%= form.text_area :message, :placeholder => "Enter some text" %></td>
-         </tr>
-         <tr>
-            <td><%= form.submit %></td>
-         </tr>
-      </table>
+   <% if @count > 0 %>
+      <div>
+         <br>
+         <div class="pagebox"><%= paginate @comment %></div>
+         <br>
+         <h2 class ="colorstyleh2">Comments</h2><!--This style does not exist yet-->
+<!--@user.comments -->
+         <% @comment.each do |comment| %>
+            <table>
+               <div class="entry"><!--This style also does not exist-->
+                  <hr />
+                  <tr>
+                     <td>By:
+                     <!--This code allows us to know if we are admin or not-->
+                     <% if comment.from_user.admin? %>
+                        $<%= comment.from_user.vname %>
+                     <% else %>
+                        ~<%= comment.from_user.vname %>
+                     <% end %>
+                     </td>
+                     <!--Determines if we can delete a comment from the user's profile-->
+                     <% if current_user && (current_user.id == comment.from_user.id || current_user.admin?) %>
+                        <td>
+                           <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>
+                        <td></td>
+                     <% end %>
+                  </tr>
+                  <tr>
+                     <td><pre><%= comment.message %></pre></td>
+                  </tr>
+               </div>
+            </table>
+         <% end %>
+      </div>
+   <% end %>
+   <% if !current_user.nil?%>
+      <div>
+         <br>
+         <h3 class="colorstyleh3">Add Comment</h3><!--This style does not yet exist-->
+         <%= form_for [@user, Comment.new] do |form| %>
+            <table>
+               <tr>
+                  <td><%= form.label :message %></td>
+               </tr>
+               <tr>
+                  <td><%= form.text_area :message, :placeholder => "Enter some text" %></td>
+               </tr>
+               <tr>
+                  <td><%= form.submit %></td>
+               </tr>
+            </table>
+         <% end %>
+      </div>
    <% end %>
 </div>
-<% end %>

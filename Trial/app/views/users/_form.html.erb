@@ -1,5 +1,3 @@
-<p>Virtual Name(Vname) is the only information seen by other users.</p>
-
 <%= form_for @user, :html => {:multipart => true} do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -12,8 +10,11 @@
       </ul>
     </div>
   <% end %>
-
+  <br>
+  <p>Virtual Name(Vname) is the only information seen by other users.</p>
+  <br>
   <div class="field">
+    <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
   </div>
   <div class="field">

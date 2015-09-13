@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150912231832) do
+ActiveRecord::Schema.define(:version => 20150913063958) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -139,10 +139,10 @@ ActiveRecord::Schema.define(:version => 20150912231832) do
     t.integer  "cost"
     t.string   "image"
     t.boolean  "monster",      :default => false
-    t.string   "created_by"
     t.boolean  "reviewed",     :default => false
     t.boolean  "starter",      :default => false
     t.boolean  "maintenance",  :default => false
+    t.integer  "user_id"
   end
 
   create_table "pouches", :force => true do |t|

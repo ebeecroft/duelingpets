@@ -1,151 +1,163 @@
 /* Code for my website standards */
 
-/* The code below this point sets up the header of my website */
-.headerbox
-{
-   max-width: 100%;
-}
+   /* HTML Header section */
+   .pagecontent
+   {
+      background-color: #F2F5A9;
+   }
 
-.backgroundbox
-{
-   max-width: 100%;
-}
+   .headerbox
+   {
+      max-width: 100%;
+   }
 
-.forestbackground
-{
-   width: 100%;
-   height: 150px;
-}
+   .backgroundbox
+   {
+      max-width: 100%;
+   }
 
-.logo
-{
-  max-width: 100%;
-  font-size: 24px;
-  text-align:left;
-  font-weight: bold;
-}
+   .forestbackground
+   {
+      width: 100%;
+      height: 150px;
+   }
 
-.profilebar
-{
-   /*max-width: 100%;*/
-   padding-right: 1%;
-   text-align: right;
-}
+   .logo
+   {
+      max-width: 100%;
+      font-size: 24px;
+      text-align:left;
+      font-weight: bold;
+   }
 
-.navigation
-{
-   max-width: 100%;
-   text-align: center;
-   padding: 8px;
-   background: #088A29;
-   font-family: 'Lucida Sans Unicode','Lucida Grande',Helvetica,Arial,sans-serif;
-   font-weight: bold; /*Looks better here*/
-}
+   .profilebar
+   {
+      padding-right: 1%;
+      text-align: right;
+   }
 
-.navigation a
-{
-   text-decoration: none;
-   color: #faac58;
-   padding-left:5px;
-   padding-top:6px;
-   padding-bottom:6px;
-   padding-right:5px;
-}
+   .navigation
+   {
+      max-width: 100%;
+      text-align: center;
+      padding: 8px;
+      background: #088A29;
+      font-family: 'Lucida Sans Unicode','Lucida Grande',Helvetica,Arial,sans-serif;
+      font-weight: bold; /*Looks better here*/
+   }
 
-.pagecontent
-{
-   background-color: #F2F5A9;
-}
+   .navigation a
+   {
+      text-decoration: none;
+      color: #faac58;
+      padding-left:5px;
+      padding-top:6px;
+      padding-bottom:6px;
+      padding-right:5px;
+   }
 
+   .contentbox
+   {
+      max-width: 100%;
+   }
+   /*End of HTML Header section */
 
-.contentbox
-{
-   max-width: 100%;
-}
-/* End of Header section */
+   /* Mascot section */
+   .mascot
+   {
+      text-align:center;
+   }
+   /* End of mascot section */
 
-/* Builds the lower pages */
-.narrativecontainer
-{
-  max-width: 75%;
-}
+   /* HTML Lower section */
+   .pageheader
+   {
+      /* PageHeader deals with any H1 tags */
+      font-size: 24px;
+      text-align:center;
+      font-weight: bold;
+   }
 
-.pageheader
-{
-  font-size: 24px;
-  text-align:center;
-}
+    /* Is this still necessary? */
+   .narrativecontainer
+   {
+      max-width: 75%;
+   }
+   /*End of HTML Lower section */
 
-/* End of lower pages */
+   /*Alerts section */
+   .alert-error
+   {
+      color: #ff0000;
+   }
 
-.limittext
-{
- width: 300px;
-padding-right:50px;
-word-wrap:break-word;
-}
+   .alert-success
+   {
+      color: #00ff00;
+   }
+   /*End of Alerts*/
 
-.imagerules
-{
-   white-space: pre-wrap;
-   max-width: 40%;
-}
+   /* Page box for pagination use only */
+   .pagebox
+   {
+      text-align: center;
+   }
 
-/* The Welcome page */
-.welcome
-{
-  font-size: 24px;
-  text-align:center;
-}
+   /* Pet, Item and Monster related objects */
+   .petcontainer /*This should be made more generic since it is used in monster,pets and items */
+   {
+      display: inline-block;
+      margin-left: 3%;
+   }
 
-.imagecenter
-{
-text-align:center;
-}
+   .outer
+   {
+      display: block;
+   }   
 
-/* End of Welcome page */
+   .inner
+   {
+      display: inline-block;
+   }
 
-/* Builds the pets and monsters */
-.petcontainer
-{
-   display: inline-block;
-   margin-left: 75px;
-}
+   /*Currently limit text doesn't work*/
+   .limittext
+   {
+      width: 300px;
+      padding-right:50px;
+      word-wrap:break-word;
+   }
 
-.outer
-{
-   display: block;
-}
+   .imagerules
+   {
+      white-space: pre-wrap;
+      max-width: 40%;
+   }
 
-.inner
-{
-   display: inline-block;
-}
+   .petbox
+   {
+      font-size: 16px;
+      text-align:center;
+      font-weight: bold;
+   }
+   /* End of Pet, Item and Monster related objects */
 
-/* End of pets and monsters */
+   /* Forum related css */
+   .containerbox
+   {
+      border: 1px solid;
+   }
 
-/* Builds the forum */
-.forumheader
-{
-   font-size: 24px;
-   font-weight: bold;
-}
+   .storyformat
+   {
+      /*Allows extra spaces and returns */
+      white-space: pre-wrap;
+   }
 
-.narrative_pre
-{
-   white-space: pre-wrap;
-}
+   .storybox
+   {
+      max-width: 100%;
+   }
+   /*End of Forum related section*/
 
-.narrative_break
-{
-    word-wrap: break-word;
-}
-.narrative_text
-{
-  max-width: 500px;
-  word-wrap: break-word;
-}
-
-/* End of the forum */
-
-/*Header class, footer class, navigation bar class, drop down menus,*/
+/* End of Website Standards */

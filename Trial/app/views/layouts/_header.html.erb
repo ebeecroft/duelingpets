@@ -1,7 +1,6 @@
 <div class="backgroundbox">
-   <img src="../../../abie2.png" class="forestbackground"> <!--width=100% min-width=1000px height=150px--->
+   <%= image_tag("../../../abie2.png", class: "forestbackground") %>
 </div>
-<!---Place div here--->
 <div class="logo">
    DuelingPets.net
 </div>
@@ -12,3 +11,12 @@
 <div class="navigation">
    <%= render 'layouts/navigationbar' %>
 </div>
+<% if current_user %>
+   <% if currentTime > expires %>
+      sign_out
+      redirect_to root_path
+   <% else %>
+      <br>
+      <div><%= current_user.vname %>'s session expires in: <%= distance_of_time_in_words_to_now expires %></div>
+   <% end %>
+<% end %>

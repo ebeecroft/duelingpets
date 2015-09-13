@@ -1,4 +1,4 @@
-<% if signed_in? %>
+<% if current_user %>
    <% if current_user.admin? %>
       $<%= link_to current_user.vname, current_user %>
    <% else %>

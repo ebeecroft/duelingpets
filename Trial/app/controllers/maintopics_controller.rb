@@ -1,101 +1,34 @@
 class MaintopicsController < ApplicationController
-  # GET /maintopics
-  # GET /maintopics.json
-  before_filter :load_topic, :only => [:edit, :update, :show, :destroy]
+  include MaintopicsHelper
 
   def index
-     if current_user && current_user.admin?
-        @tcontainer = Tcontainer.find(params[:tcontainer_id])
-        @maintopics = @tcontainer.maintopics.all
-     else
-        render "public/404"
-     end
+     mode "index"
   end
 
-  # GET /maintopics/1
-  # GET /maintopics/1.json
   def show
+     mode "show"
   end
 
-  # GET /maintopics/new
-  # GET /maintopics/new.json
   def new
-    if current_user
-       @user = current_user
-       @tcontainer = Tcontainer.find(params[:tcontainer_id])
-       #@topic = @seperator.topics.build
-       @maintopic = @tcontainer.maintopics.build
-       #    @maintopic.user_id = @user
-       #    @maintopic = Maintopic.new
-
-       respond_to do |format|
-          format.html # new.html.erb
-          format.json { render json: @maintopic }
-       end
-    else
-       redirect_to root_url
-    end
+     mode "new"
   end
 
-  # GET /maintopics/1/edit
   def edit
+     mode "edit"
   end
 
-  # POST /maintopics
-  # POST /maintopics.json
   def create
-     if current_user
-        @user = current_user.id
-        @tcontainer = Tcontainer.find(params[:tcontainer_id])
-        @maintopic = @tcontainer.maintopics.new(params[:maintopic])
-        @maintopic.user_id = @user
-        @maintopic.created_on = Time.now
-
-           if @maintopic.save
-              redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully created.'
-           else
-              render "new"
-           end
-     else
-        redirect_to root_url
-     end
+     mode "create"
   end
 
-  # PUT /maintopics/1
-  # PUT /maintopics/1.json
   def update
-
-    respond_to do |format|
-      if @maintopic.update_attributes(params[:maintopic])
-        format.html { redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @maintopic.errors, status: :unprocessable_entity }
-      end
-    end
+     mode "update"
   end
 
-  # DELETE /maintopics/1
-  # DELETE /maintopics/1.json
   def destroy
-    @maintopic.destroy
-
-    respond_to do |format|
-      format.html { redirect_to forum_tcontainer_path(@tcontainer.forum_id, @tcontainer.id) }
-      format.json { head :no_content }
-    end
+     mode "destroy"
   end
 
-  private
-     def load_topic
-        @maintopic = Maintopic.find(params[:id])
-        @tcontainer = Tcontainer.find(@maintopic.tcontainer_id)
-        @content = Tcontainer.find(params[:tcontainer_id])
-        if @content.id != @tcontainer.id
-#           raise "I been tampered with and should redirect to the root page"
-           redirect_to root_url
-        end
-     end
-
+  def maintenance
+  end
 end

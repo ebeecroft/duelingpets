@@ -1,18 +1,25 @@
-<h1 class="pageheader">Maintopics</h1>
-
-<table>
-   <tr>
-      <th>TContainer id</th>
-      <th>Maintopic id</th>
-      <th></th>
-      <th></th>
-   </tr>
+<h1 class="pageheader">Listing Maintopics</h1>
+<br>
+<div class="pagebox"><%= paginate @maintopics %></div>
 <% @maintopics.each do |maintopic| %>
-  <tr>
-    <td><%= maintopic.tcontainer_id %></td>
-    <td><%= maintopic.id %></td>
-    <td><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></td>
-    <td><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+   <br>
+   <table>
+      <tr>
+         <td>I belong to <%= maintopic.tcontainer.name %> tcontainer</td>
+      </tr>
+      <tr>
+         <td>Topic: <%= link_to maintopic.topicname, tcontainer_maintopic_path(maintopic.tcontainer_id, maintopic.id) %> 
+         <% if current_user && (current_user.id == maintopic.user_id || current_user.admin? )%>
+            <div class="inner"><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></div>
+            <div class="inner"><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+         <% end %>
+         </td>
+      </tr>
+      <tr>
+         <td>By: <%= maintopic.user.vname %></td>
+      </tr>
+      <tr>
+         <td><pre class="storyformat"><%= maintopic.description %></pre></td>
+      </tr>
+   </table>
 <% end %>
-</table>

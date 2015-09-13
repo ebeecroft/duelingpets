@@ -1,24 +1,26 @@
 <p id="notice"><%= notice %></p>
-<h1 class="forumheader"><%= @maintopic.topicname %></h1>
+<h1 class="pageheader"><%= @maintopic.topicname %></h1>
 <br>
-<table>
-<% @maintopic.subtopics.each do |subtopic| %>
-  <tr>
-    <td><%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %></td>
-    <% if current_user && (current_user.id == subtopic.user_id || current_user.admin? )%>
-    <td><%= button_to 'Edit', edit_maintopic_subtopic_path(@maintopic, subtopic), method: :get %></td>
-    <td><%= button_to 'Destroy', [@maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td>By: <%= subtopic.user.vname %><%#= subtopic.description %></td>
-  </tr>
+<div class="pagebox"><%= paginate @subtopics %></div>
+<br>
+<% @subtopics.each do |subtopic| %>
+   <table>
+      <tr>
+         <td><%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %>
+         <% if current_user && (current_user.id == subtopic.user_id || current_user.admin? )%>
+            <div class="inner"><%= button_to 'Edit', edit_maintopic_subtopic_path(@maintopic, subtopic), method: :get %></div>
+            <div class="inner"><%= button_to 'Destroy', [@maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+         <% end %>
+         </td>
+      </tr>
+      <tr>
+         <td>By: <%= subtopic.user.vname %><%#= subtopic.description %></td>
+      </tr>
+   </table>
+   <br>
 <% end %>
-</table>
-
-<br />
 <% if current_user %>
-<p><%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %></p>
-<br>
+   <p><%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %></p>
+   <br>
 <% end %>
-<p><%= link_to 'Back', forum_tcontainer_path(@tcontainer.forum, @maintopic.tcontainer_id) %></p>
+<p><%= link_to 'Back', forum_tcontainer_path(@tcontainer.forum_id, @maintopic.tcontainer_id) %></p>

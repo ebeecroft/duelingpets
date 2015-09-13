@@ -29,6 +29,11 @@ module PetsHelper
    end
 
    private
+      def findUser(user_id)
+         @user = User.find_by_id(user_id)
+         return @user.vname
+      end
+
       def petType(type)
          allPets = Pet.all
          reviewedPets = allPets.select{|pet| pet.reviewed}
@@ -109,7 +114,7 @@ module PetsHelper
                else
                   logged_in = current_user
                   if(logged_in)
-                     userMatch = (logged_in.vname == petFound.created_by) #Very bad design decision
+                     userMatch = ((logged_in.id == petFound.user_id) || logged_in.admin)
                      if(userMatch)
                         @pet = petFound
                      else
@@ -147,7 +152,7 @@ module PetsHelper
                   newPet.level = petLevel
                   currentTime = Time.now
                   newPet.created_on = currentTime
-                  newPet.created_by = logged_in.vname
+                  newPet.user_id = logged_in.id
                   #Add the pet to the database
                   @pet = newPet
                   if(@pet.save)
@@ -165,7 +170,7 @@ module PetsHelper
             if(logged_in)
                petFound = Pet.find_by_species_name(params[:id])
                if(petFound)
-                  userMatch = ((logged_in.vname == petFound.created_by) || logged_in.admin)
+                  userMatch = ((logged_in.id == petFound.user_id) || logged_in.admin)
                   if(userMatch)
                      @pet = petFound
                   else
@@ -182,7 +187,7 @@ module PetsHelper
             if(logged_in)
                petFound = Pet.find_by_species_name(params[:id])
                if(petFound)
-                  userMatch = ((logged_in.vname == petFound.created_by) || logged_in.admin)
+                  userMatch = ((logged_in.id == petFound.user_id) || logged_in.admin)
                   if(userMatch)
                      @pet = petFound
                      if(@pet.update_attributes(params[:pet]))
@@ -237,7 +242,7 @@ module PetsHelper
                if(logged_in.admin)
                   allPets = Pet.all
                   petsToReview = allPets.select{|pet| !pet.reviewed}
-                  @pets = Kaminari.paginate_array(petsToReview).page(params[:page]).per(2)
+                  @pets = Kaminari.paginate_array(petsToReview).page(params[:page]).per(10)
                else
                   redirect_to root_path
                end

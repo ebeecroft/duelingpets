@@ -44,7 +44,7 @@
          </tr>
          <tr>
             <!--Remember to change this field when I implement the new fix-->
-            <td>Creator: <%= pet.created_by %></td>
+            <td>Creator: <%= findUser(pet.user_id) %></td>
          </tr>
          <tr>
             <td>Created: <%= distance_of_time_in_words_to_now pet.created_on %> ago</td>

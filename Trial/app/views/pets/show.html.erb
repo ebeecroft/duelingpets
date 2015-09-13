@@ -1,27 +1,19 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <%= image_tag @pet.image_url(:thumb).to_s %>
 </p>
-
 <p>
   <b>Species name:</b>
   <%= @pet.species_name %>
 </p>
-
 <p>
   <b>Description:</b>
   <%= @pet.description %>
 </p>
-
 <p>
   <b>Created on:</b>
-  <%= @pet.created_on %>
+  <%= @pet.created_on.strftime("%B-%d-%Y") %>
 </p>
 <%= link_to 'Back', pets_path %>
-<% if current_user && (current_user.vname == @pet.created_by) %>
-   <%= button_to 'FixPicture', edit_pet_path(@pet), method: :get %>
-<% end %>
 <% if current_user && current_user.admin %>
    <%= button_to 'Destroy', @pet, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

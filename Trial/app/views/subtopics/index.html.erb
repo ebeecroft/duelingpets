@@ -1,19 +1,23 @@
-<h1>Listing subtopics</h1>
-
-<table>
-  <tr>
-    <th>Maintopic id</th>
-    <th>Subtopic id</th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1 class="pageheader">Listing Subtopics</h1>
+<br>
+<div class="pagebox"><%= paginate @subtopics %></div>
 <% @subtopics.each do |subtopic| %>
-  <tr>
-    <td><%= subtopic.maintopic_id %></td>
-    <td><%= subtopic.id %></td>
-    <td><%= button_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic, subtopic), method: :get %></td>
-    <td><%= button_to 'Destroy', [subtopic.maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+   <br />
+   <table>
+      <tr>
+         <td>I belong to <%= subtopic.maintopic.topicname %> maintopic</td>
+      </tr>
+      <tr>
+         <td>Topic: <%= link_to subtopic.topicname, maintopic_subtopic_path(subtopic.maintopic_id, subtopic.id) %>
+         <div class="inner"><%= button_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic, subtopic), method: :get %></div>
+         <div class="inner"><%= button_to 'Destroy', [subtopic.maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+         </td>
+      </tr>
+      <tr>
+         <td><%= subtopic.user.vname %></td>
+      </tr>
+      <tr>
+         <td><pre class="storyformat"><%= subtopic.description %></pre></td>
+      </tr>
+   </table>
 <% end %>
-</table>

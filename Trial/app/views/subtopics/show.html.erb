@@ -1,42 +1,38 @@
 <p id="notice"><%= notice %></p>
-<h1 class="forumheader"><%= @subtopic.topicname %></h1>
-<%= paginate @narrative %>
-<br><!---Gives space to start the narratives--->
-<div class="narrativecontainer">
+<h1 class="pageheader"><%= @subtopic.topicname %></h1>
+<br>
+<div class="pagebox"><%= paginate @narratives %></div>
+<br>
+<!--When pagination is added do not show the subtopic here unless on first page. -->
+<% if firstPage %>
+<div class="storybox">
+   <p><%= @subtopic.topicname %></p>
+   <p>by: <%= @subtopic.user.vname %></p>
+   <pre class="storyformat"><%= @subtopic.description %></pre>
+   <br>
+</div>
+<% end %>
+<!-- Removable Subtopic past page 1 -->
+<% @narratives.each do |narrative| %>
    <table>
       <tr>
-         <td><%= @subtopic.topicname %></td>
+         <td>re: <%= narrative.subtopic.topicname %>
+         <% if current_user && (current_user.id == narrative.user_id || current_user.admin) %>
+            <div class="inner"><%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %></div>
+            <div class="inner"><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+         <% end %>
+         </td>
       </tr>
       <tr>
-         <td>by: <%= @subtopic.user.vname %></td>
+         <td>by: <%= narrative.user.vname %></td>
       </tr>
       <tr>
-         <td><pre class="narrative_pre"><%= @subtopic.description %></pre></td>
+         <!--Come back to this later-->
+         <td><div><pre class="storyformat"><%= narrative.story %></pre></div></td>
       </tr>
    </table>
    <br>
-   <% @narrative.each do |narrative| %>
-      <div class="outer">
-         <table>
-            <tr>
-               <td>re:<%= narrative.subtopic.topicname %></td>
-               <% if current_user && (current_user.id == narrative.user_id || current_user.admin?)%>
-                  <td><%= button_to 'Edit', edit_subtopic_narrative_path(@subtopic, narrative), method: :get %></td>
-                  <td><%= button_to 'Destroy', [@subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-               <% end %>
-            </tr>
-            <tr>
-               <td>by: <%= narrative.user.vname %><%#= subtopic.description %></td>
-            </tr>
-         </table>
-      </div>
-      <div class="outer">
-         <pre class="narrative_pre"><%= narrative.story %></pre>
-      </div>
-      <br>
-   <% end %>
-</div>
-<br>
+<% end %>
 <% if current_user %>
    <p><%= link_to 'New Narrative', new_subtopic_narrative_path(@subtopic) %></p>
    <br>

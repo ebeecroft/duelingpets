@@ -1,25 +1,11 @@
-<h1 class="pageheader">Fights</h1>
-
-<table>
-  <tr>
-    <th>Petowner</th>
-    <th>Monster</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @fights.each do |fight| %>
-  <tr>
-    <td><%= fight.petowner_id %></td>
-    <td><%= link_to fight.pet_id, petowner_fight_path(@petowner, fight) %></td>
-    <td><%#= link_to 'Show', fight %></td>
-    <td><%#= link_to 'Edit', edit_petowner_fight_path(@petowner, fight) %></td>
-    <td><%#= link_to 'Destroy', [@petowner, fight], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%#= link_to 'New Fight', new_fight_path %>
+<h1 class="pageheader">
+   <% if getOptional %>
+      <%= @petowner.pet_name%>'s battles
+   <% else %>
+      Listing fights
+   <% end %>
+</h1>
+<br>
+<div class="pagebox"><%= paginate @fights %></div>
+<br>
+<%= render 'fightinfo' %>

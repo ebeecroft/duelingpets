@@ -1,4 +1,5 @@
 <h1>Sign in</h1>
+<br>
 <div>
    <table>
    <%= form_for(:session, url: sessions_path) do |f| %>
@@ -16,4 +17,5 @@
    <% end %>
    </table>
 </div>
+<br>
 <p>New user? <%= link_to "Sign up now!", signup_path %></p>

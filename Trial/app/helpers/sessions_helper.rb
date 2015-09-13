@@ -1,27 +1,46 @@
 module SessionsHelper
-   def sign_in(user)
-      cookies.permanent[:remember_token] = user.remember_token
-      self.current_user = user
+   def mode(type)
+      switch type
    end
 
-   def current_user=(user) #sets the current_user to the user's value
-      @current_user = user
-   end
-
-   def current_user #Sets the current_user if it is nil
-      @current_user ||= User.find_by_remember_token(cookies[:remember_token])
-   end
-
-   def current_user?(user)
-      user == current_user
-   end
-
-   def signed_in?
-      !current_user.nil?
-   end
-
-   def sign_out
-      self.current_user = nil
-      cookies.delete(:remember_token)
-   end
+   private
+      def switch(type)
+         if(type == "create")
+            #Determines if the session is actually valid
+            userFound = User.find_by_vname(params[:session][:vname].downcase)
+            if(userFound)
+               passwordValid = userFound.authenticate(params[:session][:password])
+               if(passwordValid)
+                  #Determine if Maintenance is turned on
+                  allmode = Maintenancemode.find_by_id(1)
+                  mode_turned_on = allmode.maintenance_on
+                  if(mode_turned_on)
+                     if(userFound.admin)
+                        sign_in userFound
+                        redirect_to userFound
+                     else
+                        flash.now[:error] = 'Only the admin is allowed to login at this time'
+                        render 'new'
+                     end
+                  else
+                     sign_in userFound
+                     redirect_to userFound
+                  end
+               else
+                  flash.now[:error] = 'Invalid vname/password combination'
+                  render 'new'
+               end
+            else
+               flash.now[:error] = 'Invalid vname/password combination'
+               render 'new'
+            end
+         elsif(type == "destroy")
+            #Determines if user session still exists
+            logged_in = current_user
+            if(logged_in)
+               sign_out
+               redirect_to root_path
+            end
+         end
+      end
 end

@@ -1,3 +1,3 @@
 class Maintenancemode < ActiveRecord::Base
-  attr_accessible :created_on, :maintenance_on, :name
+  attr_accessible :name, :maintenance_on
 end

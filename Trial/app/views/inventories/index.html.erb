@@ -1,21 +1,36 @@
-<h1 class="pageheader">My Inventory</h1>
+<h1 class="pageheader">
+<% if getOptional %>
+  My Inventory
+<% else %>
+  Inventory List
+<% end %>
+</h1>
 <br>
 <p>Am I forgetting something? *some one yells in the background* Ah yes that is right, one of the audience members has been wondering where do those items that I purchased go to? Hmm. Let me think, ah yes now I remember, why the items are sucked into the fabric of time through a wormhole and pass out the other end planting itself in your inventory, which is labeled inventory. In that mystical place you can select one of your purchased items and equip it to your adopted pet or use it directly depending on its conditions.</p>
 <br>
-<!--Checks to see if any pets are available -->
-<!--Checks if the current user is signed in -->
-<% if !current_user.nil? %>
-   <% if !@mypets.empty? %>
-      <% if @icount > 0 %>
-         <%= form_for :petowner, :url => petowner_equips_path(@selectpet, @inventory) do |f| %>
-            <p>Select a pet <%= collection_select(:pickpet2, :petoid2, @user.petowners.all, :id, :pet_name) %></p>
-            <%= render 'inventoryinfo', :object => f %>
+<div class="pagebox"><%= paginate @inventories %></div>
+<br>
+<!--New way of doing inventory lists-->
+<% if getOptional %>
+   <!--Determines if there is any inventory items to list-->
+   <% if @icount > 0 %>
+      <!--Selects the minimum default pet that the user has-->
+      <%= form_tag(petowner_equips_path(@selectpet)) do |inventoryChoice| %>
+         <!--Determines if there is any pets to choose from-->
+         <% if @petCount > 0 %>
+            <p class="petbox">My current pet is: <%= collection_select(:selectedpet, :petowner_id, @mypets, :id, :pet_name) %></p>
+            <br>
+         <% end %>
+         <%= render 'userinventory' %>
+         <% if @petCount > 0 %>
             <div class="outer"></div>
+            <br>
+            <%= submit_tag("Use item!") %>
          <% end %>
       <% end %>
-   <% else %>
-      <%= render 'inventoryinfo2' %>
    <% end %>
 <% else %>
-   <%= render 'inventoryinfo2' %>
+   <% if @icount > 0 %>
+      <%= render 'inventorylist' %>
+   <% end %>
 <% end %>

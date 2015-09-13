@@ -1,138 +1,18 @@
 class InventoriesController < ApplicationController
-  # GET /inventories
-  # GET /inventories.json
+  include InventoriesHelper
 
-
-
-  def list
-     if current_user && current_user.admin?
-        @inventories = Inventory.all
-     else
-        render "public/404"
-     end
+  def index #Must be logged in, however there is two different index's.
+     mode "index"
   end
 
-#PUT    /users/:id(.:format)                                       users#update
-  def use
-      @user = User.find_by_vname(params[:user_id])
-      @inventory = Inventory.find(params[:id])
-      @petowner = Petowner.find_by_id(@user.id)
-      raise "Petowner is"
-      @petowner.hp += @inventory.item.hp
-#      @inventory.destroy
-      @inventories = @user.inventories.all
-      redirect_to user_inventories_url
-  end
-  def index
-    if current_user
-    @cuser = current_user
-    #@cuser = User.find_by_vname(current_user.vname)
-    #@petowner = Petowner.find(@cuser.id)
-    #@inventory = Inventory.find_by_id(params[:inventory_id])
-    #Find the petowners that the user currently has
-    @mypets = @cuser.petowners
-    @selectpet = 1
-    #:petowner, :user_id
-    end
-    @icount = 0
-
-#    @inventories = Inventory.all
-    @user = User.find_by_vname(params[:user_id])
-    @inventories = @user.inventories.all
-    @inventories.each do |inventory|
-       if !inventory.equipped?
-          @icount+=1
-       end
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @inventories }
-    end
+  def create #Logged in only
+     mode "create"
   end
 
-  # GET /inventories/1
-  # GET /inventories/1.json
-  def show
-    @inventory = Inventory.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @inventory }
-    end
+  def destroy #Admin only
+     mode "destroy"
   end
 
-  # GET /inventories/1/edit
-  def edit
-    @inventory = Inventory.find(params[:id])
-  end
-
-  # POST /inventories
-  # POST /inventories.json
-  def create
-      @user = User.find_by_vname(params[:user_id])
-      @pouch = Pouch.find_by_id(@user.id)
-      @inventory = @user.inventories.build
-#      @inventory = @user.inventories.new(params[:inventory])
-      @item_reader = params[:item_id]
-      if @item_reader.nil?
-         render "shared/error"
-         return
-      end
-      @item = Item.find(@item_reader)
-      @inventory.item_id = @item.id
-      #@price = @item.cost
-    
-      #@inventory.item.cost.inspect
-      puts '*'*50
-      puts '*'*50
-      puts '*'*50
-      puts "Inventory item cost= #{@inventory.item.cost}"
-      puts "User money is = #{@pouch.amount}"
-      #raise "@inventory.item.cost"
-      if @inventory.item.cost > @pouch.amount
-         redirect_to items_url
-	puts "I ran option 1"
-         return
-      else
-         @pouch.amount -= @inventory.item.cost #This should be setting change based on user's money - items price
-        puts "I ran option 2"
-      end
-        puts "User money is now = #{@pouch.amount}"
-      if @inventory.save
-         @pouch.save
-         redirect_to user_inventories_path(@user)#@inventory
-      else
-         render "new"
-      end
-  end
-
-  # PUT /inventories/1
-  # PUT /inventories/1.json
-  def update
-    @inventory = Inventory.find(params[:id])
-
-    respond_to do |format|
-      if @inventory.update_attributes(params[:inventory])
-        format.html { redirect_to @inventory, notice: 'Inventory was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @inventory.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /inventories/1
-  # DELETE /inventories/1.json
-  def destroy
-    @user = User.find_by_vname(params[:user_id])
-    @inventory = Inventory.find(params[:id])
-    @inventory.destroy
-
-    respond_to do |format|
-      format.html { redirect_to user_inventories_path(@user) }
-      format.json { head :no_content }
-    end
+  def maintenance
   end
 end

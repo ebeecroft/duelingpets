@@ -1,21 +1,18 @@
-<h1>Listing suggestions</h1>
-
+<h1 class="pageheader">Listing suggestions</h1>
+<br>
+<div class="pagebox"><%= paginate @suggestions %></div>
+<br>
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @suggestions.each do |suggestion| %>
-  <tr>
-    <td><%= suggestion.name %></td>
-    <td><%= suggestion.email %></td>
-    <td><%= suggestion.description %></td>
-    <td><%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+   <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+   </tr>
+   <% @suggestions.each do |suggestion| %>
+      <tr>
+         <td><%= suggestion.name %></td>
+         <td><%= suggestion.description %></td>
+         <td><%= button_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+   <% end %>
 </table>

@@ -1,5 +1,17 @@
 Trial::Application.routes.draw do
 
+  resources :chapters
+
+
+  resources :gchapters
+
+
+  resources :books
+
+
+  resources :sbooks
+
+
    #Builds the users actions and the nested actions
    get '/users/maintenance' => 'users#maintenance'
    resources :users, :except => [:new] do

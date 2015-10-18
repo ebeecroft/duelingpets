@@ -1,0 +1,49 @@
+<%= form_for(@chapter) do |f| %>
+  <% if @chapter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+
+      <ul>
+      <% @chapter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :story %><br />
+    <%= f.text_area :story %>
+  </div>
+  <div class="field">
+    <%= f.label :created_on %><br />
+    <%= f.datetime_select :created_on %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :book_id %><br />
+    <%= f.number_field :book_id %>
+  </div>
+  <div class="field">
+    <%= f.label :gchapter_id %><br />
+    <%= f.number_field :gchapter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :reviewed %><br />
+    <%= f.check_box :reviewed %>
+  </div>
+  <div class="field">
+    <%= f.label :maintenance %><br />
+    <%= f.check_box :maintenance %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

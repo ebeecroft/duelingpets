@@ -11,7 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150913063958) do
+ActiveRecord::Schema.define(:version => 20151018170412) do
+
+  create_table "books", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_on"
+    t.integer  "sbook_id"
+    t.boolean  "maintenance", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "chapters", :force => true do |t|
+    t.string   "title"
+    t.text     "story"
+    t.datetime "created_on"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.integer  "gchapter_id"
+    t.boolean  "reviewed",    :default => false
+    t.boolean  "maintenance", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -51,6 +75,13 @@ ActiveRecord::Schema.define(:version => 20150913063958) do
     t.boolean  "maintenance", :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "gchapters", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_on"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "inventories", :force => true do |t|
@@ -153,6 +184,16 @@ ActiveRecord::Schema.define(:version => 20150913063958) do
   end
 
   add_index "pouches", ["user_id"], :name => "index_pouches_on_user_id", :unique => true
+
+  create_table "sbooks", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_on"
+    t.integer  "user_id"
+    t.boolean  "series_open", :default => false
+    t.boolean  "maintenance", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "subtopics", :force => true do |t|
     t.integer  "maintopic_id"

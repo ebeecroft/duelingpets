@@ -12,10 +12,8 @@
 <% @gchapters.each do |gchapter| %>
   <tr>
     <td><%= gchapter.title %></td>
-    <td><%= gchapter.created_on %></td>
-    <td><%= link_to 'Show', gchapter %></td>
+    <td>&nbsp;&nbsp;<%= gchapter.created_on %></td>
     <td><%= link_to 'Edit', edit_gchapter_path(gchapter) %></td>
-    <td><%= link_to 'Destroy', gchapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

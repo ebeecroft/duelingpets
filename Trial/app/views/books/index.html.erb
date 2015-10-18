@@ -1,33 +1,24 @@
-<h1>Listing books</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>User</th>
-    <th>Created on</th>
-    <th>Sbook</th>
-    <th>Maintenance</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1 class="pageheader">Listing books</h1>
+<br>
+<div class="pagebox"><%= paginate @books %></div>
+<br>
 <% @books.each do |book| %>
-  <tr>
-    <td><%= book.title %></td>
-    <td><%= book.description %></td>
-    <td><%= book.user_id %></td>
-    <td><%= book.created_on %></td>
-    <td><%= book.sbook_id %></td>
-    <td><%= book.maintenance %></td>
-    <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+   <div class="outer">
+      <table>
+         <tr>
+            <td><%= link_to book.title, sbook_book_path(book.sbook, book) %></td>
+            <td><%= button_to 'Edit', edit_sbook_book_path(book.sbook, book), method: :get %></td>
+            <td><%= button_to 'Destroy', [book.sbook, book], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         </tr>
+      </table>
+   </div>
+   <div class="inner">
+      <p><%= book.description %></p>
+   </div>
+   <div class="outer">
+      <p>Created on: <%= book.created_on %></p>
+      <p>Author: <%= book.user.vname %></p>
+      <p>Series: <%= book.sbook.name %></p>
+   </div>
+   <br>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Book', new_book_path %>

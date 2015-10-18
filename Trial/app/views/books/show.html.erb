@@ -1,35 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @book.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @book.description %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @book.user_id %>
-</p>
-
-<p>
-  <b>Created on:</b>
-  <%= @book.created_on %>
-</p>
-
-<p>
-  <b>Sbook:</b>
-  <%= @book.sbook_id %>
-</p>
-
-<p>
-  <b>Maintenance:</b>
-  <%= @book.maintenance %>
-</p>
-
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<h1 class="pageheader">
+   <div class="inner"><%= @book.title %></div>
+   <% if current_user && (current_user.id == @book.user_id || current_user.admin) %>
+      <div class="inner"><%= button_to 'Edit', edit_sbook_book_path(@book.sbook, @book), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [@book.sbook, @book], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <% end %>
+</h1>
+<br>
+<div class="pagebox"><%= paginate @chapters %></div>
+<br>
+<% @chapters.each do |chapter| %>
+   <table>
+      <tr>
+         <td><%= chapter.title %>
+         <% if current_user && (current_user.id == chapter.user_id || current_user.admin) %>
+            <div class="inner"><%= button_to 'Edit', edit_book_chapter_path(@book, chapter), method: :get %></div>
+            <div class="inner"><%= button_to 'Destroy', [@book, chapter], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+         <% end %>
+         </td>
+      </tr>
+      <tr>
+         <td>by: <%= chapter.user.vname %></td>
+      </tr>
+      <tr>
+         <!--Come back to this later-->
+         <td><div><pre class="storyformat"><%= chapter.story %></pre></div></td>
+      </tr>
+   </table>
+   <br>
+<% end %>
+<% if current_user %>
+   <p><%= link_to 'New Chapter', new_book_chapter_path(@book) %></p>
+   <br>
+<% end %>
+<br>
+<p><%= link_to 'Back', user_sbook_path(@sbook.user, @book.sbook) %></p>

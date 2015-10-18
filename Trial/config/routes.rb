@@ -1,17 +1,5 @@
 Trial::Application.routes.draw do
 
-  resources :chapters
-
-
-  resources :gchapters
-
-
-  resources :books
-
-
-  resources :sbooks
-
-
    #Builds the users actions and the nested actions
    get '/users/maintenance' => 'users#maintenance'
    resources :users, :except => [:new] do
@@ -20,9 +8,30 @@ Trial::Application.routes.draw do
       resources :inventories, :only =>[:index, :create, :destroy]
       resources :comments, :only => [:create, :destroy]
       resources :forums
+      resources :sbooks
    end
 
+   #Builds the series
+   get '/sbooks/maintenance' => 'sbooks#maintenance'
+   get 'sbooks/list' => 'sbooks#list'
+   resources :sbooks, :only => [:index] do
+      resources :books, :except =>[:index]
+   end
 #get '/:id/page/:page', :action => :show, :on => :collection
+
+   #Builds the books
+   get '/books/maintenance' => 'books#maintenance'
+   resources :books, :only => [:index] do
+      resources :chapters, :except => [:index, :show]
+   end
+
+   #Builds the chapters
+   get '/chapters/maintenance' => 'chapters#maintenance'
+   get 'chapters/review' => 'chapters#review'
+   post 'chapters/review1' => 'chapters#approve'
+   post 'chapters/review2' => 'chapters#deny'
+   resources :chapters, :only => [:index]
+   resources :gchapters
 
    #Comments actions
    resources :comments, :only =>[:index]
@@ -118,4 +127,3 @@ Trial::Application.routes.draw do
    post 'create_adoption', to: "petowners#create"
    root :to => "start#home"
 end
-

@@ -1,63 +1,103 @@
 Trial::Application.routes.draw do
 
-  resources :suggestions, :except =>[:edit, :update, :show]
+  resources :chapters
+
+
+  resources :gchapters
+
+
+  resources :books
+
+
+  resources :sbooks
+
 
    #Builds the users actions and the nested actions
+   get '/users/maintenance' => 'users#maintenance'
    resources :users, :except => [:new] do
+#      get '/:id/page/:page', :action => :index, :on => :collection
       resources :petowners
-      resources :pouches, :only => [:index, :create, :new]
-      resources :inventories, :except =>[:show, :edit, :update]
-      resources :comments, :only => [:create, :destroy, :index]
+      resources :inventories, :only =>[:index, :create, :destroy]
+      resources :comments, :only => [:create, :destroy]
       resources :forums
    end
 
-   #Builds the list actions for better admin support
-   get '/items/list' => 'items#list'
-   get 'equips/list' => 'equips#list'
-   get '/petowners/list' => 'petowners#list'
-   get '/forums/list' => 'forums#list'
-   get '/pets/list' => 'pets#list'
-   get '/inventories/list' => 'inventories#list'
-   get '/fights/list' => 'fights#list'
+#get '/:id/page/:page', :action => :show, :on => :collection
 
-   #Builds the pets actions
-   get '/petowners/peterror' => 'petowners#peterror'
-   get '/pets/reviews' => 'pets#reviews' #has to be before the pets controller
+   #Comments actions
+   resources :comments, :only =>[:index]
+
+   #Suggestion box for users
+   resources :suggestions, :except =>[:edit, :update, :show]
+
+   #Inventory routes
+   get '/inventories/maintenance' => 'inventories#maintenance'
+   resources :inventories, :only =>[:index]
+
+   #Money Bag
+   resources :pouches, :only => [:index]
+
+   #Builds the pet actions
+   get '/pets/maintenance' => 'pets#maintenance'
+   get '/pets/list' => 'pets#list'
+   get '/pets/review' => 'pets#review' #has to be before the pets controller
    get '/pets/monsters' => 'pets#monsters'
-   post '/pets/reviews' => 'pets#approve'
-   match '/pets/:id' => 'pets#deny', via: :post
-#   match '/pets/reviews/:id' => 'pets#deny', via: :delete
+
+   #Accept and deny if both post actions then we need '/pets/reviews/accept or /pets/reviews/deny'
+   post 'pets/review1' => 'pets#approve'
+   post 'pets/review2' => 'pets#deny'
+
+   #Base pets route
    resources :pets
 
-   #Builds the items actions
+   #Builds the item actions
+   get '/items/maintenance' => 'items#maintenance'
    resources :items
 
    #Builds the equips and fights actions
-   resources :petowners, :only =>[] do #Prevents building the petowners routes
-      resources :equips, :except => [:edit, :update]
-      put '/fights/:id(.:format)' => 'fights#runner'
-      resources :fights, :except => [:edit, :update]
+   get '/petowners/maintenance' => 'petowners#maintenance'
+   resources :petowners, :only =>[:index] do #Prevents building the petowners routes
+      resources :equips, :only => [:index, :create, :destroy]
+      resources :fights, :except => [:new, :edit, :update]
    end
 
+   #Builds fights path
+   get '/fights/maintenance' => 'fights#maintenance'
+   post '/petowners/:petowner_id/fights/:id' => 'fights#battle'
+   resources :fights, :only =>[:index]
+
+   #Builds equips path
+   get '/equips/maintenance' => 'equips#maintenance'
+   resources :equips, :only =>[:index]
+
    #Builds the forum index page and nested routes
+   get '/forums/maintenance' => 'forums#maintenance'
+   get '/forums/list' => 'forums#list'
    resources :forums, :only =>[:index] do
-      resources :tcontainers
+      resources :tcontainers, :except =>[:index]
    end
 
    #Builds the container for the topics and the nested routes
-   resources :tcontainers, :only =>[] do
-      resources :maintopics
+   get '/tcontainers/maintenance' => 'tcontainers#maintenance'
+   resources :tcontainers, :only =>[:index] do
+      resources :maintopics, :except => [:index]
    end
 
    #Build the forum maintopics actions and the nested actions
-   resources :maintopics, :only =>[] do
-      resources :subtopics
+   get '/maintopics/maintenance' => 'maintopics#maintenance'
+   resources :maintopics, :only =>[:index] do
+      resources :subtopics, :except => [:index]
    end
 
    #Builds the forum narratives actions
-   resources :subtopics, :only =>[] do #Prevents building the subtopics routes
-      resources :narratives, :except => [:show]
+   get '/subtopics/maintenance' => 'subtopics#maintenance'
+   resources :subtopics, :only =>[:index] do #Prevents building the subtopics routes
+      resources :narratives, :except => [:show, :index]
    end
+
+   #Builds the narrative routes
+   get '/narratives/maintenance' => 'narratives#maintenance'
+   resources :narratives, :only => [:index]
 
    #Creates the user connection to the website
    resources :sessions, :only => [:create]
@@ -67,10 +107,15 @@ Trial::Application.routes.draw do
    get '/signin' => 'sessions#new'
    match '/logout' => 'sessions#destroy', via: :delete #has to be a match condition
 
+   #Controls page visibility
+   resources :maintenancemodes, :except =>[:show, :destroy]
+
    #Root pages
+   get 'maintenance' => "start#maintenance"
    get 'about' => "start#about"
    get 'update' => "start#update"
    get 'contact' => "start#contact"
    post 'create_adoption', to: "petowners#create"
    root :to => "start#home"
 end
+

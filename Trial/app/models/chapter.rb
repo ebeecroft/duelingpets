@@ -1,3 +1,6 @@
 class Chapter < ActiveRecord::Base
-  attr_accessible :book_id, :created_on, :gchapter_id, :maintenance, :reviewed, :story, :title, :user_id
+   attr_accessible :title, :story
+   belongs_to :book
+   belongs_to :gchapter
+   belongs_to :user
 end

@@ -1,21 +1,29 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :vname, :password, :password_confirmation, :avatar
-  mount_uploader :avatar, AvatarUploader
 has_secure_password
+
+mount_uploader :avatar, AvatarUploader
 
 before_save { |user| user.email = user.email.downcase }
 before_save { |user| user.first_name = user.first_name.humanize }
 before_save :create_remember_token
 
-has_many :petowners
-has_many :pets, :through => :petowners
+has_many :petowners, :foreign_key => "user_id", :dependent => :destroy
+#has_many :pets, :through => :petowners
 has_many :inventories, :foreign_key => "user_id", :dependent => :destroy
 has_many :comments, :foreign_key => "user_id", :dependent => :destroy
-has_many :maintopics
-has_many :subtopics
-has_many :narratives
+has_many :maintopics, :foreign_key => "user_id", :dependent => :destroy
+has_many :subtopics, :foreign_key => "user_id", :dependent => :destroy
+has_many :narratives, :foreign_key => "user_id", :dependent => :destroy
 has_one :pouch, :foreign_key => "user_id", :dependent => :destroy
-has_many :forums
+has_many :forums, :foreign_key => "user_id", :dependent => :destroy
+#has_many :pets, :foreign_key => "user_id", :dependent => :destroy
+has_many :bookcollections, :foreign_key => "user_id", :dependent => :destroy
+
+#Writing section
+has_many :sbooks, :foreign_key => "user_id", :dependent => :destroy
+has_many :books, :foreign_key => "user_id", :dependent => :destroy
+has_many :chapters, :foreign_key => "user_id", :dependent => :destroy
 
 #validates :first_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

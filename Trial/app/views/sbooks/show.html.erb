@@ -1,30 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @sbook.name %>
-</p>
-
-<p>
-  <b>Created on:</b>
-  <%= @sbook.created_on %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @sbook.user_id %>
-</p>
-
-<p>
-  <b>Series open:</b>
-  <%= @sbook.series_open %>
-</p>
-
-<p>
-  <b>Maintenance:</b>
-  <%= @sbook.maintenance %>
-</p>
-
-
-<%= link_to 'Edit', edit_sbook_path(@sbook) %> |
-<%= link_to 'Back', sbooks_path %>
+<h1 class="pageheader">
+   <div class="inner"><%= @sbook.name %></div>
+   <% if current_user && (current_user.id == @sbook.user_id || current_user.admin) %>
+      <div class="inner"><%= button_to 'Edit', edit_user_sbook_path(@sbook.user, @sbook), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [@sbook.user, @sbook], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <% end %>
+</h1>
+<!--Right here is where books will be-->
+<br>
+<div class="pagebox"><%= paginate @books %></div>
+<br>
+<% @books.each do |book| %>
+   <div class="inner"><%= link_to book.title, sbook_book_path(@sbook, book) %></div>
+   <% if current_user && (current_user.id == book.user_id || current_user.admin) %>
+      <div class="inner"><%= button_to 'Edit', edit_sbook_book_path(@sbook, book), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [@sbook, book], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <% end %>
+   <div class="outer">
+      <p><%= book.description %></p>
+      <p>Created on: <%= book.created_on %></p>
+      <p>Author: <%= book.user.vname %></p>
+   </div>
+   <br>
+<% end %>
+<% if current_user %>
+   <p><%= link_to 'New Book', new_sbook_book_path(@sbook) %></p>
+   <br>
+<% end %>
+<%= link_to 'Back', user_sbooks_path(@sbook.user.vname) %>

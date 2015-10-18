@@ -2,5 +2,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @sbook %> |
-<%= link_to 'Back', sbooks_path %>
+<%= link_to 'Back', user_sbook_path(@sbook.user, @sbook) %>

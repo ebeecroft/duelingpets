@@ -1,31 +1,24 @@
-<h1>Listing sbooks</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Created on</th>
-    <th>User</th>
-    <th>Series open</th>
-    <th>Maintenance</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1 class="pageheader">
+   <% if getOptional %>
+      <%= @user.vname %>'s series
+   <% else %>
+      Listing series
+   <% end %>
+</h1>
+<br>
+<div class="pagebox"><%= paginate @sbooks %></div>
+<br>
 <% @sbooks.each do |sbook| %>
-  <tr>
-    <td><%= sbook.name %></td>
-    <td><%= sbook.created_on %></td>
-    <td><%= sbook.user_id %></td>
-    <td><%= sbook.series_open %></td>
-    <td><%= sbook.maintenance %></td>
-    <td><%= link_to 'Show', sbook %></td>
-    <td><%= link_to 'Edit', edit_sbook_path(sbook) %></td>
-    <td><%= link_to 'Destroy', sbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+   <p><%= link_to sbook.name, user_sbook_path(sbook.user, sbook) %></p>
+   <p>Created on: <%= sbook.created_on %></p>
+   <p>Open series? <%= sbook.series_open %></p>
+   <% if !getOptional %>
+      <p>Created by: <%= sbook.user.vname %></p>
+   <% end %>
+   <br>
 <% end %>
-</table>
 
-<br />
+<%#= link_to 'Edit', edit_sbook_path(sbook) %>
+<%#= link_to 'Destroy', sbook, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<%= link_to 'New Sbook', new_sbook_path %>
+<%#= link_to 'New Sbook', new_sbook_path %>

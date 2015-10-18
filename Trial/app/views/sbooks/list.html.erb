@@ -1,0 +1,23 @@
+<h1 class="pageheader">Series list</h1>
+<br>
+<div class="pagebox"><%= paginate @sbooks %></div>
+<br>
+<% @sbooks.each do |sbook| %>
+   <div class="outer">
+      <table>
+         <tr>
+            <td><%= link_to sbook.name, user_sbook_path(sbook.user.vname, sbook) %></td>
+            <td><%= button_to 'Edit', edit_user_sbook_path(sbook.user, sbook), method: :get %></td>
+            <td><%= button_to 'Destroy', [sbook.user, sbook], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         </tr>
+      </table>
+   </div>
+   <div class="inner">
+      <p>Author: <%= sbook.user.vname %></p>
+   </div>
+   <div class="outer">
+      <p>Created on: <%= sbook.created_on %></p>
+      <p>Open series: <%= sbook.series_open %></p>
+   </div>
+   <br>
+<% end %>

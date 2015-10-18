@@ -50,12 +50,7 @@ module UsersHelper
                userFound.forums.each do |forum|
                   forumCount += 1
                end
-               seriesCount = 0
-               userFound.sbooks.each do |sbook|
-                  seriesCount += 1
-               end
                @fcount = forumCount
-               @scount = seriesCount
                @count = commentCount
                @user = userFound
             else

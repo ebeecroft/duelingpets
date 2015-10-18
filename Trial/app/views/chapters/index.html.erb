@@ -1,37 +1,26 @@
-<h1>Listing chapters</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Story</th>
-    <th>Created on</th>
-    <th>User</th>
-    <th>Book</th>
-    <th>Gchapter</th>
-    <th>Reviewed</th>
-    <th>Maintenance</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1 class="pageheader">Listing chapters</h1>
+<br>
+<div class="pagebox"><%= paginate @chapters %></div>
+<br>
 <% @chapters.each do |chapter| %>
-  <tr>
-    <td><%= chapter.title %></td>
-    <td><%= chapter.story %></td>
-    <td><%= chapter.created_on %></td>
-    <td><%= chapter.user_id %></td>
-    <td><%= chapter.book_id %></td>
-    <td><%= chapter.gchapter_id %></td>
-    <td><%= chapter.reviewed %></td>
-    <td><%= chapter.maintenance %></td>
-    <td><%= link_to 'Show', chapter %></td>
-    <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
-    <td><%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+   <div class="outer">
+      <table>
+         <tr>
+            <td><%= chapter.title %></td>
+            <td><%= button_to 'Edit', edit_book_chapter_path(chapter.book, chapter), method: :get %></td>
+            <td><%= button_to 'Destroy', [chapter.book, chapter], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         </tr>
+      </table>
+   </div>
+   <div class="inner">
+      <p><%= chapter.story %></p>
+   </div>
+   <div class="outer">
+      <p>Created on: <%= chapter.created_on %></p>
+      <p>Author: <%= chapter.user.vname %></p>
+      <p>Book: <%= chapter.book.title %></p>
+      <p>Chapter: <%= chapter.gchapter.title %></p>
+      <p>Reviewed: <%= chapter.reviewed %></p>
+   </div>
+   <br>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Chapter', new_chapter_path %>

@@ -1,0 +1,33 @@
+<h1 class="pageheader">Chapters to be reviewed</h1>
+<br>
+<div class="pagebox"><%= paginate @chapters %></div>
+<% @chapters.each do |chapter| %>
+<!--Do not touch this code till later-->
+   <br>
+   <!--Pet box should go from here -->
+   <div class="inner"><%= link_to chapter.title, sbook_book_path(chapter.book.sbook, chapter.book) %></div>
+   <div class="inner"><%= button_to 'Approve', chapters_review1_path(:chapter_id=>chapter.id), method: :post %></div>
+   <div class="inner"><%= button_to 'Deny', chapters_review2_path(:chapter_id=>chapter.id), method: :post %></div>
+   <br>
+   <!--This should no longer be in a table-->
+   <div class="inner">
+      <table>
+         <tr>
+            <td><%= chapter.story %></td>
+         </tr>
+         <tr>
+            <td>Book: <%= chapter.book.title %></td>
+         </tr>
+         <tr>
+            <td>Creator: <%= chapter.user.vname %></td>
+         </tr>
+         <tr>
+            <td>Gchapter: <%= chapter.gchapter.title %></td>
+         </tr>
+         <tr>
+            <td>Created on: <%= chapter.created_on %></td>
+         </tr>
+      </table>
+   </div>
+   <!-- to here-->
+<% end %>

@@ -25,44 +25,34 @@ module ChaptersHelper
    end
 
    private
-      def storeChapter(bookFound, logged_in)
-         gchapterFound = Gchapter.find_by_id(params[:gchapter_id])
-         if(gchapterFound)
-            #Create the new Chapter
-            newChapter = bookFound.chapters.new(params[:chapter])
-            currentTime = Time.now
-            newChapter.created_on = currentTime
-            newChapter.book_id = bookFound.id
-            newChapter.user_id = logged_in.id
-            newChapter.gchapter_id = gchapterFound.id
-            #Discover how many Chapters already exist
-            min = bookFound.chapters.count
-            max = min + 2
-            #Checks to see if the Chapter being created is in the valid range
-            if(gchapterFound.id > min && gchapterFound.id < max)
-               @chapter = newChapter
-               if(@chapter.save)
-                  @book = bookFound
-                  flash[:success] = 'Chapter was successfully created.'
-                  redirect_to sbook_book_path(@book.sbook, @chapter.book)
-               else
-                  render "new"
-               end
-            else
-               @book = bookFound
-               flash[:error] = 'A general chapter with that number is already in use'
-               redirect_to new_book_chapter_path(@book.id)
-            end
+      def saveChapter(bookFound, newChapter)
+         @chapter = newChapter
+         if(@chapter.save)
+            @book = bookFound
+            flash[:success] = 'Chapter was successfully created.'
+            redirect_to sbook_book_path(@book.sbook, @chapter.book)
          else
-            redirect_to root_path
+            render "new"
          end
       end
 
-      def storeBooksForNew(bookFound, logged_in)
-         newChapter = bookFound.chapters.new #Chapter.new
-         newChapter.user_id = logged_in.id
-         @chapter = newChapter
-         @book = bookFound
+      def storeNewChapter(bookFound, logged_in, newChapter)
+         if(bookFound)
+            if(bookFound.sbook.series_open)
+               @book = bookFound
+               @chapter = newChapter
+            else
+               userMatch = (logged_in.id == bookFound.sbook.user.id)
+               if(userMatch)
+                  @book = bookFound
+                  @chapter = newChapter
+               else
+                  redirect_to root_path
+               end
+            end
+         else
+            render "public/404"
+         end
       end
 
       def switch(type)
@@ -81,41 +71,51 @@ module ChaptersHelper
          elsif(type == "new") #Login only
             logged_in = current_user
             if(logged_in)
+               #Find the book
                bookFound = Book.find_by_id(params[:book_id])
-               min = bookFound.chapters.count
-               max = min + 2
-               nextChapter = Gchapter.select{|chapter| (chapter.id > min && chapter.id < max)}
-               #In the future release there will be an new Gchapter create button for users to use
-               @gchapters = nextChapter
-               if(bookFound)
-                  if(bookFound.sbook.series_open)
-                     storeBooksForNew(bookFound, logged_in)
-                  else
-                     userMatch = (logged_in.id == bookFound.sbook.user.id)
-                     if(userMatch)
-                        storeBooksForNew(bookFound, logged_in)
-                     else
-                        redirect_to root_path
-                     end
-                  end
-               else
-                  render "public/404"
-               end
+               #Amount of Chapters in book
+               chaptersInBook = bookFound.chapters.count
+               newGchapter = chaptersInBook + 1 #Need to do something special here
+               gchapterFound = Gchapter.find_by_id(newGchapter)
+               #New Chapter to create
+               newChapter = bookFound.chapters.new
+               newChapter.user_id = logged_in.id #This one is useless here
+               newChapter.gchapter_id = newGchapter #This one is useless here
+               #Store Chapter
+               storeNewChapter(bookFound, logged_in, newChapter) #Doesn't pass over
             else
                redirect_to root_path
             end
          elsif(type == "create") #Login only
             logged_in = current_user
             if(logged_in)
+               #Find the book
                bookFound = Book.find_by_id(params[:book_id])
                if(bookFound)
-                  seriesOpen = bookFound.sbook.series_open
-                  if(seriesOpen)
-                     storeChapter(bookFound, logged_in)
+                  #Create the chapter
+                  newChapter = bookFound.chapters.new(params[:chapter])
+                  currentTime = Time.now
+                  newChapter.created_on = currentTime
+                  newChapter.user_id = logged_in.id
+                  chaptersInBook = bookFound.chapters.count
+                  nextGchapter = chaptersInBook + 1
+                  newChapter.gchapter_id = nextGchapter
+                  #Find General Chapter
+                  gchapterFound = Gchapter.find_by_id(nextGchapter)
+                  if(!gchapterFound)
+                     gchapterTitle = "Chapter " + nextGchapter.to_s
+                     newGchapter = Gchapter.new(params[:gchapter])
+                     newGchapter.title = gchapterTitle
+                     newGchapter.created_on = currentTime
+                     @gchapter = newGchapter
+                     @gchapter.save
+                  end
+                  if(bookFound.sbook.series_open)
+                     saveChapter(bookFound, newChapter)
                   else
-                     userMatch = (logged_in.id == bookFound.user_id)
+                     userMatch = (logged_in.id == bookFound.sbook.user.id)
                      if(userMatch)
-                        storeChapter(bookFound, logged_in)
+                        saveChapter(bookFound, newChapter)
                      else
                         redirect_to root_path
                      end

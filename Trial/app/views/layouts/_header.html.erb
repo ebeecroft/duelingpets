@@ -5,18 +5,27 @@
    DuelingPets.net
 </div>
 <div class="profilebar">
-   <%= render 'layouts/profile' %>
+   <%= profile %>
 </div>
 <br>
 <div class="navigation">
-   <%= render 'layouts/navigationbar' %>
-</div>
-<% if current_user %>
-   <% if currentTime > expires %>
-      sign_out
-      redirect_to root_path
+   <%= link_to "Home", root_path %>
+   <%= link_to "Adopt a Pet", pets_path %>
+   <% if !current_user %>
+      <%= link_to "Forum", forums_path %>
    <% else %>
-      <br>
-      <div><%= current_user.vname %>'s session expires in: <%= distance_of_time_in_words_to_now expires %></div>
+      <%= link_to "Suggestions", new_suggestion_path %>
+      <%= link_to "My Forums", user_forums_path(current_user.vname) %>
+      <%= link_to "My Pets", user_petowners_path(current_user.vname) %>
+      <%= link_to "Shop", items_path %>
+      <%= link_to "My Inventory", user_inventories_path(current_user.vname) %>
+      <%= link_to "Fight Monsters", pets_monsters_path %>
    <% end %>
-<% end %>
+   <% if !current_user %>
+      <%= link_to "Shop", items_path %>
+   <% else %>
+      <%= link_to "Forum", forums_path %>
+   <% end %>
+   <%= link_to "Series", sbooks_path %>
+</div>
+<%= automatic_logout %>

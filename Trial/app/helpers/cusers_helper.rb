@@ -31,8 +31,39 @@ module CusersHelper
 
    #Mandatory
    def sign_out
-      self.current_user = nil
+      flash[:success] = "#{current_user.vname} was logged out"
       cookies.delete(:remember_token)
       cookies.delete(:expireTime)
+      self.current_user = nil
+   end
+
+   #Move these to a different helper
+   def automatic_logout
+      if(expires.nil?)
+         #Only for users who were originally created before expires existed
+         if(current_user)
+            sign_out #Need to figure out something
+         end
+      else
+         if(current_user)
+            expired = currentTime > expires
+            if(expired)
+               sign_out
+               redirect_to root_path
+            else
+               #This works correctly
+               render "layouts/timeleft"
+            end
+         end
+      end
+   end
+
+   #Move these to a different helper
+   def profile
+      if(current_user)
+         render 'layouts/loggedin'
+      else
+         render "layouts/guest"
+      end
    end
 end

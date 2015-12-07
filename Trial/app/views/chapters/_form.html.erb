@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-<!--select_tag 'user_id', options_for_select(@users.collect{ |u| [u.name, u.id] })-->
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
@@ -19,23 +18,7 @@
     <%= f.label :story %><br />
     <%= f.text_area :story %>
   </div>
-  <!--This needs to be changed into a drop box-->
-  <% if @gchapters.count > 0 %>
-     <div class="field">
-        <%= f.label :gchapter_id %><br />
-        <%= select_tag 'gchapter_id', options_for_select(@gchapters.collect{|u| [u.title, u.id] }) %>
-        <%#= f.collection_select(Gchapters.all) %>
-        <%#= f.collection_select(:gchapters, :gchapter_id, @gchapters, :id, :title) %>
-        <%#= f.collection_select(:selectedchapter, :gchapter_id, @availableChapters, :id, :title) %>
-        <%#= f.number_field :gchapter_id %>
-     </div>
-  <% else %>
-     <p>There are no more general chapters available at this time. Please check in again later.</p>
-     <br>
-  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
-<%#= collection_select(:selectedpet, :petowner_id, @mypets, :id, :pet_name) %>

@@ -1,15 +1,21 @@
 module MaintenancemodesHelper
 
    def mode(type)
-      logged_in = current_user
-      if(logged_in)
-         if(logged_in.admin)
-            switch(type)
+      code = auto_logout
+      if(code == true)
+         sign_out
+         redirect_to root_path
+      else
+         logged_in = current_user
+         if(logged_in)
+            if(logged_in.admin)
+               switch(type)
+            else
+               redirect_to root_path
+            end
          else
             redirect_to root_path
          end
-      else
-         redirect_to root_path
       end
    end
 

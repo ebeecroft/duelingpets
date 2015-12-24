@@ -14,8 +14,9 @@ module CusersHelper
    #Mandatory
    def sign_in(user)
       expireTime = 2.days.from_now.utc
-      cookies[:remember_token] = { :value => user.remember_token, :expires => expireTime }
-      cookies[:expireTime] = {:value => expireTime, :expires => expireTime }
+      tokenTime = expireTime + 1.month
+      cookies[:remember_token] = { :value => user.remember_token, :expires => tokenTime }
+      cookies[:expireTime] = {:value => expireTime, :expires => expireTime } #Will be removed in the new version
       self.current_user = user
    end
 
@@ -37,22 +38,26 @@ module CusersHelper
       self.current_user = nil
    end
 
-   #Move these to a different helper
-   def automatic_logout
-      if(expires.nil?)
-         #Only for users who were originally created before expires existed
-         if(current_user)
-            sign_out #Need to figure out something
+   #View only
+   def timeleft
+      if(current_user)
+         if(expires)
+            render "layouts/timeleft"
          end
-      else
-         if(current_user)
-            expired = currentTime > expires
+      end
+   end
+
+   #Controller only
+   def auto_logout
+      if(current_user)
+         if(expires.nil?)
+            return true
+         else
+            expired = currentTime >= expires
             if(expired)
-               sign_out
-               redirect_to root_path
+               return true
             else
-               #This works correctly
-               render "layouts/timeleft"
+               return false
             end
          end
       end

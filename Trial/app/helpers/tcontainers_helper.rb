@@ -1,26 +1,32 @@
 module TcontainersHelper
 
    def mode(type)
-      #Check if Maintenance is turned_on
-      allmode = Maintenancemode.find_by_id(1)
-      tcontainermode = Maintenancemode.find_by_id(10)
-      mode_turned_on = (allmode.maintenance_on || tcontainermode.maintenance_on)
-      #Determine if any maintenance is on
-      if(mode_turned_on)
-         #Determine if we are a regular user
-         regularUser = (!current_user || !current_user.admin?)
-         if(regularUser)
-            #Determine which maintenance mode is on
-            if(allmode.maintenance_on)
-               redirect_to maintenance_path
+      code = auto_logout
+      if(code == true)
+         sign_out
+         redirect_to root_path
+      else
+         #Check if Maintenance is turned_on
+         allmode = Maintenancemode.find_by_id(1)
+         tcontainermode = Maintenancemode.find_by_id(10)
+         mode_turned_on = (allmode.maintenance_on || tcontainermode.maintenance_on)
+         #Determine if any maintenance is on
+         if(mode_turned_on)
+            #Determine if we are a regular user
+            regularUser = (!current_user || !current_user.admin?)
+            if(regularUser)
+               #Determine which maintenance mode is on
+               if(allmode.maintenance_on)
+                  redirect_to maintenance_path
+               else
+                  redirect_to tcontainers_maintenance_path
+               end
             else
-               redirect_to tcontainers_maintenance_path
+               switch type
             end
          else
             switch type
          end
-      else
-         switch type
       end
    end
 

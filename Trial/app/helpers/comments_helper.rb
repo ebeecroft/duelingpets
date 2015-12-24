@@ -1,7 +1,13 @@
 module CommentsHelper
 
    def mode(type)
-      switch type
+      code = auto_logout
+      if(code == true)
+         sign_out
+         redirect_to root_path
+      else
+         switch type
+      end
    end
 
    private

@@ -75,12 +75,20 @@ module UsersHelper
             newMember.joined_on = currentTime
             @user = newMember
             if(@user.save)
+               #Create the pouch
                newPouch = Pouch.new(params[:pouch])
                newPouch.user_id = newMember.id
                @pouch = newPouch
                @pouch.save
+               #Create the key
+               newKey = Sessionkey.new(params[:sessionkey])
+               newKey.remember_token = "NULL"
+               newKey.user_id = newMember.id
+               @sessionkey = newKey
+               @sessionkey.save
+               #Login the user
                sign_in newMember
-               flash[:success] = "Welcome to the Duelingpets Website!"
+               flash[:success] = "Welcome to the Duelingpets Website #{@user.vname}!"
                redirect_to @user
             else
                render "new"

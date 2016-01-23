@@ -25,6 +25,9 @@ has_many :sbooks, :foreign_key => "user_id", :dependent => :destroy
 has_many :books, :foreign_key => "user_id", :dependent => :destroy
 has_many :chapters, :foreign_key => "user_id", :dependent => :destroy
 
+#key
+has_one :sessionkey, :foreign_key => "user_id", :dependent => :destroy
+
 #validates :first_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 VALID_NAME_REGEX = /\A[a-z][a-z][a-z]+\z/i

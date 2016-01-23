@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Remember token:</b>
+  <%= @sessionkey.remember_token %>
+</p>
+
+<p>
+  <b>Expiretime:</b>
+  <%= @sessionkey.expiretime %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @sessionkey.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sessionkey_path(@sessionkey) %> |
+<%= link_to 'Back', sessionkeys_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151018170412) do
+ActiveRecord::Schema.define(:version => 20160123153558) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -193,6 +193,14 @@ ActiveRecord::Schema.define(:version => 20151018170412) do
     t.boolean  "maintenance", :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "sessionkeys", :force => true do |t|
+    t.string   "remember_token"
+    t.datetime "expiretime"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "subtopics", :force => true do |t|

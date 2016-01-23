@@ -1,0 +1,27 @@
+<h1>Listing sessionkeys</h1>
+
+<table>
+  <tr>
+    <th>Remember token</th>
+    <th>Expiretime</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sessionkeys.each do |sessionkey| %>
+  <tr>
+    <td><%= sessionkey.remember_token %></td>
+    <td><%= sessionkey.expiretime %></td>
+    <td><%= sessionkey.user_id %></td>
+    <td><%= link_to 'Show', sessionkey %></td>
+    <td><%= link_to 'Edit', edit_sessionkey_path(sessionkey) %></td>
+    <td><%= link_to 'Destroy', sessionkey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sessionkey', new_sessionkey_path %>

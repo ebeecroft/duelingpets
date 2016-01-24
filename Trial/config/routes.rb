@@ -1,7 +1,5 @@
 Trial::Application.routes.draw do
 
-  resources :sessionkeys
-
 
    #Builds the users actions and the nested actions
    get '/users/maintenance' => 'users#maintenance'
@@ -119,6 +117,9 @@ Trial::Application.routes.draw do
    get '/signin' => 'sessions#new'
    match '/logout' => 'sessions#destroy', via: :delete #has to be a match condition
 
+   #Builds the sessionkey
+   resources :sessionkeys, :only => [:index]
+
    #Controls page visibility
    resources :maintenancemodes, :except =>[:show, :destroy]
 
@@ -130,3 +131,4 @@ Trial::Application.routes.draw do
    post 'create_adoption', to: "petowners#create"
    root :to => "start#home"
 end
+

@@ -1,27 +1,16 @@
 class SessionkeysController < ApplicationController
-  include SessionkeysHelper
 
-  def index
-     mode "index"
-  end
-
-  def show #Not used
-  end
-
-  def new
-     mode "new"
-  end
-
-  def edit #Not used
-  end
-
-  def create
-     mode "create"
-  end
-
-  def update #Not used
-  end
-
-  def destroy #Not used
-  end
+   def index
+      code = auto_logout
+      if(code == true)
+         sign_out
+         redirect_to root_path
+      else
+         if(current_user && current_user.admin)
+            @sessionkeys = Sessionkey.order("id").page(params[:page]).per(10)
+         else
+            redirect_to root_path
+         end
+      end
+   end
 end

@@ -4,13 +4,13 @@
 <br>
 <table>
    <tr>
-      <th>Amount</th>
       <th>User</th>
+      <th>Amount</th>
    </tr>
    <% @pouches.each do |pouch| %>
       <tr>
+         <td><%= link_to pouch.user.vname, user_path(pouch.user) %></td>
          <td><%= pouch.amount %></td>
-         <td><%= pouch.user.vname %></td>
       </tr>
    <% end %>
 </table>

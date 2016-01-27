@@ -48,7 +48,8 @@ module SuggestionsHelper
                newSuggestion = Suggestion.new(params[:suggestion])
                @suggestion = newSuggestion
                if(@suggestion.save)
-                  redirect_to root_path, notice: 'Suggestion was successfully created.'
+                  flash[:success] = 'Suggestion was successfully created.'
+                  redirect_to root_path
                else
                   render "new"
                end

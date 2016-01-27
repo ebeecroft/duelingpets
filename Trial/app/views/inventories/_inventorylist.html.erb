@@ -6,7 +6,7 @@
    </tr>
    <% @inventories.each_with_index do |inventory, index| %>
       <tr>
-         <td><%= inventory.user.vname %></td>
+         <td><%= link_to inventory.user.vname, user_path(inventory.user) %></td>
          <td>&nbsp;&nbsp;<%= inventory.item.name %></td>
          <td><%= button_to 'Destroy', [inventory.user, inventory], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -7,7 +7,7 @@
 <% if firstPage %>
 <div class="storybox">
    <p><%= @subtopic.topicname %></p>
-   <p>by: <%= @subtopic.user.vname %></p>
+   <p>by: <%= link_to @subtopic.user.vname, user_path(@subtopic.user) %></p>
    <pre class="storyformat"><%= @subtopic.description %></pre>
    <br>
 </div>
@@ -24,7 +24,7 @@
          </td>
       </tr>
       <tr>
-         <td>by: <%= narrative.user.vname %></td>
+         <td>by: <%= link_to narrative.user.vname, user_path(narrative.user) %></td>
       </tr>
       <tr>
          <!--Come back to this later-->

@@ -13,7 +13,7 @@
    <p>Created on: <%= sbook.created_on %></p>
    <p>Open series? <%= sbook.series_open %></p>
    <% if !getOptional %>
-      <p>Created by: <%= sbook.user.vname %></p>
+      <p>Created by: <%= link_to sbook.user.vname, user_path(sbook.user) %></p>
    <% end %>
    <br>
 <% end %>

@@ -12,7 +12,7 @@
          </td>
       </tr>
       <tr>
-         <td><%= narrative.user.vname %></td>
+         <td><%= link_to narrative.user.vname, user_path(narrative.user) %></td>
       </tr>
       <tr>
          <td><pre class="storyformat">Story: <%= narrative.story %></pre></td>

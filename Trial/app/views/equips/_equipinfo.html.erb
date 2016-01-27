@@ -28,7 +28,7 @@
       </div>
       <% if !getOptional %>
          <div class="outer">
-            <p>Belongs to pet: <%= equip.petowner.pet_name %></p>
+            <p>Belongs to pet: <%= link_to equip.petowner.pet_name, user_petowner_path(equip.petowner.user, equip.petowner) %></p>
          </div>
       <% end %>
    </div>

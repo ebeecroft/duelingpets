@@ -21,7 +21,7 @@
          </td>
       </tr>
       <tr>
-         <td>by: <%= chapter.user.vname %></td>
+         <td>by: <%= link_to chapter.user.vname, user_path(chapter.user) %></td>
       </tr>
       <tr>
          <!--Come back to this later-->

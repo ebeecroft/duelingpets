@@ -6,7 +6,7 @@
 
 <p>
   <b>User:</b>
-  <%= @petowner.user.vname %>
+  <%= link_to @petowner.user.vname, user_path(@petowner.user) %>
 </p>
 
 <p>

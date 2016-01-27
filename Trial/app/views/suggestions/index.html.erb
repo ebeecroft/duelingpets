@@ -10,7 +10,7 @@
    </tr>
    <% @suggestions.each do |suggestion| %>
       <tr>
-         <td><%= suggestion.name %></td>
+         <td><%= link_to suggestion.name, user_path(suggestion.name) %></td>
          <td><%= suggestion.description %></td>
          <td><%= button_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

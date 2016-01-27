@@ -46,7 +46,7 @@
       </div>
       <div class="outer">
          <p class="limittext"><%= pet.description %></p>
-         <p>Creator: <%= findUser(pet.user_id) %></p>
+         <p>Creator: <%= link_to findUser(pet.user_id), user_path(findUser(pet.user_id)) %></p>
       </div>
    </div>
    <% if ((index + 1) % 3) == 0 %>         

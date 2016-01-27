@@ -14,7 +14,7 @@
          </td>
       </tr>
       <tr>
-         <td>By: <%= subtopic.user.vname %><%#= subtopic.description %></td>
+         <td>By: <%= link_to subtopic.user.vname, user_path(subtopic.user) %></td>
       </tr>
    </table>
    <br>

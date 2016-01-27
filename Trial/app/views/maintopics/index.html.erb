@@ -16,7 +16,7 @@
          </td>
       </tr>
       <tr>
-         <td>By: <%= maintopic.user.vname %></td>
+         <td>By: <%= link_to maintopic.user.vname, user_path(maintopic.user) %></td>
       </tr>
       <tr>
          <td><pre class="storyformat"><%= maintopic.description %></pre></td>

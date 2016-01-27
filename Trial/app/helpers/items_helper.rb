@@ -67,7 +67,8 @@ module ItemsHelper
                   newItem.created_on = currentTime
                   @item = newItem
                   if(@item.save)
-                     redirect_to @item, notice: 'Item was successfully created.'
+                     flash[:success] = 'Item was successfully created.'
+                     redirect_to @item
                   else
                      render "new"
                   end
@@ -101,7 +102,8 @@ module ItemsHelper
                   if(logged_in.admin)
                      @item = itemFound
                      if(@item.update_attributes(params[:item]))
-                        redirect_to @item, notice: 'Item was successfully updated.'
+                        flash[:success] = 'Item was successfully updated.'
+                        redirect_to @item
                      else
                         render "edit"
                      end

@@ -87,19 +87,19 @@ module PetsHelper
             #Does nothing since this pet is valid
          else
             if(health < minHealth)
-               flash[:notice] = "HP is below minimum value of 10"
+               flash.now[:herror] = "HP is below minimum value of 10"
             end
 
             if(attack < minAttack)
-               flash[:notice] = "ATK is below minimum value of 5"
+               flash.now[:aerror] = "ATK is below minimum value of 5"
             end
 
             if(defense < minDefense)
-               flash[:notice] = "DEF is below minimum value of 5"
+               flash.now[:derror] = "DEF is below minimum value of 5"
             end
 
             if(speed < minSpeed)
-               flash[:notice] = "SPD is below minimum value of 5"
+               flash.now[:serror] = "SPD is below minimum value of 5"
             end
             errorFlag = true
          end

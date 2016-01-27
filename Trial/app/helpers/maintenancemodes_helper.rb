@@ -33,7 +33,8 @@ module MaintenancemodesHelper
             newMaintenancemode.created_on = currentTime
             @maintenancemode = newMaintenancemode
             if(@maintenancemode.save)
-               redirect_to maintenancemodes_url, notice: 'Maintenancemode was successfully created.'
+               flash[:success] = 'Maintenancemode was successfully created.'
+               redirect_to maintenancemodes_url
             else
                render "new"
             end
@@ -49,7 +50,8 @@ module MaintenancemodesHelper
             if(maintenancemodeFound)
                @maintenancemode = maintenancemodeFound
                if(@maintenancemode.update_attributes(params[:maintenancemode]))
-                  redirect_to maintenancemodes_url, notice: 'Maintenancemode was successfully updated.'
+                  flash[:success] = 'Maintenancemode was successfully updated.'
+                  redirect_to maintenancemodes_url
                else
                   render "edit"
                end

@@ -17,8 +17,8 @@
    </div>
    <div class="outer">
       <p>Created on: <%= book.created_on %></p>
-      <p>Author: <%= book.user.vname %></p>
-      <p>Series: <%= book.sbook.name %></p>
+      <p>Author: <%= link_to book.user.vname, user_path(book.user) %></p>
+      <p>Series: <%= link_to book.sbook.name, user_sbook_path(book.sbook.user, book.sbook) %></p>
    </div>
    <br>
 <% end %>

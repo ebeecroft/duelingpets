@@ -3,8 +3,8 @@
 <div class="pagebox"><%= paginate @comments %></div>
 <% @comments.each do |comment| %>
    <br>
-   <p>To user: <%= comment.to_user.vname %></p>
-   <div class="inner">From user: <%= comment.from_user.vname %></div>
+   <p>To user: <%= link_to comment.to_user.vname, user_path(comment.to_user) %></p>
+   <div class="inner">From user: <%= link_to comment.from_user.vname, user_path(comment.from_user) %></div>
    <div class="inner"><%= button_to 'Destroy', [comment.to_user, comment], method: :delete, data: { confirm: 'Are you sure?' } %></div>
    <p>Created: <%= distance_of_time_in_words_to_now comment.created_on %> ago</p>
    <p><%= comment.message %></p>

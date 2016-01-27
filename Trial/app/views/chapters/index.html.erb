@@ -17,8 +17,8 @@
    </div>
    <div class="outer">
       <p>Created on: <%= chapter.created_on %></p>
-      <p>Author: <%= chapter.user.vname %></p>
-      <p>Book: <%= chapter.book.title %></p>
+      <p>Author: <%= link_to chapter.user.vname, user_path(chapter.user) %></p>
+      <p>Book: <%= link_to chapter.book.title, sbook_book_path(chapter.book.sbook, chapter.book) %></p>
       <p>Chapter: <%= chapter.gchapter.title %></p>
       <p>Reviewed: <%= chapter.reviewed %></p>
    </div>

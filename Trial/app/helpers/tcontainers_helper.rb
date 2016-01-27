@@ -85,7 +85,8 @@ module TcontainersHelper
                   @tcontainer = newTcontainer
                   if(@tcontainer.save)
                      @forum = forumFound
-                     redirect_to forum_tcontainer_path(@forum, @tcontainer), notice: 'Tcontainer was successfully created.'
+                     flash[:success] = 'Tcontainer was successfully created.'
+                     redirect_to forum_tcontainer_path(@forum, @tcontainer)
                   else
                      render "new"
                   end
@@ -130,7 +131,8 @@ module TcontainersHelper
                         @tcontainer = tcontainerFound
                         if(@tcontainer.update_attributes(params[:tcontainer]))
                            @forum = forumFound
-                           redirect_to forum_tcontainer_path(@forum, @tcontainer), notice: 'Tcontainer was successfully updated.'
+                           flash[:success] = 'Tcontainer was successfully updated.'
+                           redirect_to forum_tcontainer_path(@forum, @tcontainer)
                         else
                            render "edit"
                         end

@@ -14,7 +14,7 @@
          </td>
       </tr>
       <tr>
-         <td><%= subtopic.user.vname %></td>
+         <td><%= link_to subtopic.user.vname, user_path(subtopic.user) %></td>
       </tr>
       <tr>
          <td><pre class="storyformat"><%= subtopic.description %></pre></td>

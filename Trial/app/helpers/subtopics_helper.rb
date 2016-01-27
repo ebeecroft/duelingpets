@@ -89,7 +89,8 @@ module SubtopicsHelper
                   @subtopic = newSubtopic
                   if(@subtopic.save)
                      @maintopic = maintopicFound
-                     redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Subtopic was successfully created.'
+                     flash[:success] = 'Subtopic was successfully created.'
+                     redirect_to maintopic_subtopic_path(@maintopic, @subtopic)
                   else
                      render "new"
                   end
@@ -134,7 +135,8 @@ module SubtopicsHelper
                         @subtopic = subtopicFound
                         if(@subtopic.update_attributes(params[:subtopic]))
                            @maintopic = maintopicFound
-                           redirect_to maintopic_subtopic_path(@maintopic, @subtopic), notice: 'Subtopic was successfully updated.'
+                           flash[:success] = 'Subtopic was successfully updated.'
+                           redirect_to maintopic_subtopic_path(@maintopic, @subtopic)
                         else
                            render "edit"
                         end

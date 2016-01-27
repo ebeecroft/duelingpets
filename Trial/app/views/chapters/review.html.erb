@@ -16,10 +16,10 @@
             <td><%= chapter.story %></td>
          </tr>
          <tr>
-            <td>Book: <%= chapter.book.title %></td>
+            <td>Book: <%= link_to chapter.book.title, sbook_book_path(chapter.book.sbook, chapter.book) %></td>
          </tr>
          <tr>
-            <td>Creator: <%= chapter.user.vname %></td>
+            <td>Creator: <%= link_to chapter.user.vname, user_path(chapter.user) %></td>
          </tr>
          <tr>
             <td>Gchapter: <%= chapter.gchapter.title %></td>

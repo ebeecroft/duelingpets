@@ -36,6 +36,7 @@ module CommentsHelper
                   @comment = newComment
                   @comment.save
                   @user = userFound
+                  flash[:success] = 'Comment was successfully created.'
                   redirect_to @user
                else
                   render "public/404"

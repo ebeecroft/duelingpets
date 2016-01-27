@@ -56,9 +56,9 @@
                      <td>By:
                      <!--This code allows us to know if we are admin or not-->
                      <% if comment.from_user.admin? %>
-                        $<%= comment.from_user.vname %>
+                        $<%= link_to comment.from_user.vname, user_path(comment.from_user) %>
                      <% else %>
-                        ~<%= comment.from_user.vname %>
+                        ~<%= link_to comment.from_user.vname, user_path(comment.from_user) %>
                      <% end %>
                      </td>
                      <!--Determines if we can delete a comment from the user's profile-->

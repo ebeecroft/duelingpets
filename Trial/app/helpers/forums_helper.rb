@@ -108,7 +108,8 @@ module ForumsHelper
                      @forum = newForum
                      if(@forum.save)
                         @user = userFound
-                        redirect_to user_forum_path(@user, @forum), notice: 'Forum was successfully created.'
+                        flash[:success] = 'Forum was successfully created.'
+                        redirect_to user_forum_path(@user, @forum)
                      else
                         render "new"
                      end
@@ -156,7 +157,8 @@ module ForumsHelper
                         @forum = forumFound
                         if(@forum.update_attributes(params[:forum]))
                            @user = userFound
-                           redirect_to user_forum_path(@user, @forum), notice: 'Forum was successfully updated.'
+                           flash[:success] = 'Forum was successfully updated.'
+                           redirect_to user_forum_path(@user, @forum)
                         else
                            render "edit"
                         end

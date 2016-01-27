@@ -20,7 +20,7 @@
    <div class="outer">
       <p><%= book.description %></p>
       <p>Created on: <%= book.created_on %></p>
-      <p>Author: <%= book.user.vname %></p>
+      <p>Author: <%= link_to book.user.vname, user_path(book.user) %></p>
    </div>
    <br>
 <% end %>

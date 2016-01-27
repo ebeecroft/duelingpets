@@ -85,7 +85,8 @@ module MaintopicsHelper
                   @maintopic = newMaintopic
                   if(@maintopic.save)
                      @tcontainer = tcontainerFound
-                     redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully created.'
+                     flash[:success] = 'Maintopic was successfully created.'
+                     redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic)
                   else
                      render "new"
                   end
@@ -130,7 +131,8 @@ module MaintopicsHelper
                         @maintopic = maintopicFound
                         if(@maintopic.update_attributes(params[:maintopic]))
                            @tcontainer = tcontainerFound
-                           redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic), notice: 'Maintopic was successfully updated.'
+                           flash[:success] = 'Maintopic was successfully updated.'
+                           redirect_to tcontainer_maintopic_path(@tcontainer, @maintopic)
                         else
                            render "edit"
                         end

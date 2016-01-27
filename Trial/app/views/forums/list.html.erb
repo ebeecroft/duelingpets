@@ -13,7 +13,7 @@
       </table>
    </div>
    <div class="inner">
-      <p>Owner: <%= forum.user.vname %></p>
+      <p>Owner: <%= link_to forum.user.vname, user_path(forum.user) %></p>
    </div>
    <div class="outer">
       <p class="limittext"><%= forum.description %></p>

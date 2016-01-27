@@ -40,7 +40,8 @@ module PetownersHelper
             if(purchaseCode == 2)
                @pouch.save
             end
-            redirect_to user_petowners_path(@user), notice: 'Petowner was successfully created.'
+            flash[:success] = 'Petowner was successfully created.'
+            redirect_to user_petowners_path(@user)
          else
             render "new"
          end
@@ -164,6 +165,7 @@ module PetownersHelper
                      storeStats(newPetowner, newPetowner.pet)
                      #Checks the return code to see if the pet can be bought
                      if(purchaseCode == 1)
+                        flash[:error] = 'You do not have enough points to afford this pet.'
                         redirect_to pets_path
                      else
                         @user = userFound
@@ -223,7 +225,8 @@ module PetownersHelper
                         @petowner = petownerFound
                         if(@petowner.update_attributes(params[:petowner]))
                            @user = userFound
-                           redirect_to user_petowner_path(@user, @petowner), notice: 'Petowner was successfully updated.'
+                           flash[:success] = 'Petowner was successfully updated.'
+                           redirect_to user_petowner_path(@user, @petowner)
                         else
                            render "edit"
                         end

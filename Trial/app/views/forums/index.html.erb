@@ -18,7 +18,7 @@
       </tr>
       <% if !getOptional %>
          <tr>
-            <td><%= forum.user.vname %></td>
+            <td><%= link_to forum.user.vname, user_path(forum.user) %></td>
          </tr>
       <% end %>
    </table>

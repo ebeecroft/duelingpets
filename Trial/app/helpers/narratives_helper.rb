@@ -70,7 +70,8 @@ module NarrativesHelper
                   @narrative = newNarrative
                   if(@narrative.save)
                      @subtopic = subtopicFound
-                     redirect_to maintopic_subtopic_path(@subtopic.maintopic, @narrative.subtopic), notice: 'Narrative was successfully created.'
+                     flash[:success] = 'Narrative was successfully created.'
+                     redirect_to maintopic_subtopic_path(@subtopic.maintopic, @narrative.subtopic)
                   else
                      render "new"
                   end
@@ -115,7 +116,8 @@ module NarrativesHelper
                         @narrative = narrativeFound
                         if(@narrative.update_attributes(params[:narrative]))
                            @subtopic = subtopicFound
-                           redirect_to maintopic_subtopic_path(@subtopic.maintopic, @narrative.subtopic), notice: 'Narrative was successfully updated.'
+                           flash[:success] = 'Narrative was successfully updated.'
+                           redirect_to maintopic_subtopic_path(@subtopic.maintopic, @narrative.subtopic)
                         else
                            render "edit"
                         end

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160123153558) do
+ActiveRecord::Schema.define(:version => 20160213185535) do
+
+  create_table "artworks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_on"
+    t.integer  "user_id"
+    t.integer  "subfolder_id"
+    t.boolean  "reviewed",     :default => false
+    t.boolean  "maintenance",  :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -109,6 +121,16 @@ ActiveRecord::Schema.define(:version => 20160123153558) do
     t.boolean  "maintenance", :default => false
   end
 
+  create_table "mainfolders", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_on"
+    t.integer  "user_id"
+    t.boolean  "maintenance", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "maintenancemodes", :force => true do |t|
     t.string   "name"
     t.datetime "created_on"
@@ -201,6 +223,18 @@ ActiveRecord::Schema.define(:version => 20160123153558) do
     t.integer  "user_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "subfolders", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_on"
+    t.integer  "user_id"
+    t.integer  "mainfolder_id"
+    t.boolean  "collab_mode",   :default => false
+    t.boolean  "maintenance",   :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "subtopics", :force => true do |t|

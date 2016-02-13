@@ -65,7 +65,7 @@
    /* Mascot section */
    .mascot
    {
-      text-align: center;
+      text-align:center;
    }
    /* End of mascot section */
 
@@ -78,7 +78,12 @@
       font-weight: bold;
    }
 
-    /* Is this still necessary? */
+   .imagebox
+   {
+      width: 100%;
+   }
+
+   /* Is this still necessary? */
    .narrativecontainer
    {
       max-width: 75%;
@@ -100,7 +105,7 @@
    /* Page box for pagination use only */
    .pagebox
    {
-      text-align: center;
+      text-align:center;
    }
 
    /* Pet, Item and Monster related objects */

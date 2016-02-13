@@ -1,0 +1,35 @@
+<h1>Listing subfolders</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Created on</th>
+    <th>User</th>
+    <th>Mainfolder</th>
+    <th>Collab mode</th>
+    <th>Maintenance</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subfolders.each do |subfolder| %>
+  <tr>
+    <td><%= subfolder.name %></td>
+    <td><%= subfolder.description %></td>
+    <td><%= subfolder.created_on %></td>
+    <td><%= subfolder.user_id %></td>
+    <td><%= subfolder.mainfolder_id %></td>
+    <td><%= subfolder.collab_mode %></td>
+    <td><%= subfolder.maintenance %></td>
+    <td><%= link_to 'Show', subfolder %></td>
+    <td><%= link_to 'Edit', edit_subfolder_path(subfolder) %></td>
+    <td><%= link_to 'Destroy', subfolder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subfolder', new_subfolder_path %>

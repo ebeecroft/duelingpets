@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @subfolder.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @subfolder.description %>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%= @subfolder.created_on %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @subfolder.user_id %>
+</p>
+
+<p>
+  <b>Mainfolder:</b>
+  <%= @subfolder.mainfolder_id %>
+</p>
+
+<p>
+  <b>Collab mode:</b>
+  <%= @subfolder.collab_mode %>
+</p>
+
+<p>
+  <b>Maintenance:</b>
+  <%= @subfolder.maintenance %>
+</p>
+
+
+<%= link_to 'Edit', edit_subfolder_path(@subfolder) %> |
+<%= link_to 'Back', subfolders_path %>

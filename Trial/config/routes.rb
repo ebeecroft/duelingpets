@@ -1,15 +1,5 @@
 Trial::Application.routes.draw do
 
-
-  resources :artworks
-
-
-  resources :subfolders
-
-
-  resources :mainfolders
-
-
    #Builds the users actions and the nested actions
    get '/users/maintenance' => 'users#maintenance'
    resources :users, :except => [:new] do
@@ -19,7 +9,28 @@ Trial::Application.routes.draw do
       resources :comments, :only => [:create, :destroy]
       resources :forums
       resources :sbooks
+      resources :mainfolders
    end
+
+   #Builds the mainfolders
+   get '/mainfolders/maintenance' => 'mainfolders#maintenance'
+   get 'mainfolders/list' => 'mainfolders#list'
+   resources :mainfolders, :only => [:index] do
+      resources :subfolders, :except =>[:index]
+   end
+
+   #Builds the subfolders
+   get '/subfolders/maintenance' => 'subfolders#maintenance'
+   resources :subfolders, :only =>[:index] do
+      resources :artworks, :except =>[:index]
+   end
+
+   #Builds the artworks
+   get '/artworks/maintenance' => 'artworks#maintenance'
+   get '/artworks/review' => 'artworks#review' #has to be before the pets controller
+   post 'artworks/review1' => 'artworks#approve'
+   post 'artworks/review2' => 'artworks#deny'
+   resources :artworks, :only => [:index]
 
    #Builds the series
    get '/sbooks/maintenance' => 'sbooks#maintenance'
@@ -41,7 +52,7 @@ Trial::Application.routes.draw do
    post 'chapters/review1' => 'chapters#approve'
    post 'chapters/review2' => 'chapters#deny'
    resources :chapters, :only => [:index]
-   resources :gchapters
+   resources :gchapters, :only =>[:index]
 
    #Comments actions
    resources :comments, :only =>[:index]

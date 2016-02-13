@@ -1,6 +1,9 @@
 Trial::Application.routes.draw do
 
 
+  resources :artworks
+
+
   resources :subfolders
 
 

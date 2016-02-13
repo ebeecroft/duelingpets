@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  created_on: 2016-02-13 18:55:35
+  user_id: 1
+  subfolder_id: 1
+  reviewed: false
+  maintenance: false
+
+two:
+  title: MyString
+  description: MyText
+  created_on: 2016-02-13 18:55:35
+  user_id: 1
+  subfolder_id: 1
+  reviewed: false
+  maintenance: false

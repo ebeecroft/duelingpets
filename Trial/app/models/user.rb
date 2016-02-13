@@ -6,19 +6,23 @@ mount_uploader :avatar, AvatarUploader
 
 before_save { |user| user.email = user.email.downcase }
 before_save { |user| user.first_name = user.first_name.humanize }
-before_save :create_remember_token
+before_save :create_remember_token #Remember to remove this since the remember token is not used here anymore
 
 has_many :petowners, :foreign_key => "user_id", :dependent => :destroy
 #has_many :pets, :through => :petowners
 has_many :inventories, :foreign_key => "user_id", :dependent => :destroy
 has_many :comments, :foreign_key => "user_id", :dependent => :destroy
+has_one :pouch, :foreign_key => "user_id", :dependent => :destroy
+#has_many :pets, :foreign_key => "user_id", :dependent => :destroy
+
+#Bad section to be removed
+has_many :bookcollections, :foreign_key => "user_id", :dependent => :destroy
+
+#Forum section
+has_many :forums, :foreign_key => "user_id", :dependent => :destroy
 has_many :maintopics, :foreign_key => "user_id", :dependent => :destroy
 has_many :subtopics, :foreign_key => "user_id", :dependent => :destroy
 has_many :narratives, :foreign_key => "user_id", :dependent => :destroy
-has_one :pouch, :foreign_key => "user_id", :dependent => :destroy
-has_many :forums, :foreign_key => "user_id", :dependent => :destroy
-#has_many :pets, :foreign_key => "user_id", :dependent => :destroy
-has_many :bookcollections, :foreign_key => "user_id", :dependent => :destroy
 
 #Writing section
 has_many :sbooks, :foreign_key => "user_id", :dependent => :destroy
@@ -27,6 +31,11 @@ has_many :chapters, :foreign_key => "user_id", :dependent => :destroy
 
 #key
 has_one :sessionkey, :foreign_key => "user_id", :dependent => :destroy
+
+#Art section
+has_many :mainfolders, :foreign_key => "user_id", :dependent => :destroy
+has_many :subfolders, :foreign_key => "user_id", :dependent => :destroy
+has_many :artworks, :foreign_key => "user_id", :dependent => :destroy
 
 #validates :first_name, presence: true
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

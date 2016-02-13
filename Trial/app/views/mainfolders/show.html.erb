@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @mainfolder.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @mainfolder.description %>
+</p>
+
+<p>
+  <b>Created on:</b>
+  <%= @mainfolder.created_on %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @mainfolder.user_id %>
+</p>
+
+<p>
+  <b>Maintenance:</b>
+  <%= @mainfolder.maintenance %>
+</p>
+
+
+<%= link_to 'Edit', edit_mainfolder_path(@mainfolder) %> |
+<%= link_to 'Back', mainfolders_path %>

@@ -1,27 +1,17 @@
 class GchaptersController < ApplicationController
-  include GchaptersHelper
 
-  def index
-     mode "index"
-  end
-
-  def new
-     mode "new"
-  end
-
-  def edit
-     mode "edit"
-  end
-
-  def create
-     mode "create"
-  end
-
-  def update
-     mode "update"
-  end
-
-  def destroy
-     mode "destroy"
-  end
+   def index
+      code = auto_logout
+      if(code == true)
+         sign_out
+         redirect_to root_path
+      else
+         if(current_user && current_user.admin)
+            allGchapters = Gchapter.order("id").page(params[:page]).per(10)
+            @gchapters = allGchapters
+         else
+            redirect_to root_path
+         end
+      end
+   end
 end

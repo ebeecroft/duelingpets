@@ -39,6 +39,20 @@
    <% end %>
    </div>
 
+   <!--Gallery list should be here-->
+   <% if @gcount > 0 || (current_user && current_user.id == @user.id) %>
+      <br>
+      <p>Galleries</p>
+   <% end %>
+   <div>
+   <% if @gcount > 0 %>
+      <%= link_to 'My Galleries', user_mainfolders_path(@user) %>
+   <% end %>
+   <% if current_user && current_user.id == @user.id %>
+      <%= link_to 'New Gallery', new_user_mainfolder_path(@user) %>
+   <% end %>
+   </div>
+
    <% if @count > 0 %>
       <div>
          <% if @count > 10 %>

@@ -1,30 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @mainfolder.name %>
-</p>
+<h1 class="pageheader">
+   <div class="inner"><%= @mainfolder.name %></div>
+   <% if current_user && (current_user.id == @mainfolder.user_id || current_user.admin) %>
+      <div class="inner"><%= button_to 'Edit', edit_user_mainfolder_path(@mainfolder.user, @mainfolder), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [@mainfolder.user, @mainfolder], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <% end %>
+</h1>
+<p><%= @mainfolder.description %></p>
+<br>
+<div class="pagebox"><%= paginate @subfolders %></div>
+<br>
+<% @subfolders.each do |subfolder| %>
+   <table>
+      <tr>
+         <td><%= link_to subfolder.name, mainfolder_subfolder_path(@mainfolder, subfolder) %>
+         <% if current_user && (current_user.id == subfolder.user_id || current_user.admin) %>
+            <div class="inner"><%= button_to 'Edit', edit_mainfolder_subfolder_path(@mainfolder, subfolder), method: :get %></div>
+            <div class="inner"><%= button_to 'Destroy', [@mainfolder, subfolder], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+         <% end %>
+         </td>
+      </tr>
+      <tr>
+         <td><%= image_tag getArtwork(subfolder) %></td>
+      </tr>
+      <tr>
+         <td>Owner: <%= link_to subfolder.user.vname, user_path(subfolder.user) %></td>
+      </tr>
+   </table>
+   <br>
+<% end %>
 
-<p>
-  <b>Description:</b>
-  <%= @mainfolder.description %>
-</p>
-
-<p>
-  <b>Created on:</b>
-  <%= @mainfolder.created_on %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @mainfolder.user_id %>
-</p>
-
-<p>
-  <b>Maintenance:</b>
-  <%= @mainfolder.maintenance %>
-</p>
-
-
-<%= link_to 'Edit', edit_mainfolder_path(@mainfolder) %> |
-<%= link_to 'Back', mainfolders_path %>
+<% if current_user %>
+   <p><%= link_to "New Subfolder", new_mainfolder_subfolder_path(@mainfolder) %></p>
+   <br>
+<% end %>
+<p><%= link_to 'Back', user_mainfolders_path(@mainfolder.user) %></p>

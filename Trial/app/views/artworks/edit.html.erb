@@ -1,6 +1,3 @@
 <h1>Editing artwork</h1>
-
 <%= render 'form' %>
-
-<%= link_to 'Show', @artwork %> |
-<%= link_to 'Back', artworks_path %>
+<%= link_to 'Back', subfolder_artwork_path(@subfolder, @artwork) %>

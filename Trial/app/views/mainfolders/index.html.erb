@@ -1,31 +1,29 @@
-<h1>Listing mainfolders</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Created on</th>
-    <th>User</th>
-    <th>Maintenance</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1 class="pageheader">
+   <% if getOptional %>
+      <%= @user.vname %>'s galleries
+   <% else %>
+      Listing galleries
+   <% end %>
+</h1>
+<br>
+<div class="pagebox"><%= paginate @mainfolders %></div>
+<br>
 <% @mainfolders.each do |mainfolder| %>
-  <tr>
-    <td><%= mainfolder.name %></td>
-    <td><%= mainfolder.description %></td>
-    <td><%= mainfolder.created_on %></td>
-    <td><%= mainfolder.user_id %></td>
-    <td><%= mainfolder.maintenance %></td>
-    <td><%= link_to 'Show', mainfolder %></td>
-    <td><%= link_to 'Edit', edit_mainfolder_path(mainfolder) %></td>
-    <td><%= link_to 'Destroy', mainfolder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+   <table>
+      <tr>
+         <td><%= link_to mainfolder.name, user_mainfolder_path(mainfolder.user.vname, mainfolder) %></td>
+      </tr>
+      <tr>
+         <td>Created on: <%= mainfolder.created_on %></td>
+      </tr>
+      <tr>
+         <td><%= mainfolder.description %></td>
+      </tr>
+      <% if !getOptional %>
+         <tr>
+            <td>Owner: <%= link_to mainfolder.user.vname, user_path(mainfolder.user) %></td>
+         </tr>
+      <% end %>
+   </table>
+   <br>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Mainfolder', new_mainfolder_path %>

@@ -1,40 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @artwork.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @artwork.description %>
-</p>
-
-<p>
-  <b>Created on:</b>
-  <%= @artwork.created_on %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @artwork.user_id %>
-</p>
-
-<p>
-  <b>Subfolder:</b>
-  <%= @artwork.subfolder_id %>
-</p>
-
-<p>
-  <b>Reviewed:</b>
-  <%= @artwork.reviewed %>
-</p>
-
-<p>
-  <b>Maintenance:</b>
-  <%= @artwork.maintenance %>
-</p>
-
-
-<%= link_to 'Edit', edit_artwork_path(@artwork) %> |
-<%= link_to 'Back', artworks_path %>
+<p><%= @artwork.title %></p>
+<p><%= image_tag(@artwork.art_url.to_s, class: "imagebox") %></p>
+<p><%= @artwork.description %></p>
+<p>Created on: <%= @artwork.created_on %></p>
+<p>Artist: <%= @artwork.user.vname %></p>
+<p>Subfolder: <%= @artwork.subfolder.name %></p>
+<br>
+<p><%= link_to 'Back', mainfolder_subfolder_path(@subfolder.mainfolder, @artwork.subfolder) %></p>

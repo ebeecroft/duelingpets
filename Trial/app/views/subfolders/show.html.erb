@@ -1,40 +1,37 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @subfolder.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @subfolder.description %>
-</p>
-
-<p>
-  <b>Created on:</b>
-  <%= @subfolder.created_on %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @subfolder.user_id %>
-</p>
-
-<p>
-  <b>Mainfolder:</b>
-  <%= @subfolder.mainfolder_id %>
-</p>
-
-<p>
-  <b>Collab mode:</b>
-  <%= @subfolder.collab_mode %>
-</p>
-
-<p>
-  <b>Maintenance:</b>
-  <%= @subfolder.maintenance %>
-</p>
-
-
-<%= link_to 'Edit', edit_subfolder_path(@subfolder) %> |
-<%= link_to 'Back', subfolders_path %>
+<h1 class="pageheader"><%= @subfolder.name %></h1>
+<br>
+<div class="pagebox"><%= paginate @artworks %></div>
+<br>
+<!--Container--->
+<!--Title of Artwork First-->
+<!--Author on the bottom-->
+<!--End of Container-->
+<!--Should eventually change order for processing of art images--->
+<% @artworks.each_with_index do |artwork, index| %>
+   <div class="petcontainer">
+      <div class="inner"><p><%= link_to artwork.title, subfolder_artwork_path(@subfolder, artwork) %></p></div>
+      <% if current_user && (current_user.id == artwork.user_id || current_user.admin? )%>
+         <div class="inner"><%= button_to 'Edit', edit_subfolder_artwork_path(@subfolder, artwork), method: :get %></div>
+         <div class="inner"><%= button_to 'Destroy', [@subfolder, artwork], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <% end %>
+      <div class="outer"></div>
+      <!--between here is the image itself-->
+      <div class="inner"><p><%= image_tag artwork.art_url(:thumb).to_s %></p></div>
+      <div class="outer"></div>
+      <!--end of this here-->
+      <div class="inner"><p>Artist: <%= link_to artwork.user.vname, user_path(artwork.user) %></p></div>
+   </div>
+   <% if ((index + 1) % 4) == 0 %>         
+      <div class="outer"></div>
+      <br>
+   <% end %>
+<% end %>
+<!--Need to close the previously opened container-->
+<div class="outer"></div>
+<br>
+<% if current_user %>
+   <p><%= link_to "New Artwork", new_subfolder_artwork_path(@subfolder) %></p>
+   <br>
+<% end %>
+<p><%= link_to 'Back', user_mainfolder_path(@mainfolder.user.vname, @subfolder.mainfolder.name) %></p>

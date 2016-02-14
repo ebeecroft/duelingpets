@@ -36,7 +36,11 @@ module MainfoldersHelper
 
    private
       def getArtwork(subfolderFound)
-         reviewedArtworks = subfolderFound.artworks.select{|artwork| artwork.reviewed}
+         subfolderArtworks = subfolderFound.artworks.all
+         reviewedArtworks = subfolderArtworks
+         if(subfolderArtworks.count > 0)
+            reviewedArtworks = subfolderArtworks.select{|artwork| artwork.reviewed}
+         end
          recentArtwork = "No image available"
          if(reviewedArtworks.count > 0)
             recentArtwork = reviewedArtworks.last.art_url(:thumb).to_s

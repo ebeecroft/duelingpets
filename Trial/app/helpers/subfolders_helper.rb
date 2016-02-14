@@ -52,7 +52,10 @@ module SubfoldersHelper
                   @mainfolder = mainfolderFound
                   @subfolder = subfolderFound
                   subfolderArtworks = @subfolder.artworks.all
-                  reviewedArtworks = subfolderArtworks.select{|artwork| artwork.reviewed}
+                  reviewedArtworks = subfolderArtworks
+                  if(subfolderArtworks.count > 0)
+                     reviewedArtworks = subfolderArtworks.select{|artwork| artwork.reviewed}
+                  end
                   @artworks = Kaminari.paginate_array(reviewedArtworks).page(params[:page]).per(10)
                else
                   render "public/404"

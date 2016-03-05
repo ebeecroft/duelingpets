@@ -35,7 +35,7 @@ module ChaptersHelper
          @chapter = newChapter
          if(@chapter.save)
             @book = bookFound
-            flash[:success] = 'Chapter was successfully created.'
+            flash[:success] = "#{@chapter.title} is currently being reviewed please check back later."
             redirect_to sbook_book_path(@book.sbook, @chapter.book)
          else
             render "new"

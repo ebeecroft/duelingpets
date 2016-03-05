@@ -35,6 +35,136 @@ module FightsHelper
    end
 
    private
+      def startBattle
+         start = !(@fight.mdamage.nil? || @fight.pdamage.nil?)
+         return start
+      end
+
+      def getFight
+         value = ""
+         if(!@fight.battle_done)
+            sameUser = (current_user && (current_user.id == @fight.petowner.user.id))
+            if(sameUser)
+               render "battle"
+            end
+         else
+            win = (!@fight.coins.nil? && @fight.coins > 0)
+            loss = (@fight.mhp > 0)
+            if(win)
+               value = "Congratulations your pet just won #{@fight.coins} dp points!"
+            elsif(loss)
+               value = "Sorry better luck next time!"
+            end
+            return value
+         end
+      end
+
+      def getName(type)
+         value = "NULL"
+         if(type == "Pet")
+            value = @fight.petowner.pet_name
+         else
+            value = @fight.pet.species_name
+         end
+         return value
+      end
+
+      def getImage(type)
+         value = "No image available"
+         if(type == "Pet")
+            value = @fight.petowner.pet.image_url(:thumb).to_s
+         else
+            value = @fight.pet.image_url(:thumb).to_s
+         end
+         return value
+      end
+
+      def getLevel(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.level
+         else
+            value = @fight.pet.level
+         end
+         return value
+      end
+
+      def getExp(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.exp
+         end
+         return value
+      end
+
+      def getCurrentHp(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.hp
+         else
+            value = @fight.mhp
+         end
+         return value
+      end
+
+      def getMaxHp(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.hp_max
+         else
+            value = @fight.pet.hp
+         end
+         return value
+      end
+
+      def getAtk(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.atk
+         else
+            value = @fight.pet.atk
+         end
+         return value
+      end
+
+      def getDef(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.def
+         else
+            value = @fight.pet.def
+         end
+         return value
+      end
+
+      def getSpd(type)
+         value = 0
+         if(type == "Pet")
+            value = @fight.petowner.spd
+         else
+            value = @fight.pet.spd
+         end
+         return value
+      end
+
+      def getDamage(type)
+         value = 0
+         if(type == "Pet")
+            if(@fight.mdamage > 0)
+               value = "Damage dealt to pet: #{@fight.mdamage}"
+            else
+               value = "The monster's attack missed!"
+            end
+         else
+            if(@fight.pdamage > 0)
+               value = "Damage dealt to monster: #{@fight.pdamage}"
+            else
+               value = "The pet's attack missed!"
+            end
+         end
+         return value
+      end
+
       def baseStats(petownerFound)
          #Base stats need to be useable outside of this method
          baseAttack = petownerFound.atk
@@ -134,49 +264,38 @@ module FightsHelper
          #Sets the damage for both pets and monsters
          fightFound.pdamage = petDamage
          fightFound.mdamage = monsterDamage
-         #Sets miss flag for both pets and monsters
-         #if(petDamage == 0)
-         #   fightFound.p_miss = true
-         #end
-
-         #if(monsterDamage == 0)
-         #   fightFound.m_miss = true
-         #end
-
          if(inBattle)
             @fight = fightFound
             @petowner = petownerFound
-         elsif(win)
-            petLevelUp(petownerFound, fightFound, pouchFound, bStats, mStats)
+         elsif(win)#This place needs to have petHealth added in
+            petLevelUp(petownerFound, fightFound, pouchFound, bStats, mStats, petHealth)
          elsif(draw)
-            petLevelUp(petownerFound, fightFound, pouchFound, bStats, mStats)
+            petLevelUp(petownerFound, fightFound, pouchFound, bStats, mStats, petHealth)
          elsif(loss)
             fightFound.battle_done = true
             petownerFound.in_battle = false
             @petowner = petownerFound
             @fight = fightFound
-#            raise "Better luck next time!"
          else
             raise "Something went wrong!"
          end
       end
 
-      def statCalculations(bStats, mStats)
+      def statCalculations(bStats, mStats, petHealth)
          #Pass in pet level, experience, pet health and monster level
          petLevel = bStats[0]
          petExperience = bStats[6]
-         petHealth = bStats[4] #Pet health is already pulled in
          monsterLevel = mStats[0]
          results = `formulas/formula #{petLevel} #{petExperience} #{petHealth} #{monsterLevel}`
          string_array = results.split(",")
          return string_array
       end
 
-      def petLevelUp(petownerFound, fightFound, pouchFound, bStats, mStats)
+      def petLevelUp(petownerFound, fightFound, pouchFound, bStats, mStats, petHealth)
          fightFound.battle_done = true
          petownerFound.in_battle = false
          #Calculate the new stats for the pet
-         statArray = statCalculations(bStats, mStats)
+         statArray = statCalculations(bStats, mStats, petHealth)
          levelGained, expGained, coinsGained, attackGained, 
          defenseGained, speedGained, healthGained, 
          maxHealthGained = statArray.map { |str| str.to_i }

@@ -22,9 +22,8 @@ module MaintenancemodesHelper
    private
       def switch(type)
          if(type == "index") #Admin only
-            @maintenancemodes = Maintenancemode.all
-         elsif(type == "show") #Admin only
-            #Not needed since we will only be using index
+            allModes = Maintenancemode.order("id").page(params[:page]).per(10)
+            @maintenancemodes = allModes
          elsif(type == "new") #Admin only
             @maintenancemode = Maintenancemode.new
          elsif(type == "create") #Admin only
@@ -33,7 +32,7 @@ module MaintenancemodesHelper
             newMaintenancemode.created_on = currentTime
             @maintenancemode = newMaintenancemode
             if(@maintenancemode.save)
-               flash[:success] = 'Maintenancemode was successfully created.'
+               flash[:success] = "#{@maintenancemode.name} was successfully created."
                redirect_to maintenancemodes_url
             else
                render "new"
@@ -50,7 +49,7 @@ module MaintenancemodesHelper
             if(maintenancemodeFound)
                @maintenancemode = maintenancemodeFound
                if(@maintenancemode.update_attributes(params[:maintenancemode]))
-                  flash[:success] = 'Maintenancemode was successfully updated.'
+                  flash[:success] = "#{@maintenancemode.name} was successfully updated."
                   redirect_to maintenancemodes_url
                else
                   render "edit"
@@ -58,8 +57,6 @@ module MaintenancemodesHelper
             else
                render "public/404"
             end
-         elsif(type == "destroy") #Admin only
-            #Destroy should not be used
          end
       end
 end

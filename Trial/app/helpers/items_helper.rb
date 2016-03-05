@@ -30,6 +30,14 @@ module ItemsHelper
    end
 
    private
+      def getItemValue(itemValue)
+         value = itemValue
+         if(itemValue == 0)
+            value="N/A"
+         end
+         return value
+      end
+
       def switch(type)
          if(type == "index") #Guest Access needed
             itemCount = 0

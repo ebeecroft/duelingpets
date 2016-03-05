@@ -19,7 +19,7 @@ module SessionsHelper
                if(passwordValid)
                   #Determine if Maintenance is turned on
                   allmode = Maintenancemode.find_by_id(1)
-                  mode_turned_on = allmode.maintenance_on
+                  mode_turned_on = false #allmode.maintenance_on
                   if(mode_turned_on)
                      if(userFound.admin)
                         sign_in userFound

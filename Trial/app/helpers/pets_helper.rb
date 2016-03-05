@@ -162,7 +162,7 @@ module PetsHelper
                   #Add the pet to the database
                   @pet = newPet
                   if(@pet.save)
-                     flash[:success] = 'Pet was successfully created.'
+                     flash[:success] = "#{@pet.species_name} is currently being reviewed please check back later."
                      redirect_to pets_url
                   else
                      render "new"

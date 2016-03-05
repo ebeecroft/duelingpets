@@ -39,6 +39,14 @@ module EquipsHelper
          @optional = optional
       end
 
+      def getItemValue(itemValue)
+         value = itemValue
+         if(itemValue == 0)
+            value="N/A"
+         end
+         return value
+      end
+
       def savePetowner(petownerFound)
          #Check to see if pets is full
          if(petownerFound.hp == petownerFound.hp_max)

@@ -31,6 +31,28 @@ module UsersHelper
    end
 
    private
+      def getCreated
+         allPets = Pet.all
+         userPets = allPets.select{|pet| pet.user_id == @user.id}
+         value = userPets.count
+         return value
+      end
+
+      def getOwned
+         value = @user.petowners.count
+         return value
+      end
+
+      def getType(user)
+         value = "NULL"
+         if(user.admin)
+            value = "$"
+         else
+            value = "~"
+         end
+         return value
+      end
+
       def switch(type)
          if(type == "index") #Admin only
             logged_in = current_user
@@ -50,30 +72,13 @@ module UsersHelper
                commentCount = 0 #May remove this variable in a later build
                allComments = Comment.all
                userComments = allComments.select{|comment| comment.user_id == userFound.id}
-               @comment = Kaminari.paginate_array(userComments).page(params[:page]).per(10)
+               @comments = Kaminari.paginate_array(userComments).page(params[:page]).per(10)
                commentCount = userComments.count
-
-               #Counts the forums
-               forumCount = 0
-               userFound.forums.each do |forum|
-                  forumCount += 1
-               end
-
-               #Counts the series
-               seriesCount = 0
-               userFound.sbooks.each do |sbook|
-                  seriesCount += 1
-               end
-
-               #Counts the galleries
-               galleryCount = 0
-               userFound.mainfolders.each do |mainfolder|
-                  galleryCount += 1
-               end
-               @fcount = forumCount
-               @scount = seriesCount
-               @gcount = galleryCount
-               @count = commentCount
+               @pcount = userFound.petowners.count
+               @fcount = userFound.forums.count
+               @scount = userFound.sbooks.count
+               @gcount = userFound.mainfolders.count
+               @ccount = commentCount
                @user = userFound
             else
                render "public/404"

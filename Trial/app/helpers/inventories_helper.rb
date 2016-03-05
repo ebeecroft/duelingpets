@@ -38,6 +38,24 @@ module InventoriesHelper
          @optional = optional
       end
 
+      def getItemValue(itemValue)
+         value = itemValue
+         if(itemValue == 0)
+            value="N/A"
+         end
+         return value
+      end
+
+      def getItemType(itemType)
+         value = "default"
+         if itemType.manyuses
+            value="Weapon"
+         else
+            value="Food"
+         end
+         return value
+      end
+
       def switch(type)
          if(type == "index")
             #Locking down index till I get a better idea of what I am doing
@@ -62,9 +80,12 @@ module InventoriesHelper
                         @icount = inventoryCount
                         if(@icount > 0)
                            userPets = logged_in.petowners
-                           @mypets = userPets
-                           @petCount = @mypets.count
-                           @selectpet = logged_in.petowners.minimum(:id)
+                           if(userPets.count > 0)
+                              petsAvailable = userPets.select{|pet| !pet.in_battle}
+                              @mypets = petsAvailable
+                              @petCount = @mypets.count
+                              @selectpet = logged_in.petowners.minimum(:id)
+                           end
                         end
                      else
                         redirect_to root_path

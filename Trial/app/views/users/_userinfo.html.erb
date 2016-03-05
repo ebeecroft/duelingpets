@@ -1,28 +1,14 @@
-<% if current_user && (current_user.id == @user.id || current_user.admin?) %>
-   <tr>
-      <td><b>First name:</b> <%= @user.first_name %></td>
-      <td><b>Last name:</b> <%= @user.last_name %></td>
-   </tr>
-   <tr>
-      <td><b>Email:</b> <%= @user.email %></td>
-   </tr>
-   <tr>
-      <td><b>Vname:</b>
-      <%= render 'usertype' %>
-      </td>
-      <td>&nbsp; &nbsp;<b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
-   </tr>
-   <tr>
-      <td><b>Money:</b> <%= @pouch.amount %></td>
-   </tr>
-<% else %>
-   <tr>
-      <td><b>Name:</b> <%= @user.first_name %></td>
-   </tr>
-   <tr>
-      <td><b>Vname:</b>
-      <%= render 'usertype' %>
-      </td>
-      <td>&nbsp; &nbsp;<b>Joined on:</b> <%= @user.joined_on.strftime("%B-%d-%Y") %></td>
-   </tr>
-<% end %>
+<div class="pagetext">
+   <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
+      <div class="userspacing">First name: <%= @user.first_name %></div>
+      <div class="inner">Last name: <%= @user.last_name %></div>
+      <p>Email: <%= @user.email %></p>
+   <% else %>
+      <p>Name: <%= @user.first_name %></p>
+   <% end %>
+   <div class="userspacing">Vname: <%= getType(@user) %><%= @user.vname %></div>
+   <div class="inner">Joined on: <%= @user.joined_on.strftime("%B-%d-%Y") %></div>
+   <% if current_user && (current_user.id == @user.id || current_user.admin?) %>
+      <p>Money: <%= @pouch.amount %></p>
+   <% end %>
+</div>

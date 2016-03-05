@@ -6,7 +6,7 @@
 <% end %>
 </h1>
 <br>
-<p>Am I forgetting something? *some one yells in the background* Ah yes that is right, one of the audience members has been wondering where do those items that I purchased go to? Hmm. Let me think, ah yes now I remember, why the items are sucked into the fabric of time through a wormhole and pass out the other end planting itself in your inventory, which is labeled inventory. In that mystical place you can select one of your purchased items and equip it to your adopted pet or use it directly depending on its conditions.</p>
+<p class="pagetext">Am I forgetting something? *some one yells in the background* Ah yes that is right, one of the audience members has been wondering where do those items that I purchased go to? Hmm. Let me think, ah yes now I remember, why the items are sucked into the fabric of time through a wormhole and pass out the other end planting itself in your inventory, which is labeled inventory. In that mystical place you can select one of your purchased items and equip it to your adopted pet or use it directly depending on its conditions.</p>
 <br>
 <div class="pagebox"><%= paginate @inventories %></div>
 <br>
@@ -23,9 +23,8 @@
          <% end %>
          <%= render 'userinventory' %>
          <% if @petCount > 0 %>
-            <div class="outer"></div>
             <br>
-            <%= submit_tag("Use item!") %>
+            <p class="pagetext"><%= submit_tag("Use item!") %></p>
          <% end %>
       <% end %>
    <% end %>

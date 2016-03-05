@@ -2,17 +2,19 @@
 <br>
 <div class="pagebox"><%= paginate @suggestions %></div>
 <br>
-<table>
-   <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th></th>
-   </tr>
-   <% @suggestions.each do |suggestion| %>
+<div class="pagetext">
+   <table>
       <tr>
-         <td><%= link_to suggestion.name, user_path(suggestion.name) %></td>
-         <td><%= suggestion.description %></td>
-         <td><%= button_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <th>Name</th>
+         <th>Description</th>
+         <th></th>
       </tr>
-   <% end %>
-</table>
+      <% @suggestions.each do |suggestion| %>
+         <tr>
+            <td><%= link_to suggestion.name, user_path(suggestion.name) %></td>
+            <td><%= suggestion.description %></td>
+            <td><%= button_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         </tr>
+      <% end %>
+   </table>
+</div>

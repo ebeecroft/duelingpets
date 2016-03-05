@@ -3,23 +3,14 @@
 <div class="pagebox"><%= paginate @maintopics %></div>
 <% @maintopics.each do |maintopic| %>
    <br>
-   <table>
-      <tr>
-         <td>I belong to <%= maintopic.tcontainer.name %> tcontainer</td>
-      </tr>
-      <tr>
-         <td>Topic: <%= link_to maintopic.topicname, tcontainer_maintopic_path(maintopic.tcontainer_id, maintopic.id) %> 
-         <% if current_user && (current_user.id == maintopic.user_id || current_user.admin? )%>
-            <div class="inner"><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></div>
-            <div class="inner"><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
-         <% end %>
-         </td>
-      </tr>
-      <tr>
-         <td>By: <%= link_to maintopic.user.vname, user_path(maintopic.user) %></td>
-      </tr>
-      <tr>
-         <td><pre class="storyformat"><%= maintopic.description %></pre></td>
-      </tr>
-   </table>
+   <div class="pagetext">
+      <p>I belong to <%= maintopic.tcontainer.name %> tcontainer</p>
+      <div class="inner">Topic: <%= link_to maintopic.topicname, tcontainer_maintopic_path(maintopic.tcontainer_id, maintopic.id) %></div>
+      <% if current_user && (current_user.id == maintopic.user_id || current_user.admin? )%>
+         <div class="inner"><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></div>
+         <div class="inner"><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <% end %>
+      <p>by: <%= link_to maintopic.user.vname, user_path(maintopic.user) %></p>
+      <pre class="storyformat"><%= maintopic.description %></pre>
+   </div>
 <% end %>

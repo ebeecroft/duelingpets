@@ -1,24 +1,15 @@
 <h1 class="pageheader">Listing books</h1>
 <br>
 <div class="pagebox"><%= paginate @books %></div>
-<br>
 <% @books.each do |book| %>
-   <div class="outer">
-      <table>
-         <tr>
-            <td><%= link_to book.title, sbook_book_path(book.sbook, book) %></td>
-            <td><%= button_to 'Edit', edit_sbook_book_path(book.sbook, book), method: :get %></td>
-            <td><%= button_to 'Destroy', [book.sbook, book], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-         </tr>
-      </table>
-   </div>
-   <div class="inner">
+   <br>
+   <div class="pagetext">
+      <div class="inner"><%= link_to book.title, sbook_book_path(book.sbook, book) %></div>
+      <div class="inner"><%= button_to 'Edit', edit_sbook_book_path(book.sbook, book), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [book.sbook, book], method: :delete, data: { confirm: 'Are you sure?' } %></div>
       <p><%= book.description %></p>
-   </div>
-   <div class="outer">
-      <p>Created on: <%= book.created_on %></p>
+      <p>Created on: <%= book.created_on.strftime("%B-%d-%Y") %></p>
       <p>Author: <%= link_to book.user.vname, user_path(book.user) %></p>
       <p>Series: <%= link_to book.sbook.name, user_sbook_path(book.sbook.user, book.sbook) %></p>
    </div>
-   <br>
 <% end %>

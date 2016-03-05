@@ -11,47 +11,55 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :species_name %><br />
     <%= f.text_field :species_name %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.file_field :image %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :remote_image_url, "or image URL" %><br/>
     <%= f.text_field :remote_image_url %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :monster %>?<br />
     <%= f.check_box :monster %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :hp %><br />
     <%= f.text_field :hp %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :atk %><br />
     <%= f.text_field :atk %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :def %><br />
     <%= f.text_field :def %>
   </div>
-  <div class="field">
+  <br>
+  <div class="pagetext">
     <%= f.label :spd %><br />
     <%= f.text_field :spd %>
   </div>
-  <div>
   <br>
-  <p class="imagerules">Images submitted must be free from copyright restrictions, and appropriate for all ages. Inappropriate images will be removed and user privileges may be revoked. Please contact webmaster if you encounter inappropriate content.</p>
+  <div>
+  <p class="pagetext">Images submitted must be free from copyright restrictions, and appropriate for all ages. Inappropriate images will be removed and user privileges may be revoked. Please contact webmaster if you encounter inappropriate content.</p>
   </div>
   <br>
-  <div class="actions">
+  <div class="pagetext">
     <%= f.submit %>
   </div>
 <% end %>

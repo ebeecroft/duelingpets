@@ -1,21 +1,13 @@
 <h1 class="pageheader">Listing Narratives</h1>
 <br>
 <div class="pagebox"><%= paginate @narratives %></div>
-<!--Need to remove table thing-->
 <% @narratives.each do |narrative| %>
    <br>
-   <table>
-      <tr>
-         <td>I belong to <%= narrative.subtopic.topicname %> subtopic
-         <div class="inner"><%= button_to 'Edit', edit_subtopic_narrative_path(narrative.subtopic, narrative), method: :get %></div>
-         <div class="inner"><%= button_to 'Destroy', [narrative.subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></div>
-         </td>
-      </tr>
-      <tr>
-         <td><%= link_to narrative.user.vname, user_path(narrative.user) %></td>
-      </tr>
-      <tr>
-         <td><pre class="storyformat">Story: <%= narrative.story %></pre></td>
-      </tr>
-   </table>
+   <div class="pagetext">
+      <div class="inner">I belong to <%= narrative.subtopic.topicname %> subtopic</div>
+      <div class="inner"><%= button_to 'Edit', edit_subtopic_narrative_path(narrative.subtopic, narrative), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [narrative.subtopic, narrative], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <p>by: <%= link_to narrative.user.vname, user_path(narrative.user) %></p>
+      <pre class="storyformat">Story: <%= narrative.story %></pre>
+   </div>
 <% end %>

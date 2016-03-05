@@ -1,23 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-<%= image_tag @item.ipicture_url(:thumb).to_s %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @item.name %>
-  <%= button_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @item.description %>
-</p>
-
-<p>
-  <b>Created on:</b>
-  <%= @item.created_on.strftime("%B-%d-%Y") %>
-</p>
-
-<%= link_to 'Back', items_path %>
+<div class="pagetext">
+   <div class="inner">Name: <%= @item.name %></div>
+   <div class="inner"><%= button_to 'Edit', edit_item_path(@item), method: :get %></div>
+   <div class="inner"><%= button_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+   <p><%= image_tag @item.ipicture_url(:thumb).to_s %></p>
+   <p>Created on: <%= @item.created_on.strftime("%B-%d-%Y") %></p>
+   <p>Description: <%= @item.description %></p>
+   <br>
+   <p><%= link_to 'Back', items_path %></p>
+</div>

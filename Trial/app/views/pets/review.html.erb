@@ -2,56 +2,51 @@
 <br>
 <div class="pagebox"><%= paginate @pets %></div>
 <% @pets.each do |pet| %>
-<!--Do not touch this code till later-->
    <br>
-   <!--Pet box should go from here -->
-   <div class="inner"><%= link_to pet.species_name, pet %></div>
-   <div class="inner"><%= button_to 'Approve', pets_review1_path(:pet_id=>pet.id), method: :post %></div>
-   <div class="inner"><%= button_to 'Deny', pets_review2_path(:pet_id=>pet.id), method: :post %></div>
-   <br>
-   <p class="inner"><%= image_tag pet.image_url(:thumb).to_s %></p>
-   <div class="inner">
-      <table>
-         <tr>
-            <td>Level: <%= pet.level %></td>
-         </tr>
-         <tr>
-            <td>Attack: <%= pet.atk %></td>
-         </tr>
-         <tr>
-            <td>Defense: <%= pet.def %></td>
-         </tr>
-         <tr>
-            <td>Speed: <%= pet.spd %></td>
-         </tr>
-         <tr>
-            <td>Health: <%= pet.hp %></td>
-         </tr>
-         <tr>
-            <td>Cost: <%= pet.cost %></td>
-         </tr>
-         <tr>
-            <td>Type:
-               <% if pet.monster %>
-                  Monster
-               <% else %>
-                  Pet
-               <% end %>
-            </td>
-         </tr>
-         <tr>
-            <!--Makes no sense when we are in the review mode-->
-            <td>Reviewed: <%= pet.reviewed %></td>
-         </tr>
-         <tr>
-            <!--Remember to change this field when I implement the new fix-->
-            <td>Creator: <%= link_to findUser(pet.user_id), user_path(findUser(pet.user_id)) %></td>
-         </tr>
-         <tr>
-            <td>Created: <%= distance_of_time_in_words_to_now pet.created_on %> ago</td>
-         </tr>
-      </table>
+   <div class="pagetext">
+      <div class="inner"><%= link_to pet.species_name, pet %></div>
+      <div class="inner"><%= button_to 'Approve', pets_review1_path(:pet_id=>pet.id), method: :post %></div>
+      <div class="inner"><%= button_to 'Deny', pets_review2_path(:pet_id=>pet.id), method: :post %></div>
+      <br>
+      <div class="inner"><%= image_tag pet.image_url(:thumb).to_s %></div>
+      <div class="inner">
+         <table>
+            <tr>
+               <td>Level: <%= pet.level %></td>
+            </tr>
+            <tr>
+               <td>Attack: <%= pet.atk %></td>
+            </tr>
+            <tr>
+               <td>Defense: <%= pet.def %></td>
+            </tr>
+            <tr>
+               <td>Speed: <%= pet.spd %></td>
+            </tr>
+            <tr>
+               <td>Health: <%= pet.hp %></td>
+            </tr>
+            <tr>
+               <td>Cost: <%= pet.cost %></td>
+            </tr>
+            <tr>
+               <td>Type:
+                  <% if pet.monster %>
+                     Monster
+                  <% else %>
+                     Pet
+                  <% end %>
+               </td>
+            </tr>
+            <tr>
+               <!--Remember to change this field when I implement the new fix-->
+               <td>Creator: <%= link_to findUser(pet.user_id), user_path(findUser(pet.user_id)) %></td>
+            </tr>
+            <tr>
+               <td>Created: <%= distance_of_time_in_words_to_now pet.created_on %> ago</td>
+            </tr>
+         </table>
+      </div>
+      <p><%= pet.description %></p>
    </div>
-   <p><%= pet.description %></p>
-   <!-- to here-->
 <% end %>

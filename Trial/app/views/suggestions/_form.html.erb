@@ -10,19 +10,23 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <br>
+  <!--Should leave this field as name and remove the email parameter since this can only be accessed by logged in users-->
+  <div class="pagetext">
      <%= f.label :name, "Vname" %><br />
      <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div class="pagetext">
      <%= f.label :email %><br />
      <%= f.text_field :email %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
-  <div class="actions">
+  <!--User id should be used instead by email and vname-->
+  <div class="pagetext">
     <%= f.submit %>
   </div>
+  <br>
 <% end %>

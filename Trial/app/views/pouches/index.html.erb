@@ -2,15 +2,17 @@
 <br>
 <div class="pagebox"><%= paginate @pouches %></div>
 <br>
-<table>
-   <tr>
-      <th>User</th>
-      <th>Amount</th>
-   </tr>
-   <% @pouches.each do |pouch| %>
+<div class="pagetext">
+   <table>
       <tr>
-         <td><%= link_to pouch.user.vname, user_path(pouch.user) %></td>
-         <td><%= pouch.amount %></td>
+         <th>User</th>
+         <th>Amount</th>
       </tr>
-   <% end %>
-</table>
+      <% @pouches.each do |pouch| %>
+         <tr>
+            <td><%= link_to pouch.user.vname, user_path(pouch.user) %></td>
+            <td><%= pouch.amount %></td>
+         </tr>
+      <% end %>
+   </table>
+</div>

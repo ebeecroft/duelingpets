@@ -2,82 +2,11 @@
 
 <h1 class="pageheader">The Battle</h1>
 <br>
-<p>Round: <%= @fight.round %></p>
+<p class="battleround">Round: <%= @fight.round %></p>
 <br>
-<div class="inner">
-    <p><b><%= @fight.petowner.pet_name %></b></p>
-    <%= image_tag @fight.petowner.pet.image_url(:thumb).to_s %></td>
+<div class="pagetext">
+   <div class="petcontainer"><%= render "type", object: "Pet" %></div>
+   <div class="monstercontainer"><%= render "type", object: "Monster" %></div>
 </div>
-<div class="inner">
-   <table>
-      <tr>
-         <td>Level: <%= @fight.petowner.level %></td>
-         <td>EXP: <%= @fight.petowner.exp %></td>
-      </tr>
-      <tr>
-         <td>HP: <%= @fight.petowner.hp %>/<%= @fight.petowner.hp_max %></td>
-      </tr>
-      <tr>
-         <td>ATK: <%= @fight.petowner.atk %></td>
-      </tr>
-      <tr>
-         <td>DEF: <%= @fight.petowner.def %></td>
-      </tr>
-      <tr>
-         <td>SPD: <%= @fight.petowner.spd %></td>
-      </tr>
-      <% if !@fight.mdamage.nil? %>
-         <tr>
-            <% if @fight.mdamage > 0 %>
-               <td>Damage dealt to pet: <%= @fight.mdamage %></td>
-            <% else %>
-               <td>The monster's attack missed!</td>
-            <% end %>
-         </tr>
-      <% end %>
-   </table>
-</div>
-<div class="inner">
-   <p><b><%= @fight.pet.species_name %></b></p>
-   <%= image_tag @fight.pet.image_url(:thumb).to_s %></td>
-</div>
-<div class="inner">
-   <table>
-      <tr>
-         <td>Level: <%= @fight.pet.level %></td>
-      </tr>
-      <tr>
-         <td>HP: <%= @fight.mhp %>/<%= @fight.pet.hp %></td>
-      </tr>
-      <tr>
-         <td>ATK: <%= @fight.pet.atk %></td>
-      </tr>
-      <tr>
-         <td>DEF: <%= @fight.pet.def %></td>
-      </tr>
-      <tr>
-         <td>SPD: <%= @fight.pet.spd %></td>
-      </tr>
-      <% if !@fight.pdamage.nil? %>
-         <tr>
-            <% if @fight.pdamage > 0 %>
-               <td>Damage dealt to monster: <%= @fight.pdamage %></td>
-            <% else %>
-               <td>The pet's attack missed!</td>
-            <% end %>
-         </tr>
-      <% end %>
-   </table>
-</div>
-<% if !@fight.battle_done %>
-   <div class="outer">
-      <%= button_to 'Battle', petowner_fight_path(@fight.petowner.id, @fight.id), method: :post %>
-   </div>
-<% else %>
-   <% if !@fight.coins.nil? && @fight.coins > 0 %>
-      <div class="outer">
-         <br>
-         <p>Congratulations your pet just won <%= @fight.coins %> dp points!</p>
-      </div>
-   <% end %>
-<% end %>
+<br>
+<div class="pagetext"><%= getFight %></div>

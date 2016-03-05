@@ -1,19 +1,47 @@
-<p>
-  <%= image_tag @pet.image_url(:thumb).to_s %>
-</p>
-<p>
-  <b>Species name:</b>
-  <%= @pet.species_name %>
-</p>
-<p>
-  <b>Description:</b>
-  <%= @pet.description %>
-</p>
-<p>
-  <b>Created on:</b>
-  <%= @pet.created_on.strftime("%B-%d-%Y") %>
-</p>
-<%= link_to 'Back', pets_path %>
-<% if current_user && current_user.admin %>
-   <%= button_to 'Destroy', @pet, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<div class="pagetext">
+   <div class="inner">
+      <p>Species name: <%= @pet.species_name %></p>
+   </div>
+   <div class="inner">
+      <% if current_user %>
+         <% if current_user.id == @pet.user_id || current_user.admin %>
+            <%= button_to 'Edit', edit_pet_path(@pet), method: :get %>
+         <% end %>
+      <% end %>
+   </div>
+   <div class="inner">
+      <% if current_user %>
+         <% if current_user.admin %>
+            <%= button_to 'Destroy', @pet, method: :delete, data: { confirm: 'Are you sure?' } %>
+         <% end %>
+      <% end %>
+   </div>
+   <br>
+   <div class="inner"><%= image_tag @pet.image_url(:thumb).to_s %></div>
+   <div class="inner">
+      <table>
+         <tr>
+            <td>Level: <%= @pet.level %></td>
+         </tr>
+         <tr>
+            <td>HP: <%= @pet.hp %></td>
+         </tr>
+         <tr>
+            <td>ATK: <%= @pet.atk %></td>
+         </tr>
+         <tr>
+            <td>DEF: <%= @pet.def %></td>
+         </tr>
+         <tr>
+            <td>SPD: <%= @pet.spd %></td>
+         </tr>
+      </table>
+   </div>
+   <div class="outer">
+      <p><%= @pet.description %></p>
+      <p>Created on: <%= @pet.created_on.strftime("%B-%d-%Y") %></p>
+      <p>Creator: <%= link_to findUser(@pet.user_id), user_path(findUser(@pet.user_id)) %></p>
+   </div>
+</div>
+<br>
+<div class="pagetext"><%= link_to 'Back', pets_path %></div>

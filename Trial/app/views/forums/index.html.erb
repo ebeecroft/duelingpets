@@ -7,20 +7,11 @@
 </h1>
 <br>
 <div class="pagebox"><%= paginate @forums %></div>
-<br>
 <% @forums.each do |forum| %>
-   <table>
-      <tr>
-         <td><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></td>
-      </tr>
-      <tr>
-         <td><%= forum.description %></td>
-      </tr>
-      <% if !getOptional %>
-         <tr>
-            <td><%= link_to forum.user.vname, user_path(forum.user) %></td>
-         </tr>
-      <% end %>
-   </table>
    <br>
+   <p class="pagetext"><%= link_to forum.name, user_forum_path(forum.user.vname, forum) %></p>
+   <p class="pagetext"><%= forum.description %></p>
+   <% if !getOptional %>
+      <p class="pagetext"><%= link_to forum.user.vname, user_path(forum.user) %></p>
+   <% end %>
 <% end %>

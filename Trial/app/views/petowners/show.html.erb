@@ -1,30 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<% if @petowner.user_id == current_user.id %>
-   <%= button_to 'Edit', edit_user_petowner_path(@petowner), method: :get %>
-<% end %>
+<div class="pagetext">
+   <div class="inner">Pet name: <%= @petowner.pet_name %></div>
+   <% if current_user && @petowner.user_id == current_user.id %>
+      <div class="inner"><%= button_to 'Edit', edit_user_petowner_path(@petowner), method: :get %></div>
+   <% end %>
+   <p><%= image_tag @petowner.pet.image_url(:thumb).to_s %></p>
+   <p>Pet type: <%= link_to @petowner.pet.species_name, pet_path(@petowner.pet) %></p>
+   <p>Owner: <%= link_to @petowner.user.vname, user_path(@petowner.user) %></p>
+   <p>Adopted on: <%= @petowner.adopted_on.strftime("%B-%d-%Y") %></p>
+   <p><%= link_to 'View Equipped Items', petowner_equips_path(@petowner) %> | <%= link_to 'View Fights', petowner_fights_path(@petowner) %></p>
+   <br>
+   <p><%= link_to 'Back', user_petowners_path(@petowner.user) %></p>
+</div>
 
-<p>
-  <b>User:</b>
-  <%= link_to @petowner.user.vname, user_path(@petowner.user) %>
-</p>
-
-<p>
-  <b>Pet:</b>
-  <%= @petowner.pet.species_name %>
-</p>
-
-<p>
-  <b>Pet name:</b>
-  <%= @petowner.pet_name %>
-</p>
-
-<p>
-  <b>Adopted on:</b>
-  <%= @petowner.adopted_on.strftime("%B-%d-%Y") %>
-</p>
-
-<%= link_to 'View Equipped Items', petowner_equips_path(@petowner) %> | <%= link_to 'View Fights', petowner_fights_path(@petowner) %>
-<br>
-<br>
-<%= link_to 'Back', user_petowners_path(@petowner.user) %>

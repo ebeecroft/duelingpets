@@ -3,30 +3,15 @@
 <div class="pagebox"><%= paginate @artworks %></div>
 <% @artworks.each do |artwork| %>
    <br>
-   <table>
-      <tr>
-         <td>I belong to <%= artwork.subfolder.name %> subfolder
-         <div class="inner"><%= button_to 'Edit', edit_subfolder_artwork_path(artwork.subfolder, artwork), method: :get %></div>
-         <div class="inner"><%= button_to 'Destroy', [artwork.subfolder, artwork], method: :delete, data: { confirm: 'Are you sure?' } %></div>
-         </td>
-      </tr>
-      <tr>
-         <td>Artist: <%= link_to artwork.user.vname, user_path(artwork.user) %></td>
-      </tr>
-      <tr>
-         <td>Title: <%= link_to artwork.title, subfolder_artwork_path(artwork.subfolder, artwork) %></td>
-      </tr>
-      <tr>
-         <td><%= image_tag artwork.art_url(:thumb).to_s %></td>
-      </tr>
-      <tr>
-         <td>Created on: <%= artwork.created_on %></td>
-      </tr>
-      <tr>
-         <td><pre class="storyformat">Description: <%= artwork.description %></pre></td>
-      </tr>
-      <tr>
-         <td>Reviewed: <%= artwork.reviewed %></td>
-      </tr>
-   </table>
+   <div class="pagetext">
+      <p>I belong to <%= link_to artwork.subfolder.name, mainfolder_subfolder_path(artwork.subfolder.mainfolder, artwork.subfolder) %> subfolder</p>
+      <div class="inner">Title: <%= link_to artwork.title, subfolder_artwork_path(artwork.subfolder, artwork) %></div>
+      <div class="inner"><%= button_to 'Edit', edit_subfolder_artwork_path(artwork.subfolder, artwork), method: :get %></div>
+      <div class="inner"><%= button_to 'Destroy', [artwork.subfolder, artwork], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <p><%= image_tag artwork.art_url(:thumb).to_s %></p>
+      <p>Created on: <%= artwork.created_on.strftime("%B-%d-%Y") %></p>
+      <p><%= artwork.description %></p>
+      <p>Artist: <%= link_to artwork.user.vname, user_path(artwork.user) %></p>
+      <p>Reviewed: <%= artwork.reviewed %></p>
+   </div>
 <% end %>

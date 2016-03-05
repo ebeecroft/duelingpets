@@ -7,23 +7,12 @@
 </h1>
 <br>
 <div class="pagebox"><%= paginate @mainfolders %></div>
-<br>
 <% @mainfolders.each do |mainfolder| %>
-   <table>
-      <tr>
-         <td><%= link_to mainfolder.name, user_mainfolder_path(mainfolder.user.vname, mainfolder) %></td>
-      </tr>
-      <tr>
-         <td>Created on: <%= mainfolder.created_on %></td>
-      </tr>
-      <tr>
-         <td><%= mainfolder.description %></td>
-      </tr>
-      <% if !getOptional %>
-         <tr>
-            <td>Owner: <%= link_to mainfolder.user.vname, user_path(mainfolder.user) %></td>
-         </tr>
-      <% end %>
-   </table>
    <br>
+   <p class="pagetext"><%= link_to mainfolder.name, user_mainfolder_path(mainfolder.user.vname, mainfolder) %></p>
+   <p class="pagetext">Created on: <%= mainfolder.created_on.strftime("%B-%d-%Y") %></p>
+   <p class="pagetext"><%= mainfolder.description %></p>
+   <% if !getOptional %>
+      <p class="pagetext">Owner: <%= link_to mainfolder.user.vname, user_path(mainfolder.user) %></p>
+   <% end %>
 <% end %>

@@ -4,23 +4,18 @@
 <div class="pagebox"><%= paginate @subtopics %></div>
 <br>
 <% @subtopics.each do |subtopic| %>
-   <table>
-      <tr>
-         <td><%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %>
-         <% if current_user && (current_user.id == subtopic.user_id || current_user.admin? )%>
-            <div class="inner"><%= button_to 'Edit', edit_maintopic_subtopic_path(@maintopic, subtopic), method: :get %></div>
-            <div class="inner"><%= button_to 'Destroy', [@maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
-         <% end %>
-         </td>
-      </tr>
-      <tr>
-         <td>By: <%= link_to subtopic.user.vname, user_path(subtopic.user) %></td>
-      </tr>
-   </table>
+   <div class="pagetext">
+      <div class="inner"><%= link_to subtopic.topicname, maintopic_subtopic_path(@maintopic, subtopic) %></div>
+      <% if current_user && (current_user.id == subtopic.user_id || current_user.admin? )%>
+         <div class="inner"><%= button_to 'Edit', edit_maintopic_subtopic_path(@maintopic, subtopic), method: :get %></div>
+         <div class="inner"><%= button_to 'Destroy', [@maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      <% end %>
+      <p>by: <%= link_to subtopic.user.vname, user_path(subtopic.user) %></p>
+   </div>
    <br>
 <% end %>
 <% if current_user %>
-   <p><%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %></p>
+   <p class="pagetext"><%= link_to "New Subtopic", new_maintopic_subtopic_path(@maintopic) %></p>
    <br>
 <% end %>
-<p><%= link_to 'Back', forum_tcontainer_path(@tcontainer.forum_id, @maintopic.tcontainer_id) %></p>
+<p class="pagetext"><%= link_to 'Back', forum_tcontainer_path(@tcontainer.forum_id, @maintopic.tcontainer_id) %></p>

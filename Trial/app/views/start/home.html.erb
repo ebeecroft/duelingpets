@@ -1,7 +1,27 @@
 <h1 class="pageheader">Welcome to the Dueling Pets Home Page!</h1>
 <br>
-<p>At Dueling Pets, we offer users of our site the ability to not only join in pet vs monster fights, but to also have a chance to exercise their creativity when it comes to creating a pet or monster. Now for some of you, creating a pet may not be an option, but that is okay. We also offer users a chance to engage in telling stories or engaging in role plays on our forum. For the pet owners we offer several items from our shop to be used with your pet. These range from battle equipment to potions that can be purchased in the store, each of which will have some form of cost and will be deducted from your DP pouch upon initial purchase.</p>
-<br>
-<p>If you are new to the site and wanting to learn how to create a forum please check out the Tutorial Forum by clicking the forum link on the navigation bar. It will provide you with all the tools you will need to build a basic forum. Best of luck to you!</p>
+<!--Need to indent this-->
+<p class="pagetext">At Dueling Pets, we offer users of our site the ability to not only join in pet vs monster fights, but to also have a chance to exercise their creativity when it comes to creating a pet or monster. Now for some of you, creating a pet may not be an option, but that is okay. We also offer users a chance to engage in telling stories or engaging in role plays on our forum. For the pet owners we offer several items from our shop to be used with your pet. These range from battle equipment to potions that can be purchased in the store, each of which will have some form of cost and will be deducted from your DP pouch upon initial purchase.</p>
+<!--End indent-->
+
+<% if current_user %>
+   <% if current_user.forums.count == 0 %>
+      <!--Need to indent this-->
+      <br>
+      <p class="pagetext">New User:</p>
+      <p class="pagetext">If you like to learn how to create a basic forum click on the Tutorial Forum link: <%= link_to "Tutorial Forum", forums_path %></p>
+      <p class="pagetext">Once there choose a topic you are interested in learning about.</p>
+      <!--End indent-->
+   <% end %>
+<% end %>
+
+<% if !current_user %>
+   <!--Need to indent-->
+   <br>
+   <p class="pagetext">Guest:</p>
+   <p class="pagetext">If you like to explore this site more then sign up for an account today by using the register link!</p>
+   <p class="pagetext">Which is located in the upper right hand corner of the screen.</p>
+   <!--End indent-->
+<% end %>
 <br></br>
 <div class="mascot"><%= image_tag("../../../mainimage.jpeg") %></div>

@@ -1,112 +1,84 @@
 <!--For the divs in show come back to them later-->
-<div>
-   <table>
-      <%= render 'usertype' %>
-      <p><%= image_tag @user.avatar_url(:thumb).to_s %></p>
-      <% if current_user && current_user.id == @user.id %>
-         <%= button_to 'Edit', edit_user_path(@user), method: :get %>
-         <br>
-      <% end %>
-      <%= render 'userinfo' %>
-   </table>
-   
-   <!--My forums should only exist if forum count is greater than 0-->
-   <% if @fcount > 0 || (current_user && current_user.id == @user.id) %>
-      <br>
-      <p>Forum</p>
+<div class="pagetext">
+   <div class="inner"><%= getType(@user) %><%= @user.vname %></div>
+   <% if current_user && current_user.id == @user.id %>
+      <div class="inner"><%= button_to 'Edit', edit_user_path(@user), method: :get %></div>
    <% end %>
-   <div>
+   <p><%= image_tag @user.avatar_url(:thumb).to_s %></p>
+</div>
+<%= render 'userinfo' %>
+<br>
+<p class="pagetextheader">Pets created: <%= getCreated %></p>
+<br>
+<p class="pagetextheader">Pets owned: <%= getOwned %></p>
+<!--Pet section-->
+<% if @pcount > 0 %>
+   <br>
+   <p class="pagetext">Pets</p>
+   <p class="pagetext"><%= link_to 'My pets', user_petowners_path(@user) %></p>
+<% end %>
+<!--Forum section-->
+<% if @fcount > 0 || (current_user && current_user.id == @user.id) %>
+   <br>
+   <p class="pagetext">Forum</p>
+<% end %>
+<div class="pagetext">
    <% if @fcount > 0 %>
-      <%= link_to 'My Forums', user_forums_path(@user) %>
+      <div class="inner"><%= link_to 'My Forums', user_forums_path(@user) %></div>
    <% end %>
    <% if current_user && current_user.id == @user.id %>
-      <%= link_to 'New Forum', new_user_forum_path(@user) %>
-   <% end %>
-   </div>
-
-   <!--My series should only exist if series count is greater than 0-->
-   <!--Check count greater then zero or cuurent user equals user-->
-   <% if @scount > 0 || (current_user && current_user.id == @user.id) %>
-      <br>
-      <p>Series</p>
-   <% end %>
-   <div>
-   <% if @scount > 0 %>
-      <%= link_to 'My Series', user_sbooks_path(@user) %>
-   <% end %>
-   <% if current_user && current_user.id == @user.id %>
-      <%= link_to 'New Series', new_user_sbook_path(@user) %>
-   <% end %>
-   </div>
-
-   <!--Gallery list should be here-->
-   <% if @gcount > 0 || (current_user && current_user.id == @user.id) %>
-      <br>
-      <p>Galleries</p>
-   <% end %>
-   <div>
-   <% if @gcount > 0 %>
-      <%= link_to 'My Galleries', user_mainfolders_path(@user) %>
-   <% end %>
-   <% if current_user && current_user.id == @user.id %>
-      <%= link_to 'New Gallery', new_user_mainfolder_path(@user) %>
-   <% end %>
-   </div>
-
-   <% if @count > 0 %>
-      <div>
-         <% if @count > 10 %>
-            <br>
-            <div class="pagebox"><%= paginate @comment %></div>
-         <% end %>
-         <br>
-         <h2 class ="colorstyleh2">Comments</h2><!--This style does not exist yet-->
-<!--@user.comments -->
-         <% @comment.each do |comment| %>
-            <table>
-               <div class="entry"><!--This style also does not exist-->
-                  <hr />
-                  <tr>
-                     <td>By:
-                     <!--This code allows us to know if we are admin or not-->
-                     <% if comment.from_user.admin? %>
-                        $<%= link_to comment.from_user.vname, user_path(comment.from_user) %>
-                     <% else %>
-                        ~<%= link_to comment.from_user.vname, user_path(comment.from_user) %>
-                     <% end %>
-                     </td>
-                     <!--Determines if we can delete a comment from the user's profile-->
-                     <% if current_user && (current_user.id == comment.from_user.id || current_user.admin?) %>
-                        <td>
-                           <%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></td>
-                        <td></td>
-                     <% end %>
-                  </tr>
-                  <tr>
-                     <td><pre><%= comment.message %></pre></td>
-                  </tr>
-               </div>
-            </table>
-         <% end %>
-      </div>
-   <% end %>
-   <% if !current_user.nil?%>
-      <div>
-         <br>
-         <h3 class="colorstyleh3">Add Comment</h3><!--This style does not yet exist-->
-         <%= form_for [@user, Comment.new] do |form| %>
-            <table>
-               <tr>
-                  <td><%= form.label :message %></td>
-               </tr>
-               <tr>
-                  <td><%= form.text_area :message, :placeholder => "Enter some text" %></td>
-               </tr>
-               <tr>
-                  <td><%= form.submit %></td>
-               </tr>
-            </table>
-         <% end %>
-      </div>
+      <div class="inner"><%= link_to 'New Forum', new_user_forum_path(@user) %></div>
    <% end %>
 </div>
+<!--Writing section-->
+<% if @scount > 0 || (current_user && current_user.id == @user.id) %>
+   <br>
+   <p class="pagetext">Series</p>
+<% end %>
+<div class="pagetext">
+   <% if @scount > 0 %>
+      <div class="inner"><%= link_to 'My Series', user_sbooks_path(@user) %></div>
+   <% end %>
+   <% if current_user && current_user.id == @user.id %>
+      <div class="inner"><%= link_to 'New Series', new_user_sbook_path(@user) %></div>
+   <% end %>
+</div>
+<!--Gallery list should be here-->
+<% if @gcount > 0 || (current_user && current_user.id == @user.id) %>
+   <br>
+   <p class="pagetext">Galleries</p>
+<% end %>
+<div class="pagetext">
+   <% if @gcount > 0 %>
+      <div class="inner"><%= link_to 'My Galleries', user_mainfolders_path(@user) %></div>
+   <% end %>
+   <% if current_user && current_user.id == @user.id %>
+      <div class="inner"><%= link_to 'New Gallery', new_user_mainfolder_path(@user) %></div>
+   <% end %>
+</div>
+<!--Commment list-->
+<% if current_user %>
+   <br>
+   <div class="pagebox"><%= paginate @comments %></div>
+   <br>
+   <% if @ccount > 0 %>
+      <p class="pagetextheader">Comments</p>
+      <% @comments.each do |comment| %>
+         <div class="pagetext">
+            <hr />
+            <div class="inner">By: <%= getType(comment.from_user) %><%= link_to comment.from_user.vname, user_path(comment.from_user) %></div>
+            <% if current_user && (current_user.id == comment.from_user.id || current_user.admin) %>
+               <div class="inner"><%= button_to "Delete", [@user, comment], :confirm => "Are you sure?", :method => :delete %></div>
+            <% end %>
+            <pre class="storyformat"><%= comment.message %></pre>
+         </div>
+      <% end %>
+      <br>
+   <% end %>
+   <p class="pagetextheader">Add Comment</p>
+   <%= form_for [@user, Comment.new] do |form| %>
+      <p class="pagetext"><%= form.label :message %></p>
+      <p class="pagetext"><%= form.text_area :message, :placeholder => "Enter some text" %></p>
+      <p class="pagetext"><%= form.submit %></p>
+   <% end %>
+<% end %>

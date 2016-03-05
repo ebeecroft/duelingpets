@@ -11,37 +11,38 @@
     </div>
   <% end %>
   <br>
-  <p>Virtual Name(Vname) is the only information seen by other users.</p>
+  <p class="pagetext">Virtual Name(Vname) is the only information seen by other users.</p>
   <br>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :vname %><br />
     <%= f.text_field :vname %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
-  <div class="field">
+  <div class="pagetext">
     <%= f.label :password_confirmation, "Confirmation" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions">
+  <div class="pagetext">
     <%= f.submit %>
   </div>
+  <br>
 <% end %>

@@ -28,6 +28,7 @@
       font-size: 24px;
       text-align:left;
       font-weight: bold;
+      padding-left: 3%;
    }
 
    .profilebar
@@ -78,15 +79,56 @@
       font-weight: bold;
    }
 
+   /* This handles p tags only */
+   .pagetext
+   {
+      padding-left: 3%; /* 2% is better, 3% is really good */
+      padding-right: 3%; /* really good at this level */
+   }
+
+   .pagetextheader
+   {
+      padding-left: 3%; /* 2% is better, 3% is really good */
+      padding-right: 3%; /* really good at this level */
+      font-size: 24px;
+      font-weight: bold;
+   }
+
+   .sessiontime
+   {
+      color: #0000ff;
+      display: inline-block;
+   }
+
    .imagebox
    {
       width: 100%;
    }
 
-   /* Is this still necessary? */
-   .narrativecontainer
+   .battleround
    {
-      max-width: 75%;
+      font-size: 18px;
+      text-align: center;
+      font-weight: bold;
+   }
+
+   /*Handles pets, items, etc */
+   .container
+   {
+      display: inline-block;
+      padding-right: 2%;
+   }
+
+   .petcontainer
+   {
+      display:inline-block;
+      padding-right: 15%;
+   }
+
+   .monstercontainer
+   {
+      display:inline-block;
+      padding-left: 15%;
    }
    /*End of HTML Lower section */
 
@@ -100,6 +142,11 @@
    {
       color: #00ff00;
    }
+
+   .alert-herror, .alert-aerror, .alert-derror, .alert-serror
+   {
+      color: #ff0000;
+   }
    /*End of Alerts*/
 
    /* Page box for pagination use only */
@@ -109,34 +156,20 @@
    }
 
    /* Pet, Item and Monster related objects */
-   .petcontainer /*This should be made more generic since it is used in monster,pets and items */
-   {
-      display: inline-block;
-      margin-left: 3%;
-   }
-
    .outer
    {
       display: block;
-   }   
+   }
+
+   .userspacing
+   {
+      display: inline-block;
+      padding-right: 3%;
+   }
 
    .inner
    {
       display: inline-block;
-   }
-
-   /*Currently limit text doesn't work*/
-   .limittext
-   {
-      width: 300px;
-      padding-right:50px;
-      word-wrap:break-word;
-   }
-
-   .imagerules
-   {
-      white-space: pre-wrap;
-      max-width: 40%;
    }
 
    .petbox

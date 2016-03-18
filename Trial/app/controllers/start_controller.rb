@@ -26,7 +26,4 @@ class StartController < ApplicationController
 
    def contact
    end
-
-   def maintenance
-   end
 end

@@ -1,5 +1,7 @@
+<% provide(:title, "Book: Where fanfiction and your own stories live!") %>
+<% provide(:keywords, "fanfiction, stories, books") %>
+<% provide(:description, "Where users create their own books for a particular series that they are interested in.") %>
 <p id="notice"><%= notice %></p>
-
 <h1 class="pageheader">
    <div class="inner"><%= @book.title %></div>
    <% if current_user && (current_user.id == @book.user_id || current_user.admin) %>

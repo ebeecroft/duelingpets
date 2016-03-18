@@ -1,5 +1,7 @@
+<% provide(:title, "Forum: The users social community!") %>
+<% provide(:keywords, "forum, users, social, community") %>
+<% provide(:description, "Where users to get together to socialize, roleplay or even chat.") %>
 <p id="notice"><%= notice %></p>
-
 <h1 class="pageheader">
    <div class="inner"><%= @forum.name %></div>
    <% if current_user && (current_user.id == @forum.user_id || current_user.admin) %>

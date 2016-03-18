@@ -1,5 +1,7 @@
+<% provide(:title, "Petowner: The place where users get to see the pets attributes!") %>
+<% provide(:keywords, "user, pets, attributes") %>
+<% provide(:description, "Allows the user to see what their pets stats is and how well they will do battling monsters.") %>
 <p id="notice"><%= notice %></p>
-
 <div class="pagetext">
    <div class="inner">Pet name: <%= @petowner.pet_name %></div>
    <% if current_user && @petowner.user_id == current_user.id %>

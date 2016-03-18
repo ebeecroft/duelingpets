@@ -1,5 +1,7 @@
+<% provide(:title, "Gallery: The place where users get to upload their artwork!") %>
+<% provide(:keywords, "gallery, digital-artwork, traditional-artwork") %>
+<% provide(:description, "A place where users can showcase their talent to the world at large.") %>
 <p id="notice"><%= notice %></p>
-
 <h1 class="pageheader">
    <div class="inner"><%= @mainfolder.name %></div>
    <% if current_user && (current_user.id == @mainfolder.user_id || current_user.admin) %>

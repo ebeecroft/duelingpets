@@ -1,5 +1,7 @@
+<% provide(:title, "Item: Attributes of the item for purchase!") %>
+<% provide(:keywords, "item, attributes, purchase") %>
+<% provide(:description, "Gives the user a rundown of the item they want before they choose to buy it.") %>
 <p id="notice"><%= notice %></p>
-
 <div class="pagetext">
    <div class="inner">Name: <%= @item.name %></div>
    <div class="inner"><%= button_to 'Edit', edit_item_path(@item), method: :get %></div>

@@ -168,7 +168,7 @@ module SubfoldersHelper
                subfolderFound = Subfolder.find_by_id(params[:id]) #Need to move this below the admin section to protect it
                if(subfolderFound)
                   if(logged_in.admin)
-                     mainfolderFound = Mainfolder.find_by_id(subfolderFound.mfolder_id)
+                     mainfolderFound = Mainfolder.find_by_id(subfolderFound.mainfolder_id)
                      if(mainfolderFound)
                         @subfolder = subfolderFound
                         @mainfolder = mainfolderFound

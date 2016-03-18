@@ -75,10 +75,10 @@ module PetsHelper
 
       def validator(health, attack, defense, speed)
          #Minimum pet values
-         minHealth = 10
-         minAttack = 5
-         minDefense = 5
-         minSpeed = 5
+         minHealth = 6
+         minAttack = 1
+         minDefense = 1
+         minSpeed = 1
 
          #Determines if the pet is valid
          errorFlag = false

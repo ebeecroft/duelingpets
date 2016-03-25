@@ -2,10 +2,10 @@
 <html>
    <head>
       <title><%= yield(:title) %></title><!--Dueling Pets Unlimited: Where your wildest dreams come true.-->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <%= stylesheet_link_tag    "application", :media => "all" %>
       <%= javascript_include_tag "application" %>
       <%= csrf_meta_tags %>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="keywords" content="<%= yield(:keywords) %>">
       <meta name="description" content="<%= yield(:description) %>">
    </head>

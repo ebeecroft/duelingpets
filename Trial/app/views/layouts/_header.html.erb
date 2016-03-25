@@ -1,4 +1,4 @@
-<div class="backgroundbox"><%= image_tag("http://static.duelingpets.net/abie.png", class: "forestbackground") %></div>
+<div class="backgroundbox"><%= image_tag("../../../abie2.png", class: "forestbackground") %></div>
 <div class="logo">DuelingPets.net</div>
 <div class="profilebar"><%= profile %></div>
 <br>
@@ -9,8 +9,6 @@
       <%= link_to "Forum", forums_path %>
    <% else %>
       <%= link_to "Suggestions", new_suggestion_path %>
-      <%= link_to "My Forums", user_forums_path(current_user.vname) %>
-      <%= link_to "My Pets", user_petowners_path(current_user.vname) %>
       <%= link_to "Shop", items_path %>
       <%= link_to "My Inventory", user_inventories_path(current_user.vname) %>
       <%= link_to "Fight Monsters", pets_monsters_path %>

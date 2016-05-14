@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160213190952) do
+ActiveRecord::Schema.define(:version => 20160514231107) do
 
   create_table "artworks", :force => true do |t|
     t.string   "title"
@@ -251,10 +251,10 @@ ActiveRecord::Schema.define(:version => 20160213190952) do
 
   create_table "suggestions", :force => true do |t|
     t.string   "name"
-    t.string   "email"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
   create_table "tcontainers", :force => true do |t|
@@ -276,7 +276,6 @@ ActiveRecord::Schema.define(:version => 20160213190952) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
-    t.string   "remember_token"
     t.boolean  "admin",           :default => false
     t.boolean  "maintenance",     :default => false
     t.string   "avatar"

@@ -35,9 +35,56 @@ module FightsHelper
    end
 
    private
+      def getType(user)
+         if(user.admin)
+            value = "$"
+         else
+            typeFound = Usertype.find_by_user_id(user.id)
+            if(typeFound)
+               type = typeFound.privilege
+               if(type == "Reviewer")
+                  value = "^"
+               elsif(type == "Banned")
+                  value = "!"
+               else
+                  value = "~"
+               end
+            else
+               value = "~"
+            end
+         end
+         return value
+      end
+
       def startBattle
          start = !(@fight.mdamage.nil? || @fight.pdamage.nil?)
          return start
+      end
+
+      def battleDone
+         value = @fight.battle_done
+         return value
+      end
+
+      def getCoins
+         value = 0
+         if(!@fight.coins.nil? && @fight.coins > 0)
+            value = @fight.coins
+         end
+         return value
+      end
+
+      def getExpGained
+         value = @fight.exp_gained
+         return value
+      end
+
+      def getBoostTokens
+         value = 0
+         if(@fight.boost_tokens > 0)
+            value = @fight.boost_tokens
+         end
+         return value
       end
 
       def getFight
@@ -49,9 +96,12 @@ module FightsHelper
             end
          else
             win = (!@fight.coins.nil? && @fight.coins > 0)
+            draw = (@fight.mhp == 0 && @fight.petowner.hp == 0)
             loss = (@fight.mhp > 0)
             if(win)
-               value = "Congratulations your pet just won #{@fight.coins} dp points!"
+               value = "Congratulations your pet won!"#Congratulations your pet just won #{@fight.coins} dp points!<br> Your pet gained #{@fight.exp_gained} experience!<br> Your pet also gained #{@fight.boost_tokens} boost tokens!"
+            elsif(draw)
+               value = "Well at least your pet gave it all it had!"#"Your pet gained #{@fight.exp_gained} experience!<br> Your pet also gained #{@fight.boost_tokens} boost tokens!" #"Your pet gained #{@fight.boost_tokens} boost tokens!"
             elsif(loss)
                value = "Sorry better luck next time!"
             end
@@ -82,7 +132,7 @@ module FightsHelper
       def getLevel(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.level
+            value = @fight.level #petowner.level
          else
             value = @fight.pet.level
          end
@@ -92,7 +142,7 @@ module FightsHelper
       def getExp(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.exp
+            value = @fight.exp #petowner.exp
          end
          return value
       end
@@ -100,7 +150,7 @@ module FightsHelper
       def getCurrentHp(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.hp
+            value = @fight.pet_hp #petowner.hp
          else
             value = @fight.mhp
          end
@@ -110,7 +160,7 @@ module FightsHelper
       def getMaxHp(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.hp_max
+            value = @fight.hp #petowner.hp_max
          else
             value = @fight.pet.hp
          end
@@ -120,7 +170,7 @@ module FightsHelper
       def getAtk(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.atk
+            value = @fight.atk #petowner.atk
          else
             value = @fight.pet.atk
          end
@@ -130,7 +180,7 @@ module FightsHelper
       def getDef(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.def
+            value = @fight.def #petowner.def
          else
             value = @fight.pet.def
          end
@@ -140,7 +190,7 @@ module FightsHelper
       def getSpd(type)
          value = 0
          if(type == "Pet")
-            value = @fight.petowner.spd
+            value = @fight.spd #petowner.spd
          else
             value = @fight.pet.spd
          end
@@ -165,12 +215,12 @@ module FightsHelper
          return value
       end
 
-      def baseStats(petownerFound)
+      def baseStats(petownerFound, health)
          #Base stats need to be useable outside of this method
          baseAttack = petownerFound.atk
          baseDefense = petownerFound.def
          baseSpeed = petownerFound.spd
-         baseHealth = petownerFound.hp
+         baseHealth = health #petownerFound.hp #Should eventually be replaced by fight.pet_hp
          baseMaxHealth = petownerFound.hp_max
          baseLevel = petownerFound.level
          baseExp = petownerFound.exp
@@ -261,6 +311,7 @@ module FightsHelper
          #Sets the hp for both pets and monsters
          fightFound.mhp = monsterHealth
          petownerFound.hp = petHealth
+         fightFound.pet_hp = petHealth
          #Sets the damage for both pets and monsters
          fightFound.pdamage = petDamage
          fightFound.mdamage = monsterDamage
@@ -302,6 +353,8 @@ module FightsHelper
          levelIncrease = levelGained - petownerFound.level
          if(levelIncrease > 0)
             petownerFound.level = levelGained
+            petownerFound.boost_tokens += 2
+            fightFound.boost_tokens = 2
             if(petHealth > 0)
                currentHealth = petHealth + healthGained
                petownerFound.hp = currentHealth
@@ -317,6 +370,7 @@ module FightsHelper
          end
          currentExperience = expGained + petownerFound.exp
          petownerFound.exp = currentExperience
+         fightFound.exp_gained = expGained
          if(coinsGained > 0)
             fightFound.coins = coinsGained
             totalCoins = pouchFound.amount + coinsGained
@@ -387,6 +441,14 @@ module FightsHelper
                         newFight.petowner_id = petownerFound.id
                         newFight.pet_id = petFound.id
                         newFight.mhp = petFound.hp
+                        #Stores the pets current values for the fight
+                        newFight.pet_hp = petownerFound.hp
+                        newFight.level = petownerFound.level
+                        newFight.exp = petownerFound.exp
+                        newFight.hp = petownerFound.hp_max
+                        newFight.atk = petownerFound.atk
+                        newFight.def = petownerFound.def
+                        newFight.spd = petownerFound.spd
                         petownerFound.in_battle = true
                         @fight = newFight
                         if(@fight.save)
@@ -445,7 +507,7 @@ module FightsHelper
                      if(userMatch)
                         pouchFound = Pouch.find_by_id(logged_in.id)
                         #Get the pets stats
-                        bStats = baseStats(petownerFound)
+                        bStats = baseStats(petownerFound, fightFound.pet_hp)
                         eStats = petEquipment(petownerFound)
                         mStats = monsterStats(fightFound)
                         pStats = enhancedStats(bStats, eStats)

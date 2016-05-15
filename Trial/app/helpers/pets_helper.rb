@@ -34,10 +34,63 @@ module PetsHelper
       @petType
    end
 
+   def getPetType2(monster)
+      value = monster
+      return value
+   end
+
    private
-      def findUser(user_id)
-         @user = User.find_by_id(user_id)
-         return @user.vname
+      def getType(user)
+         if(user.admin)
+            value = "$"
+         else
+            typeFound = Usertype.find_by_user_id(user.id)
+            if(typeFound)
+               type = typeFound.privilege
+               if(type == "Reviewer")
+                  value = "^"
+               elsif(type == "Banned")
+                  value = "!"
+               else
+                  value = "~"
+               end
+            else
+               value = "~"
+            end
+         end
+         return value
+      end
+
+      def petDenied
+         petFound = Pet.find_by_id(params[:pet_id])
+         if(petFound)
+            #Retrieve the user who owns this pet first
+            #userEmail = petFound.user.email
+            #Send mail to user with link to edit the pet they sent
+            @pet = petFound
+            PetMailer.pet_denied(@pet).deliver
+            redirect_to pets_review_path
+         else
+            render "public/404"
+         end
+      end
+
+      def petApproved
+         petFound = Pet.find_by_id(params[:pet_id])
+         if(petFound)
+            petFound.reviewed = true
+            pouch = Pouch.find_by_user_id(petFound.user_id)
+            pointsForPet = 10
+            pouch.amount += pointsForPet
+            @pouch = pouch
+            @pouch.save
+            @pet = petFound
+            @pet.save
+            PetMailer.pet_approved(@pet, pointsForPet).deliver
+            redirect_to pets_review_path
+         else
+            render "public/404"
+         end
       end
 
       def petType(type)
@@ -85,21 +138,32 @@ module PetsHelper
          validPet = ((health >= minHealth && attack >= minAttack) && (defense >= minDefense && speed >= minSpeed))
          if(validPet)
             #Does nothing since this pet is valid
+            if(attack == defense && defense == speed)
+               flash.now[:aerror] = "Attack, Defense and Speed can not be the same value"
+               errorFlag = true
+            else
+               total = health + attack + defense + speed
+               divisibleBy2 = (total % 2 == 0)
+               if(!divisibleBy2)
+                  flash.now[:aerror] = "The pet's total value is not divisible by 2"
+                  errorFlag = true
+               end
+            end
          else
             if(health < minHealth)
-               flash.now[:herror] = "HP is below minimum value of 10"
+               flash.now[:herror] = "HP is below minimum value of #{minHealth}"
             end
 
             if(attack < minAttack)
-               flash.now[:aerror] = "ATK is below minimum value of 5"
+               flash.now[:aerror] = "ATK is below minimum value of #{minAttack}"
             end
 
             if(defense < minDefense)
-               flash.now[:derror] = "DEF is below minimum value of 5"
+               flash.now[:derror] = "DEF is below minimum value of #{minDefense}"
             end
 
             if(speed < minSpeed)
-               flash.now[:serror] = "SPD is below minimum value of 5"
+               flash.now[:serror] = "SPD is below minimum value of #{minSpeed}"
             end
             errorFlag = true
          end
@@ -162,6 +226,7 @@ module PetsHelper
                   #Add the pet to the database
                   @pet = newPet
                   if(@pet.save)
+                     PetMailer.review_pet(@pet).deliver
                      flash[:success] = "#{@pet.species_name} is currently being reviewed please check back later."
                      redirect_to pets_url
                   else
@@ -193,20 +258,34 @@ module PetsHelper
             if(logged_in)
                petFound = Pet.find_by_species_name(params[:id])
                if(petFound)
-                  userMatch = ((logged_in.id == petFound.user_id) || logged_in.admin)
-                  if(userMatch)
+                  #Need to calculate the pet's cost and level
+                  #Check for error here
+                  errorFlag = validator(petFound.hp, petFound.atk, petFound.def, petFound.spd)
+                  if(!errorFlag)
                      @pet = petFound
-                     if(@pet.update_attributes(params[:pet]))
-                        flash[:success] = 'Pet was successfully updated.'
-                        redirect_to @pet
+                     if(@pet.update_attributes(params[:pet])) #@pet.update_attributes(params[:pet])
+                        #Save the hp, atk, def and spd first
+                        #Save the pet cost, and level
+                        userMatch = ((logged_in.id == petFound.user_id) || logged_in.admin)
+                        if(userMatch)
+                           string_array = calculator(@pet.hp, @pet.atk, @pet.def, @pet.spd)
+                           petCost, petLevel = string_array.map { |str| str.to_i}
+                           @pet.cost = petCost
+                           @pet.level = petLevel
+                           @pet.save
+                           flash[:success] = 'Pet was successfully updated.'
+                           redirect_to @pet
+                        else
+                           redirect_to root_path
+                        end
                      else
                         render "edit"
                      end
                   else
-                     redirect_to root_path
+                     render "edit"
                   end
                else
-                  render "public/404"
+                  redirect_to "public/404"
                end
             else
                redirect_to root_path
@@ -250,7 +329,14 @@ module PetsHelper
                   petsToReview = allPets.select{|pet| !pet.reviewed}
                   @pets = Kaminari.paginate_array(petsToReview).page(params[:page]).per(10)
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     allPets = Pet.all
+                     petsToReview = allPets.select{|pet| !pet.reviewed}
+                     @pets = Kaminari.paginate_array(petsToReview).page(params[:page]).per(10)
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path
@@ -259,17 +345,14 @@ module PetsHelper
             logged_in = current_user
             if(logged_in)
                if(logged_in.admin)
-                  petFound = Pet.find_by_id(params[:pet_id])
-                  if(petFound)
-                     petFound.reviewed = true
-                     @pet = petFound
-                     @pet.save
-                     redirect_to pets_review_path
-                  else
-                     render "public/404"
-                  end
+                  petApproved
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     petApproved
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path
@@ -278,18 +361,14 @@ module PetsHelper
             logged_in = current_user
             if(logged_in)
                if(logged_in.admin)
-                  petFound = Pet.find_by_id(params[:pet_id])
-                  if(petFound)
-                     #Retrieve the user who owns this pet first
-                     #userEmail = petFound.user.email
-                     #Send mail to user with link to edit the pet they sent
-                     @pet = petFound
-                     redirect_to pets_review_path
-                  else
-                     render "public/404"
-                  end
+                  petDenied
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     petDenied
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path

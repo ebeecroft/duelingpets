@@ -21,7 +21,7 @@
       <% end %>
       <pre class="storyformat"><%= chapter.story %></pre>
       <p>Created on: <%= chapter.created_on.strftime("%B-%d-%Y") %></p>
-      <p>Author: <%= link_to chapter.user.vname, user_path(chapter.user) %></p>
+      <p>Author: <%= getType(chapter.user) %><%= link_to chapter.user.vname, user_path(chapter.user) %></p>
    </div>
 <% end %>
 <% if current_user %>

@@ -16,6 +16,6 @@
    <p class="pagetext">Created on: <%= sbook.created_on.strftime("%B-%d-%Y") %></p>
    <p class="pagetext">Open series? <%= sbook.series_open %></p>
    <% if !getOptional %>
-      <p class="pagetext">Author: <%= link_to sbook.user.vname, user_path(sbook.user) %></p>
+      <p class="pagetext">Author: <%= getType(sbook.user) %><%= link_to sbook.user.vname, user_path(sbook.user) %></p>
    <% end %>
 <% end %>

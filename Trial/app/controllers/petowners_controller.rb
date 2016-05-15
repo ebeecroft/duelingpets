@@ -29,6 +29,22 @@ class PetownersController < ApplicationController
      mode "destroy"
   end
 
+  def attack
+     mode "attack"
+  end
+
+  def defense
+     mode "defense"
+  end
+
+  def speed
+     mode "speed"
+  end
+
+  def health
+     mode "health"
+  end
+
   def maintenance
   end
 end

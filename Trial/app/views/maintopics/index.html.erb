@@ -12,7 +12,7 @@
          <div class="inner"><%= button_to 'Edit', edit_tcontainer_maintopic_path(maintopic.tcontainer, maintopic), method: :get %></div>
          <div class="inner"><%= button_to 'Destroy', [maintopic.tcontainer, maintopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
       <% end %>
-      <p>by: <%= link_to maintopic.user.vname, user_path(maintopic.user) %></p>
+      <p>by: <%= getType(maintopic.user) %><%= link_to maintopic.user.vname, user_path(maintopic.user) %></p>
       <pre class="storyformat"><%= maintopic.description %></pre>
    </div>
 <% end %>

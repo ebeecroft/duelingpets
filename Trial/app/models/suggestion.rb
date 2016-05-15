@@ -1,3 +1,4 @@
 class Suggestion < ActiveRecord::Base
-  attr_accessible :description, :name, :email
+  attr_accessible :name, :description
+  belongs_to :user
 end

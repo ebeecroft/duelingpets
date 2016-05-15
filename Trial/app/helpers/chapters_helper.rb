@@ -31,10 +31,65 @@ module ChaptersHelper
    end
 
    private
+      def getType(user)
+         if(user.admin)
+            value = "$"
+         else
+            typeFound = Usertype.find_by_user_id(user.id)
+            if(typeFound)
+               type = typeFound.privilege
+               if(type == "Reviewer")
+                  value = "^"
+               elsif(type == "Banned")
+                  value = "!"
+               else
+                  value = "~"
+               end
+            else
+               value = "~"
+            end
+         end
+         return value
+      end
+
+      def chapterDenied
+         chapterFound = Chapter.find_by_id(params[:chapter_id])
+         if(chapterFound)
+            #Retrieve the user who owns this chapter first
+            #userEmail = chapterFound.user.email
+            #Send mail to user with link to edit the chapter they sent
+            @chapter = chapterFound
+            ChapterMailer.chapter_denied(@chapter).deliver
+            flash[:success] = "Mail was sent to the story writer."
+            redirect_to chapters_review_path
+         else
+            render "public/404"
+         end
+      end
+
+      def chapterApproved
+         chapterFound = Chapter.find_by_id(params[:chapter_id])
+         if(chapterFound)
+            chapterFound.reviewed = true
+            pouch = Pouch.find_by_user_id(chapterFound.user_id)
+            pointsForChapter = 10
+            pouch.amount += pointsForChapter
+            @pouch = pouch
+            @pouch.save
+            @chapter = chapterFound
+            @chapter.save
+            ChapterMailer.chapter_approved(@chapter, pointsForChapter).deliver
+            redirect_to chapters_review_path
+         else
+            render "public/404"
+         end
+      end
+
       def saveChapter(bookFound, newChapter)
          @chapter = newChapter
          if(@chapter.save)
             @book = bookFound
+            ChapterMailer.review_chapter(@chapter).deliver
             flash[:success] = "#{@chapter.title} is currently being reviewed please check back later."
             redirect_to sbook_book_path(@book.sbook, @chapter.book)
          else
@@ -221,7 +276,14 @@ module ChaptersHelper
                   chaptersToReview = allChapters.select{|chapter| !chapter.reviewed}
                   @chapters = Kaminari.paginate_array(chaptersToReview).page(params[:page]).per(10)
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     allChapters = Chapter.all
+                     chaptersToReview = allChapters.select{|chapter| !chapter.reviewed}
+                     @chapters = Kaminari.paginate_array(chaptersToReview).page(params[:page]).per(10)
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path
@@ -230,17 +292,14 @@ module ChaptersHelper
             logged_in = current_user
             if(logged_in)
                if(logged_in.admin)
-                  chapterFound = Chapter.find_by_id(params[:chapter_id])
-                  if(chapterFound)
-                     chapterFound.reviewed = true
-                     @chapter = chapterFound
-                     @chapter.save
-                     redirect_to chapters_review_path
-                  else
-                     render "public/404"
-                  end
+                  chapterApproved
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     chapterApproved
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path
@@ -249,18 +308,14 @@ module ChaptersHelper
             logged_in = current_user
             if(logged_in)
                if(logged_in.admin)
-                  chapterFound = Chapter.find_by_id(params[:chapter_id])
-                  if(chapterFound)
-                     #Retrieve the user who owns this chapter first
-                     #userEmail = chapterFound.user.email
-                     #Send mail to user with link to edit the chapter they sent
-                     @chapter = chapterFound
-                     redirect_to chapters_review_path
-                  else
-                     render "public/404"
-                  end
+                  chapterDenied
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     chapterDenied
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path

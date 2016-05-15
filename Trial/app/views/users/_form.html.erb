@@ -11,8 +11,7 @@
     </div>
   <% end %>
   <br>
-  <p class="pagetext">Virtual Name(Vname) is the only information seen by other users.</p>
-  <br>
+  <!--<p class="pagetext">Virtual Name(Vname) is the only information seen by other users.</p>-->
   <div class="pagetext">
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar %>
@@ -30,7 +29,11 @@
     <%= f.text_field :email %>
   </div>
   <div class="pagetext">
-    <%= f.label :vname %><br />
+    <%= f.label :login_id, "Login Name" %><br />
+    <%= f.text_field :login_id %>
+  </div>
+  <div class="pagetext">
+    <%= f.label :vname, "Virtual Name" %><br />
     <%= f.text_field :vname %>
   </div>
   <div class="pagetext">

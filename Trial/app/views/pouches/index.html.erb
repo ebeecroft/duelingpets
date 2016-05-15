@@ -12,7 +12,7 @@
       </tr>
       <% @pouches.each do |pouch| %>
          <tr>
-            <td><%= link_to pouch.user.vname, user_path(pouch.user) %></td>
+            <td><%= getType(pouch.user) %><%= link_to pouch.user.vname, user_path(pouch.user) %></td>
             <td><%= pouch.amount %></td>
          </tr>
       <% end %>

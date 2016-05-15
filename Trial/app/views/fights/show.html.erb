@@ -11,4 +11,22 @@
    <div class="monstercontainer"><%= render "type", object: "Monster" %></div>
 </div>
 <br>
-<div class="pagetext"><%= getFight %></div>
+<div class="pagetext">
+   <% if battleDone %>
+         <p><%= getFight %></p>
+      <% if getCoins > 0 %>
+         <br>
+         <p>Your pet gained <%= getCoins %> coins!</p>
+      <% end %>
+      <% if getCoins != 0 || getExpGained != 0 %>
+         <br>
+         <p>Your pet gained <%= getExpGained %> exp!</p>
+      <% end %>
+      <% if getBoostTokens > 0 %>
+         <br>
+         <p>Your pet gained <%= getBoostTokens %> boost tokens!</p>
+      <% end %>
+   <% else %>
+      <p><%= getFight %></p>
+   <% end %>
+</div>

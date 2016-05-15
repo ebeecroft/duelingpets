@@ -31,6 +31,59 @@ module ArtworksHelper
    end
 
    private
+      def getType(user)
+         if(user.admin)
+            value = "$"
+         else
+            typeFound = Usertype.find_by_user_id(user.id)
+            if(typeFound)
+               type = typeFound.privilege
+               if(type == "Reviewer")
+                  value = "^"
+               elsif(type == "Banned")
+                  value = "!"
+               else
+                  value = "~"
+               end
+            else
+               value = "~"
+            end
+         end
+         return value
+      end
+
+      def artworkApproved
+         artworkFound = Artwork.find_by_id(params[:artwork_id])
+         if(artworkFound)
+            artworkFound.reviewed = true
+            pouch = Pouch.find_by_user_id(artworkFound.user_id)
+            pointsForArt = 10
+            pouch.amount += pointsForArt
+            @pouch = pouch
+            @pouch.save
+            @artwork = artworkFound
+            @artwork.save
+            ArtworkMailer.artwork_approved(@artwork, pointsForArt).deliver
+            redirect_to artworks_review_path
+         else
+            render "public/404"
+         end
+      end
+
+      def artworkDenied
+         artworkFound = Artwork.find_by_id(params[:artwork_id])
+         if(artworkFound)
+            #Retrieve the user who owns this pet first
+            #userEmail = petFound.user.email
+            #Send mail to user with link to edit the pet they sent
+            @artwork = artworkFound
+            ArtworkMailer.artwork_denied(@artwork).deliver
+            redirect_to artworks_review_path
+         else
+            render "public/404"
+         end
+      end
+
       def createArtwork(subfolderFound)
          newArtwork = subfolderFound.artworks.new
          @subfolder = subfolderFound
@@ -45,6 +98,7 @@ module ArtworksHelper
          @artwork = newArtwork
          if(@artwork.save)
             @subfolder = subfolderFound
+            ArtworkMailer.review_artwork(@artwork).deliver
             flash[:success] = "#{@artwork.title} is currently being reviewed please check back later."
             redirect_to subfolder_artwork_path(@subfolder, @artwork)
          else
@@ -219,7 +273,14 @@ module ArtworksHelper
                   artworksToReview = allArtworks.select{|artwork| !artwork.reviewed}
                   @artworks = Kaminari.paginate_array(artworksToReview).page(params[:page]).per(10)
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     allArtworks = Artwork.all
+                     artworksToReview = allArtworks.select{|artwork| !artwork.reviewed}
+                     @artworks = Kaminari.paginate_array(artworksToReview).page(params[:page]).per(10)
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path
@@ -228,17 +289,14 @@ module ArtworksHelper
             logged_in = current_user
             if(logged_in)
                if(logged_in.admin)
-                  artworkFound = Artwork.find_by_id(params[:artwork_id])
-                  if(artworkFound)
-                     artworkFound.reviewed = true
-                     @artwork = artworkFound
-                     @artwork.save
-                     redirect_to artworks_review_path
-                  else
-                     render "public/404"
-                  end
+                  artworkApproved
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     artworkApproved
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path
@@ -247,18 +305,14 @@ module ArtworksHelper
             logged_in = current_user
             if(logged_in)
                if(logged_in.admin)
-                  artworkFound = Artwork.find_by_id(params[:artwork_id])
-                  if(artworkFound)
-                     #Retrieve the user who owns this pet first
-                     #userEmail = petFound.user.email
-                     #Send mail to user with link to edit the pet they sent
-                     @artwork = artworkFound
-                     redirect_to artworks_review_path
-                  else
-                     render "public/404"
-                  end
+                  artworkDenied
                else
-                  redirect_to root_path
+                  typeFound = Usertype.find_by_user_id(logged_in.id)
+                  if(typeFound.privilege == "Reviewer")
+                     artworkDenied
+                  else
+                     redirect_to root_path
+                  end
                end
             else
                redirect_to root_path

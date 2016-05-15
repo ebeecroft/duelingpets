@@ -7,14 +7,16 @@
 <div class="pagetext">
    <table>
       <tr>
+         <th>Vname</th>
          <th>Name</th>
          <th>Description</th>
          <th></th>
       </tr>
       <% @suggestions.each do |suggestion| %>
          <tr>
-            <td><%= link_to suggestion.name, user_path(suggestion.name) %></td>
-            <td><%= suggestion.description %></td>
+            <td><%= getType(suggestion.user) %><%= link_to suggestion.user.vname, user_path(suggestion.user.vname) %>&nbsp;&nbsp;</td>
+            <td><%= suggestion.name %>&nbsp;&nbsp;</td>
+            <td><%= suggestion.description %>&nbsp;&nbsp;</td>
             <td><%= button_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
          </tr>
       <% end %>

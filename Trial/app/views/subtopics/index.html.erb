@@ -10,7 +10,7 @@
       <div class="inner">Topic: <%= link_to subtopic.topicname, maintopic_subtopic_path(subtopic.maintopic_id, subtopic.id) %></div>
       <div class="inner"><%= button_to 'Edit', edit_maintopic_subtopic_path(subtopic.maintopic, subtopic), method: :get %></div>
       <div class="inner"><%= button_to 'Destroy', [subtopic.maintopic, subtopic], method: :delete, data: { confirm: 'Are you sure?' } %></div>
-      <p>by: <%= link_to subtopic.user.vname, user_path(subtopic.user) %></p>
+      <p>by: <%= getType(subtopic.user) %><%= link_to subtopic.user.vname, user_path(subtopic.user) %></p>
       <pre class="storyformat"><%= subtopic.description %></pre>
    </div>
 <% end %>

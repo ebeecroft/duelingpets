@@ -11,6 +11,6 @@
       <div class="inner"><%= button_to 'Destroy', [sbook.user, sbook], method: :delete, data: { confirm: 'Are you sure?' } %></div>
       <p>Created on: <%= sbook.created_on.strftime("%B-%d-%Y") %></p>
       <p>Open series? <%= sbook.series_open %></p>
-      <p>Author: <%= link_to sbook.user.vname, user_path(sbook.user) %></p>
+      <p>Author: <%= getType(sbook.user) %><%= link_to sbook.user.vname, user_path(sbook.user) %></p>
    </div>
 <% end %>

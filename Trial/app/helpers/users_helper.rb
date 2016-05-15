@@ -44,11 +44,22 @@ module UsersHelper
       end
 
       def getType(user)
-         value = "NULL"
          if(user.admin)
             value = "$"
          else
-            value = "~"
+            typeFound = Usertype.find_by_user_id(user.id)
+            if(typeFound)
+               type = typeFound.privilege
+               if(type == "Reviewer")
+                  value = "^"
+               elsif(type == "Banned")
+                  value = "!"
+               else
+                  value = "~"
+               end
+            else
+               value = "~"
+            end
          end
          return value
       end
@@ -102,9 +113,16 @@ module UsersHelper
                newKey.user_id = newMember.id
                @sessionkey = newKey
                @sessionkey.save
+               #Create usertype
+               newUserType = Usertype.new(params[:usertype])
+               newUserType.user_id = newMember.id
+               newUserType.privilege = "User"
+               @usertype = newUserType
+               @usertype.save
                #Login the user
                sign_in newMember
                flash[:success] = "Welcome to the Duelingpets Website #{@user.vname}!"
+               UserMailer.welcome_email(@user).deliver
                redirect_to @user
             else
                render "new"

@@ -11,6 +11,6 @@
       <div class="inner"><%= button_to 'Destroy', [mainfolder.user, mainfolder], method: :delete, data: { confirm: 'Are you sure?' } %></div>
       <p>Created on: <%= mainfolder.created_on.strftime("%B-%d-%Y") %></p>
       <p><%= mainfolder.description %></p>
-      <p>Owner: <%= link_to mainfolder.user.vname, user_path(mainfolder.user) %></p>
+      <p>Owner: <%= getType(mainfolder.user) %><%= link_to mainfolder.user.vname, user_path(mainfolder.user) %></p>
    </div>
 <% end %>

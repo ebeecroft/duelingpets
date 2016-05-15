@@ -5,8 +5,8 @@
 <br>
 <%= form_for(:session, url: sessions_path) do |f| %>
    <div class="pagetext">
-      <p><%= f.label :vname %></p>
-      <p><%= f.text_field :vname %></p>
+      <p><%= f.label :login_id, "Login Name" %></p>
+      <p><%= f.text_field :login_id %></p>
       <p><%= f.label :password %></p>
       <p><%= f.password_field :password %></p>
       <p><%= f.submit "Sign in" %></p>

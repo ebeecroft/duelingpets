@@ -23,7 +23,7 @@
       <% end %>
       <p><%= image_tag getArtwork(subfolder) %></p>
       <p>Created on: <%= subfolder.created_on.strftime("%B-%d-%Y") %></p>
-      <p>Owner: <%= link_to subfolder.user.vname, user_path(subfolder.user) %></p>
+      <p>Owner: <%= getType(subfolder.user) %><%= link_to subfolder.user.vname, user_path(subfolder.user) %></p>
       <p>Collaboration: <%= subfolder.collab_mode %></p>
    </div>
 <% end %>

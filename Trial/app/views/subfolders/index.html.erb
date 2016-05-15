@@ -14,7 +14,7 @@
       <% end %>
       <p>Created on: <%= subfolder.created_on.strftime("%B-%d-%Y") %></p>
       <p><%= subfolder.description %></p>
-      <p>By: <%= link_to subfolder.user.vname, user_path(subfolder.user) %></p>
+      <p>By: <%= getType(subfolder.user) %><%= link_to subfolder.user.vname, user_path(subfolder.user) %></p>
       <p>Collaboration: <%= subfolder.collab_mode %></p>
    </div>
 <% end %>

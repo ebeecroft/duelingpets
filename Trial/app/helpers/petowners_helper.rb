@@ -35,6 +35,27 @@ module PetownersHelper
    end
 
    private
+      def getType(user)
+         if(user.admin)
+            value = "$"
+         else
+            typeFound = Usertype.find_by_user_id(user.id)
+            if(typeFound)
+               type = typeFound.privilege
+               if(type == "Reviewer")
+                  value = "^"
+               elsif(type == "Banned")
+                  value = "!"
+               else
+                  value = "~"
+               end
+            else
+               value = "~"
+            end
+         end
+         return value
+      end
+
       def savePetowner(purchaseCode)
          if(@petowner.save)
             if(purchaseCode == 2)
@@ -259,6 +280,82 @@ module PetownersHelper
                      end
                   else
                      render "public/404"
+                  end
+               else
+                  redirect_to root_path
+               end
+            else
+               redirect_to root_path
+            end
+         elsif(type == "health")
+            petownerFound = Petowner.find_by_id(params[:petowner_id])
+            if(petownerFound)
+               if(petownerFound.boost_tokens > 0)
+                  petownerFound.hp_max += 1
+                  petownerFound.boost_tokens -= 1
+                  @petowner = petownerFound
+                  @petowner.save
+                  flash[:success]="Pets hp was successfully increased."
+                  redirect_to user_petowners_path(@petowner.user)
+               else
+                  redirect_to root_path
+               end
+            else
+               redirect_to root_path
+            end
+         elsif(type == "attack")
+            petownerFound = Petowner.find_by_id(params[:petowner_id])
+            if(petownerFound)
+               if(petownerFound.boost_tokens > 0)
+                  if(petownerFound.def != petownerFound.spd || (petownerFound.atk + 1) != petownerFound.spd)
+                     petownerFound.atk += 1
+                     petownerFound.boost_tokens -= 1
+                     @petowner = petownerFound
+                     @petowner.save
+                     flash[:success]="Pets atk was successfully increased."
+                     redirect_to user_petowners_path(@petowner.user)
+                  else
+                     redirect_to root_path
+                  end
+               else
+                  redirect_to root_path
+               end
+            else
+               redirect_to root_path
+            end
+         elsif(type == "defense")
+            petownerFound = Petowner.find_by_id(params[:petowner_id])
+            if(petownerFound)
+               if(petownerFound.boost_tokens > 0)
+                  if(petownerFound.spd != petownerFound.atk || (petownerFound.def + 1) != petownerFound.atk)
+                     petownerFound.def += 1
+                     petownerFound.boost_tokens -= 1
+                     @petowner = petownerFound
+                     @petowner.save
+                     flash[:success]="Pets def was successfully increased."
+                     redirect_to user_petowners_path(@petowner.user)
+                  else
+                     redirect_to root_path
+                  end
+               else
+                  redirect_to root_path
+               end
+            else
+               redirect_to root_path
+            end
+         elsif(type == "speed")
+            petownerFound = Petowner.find_by_id(params[:petowner_id])
+            if(petownerFound)
+               if(petownerFound.boost_tokens > 0)
+                  if(petownerFound.atk != petownerFound.def || (petownerFound.spd + 1) != petownerFound.def)
+                     petownerFound.spd += 1
+                     petownerFound.boost_tokens -= 1
+                     @petowner = petownerFound
+                     @petowner.save
+                     flash[:success]="Pets spd was successfully increased."
+                     redirect_to user_petowners_path(@petowner.user)
+                  else
+                     redirect_to root_path
                   end
                else
                   redirect_to root_path

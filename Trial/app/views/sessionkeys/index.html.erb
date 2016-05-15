@@ -13,7 +13,7 @@
       </tr>
       <% @sessionkeys.each do |sessionkey| %>
          <tr>
-            <td><%= link_to sessionkey.user.vname, user_path(sessionkey.user) %>&nbsp;&nbsp;&nbsp;</td>
+            <td><%= getType(sessionkey.user) %><%= link_to sessionkey.user.vname, user_path(sessionkey.user) %>&nbsp;&nbsp;&nbsp;</td>
             <td><%= sessionkey.remember_token %>&nbsp;&nbsp;&nbsp;</td>
             <td><%= sessionkey.expiretime %></td>
          </tr>

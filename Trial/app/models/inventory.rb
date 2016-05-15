@@ -5,5 +5,4 @@ class Inventory < ActiveRecord::Base
 
    validates :user_id, presence: true
    validates :item_id, presence: true
-   attr_accessible :item_id, :user_id
 end

@@ -43,8 +43,12 @@
    <div class="outer">
       <p><%= @pet.description %></p>
       <p>Created on: <%= @pet.created_on.strftime("%B-%d-%Y") %></p>
-      <p>Creator: <%= link_to findUser(@pet.user_id), user_path(findUser(@pet.user_id)) %></p>
+      <p>Creator: <%= getType(@pet.user) %><%= link_to @pet.user.vname, user_path(@pet.user) %></p>
    </div>
 </div>
 <br>
-<div class="pagetext"><%= link_to 'Back', pets_path %></div>
+<% if getPetType2(@pet.monster) %>
+   <div class="pagetext"><%= link_to 'Back', pets_monsters_path %></div>
+<% else %>
+   <div class="pagetext"><%= link_to 'Back', pets_path %></div>
+<% end %>

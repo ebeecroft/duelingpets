@@ -6,6 +6,7 @@
    <%= link_to "Home", root_path %>
    <%= link_to "Adopt a Pet", pets_path %>
    <% if !current_user %>
+      <%= link_to "Forgot Password", recover_path %>
       <%= link_to "Forum", forums_path %>
    <% else %>
       <%= link_to "Suggestions", new_suggestion_path %>

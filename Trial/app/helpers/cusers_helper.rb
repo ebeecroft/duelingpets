@@ -100,4 +100,21 @@ module CusersHelper
          render "layouts/guest"
       end
    end
+
+   def getSymbol
+      value = "NULL"
+      if(current_user.admin)
+         value = "$"
+      else
+         type = current_user.usertype.privilege
+         if(type == "Reviewer")
+            value = "^"
+         elsif(type == "Banned")
+            value = "!"
+         else
+            value = "~"
+         end
+      end
+      return value
+   end
 end

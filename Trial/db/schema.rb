@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160514231107) do
+ActiveRecord::Schema.define(:version => 20160515023649) do
 
   create_table "artworks", :force => true do |t|
     t.string   "title"
@@ -70,14 +70,23 @@ ActiveRecord::Schema.define(:version => 20160514231107) do
   create_table "fights", :force => true do |t|
     t.integer  "petowner_id"
     t.integer  "pet_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "round",       :default => 1
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "round",        :default => 1
     t.integer  "pdamage"
     t.integer  "mdamage"
     t.integer  "coins"
     t.integer  "mhp"
-    t.boolean  "battle_done", :default => false
+    t.boolean  "battle_done",  :default => false
+    t.integer  "pet_hp"
+    t.integer  "level"
+    t.integer  "exp"
+    t.integer  "hp"
+    t.integer  "atk"
+    t.integer  "def"
+    t.integer  "spd"
+    t.integer  "exp_gained",   :default => 0
+    t.integer  "boost_tokens", :default => 0
   end
 
   create_table "forums", :force => true do |t|
@@ -166,17 +175,18 @@ ActiveRecord::Schema.define(:version => 20160514231107) do
     t.integer  "pet_id"
     t.string   "pet_name"
     t.datetime "adopted_on"
-    t.boolean  "maintenance", :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.boolean  "maintenance",  :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "level"
     t.integer  "hp"
     t.integer  "atk"
     t.integer  "def"
     t.integer  "spd"
-    t.integer  "exp",         :default => 0
+    t.integer  "exp",          :default => 0
     t.integer  "hp_max"
-    t.boolean  "in_battle",   :default => false
+    t.boolean  "in_battle",    :default => false
+    t.integer  "boost_tokens", :default => 0
   end
 
   create_table "pets", :force => true do |t|
@@ -279,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20160514231107) do
     t.boolean  "admin",           :default => false
     t.boolean  "maintenance",     :default => false
     t.string   "avatar"
+    t.string   "login_id"
   end
 
 end

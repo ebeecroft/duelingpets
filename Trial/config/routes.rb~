@@ -1,15 +1,6 @@
 Trial::Application.routes.draw do
 
-  resources :chapters
-
-
-  resources :gchapters
-
-
-  resources :books
-
-
-  resources :sbooks
+  resources :usertypes
 
 
    #Builds the users actions and the nested actions
@@ -20,9 +11,51 @@ Trial::Application.routes.draw do
       resources :inventories, :only =>[:index, :create, :destroy]
       resources :comments, :only => [:create, :destroy]
       resources :forums
+      resources :sbooks
+      resources :mainfolders
    end
 
+   #Builds the mainfolders
+   get '/mainfolders/maintenance' => 'mainfolders#maintenance'
+   get 'mainfolders/list' => 'mainfolders#list'
+   resources :mainfolders, :only => [:index] do
+      resources :subfolders, :except =>[:index]
+   end
+
+   #Builds the subfolders
+   get '/subfolders/maintenance' => 'subfolders#maintenance'
+   resources :subfolders, :only =>[:index] do
+      resources :artworks, :except =>[:index]
+   end
+
+   #Builds the artworks
+   get '/artworks/maintenance' => 'artworks#maintenance'
+   get '/artworks/review' => 'artworks#review' #has to be before the pets controller
+   post 'artworks/review1' => 'artworks#approve'
+   post 'artworks/review2' => 'artworks#deny'
+   resources :artworks, :only => [:index]
+
+   #Builds the series
+   get '/sbooks/maintenance' => 'sbooks#maintenance'
+   get 'sbooks/list' => 'sbooks#list'
+   resources :sbooks, :only => [:index] do
+      resources :books, :except =>[:index]
+   end
 #get '/:id/page/:page', :action => :show, :on => :collection
+
+   #Builds the books
+   get '/books/maintenance' => 'books#maintenance'
+   resources :books, :only => [:index] do
+      resources :chapters, :except => [:index, :show]
+   end
+
+   #Builds the chapters
+   get '/chapters/maintenance' => 'chapters#maintenance'
+   get 'chapters/review' => 'chapters#review'
+   post 'chapters/review1' => 'chapters#approve'
+   post 'chapters/review2' => 'chapters#deny'
+   resources :chapters, :only => [:index]
+   resources :gchapters, :only =>[:index]
 
    #Comments actions
    resources :comments, :only =>[:index]
@@ -106,6 +139,9 @@ Trial::Application.routes.draw do
    get '/signup' => 'users#new'
    get '/signin' => 'sessions#new'
    match '/logout' => 'sessions#destroy', via: :delete #has to be a match condition
+
+   #Builds the sessionkey
+   resources :sessionkeys, :only => [:index]
 
    #Controls page visibility
    resources :maintenancemodes, :except =>[:show, :destroy]

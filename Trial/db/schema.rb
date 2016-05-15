@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160515023649) do
+ActiveRecord::Schema.define(:version => 20160515025807) do
 
   create_table "artworks", :force => true do |t|
     t.string   "title"
@@ -290,6 +290,13 @@ ActiveRecord::Schema.define(:version => 20160515023649) do
     t.boolean  "maintenance",     :default => false
     t.string   "avatar"
     t.string   "login_id"
+  end
+
+  create_table "usertypes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "privilege"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

@@ -67,4 +67,16 @@ Trial::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  #Holding things for now
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: ENV['gmail_username'],
+  port: 587,
+  domain: ENV['gmail_domain'],
+  authentication: ENV['gmail_authentication'],
+  enable_starttls_auto: true,
+  user_name: ENV['gmail_username'],
+  password: ENV['gmail_password']
+  }
 end

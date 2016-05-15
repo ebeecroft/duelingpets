@@ -1,0 +1,2 @@
+class PasswordrecoveriesController < ApplicationController
+end

@@ -71,7 +71,7 @@ Trial::Application.configure do
   #Holding things for now
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: ENV['gmail_username'],
+  address: ENV['gmail_address'],
   port: 587,
   domain: ENV['gmail_domain'],
   authentication: ENV['gmail_authentication'],
